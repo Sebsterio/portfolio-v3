@@ -81,7 +81,7 @@ export default function ComingSoonContent() {
 
 					{/* Subtitle */}
 					<div ref={subtitleRef} className='text-2xl md:text-3xl text-slate-300 mb-4 font-light'>
-						<p className='accent-gradient'>A new portfolio is on the way.</p> Rebuilt from the ground up.
+						<p className='accent-gradient'>New portfolio is on the way.</p> Rebuilt from the ground up.
 					</div>
 
 					{/* Description */}
@@ -95,9 +95,9 @@ export default function ComingSoonContent() {
 							significantly — both in how I build things and who I build them for.
 						</p>
 						<p className='text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto'>
-							The new portfolio will reflect that reality more accurately
+							The new portfolio will reflect that reality more accurately.
 						</p>
-						<p className='text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto'>Feel free to get in touch in the meantime</p>
+						<p className='text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto'>Feel free to get in touch in the meantime.</p>
 					</div>
 
 					{/* Social Links */}
