@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { V2_URL } from '../config';
+import { LEGACY_SITE_URL } from '../config';
 import SocialLinks from './SocialLinks';
 
 export default function ComingSoonContent() {
@@ -88,7 +88,7 @@ export default function ComingSoonContent() {
 					<div ref={descriptionRef} className='space-y-4 mb-10'>
 						<p className='text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto'>
 							The{' '}
-							<a href={V2_URL} className='text-blue-400 underline'>
+							<a href={LEGACY_SITE_URL} className='text-blue-400 underline'>
 								previous version
 							</a>{' '}
 							no longer reflects my experience, technical stack, or design approach. Over the past few years, my work has evolved

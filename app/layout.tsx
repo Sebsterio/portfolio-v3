@@ -77,8 +77,8 @@ export const metadata: Metadata = {
 			'@type': 'Person',
 			name: 'Sebastian Rosloniec',
 		},
-		genre: 'Web Development, Full-Stack, E-commerce, UI/UX',
-		license: 'https://www.dhruvakbari.com/license', // Add your license URL if available
+		genre: 'Web Development, Full-Stack, Front-End, UI/UX',
+		license: LICENCE_URL,
 		image: THUMBNAIL_URL,
 	},
 };

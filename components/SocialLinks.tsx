@@ -1,5 +1,5 @@
 import { Github, Linkedin, Mail, Codepen, ExternalLink } from 'lucide-react';
-import { V2_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL } from '../config';
+import { LEGACY_SITE_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL } from '../config';
 
 const socialProfiles = [
 	{
@@ -17,7 +17,7 @@ const socialProfiles = [
 		iconColor: 'text-white',
 	},
 	{
-		url: V2_URL,
+		url: LEGACY_SITE_URL,
 		icon: ExternalLink,
 		label: 'Portfolio v2',
 		bgColor: 'bg-amber-500/25 border-amber-500',
