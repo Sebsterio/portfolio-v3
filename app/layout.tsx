@@ -1,7 +1,17 @@
 import type { Metadata } from 'next';
 import type React from 'react';
 import { Poppins } from 'next/font/google';
-import { SITE_URL, IMAGE_URL, THUMBNAIL_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, SITE_VERIFICATION } from '../config';
+import {
+	SITE_URL,
+	IMAGE_URL,
+	THUMBNAIL_URL,
+	GITHUB_URL,
+	LINKEDIN_URL,
+	CODEPEN_URL,
+	EMAIL_URL,
+	SITE_VERIFICATION,
+	LICENCE_URL,
+} from '../config';
 
 import './globals.css';
 
