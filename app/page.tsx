@@ -1,11 +1,5 @@
-import AnimatedBackground from "@/components/AnimatedBackground"
-import ComingSoonContent from "@/components/ComingSoonContent"
+import ComingSoonPage from './coming-soon/page';
 
 export default function HomePage() {
-  return (
-    <main className="relative">
-      <AnimatedBackground />
-      <ComingSoonContent />
-    </main>
-  )
+	return <ComingSoonPage />;
 }

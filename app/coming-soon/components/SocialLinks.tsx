@@ -1,5 +1,5 @@
 import { Github, Linkedin, Mail, Codepen, ExternalLink } from 'lucide-react';
-import { LEGACY_SITE_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL } from '../config';
+import { LEGACY_SITE_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL } from '../../../lib/constants';
 
 const socialProfiles = [
 	{

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { LEGACY_SITE_URL } from '../config';
+import { LEGACY_SITE_URL } from '../../../lib/constants';
 import SocialLinks from './SocialLinks';
 
 export default function ComingSoonContent() {
