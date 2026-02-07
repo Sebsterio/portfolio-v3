@@ -1,4 +1,4 @@
-import PageBG from '@/components/backgrounds/OrbsAndGridBG';
+import PageBG from '@/components/backgrounds/BubblesBG/BubblesBG';
 import ComingSoonContent from './components/ComingSoonContent';
 
 export default function ComingSoonPage() {

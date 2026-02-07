@@ -1,0 +1,23 @@
+.bubble {
+	position: absolute;
+	border-radius: 50%;
+	background: radial-gradient(
+		circle at 30% 30%,
+		rgba(255, 255, 255, 0.35) 0%,
+		rgba(255, 255, 255, 0.15) 12%,
+		rgba(30, 30, 30, 0.9) 35%,
+		rgba(0, 0, 0, 1) 70%
+	);
+	box-shadow: inset -10px -20px 30px rgba(0, 0, 0, 0.9), inset 5px 5px 15px rgba(255, 255, 255, 0.08), 0 30px 60px rgba(0, 0, 0, 0.6);
+	will-change: transform;
+}
+
+.bubble::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: radial-gradient(circle at 60% 75%, rgba(80, 160, 255, 0.35), transparent 60%);
+	mix-blend-mode: screen;
+	pointer-events: none;
+}
