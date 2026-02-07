@@ -11,9 +11,9 @@ import {
 	EMAIL_URL,
 	SITE_VERIFICATION,
 	LICENCE_URL,
-} from '../lib/constants';
+} from '@/lib/constants';
 
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
 // Load Google Font
 const poppins = Poppins({
