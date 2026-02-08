@@ -1,6 +1,9 @@
 'use client';
 
-import { QuantumBackground, QuantumHeader, QuantumHero, QuantumDataPanel, QuantumButton } from '@/components';
+import { QuantumBackground, QuantumHeader, QuantumHero, QuantumMetricsGrid, QuantumButton } from '@/components';
+
+import { SidePanel } from './_components/SidePanel';
+import { ShowcaseCards } from './_components/ShowcaseCards';
 
 export default function HomePage() {
 	return (
@@ -9,13 +12,12 @@ export default function HomePage() {
 
 			{/* Main Content */}
 			<div className='relative z-10 container max-w-[1400px] mx-auto px-10'>
-				{/* Header Navigation */}
 				<QuantumHeader />
 
 				{/* Hero Section */}
 				<section className='min-h-[calc(100vh-180px)] flex items-center py-20'>
 					<div className='grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center w-full'>
-						{/* Left Column - Hero Content */}
+						{/* Left Column */}
 						<div>
 							<QuantumHero />
 
@@ -26,9 +28,12 @@ export default function HomePage() {
 							</div>
 						</div>
 
-						{/* Right Column - Data Panel */}
+						{/* Right Column */}
 						<div className='flex justify-center lg:justify-end w-full'>
-							<QuantumDataPanel />
+							<SidePanel>
+								{/* <QuantumMetricsGrid /> */}
+								<ShowcaseCards />
+							</SidePanel>
 						</div>
 					</div>
 				</section>

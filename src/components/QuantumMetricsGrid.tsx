@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 import { cn } from '@/lib/utils';
 
+// Placeholder data
 const metrics = [
 	{ value: '15+', label: 'Years XP' },
 	{ value: '120+', label: 'Projects' },
@@ -11,37 +10,11 @@ const metrics = [
 	{ value: '100%', label: 'Satisfaction' },
 ];
 
-export function QuantumDataPanel() {
-	const panelRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!panelRef.current) return;
-
-		// Animated entrance
-		gsap.fromTo(
-			panelRef.current,
-			{
-				opacity: 0,
-				x: 100,
-				filter: 'blur(20px)',
-			},
-			{
-				opacity: 1,
-				x: 0,
-				filter: 'blur(0px)',
-				duration: 1.5,
-				ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-				delay: 0.6,
-			}
-		);
-	}, []);
-
+export function QuantumMetricsGrid() {
 	return (
 		<div
-			ref={panelRef}
 			className={cn(
-				'relative w-full p-10 rounded-3xl',
-				// 'bg-[rgba(5,5,10,0.7)]',
+				'relative w-full h-full p-10 rounded-3xl',
 				'bg-gradient-to-br from-quantum-purple/5 to-quantum-magenta/5',
 				'backdrop-blur-[20px] border border-quantum-purple/20',
 				'shadow-[0_20px_60px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(178,75,243,0.2)]',

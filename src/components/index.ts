@@ -1,5 +1,5 @@
 export { QuantumBackground } from './QuantumBackground';
 export { QuantumHeader } from './QuantumHeader';
 export { QuantumHero } from './QuantumHero';
-export { QuantumDataPanel } from './QuantumDataPanel';
+export { QuantumMetricsGrid } from './QuantumMetricsGrid';
 export { QuantumButton } from './QuantumButton';
