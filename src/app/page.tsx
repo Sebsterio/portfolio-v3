@@ -1,10 +1,6 @@
 'use client';
 
-import { QuantumBackground } from '@/components/quantum-background';
-import { QuantumHeader } from '@/components/quantum-header';
-import { QuantumHero } from '@/components/quantum-hero';
-import { QuantumDataPanel } from '@/components/quantum-data-panel';
-import { QuantumButton } from '@/components/quantum-button';
+import { QuantumBackground, QuantumHeader, QuantumHero, QuantumDataPanel, QuantumButton } from '@/components';
 
 export default function HomePage() {
 	return (
