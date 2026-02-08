@@ -3,12 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
-
-const navItems = [
-	{ label: 'Projects', href: '#projects' },
-	{ label: 'About', href: '#about' },
-	{ label: 'Contact', href: '#contact' },
-];
+import { navItems } from '@/lib/nav-items';
 
 export function QuantumHeader() {
 	const headerRef = useRef<HTMLElement>(null);
@@ -57,7 +52,7 @@ export function QuantumHeader() {
 
 				{/* Logo */}
 				<div className='font-exo text-[28px] font-extrabold tracking-[2px]'>
-					<span className='bg-gradient-to-r from-quantum-purple to-quantum-magenta bg-clip-text text-transparent'>QUANTUM</span>
+					<span className='bg-gradient-to-r from-quantum-purple to-quantum-magenta bg-clip-text text-transparent'>PORTFOLIO</span>
 				</div>
 
 				{/* Navigation Links */}
@@ -69,7 +64,14 @@ export function QuantumHeader() {
 								className='group relative text-white/70 text-[13px] font-semibold tracking-[2px] uppercase transition-all duration-400 hover:text-white'
 							>
 								{item.label}
-								<span className='absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-quantum-purple to-quantum-magenta transition-all duration-400 group-hover:w-full shadow-[0_0_10px_rgba(178,75,243,1)]' />
+								<span
+									className={cn(
+										'absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[2px] group-hover:w-full',
+										'bg-gradient-to-r from-quantum-purple to-quantum-magenta',
+										'transition-all duration-400',
+										'shadow-[0_0_10px_rgba(178,75,243,1)]'
+									)}
+								/>
 							</a>
 						</li>
 					))}
