@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +13,7 @@ interface QuantumShowcaseCardProps {
 
 export const QuantumShowcaseCard: React.FC<QuantumShowcaseCardProps> = ({ icon, title, description, className }) => {
 	const cardRef = useRef<HTMLDivElement>(null);
+	const iconRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (!cardRef.current) return;
@@ -25,7 +26,7 @@ export const QuantumShowcaseCard: React.FC<QuantumShowcaseCardProps> = ({ icon, 
 				x: 0,
 				duration: 1.5,
 				ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-				delay: 0.6,
+				delay: 0.8,
 			}
 		);
 	}, []);
@@ -34,27 +35,68 @@ export const QuantumShowcaseCard: React.FC<QuantumShowcaseCardProps> = ({ icon, 
 		<div
 			ref={cardRef}
 			className={cn(
-				'relative p-10 rounded-3xl overflow-hidden',
-				'bg-[rgba(5,5,10,0.7)] backdrop-blur-[30px]',
-				'border border-quantum-purple/20',
-				'shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(178,75,243,0.2)]',
-				'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-				'hover:translate-y-[-10px] hover:border-quantum-purple/30 hover:shadow-[0_30px_80px_rgba(0,0,0,0.6)]',
+				'group relative p-10 rounded-[28px] overflow-hidden',
+				'bg-[rgba(5,5,10,0.7)] backdrop-blur-[40px] backdrop-saturate-[180%]',
+				'border border-quantum-purple/10',
+				'shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(178,75,243,0.1),inset_0_1px_0_rgba(178,75,243,0.2),inset_0_-1px_0_rgba(178,75,243,0.05)]',
+				'transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
+				'hover:translate-y-[-10px] hover:scale-[1.01]',
+				'hover:border-quantum-purple/40',
+				'hover:shadow-[0_8px_32px_rgba(0,0,0,0.5),0_8px_40px_rgba(178,75,243,0.3),inset_0_1px_0_rgba(178,75,243,0.4)]',
 				className
 			)}
 		>
-			<div className='absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-quantum-purple/30 rounded-tl-3xl' />
-			<div className='absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-quantum-purple/30 rounded-tr-3xl' />
-			<div className='absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-quantum-purple/30 rounded-bl-3xl' />
-			<div className='absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-quantum-purple/30 rounded-br-3xl' />
+			{/* Diagonal Glare Effect */}
+			<div
+				className='absolute inset-0 rounded-[28px] pointer-events-none'
+				style={{
+					background: `linear-gradient(
+						135deg,
+						rgba(255,255,255,0.1) 0%,
+						rgba(255,255,255,0.05) 20%,
+						transparent 50%
+					)`,
+				}}
+			/>
 
-			<div className='flex items-center justify-center w-14 h-14 mb-6 rounded-2xl bg-gradient-to-br from-quantum-purple to-quantum-magenta shadow-[0_10px_30px_rgba(178,75,243,0.3)]'>
-				<div className='text-[26px]'>{icon}</div>
+			{/* Noise Texture Overlay */}
+			<div
+				className='absolute inset-0 rounded-[28px] pointer-events-none opacity-[0.02]'
+				style={{
+					backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E")`,
+				}}
+			/>
+
+			{/* Top Edge Glow */}
+			<div
+				className='absolute top-0 left-[20%] w-[60%] h-[2px] opacity-40 pointer-events-none blur-[2px]'
+				style={{
+					background: 'linear-gradient(90deg, transparent, rgba(178, 75, 243, 0.8), transparent)',
+				}}
+			/>
+
+			{/* Animated Shine Effect on Hover */}
+			<div
+				className='absolute top-0 left-[-100%] w-full h-full pointer-events-none group-hover:left-[100%] transition-all duration-[800ms] ease-out'
+				style={{
+					background: 'linear-gradient(90deg, transparent, rgba(178, 75, 243, 0.2), transparent)',
+					transform: 'skewX(-20deg)',
+				}}
+			/>
+
+			{/* Content */}
+			<div className='relative z-10'>
+				<div
+					ref={iconRef}
+					className='flex items-center justify-center w-14 h-14 mb-6 rounded-2xl bg-gradient-to-br from-quantum-purple to-quantum-magenta shadow-[0_10px_30px_rgba(178,75,243,0.4),0_0_20px_rgba(178,75,243,0.2)] group-hover:shadow-[0_12px_40px_rgba(178,75,243,0.6),0_0_30px_rgba(178,75,243,0.4)] group-hover:scale-105 transition-all duration-500'
+				>
+					<div className='text-[26px]'>{icon}</div>
+				</div>
+
+				<h3 className='font-exo text-xl font-bold text-white mb-3'>{title}</h3>
+
+				<p className='text-[13px] leading-relaxed text-white/70'>{description}</p>
 			</div>
-
-			<h3 className='font-exo text-xl font-bold text-white mb-3'>{title}</h3>
-
-			<p className='text-[13px] leading-relaxed text-white/70'>{description}</p>
 		</div>
 	);
 };
