@@ -17,9 +17,17 @@ module.exports = {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 			},
 			colors: {
+				// Quantum
 				'quantum-purple': '#b24bf3',
 				'quantum-magenta': '#f32b9d',
 				'quantum-blue': '#4b7cf3',
+
+				// Liquid Metal
+				'chrome-silver': '#f0f0f0',
+				'chrome-light': '#d4d4d4',
+				'chrome-mid': '#a0a0a0',
+				'accent-blue': '#3b82f6',
+				'accent-cyan': '#06b6d4',
 			},
 			animation: {
 				'grid-perspective': 'gridPerspective 20s ease-in-out infinite',

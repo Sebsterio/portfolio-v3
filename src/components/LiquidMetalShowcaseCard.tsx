@@ -4,11 +4,16 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
 
-// text-chrome-silver
+// THEME-SPECIFIC CLASSES
+//
+// chrome-silver
 // text-chrome-mid
 // border-chrome-silver/10
 // accent-blue
 // accent-cyan
+//
+// font-urbanist 	 	              // TODO
+// (default) font-family: 'Syne'  // TODO
 
 interface LiquidMetalShowcaseCardProps {
 	icon: React.ReactNode;
