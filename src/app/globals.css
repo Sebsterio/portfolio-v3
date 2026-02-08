@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--font-exo: 'Exo 2', sans-serif;
+		--font-source-code: 'Source Code Pro', monospace;
+	}
+
+	body {
+		@apply bg-black text-white;
+	}
+}
+
+@layer utilities {
+	.perspective-1000 {
+		perspective: 1000px;
+	}
+
+	.preserve-3d {
+		transform-style: preserve-3d;
+	}
+}

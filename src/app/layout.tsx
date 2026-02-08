@@ -1,21 +1,31 @@
 import type React from 'react';
-import { metadata } from '@/components/Metadata';
-import { SITE_VERIFICATION } from '@/lib/constants';
+import { Exo_2, Source_Code_Pro } from 'next/font/google';
+// import { SITE_VERIFICATION } from '@/lib/constants';
+import { cn } from '@/lib/utils';
+export { metadata } from './_metadata';
 
-import '@/styles/globals.css';
+import './globals.css';
 
-export { metadata };
+const exo2 = Exo_2({
+	subsets: ['latin'],
+	variable: '--font-exo',
+	weight: ['400', '600', '700', '800'],
+});
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const sourceCodePro = Source_Code_Pro({
+	subsets: ['latin'],
+	variable: '--font-source-code',
+	weight: ['400', '600'],
+});
+
+// const SiteVerificationMeta = SITE_VERIFICATION && <meta name='google-site-verification' content={SITE_VERIFICATION} />;
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang='en'>
-			<head>
-				<link rel='preconnect' href='https://fonts.googleapis.com' />
-				<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
-				{SITE_VERIFICATION && <meta name='google-site-verification' content={SITE_VERIFICATION} />}
-			</head>
+			<head></head>
 
-			{children}
+			<body className={cn(exo2.variable, sourceCodePro.variable, `font-source-code antialiased`)}>{children}</body>
 		</html>
 	);
 }

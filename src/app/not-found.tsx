@@ -1,5 +1,14 @@
-import OrbsNotFoundPage from './orbs/not-found';
+// import OrbsNotFoundPage from './orbs/not-found';
+// import OrbsBodyLayout from './orbs/layout';
+
+// export default function RootNotFoundPage() {
+// 	return (
+// 		<OrbsBodyLayout>
+// 			<OrbsNotFoundPage />
+// 		</OrbsBodyLayout>
+// 	);
+// }
 
 export default function RootNotFoundPage() {
-	return <OrbsNotFoundPage />;
+	return <h1>Not Found</h1>
 }
