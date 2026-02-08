@@ -31,7 +31,7 @@ export function QuantumBackground() {
 	}, []);
 
 	return (
-		<div className='fixed inset-0 pointer-events-none overflow-hidden'>
+		<>
 			{/* 3D Grid Background */}
 			<div
 				className='absolute inset-0 opacity-30 animate-grid-perspective'
@@ -61,6 +61,6 @@ export function QuantumBackground() {
 					animation: 'shapeFloat 10s ease-in-out infinite 2s',
 				}}
 			/>
-		</div>
+		</>
 	);
 }

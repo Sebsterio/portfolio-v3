@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 // THEME: Quantu₼
-export function SidePanel({ children }: { children: React.ReactNode }) {
+export function SidePanelContainer({ children }: { children: React.ReactNode }) {
 	const panelRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
