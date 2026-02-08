@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { cn } from '@/lib/utils';
+import { QuantumStatusBadge } from './QuantumStatusBadge';
 
 interface QuantumHeroProps {
 	className?: string;
@@ -34,20 +35,8 @@ export function QuantumHero({ className }: QuantumHeroProps) {
 	}, []);
 
 	return (
-		<div ref={heroRef} className={cn(/* 'max-w-4xl', */ className)}>
-			{/* Status Badge */}
-			<div
-				className={cn(
-					'inline-flex items-center gap-2.5 mb-10',
-					'px-5 py-2.5 rounded-full',
-					'bg-quantum-purple/10 border border-quantum-purple/30'
-				)}
-			>
-				<div className='w-2 h-2 rounded-full bg-quantum-purple animate-status-pulse shadow-[0_0_15px_rgba(178,75,243,1)]' />
-				<span className='text-xs tracking-[2px] uppercase' style={{ lineHeight: 'inherit' }}>
-					Available for Projects
-				</span>
-			</div>
+		<div ref={heroRef} className={className}>
+			<QuantumStatusBadge />
 
 			{/* Main Title */}
 			<h1 className={cn('font-exo text-[clamp(56px,8vw,110px)] font-extrabold leading-[1.1] tracking-[-0.02em] uppercase', 'mb-8')}>
