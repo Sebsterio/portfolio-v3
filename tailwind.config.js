@@ -10,10 +10,12 @@ module.exports = {
 		...defaultConfig.theme,
 		extend: {
 			fontFamily: {
+				// Quantum
 				exo: 'var(--font-exo)',
 				'source-code': 'var(--font-source-code)',
 			},
 			backgroundImage: {
+				// Quantum
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 			},
 			colors: {
