@@ -1,7 +1,6 @@
 'use client';
 
 import { QuantumBackground, QuantumHeader, QuantumHero, QuantumButton } from '@/components';
-// import { QuantumMetricsGrid } from '@/components';
 
 import { ShowcaseCards } from './_components/ShowcaseCards';
 import { LandingPageLayout } from './_components/LandingPageLayout';
@@ -20,10 +19,7 @@ export default function HomePage() {
 					</div>
 				</div>
 			}
-			panelJsx={
-				// <QuantumMetricsGrid/>
-				<ShowcaseCards />
-			}
+			panelJsx={<ShowcaseCards />}
 		/>
 	);
 }
