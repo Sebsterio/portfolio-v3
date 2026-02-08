@@ -50,7 +50,7 @@ export function QuantumHero({ className }: QuantumHeroProps) {
 			</div>
 
 			{/* Main Title */}
-			<h1 className={cn('font-exo text-[clamp(56px,8vw,110px)] font-extrabold leading-[1.1] tracking-[-0.02em]', 'mb-8')}>
+			<h1 className={cn('font-exo text-[clamp(56px,8vw,110px)] font-extrabold leading-[1.1] tracking-[-0.02em] uppercase', 'mb-8')}>
 				NEXT-GEN
 				<br />
 				<span
@@ -65,8 +65,8 @@ export function QuantumHero({ className }: QuantumHeroProps) {
 
 			{/* Subtitle */}
 			<p className='text-xl leading-relaxed text-white/70 max-w-xl'>
-				Pioneering the intersection of art and code. Specialized in creating immersive, high-performance web experiences that transcend
-				conventional boundaries.
+				Merging modern web technologies and thoughtful design to deliver immersive, visually striking, and highly performant web
+				applications that scale.
 			</p>
 		</div>
 	);
