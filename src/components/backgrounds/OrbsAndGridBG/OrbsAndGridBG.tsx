@@ -3,6 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
+import './styles.css';
+
 export default function OrbsAndGridBackground() {
 	const containerRef = useRef<HTMLDivElement>(null);
 

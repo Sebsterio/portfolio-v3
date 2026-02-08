@@ -3,7 +3,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
-import PageBG from '@/components/backgrounds/OrbsAndGridBG';
+import PageBG from '@/components/backgrounds/OrbsAndGridBG/OrbsAndGridBG';
+
+import '@/styles/theme-A/common.css';
+import '@/styles/theme-A/page.css';
 
 export default function NotFound() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -55,7 +58,7 @@ export default function NotFound() {
 	}, []);
 
 	return (
-		<main className='relative min-h-screen flex items-center justify-center p-4'>
+		<main className='page-bg relative min-h-screen flex items-center justify-center p-4'>
 			<PageBG />
 
 			<div ref={containerRef} className='glass-strong rounded-2xl p-8 md:p-12 max-w-2xl w-full text-center relative z-10'>

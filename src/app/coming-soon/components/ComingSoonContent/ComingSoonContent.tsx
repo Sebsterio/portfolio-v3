@@ -3,7 +3,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { LEGACY_SITE_URL } from '@/lib/constants';
-import SocialLinks from './SocialLinks';
+import SocialLinks from '../SocialLinks/SocialLinks';
+
+import './styles.css';
 
 export default function ComingSoonContent() {
 	const containerRef = useRef<HTMLDivElement>(null);
