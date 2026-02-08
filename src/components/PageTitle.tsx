@@ -1,17 +1,17 @@
 import React from 'react';
 
-type HeroTitleProps = {
+type PageTitleProps = {
 	children: string | string[];
 	className?: string;
 	highlightClassName?: string;
-	highlightStyle: React.HTMLAttributes<HTMLSpanElement>['style'];
+	highlightStyle?: React.HTMLAttributes<HTMLSpanElement>['style'];
 };
 
 const isHighlighted = (line: string) => line.startsWith('*') && line.length > 1;
 
 const stripMarkers = (line: string) => line.slice(1);
 
-export const HeroTitle: React.FC<HeroTitleProps> = ({ children: lines, className, highlightClassName, highlightStyle }) => {
+export const PageTitle: React.FC<PageTitleProps> = ({ children: lines, className, highlightClassName, highlightStyle }) => {
 	const normalizedLines = Array.isArray(lines) ? lines : [lines];
 
 	return (

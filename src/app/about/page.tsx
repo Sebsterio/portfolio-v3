@@ -1,58 +1,24 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
-import { highlights, quickFacts, techCategories } from './_content';
+import { copy, highlights, quickFacts, techCategories } from './_content';
+import { ContentContainer } from './_components/ContentContainer';
+import { SidebarContainer } from './_components/SidebarContainer';
+import { PageTitle } from '@/components';
 
 export default function AboutPage() {
-	const contentRef = useRef<HTMLDivElement>(null);
-	const sidebarRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (contentRef.current) {
-			gsap.fromTo(
-				contentRef.current,
-				{ opacity: 0, x: -60 },
-				{
-					opacity: 1,
-					x: 0,
-					duration: 1.5,
-					ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-					delay: 0.3,
-				}
-			);
-		}
-
-		if (sidebarRef.current) {
-			gsap.fromTo(
-				sidebarRef.current,
-				{ opacity: 0, x: 60 },
-				{
-					opacity: 1,
-					x: 0,
-					duration: 1.5,
-					ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-					delay: 0.5,
-				}
-			);
-		}
-	}, []);
-
 	return (
 		<main className='py-20'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
-				{/* Main Content */}
-				<div ref={contentRef} className='space-y-12'>
-					{/* Title */}
+				<ContentContainer className='space-y-12'>
 					<div>
-						<h1 className='font-exo text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'>
-							<span className='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue bg-clip-text text-transparent'>
-								Building Systems
-							</span>
-							<br />
-							That Scale
-						</h1>
+						<PageTitle
+							className='font-exo text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'
+							highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue bg-clip-text text-transparent animate-gradient-shift'
+							// highlightStyle={{ backgroundSize: '200% 200%' }}
+						>
+							{copy.title}
+						</PageTitle>
 					</div>
 
 					{/* Intro */}
@@ -80,10 +46,9 @@ export default function AboutPage() {
 							))}
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 
-				{/* Sidebar */}
-				<div ref={sidebarRef} className='space-y-6'>
+				<SidebarContainer className='space-y-6'>
 					{/* Quick Facts Panel */}
 					<div className='relative p-8 rounded-[28px] overflow-hidden bg-[rgba(5,5,10,0.7)] backdrop-blur-[40px] backdrop-saturate-[180%] border border-quantum-purple/10 shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(178,75,243,0.1),inset_0_1px_0_rgba(178,75,243,0.2)]'>
 						<div
@@ -132,7 +97,7 @@ export default function AboutPage() {
 							))}
 						</div>
 					</div>
-				</div>
+				</SidebarContainer>
 			</div>
 		</main>
 	);

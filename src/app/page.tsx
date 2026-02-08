@@ -5,7 +5,7 @@ import { QuantumStatusBadge } from '@/components/QuantumStatusBadge';
 import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
 import { QuantumButton } from '@/components';
 import { HeroContainer } from './_components/HeroContainer';
-import { HeroTitle } from './_components/HeroTitle';
+import { PageTitle } from '../components/PageTitle';
 import { SidePanelContainer } from './_components/SidePanelContainer';
 import { copy, buttons, showcaseItems } from './_content';
 
@@ -17,13 +17,13 @@ export default function HomePage() {
 					<HeroContainer>
 						<QuantumStatusBadge>{copy.superscript}</QuantumStatusBadge>
 
-						<HeroTitle
+						<PageTitle
 							className='font-exo text-[clamp(56px,8vw,110px)] font-extrabold leading-[1.1] tracking-[-0.02em] uppercase mb-8'
 							highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue bg-clip-text text-transparent animate-gradient-shift'
 							highlightStyle={{ backgroundSize: '200% 200%' }}
 						>
 							{copy.title}
-						</HeroTitle>
+						</PageTitle>
 
 						<p className='text-xl leading-relaxed text-white/70 max-w-xl'>{copy.subtitle}</p>
 					</HeroContainer>
