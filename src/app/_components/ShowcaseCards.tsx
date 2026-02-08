@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { showcaseItems } from '@/lib/showcase-items';
+import { showcaseItems } from '@/app/_content';
 import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
 
 // Template: Liquid Metal

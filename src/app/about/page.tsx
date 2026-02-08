@@ -5,7 +5,8 @@ import gsap from 'gsap';
 import { QuantumBackground } from '@/components/QuantumBackground';
 import { QuantumHeader } from '@/components/QuantumHeader';
 import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
-import { highlights, quickFacts, techCategories } from './_config';
+
+import { highlights, quickFacts, techCategories } from './_content';
 
 export default function AboutVariant2() {
 	const contentRef = useRef<HTMLDivElement>(null);
