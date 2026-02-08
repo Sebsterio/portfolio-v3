@@ -7,8 +7,7 @@ import { cn } from '@/lib/utils';
 // THEME-SPECIFIC CLASSES
 //
 // chrome-silver
-// text-chrome-mid
-// border-chrome-silver/10
+// chrome-mid
 // accent-blue
 // accent-cyan
 //

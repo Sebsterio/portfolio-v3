@@ -30,11 +30,14 @@ module.exports = {
 				'accent-cyan': '#06b6d4',
 			},
 			animation: {
+				// Quantum
 				'grid-perspective': 'gridPerspective 20s ease-in-out infinite',
 				'quantum-float': 'quantumFloat 10s ease-in-out infinite',
 				'shape-float': 'shapeFloat 8s ease-in-out infinite',
 				'gradient-shift': 'gradientShift 3s ease infinite',
 				'status-pulse': 'statusPulse 2s ease-in-out infinite',
+
+				// Unused (Quantum?)
 				'header-drop': 'headerDrop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
 				'hero-reveal': 'heroReveal 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards',
 				'slide-up': 'slideUp 1s ease-out 2.2s backwards',
