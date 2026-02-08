@@ -1,0 +1,24 @@
+/* CSS Variables for liquid theme */
+:root {
+	--chrome-light: #e8e8e8;
+	--chrome-mid: #b8b8b8;
+	--chrome-dark: #888888;
+	--accent-blue: #4a9eff;
+	--bg-black: #000000;
+	--bg-dark: #0d0d0d;
+}
+
+body {
+	font-family: 'Azeret Mono', monospace;
+	background: var(--bg-black);
+	color: var(--chrome-light);
+	overflow-x: hidden;
+}
+
+.container {
+	position: relative;
+	z-index: 1;
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 0 50px;
+}
