@@ -9,7 +9,6 @@ export function ShowcaseCards() {
 	return (
 		<div className={cn('relative w-full h-full p-10 flex flex-col gap-6')}>
 			{showcaseItems.map(({ id, icon, title, description }) => (
-				// <LiquidMetalShowcaseCard key={id} icon={icon} title={title} description={description} />
 				<QuantumShowcaseCard key={id} icon={icon} title={title} description={description} />
 			))}
 		</div>
