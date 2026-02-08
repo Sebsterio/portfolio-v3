@@ -1,5 +1,10 @@
-import ComingSoonPage from './coming-soon/page';
+import OrbsHomePage from './orbs/page';
+import OrbsBodyLayout from './orbs/layout';
 
-export default function HomePage() {
-	return <ComingSoonPage />;
+export default function RootHomePage() {
+	return (
+		<OrbsBodyLayout>
+			<OrbsHomePage />
+		</OrbsBodyLayout>
+	);
 }
