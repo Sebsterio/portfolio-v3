@@ -5,7 +5,7 @@ import { QuantumStatusBadge } from '@/components/QuantumStatusBadge';
 import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
 import { QuantumButton } from '@/components';
 import { HeroContainer } from './_components/HeroContainer';
-import { PageTitle } from '../components/PageTitle';
+import { PageTitle } from '../../components/PageTitle';
 import { SidePanelContainer } from './_components/SidePanelContainer';
 import { copy, buttons, showcaseItems } from './_content';
 
