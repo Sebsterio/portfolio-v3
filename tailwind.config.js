@@ -10,13 +10,15 @@ module.exports = {
 		...defaultConfig.theme,
 		extend: {
 			fontFamily: {
-				// Quantum
-				exo: 'var(--font-exo)',
-				'source-code': 'var(--font-source-code)',
+				// Liquid Chrome
+				urbanist: 'var(--font-urbanist)',
+				'dm-sans': 'var(--font-dm-sans)',
 			},
 			backgroundImage: {
-				// Quantum
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+
+				// Liquid Chrome
+				'metallic-text': 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
 			},
 			colors: {
 				// Quantum
@@ -24,10 +26,11 @@ module.exports = {
 				'quantum-magenta': '#f32b9d',
 				'quantum-blue': '#4b7cf3',
 
-				// Liquid Metal
+				// Liquid Chrome
 				'chrome-silver': '#f0f0f0',
 				'chrome-light': '#d4d4d4',
 				'chrome-mid': '#a0a0a0',
+				'chrome-dark': '#888888',
 				'accent-blue': '#3b82f6',
 				'accent-cyan': '#06b6d4',
 			},
@@ -37,14 +40,14 @@ module.exports = {
 				'quantum-float': 'quantumFloat 10s ease-in-out infinite',
 				'shape-float': 'shapeFloat 8s ease-in-out infinite',
 				'gradient-shift': 'gradientShift 3s ease infinite',
-				'status-pulse': 'statusPulse 2s ease-in-out infinite',
 
-				// Unused (Quantum?)
-				'header-drop': 'headerDrop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
-				'hero-reveal': 'heroReveal 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s backwards',
-				'slide-up': 'slideUp 1s ease-out 2.2s backwards',
+				// Liquid Chrome
+				'liquid-move': 'liquidMove 20s ease-in-out infinite',
+				'orb-float': 'orbFloat 25s ease-in-out infinite',
+				'status-pulse': 'statusPulse 2s ease-in-out infinite',
 			},
 			keyframes: {
+				// Quantum
 				gridPerspective: {
 					'0%, 100%': {
 						transform: 'rotateX(60deg) scale(2) translateZ(0)',
@@ -87,35 +90,38 @@ module.exports = {
 					'0%, 100%': { backgroundPosition: '0% 50%' },
 					'50%': { backgroundPosition: '100% 50%' },
 				},
+
+				// Liquid Chrome
+				liquidMove: {
+					'0%, 100%': {
+						transform: 'translate(0, 0) scale(1)',
+						opacity: '0.8',
+					},
+					'50%': {
+						transform: 'translate(20px, -20px) scale(1.05)',
+						opacity: '1',
+					},
+				},
+				orbFloat: {
+					'0%, 100%': {
+						transform: 'translate(0, 0) scale(1)',
+					},
+					'33%': {
+						transform: 'translate(40px, -40px) scale(1.1)',
+					},
+					'66%': {
+						transform: 'translate(-30px, 30px) scale(0.9)',
+					},
+				},
 				statusPulse: {
-					'0%, 100%': { transform: 'scale(1)', opacity: '1' },
-					'50%': { transform: 'scale(1.5)', opacity: '0.5' },
-				},
-				headerDrop: {
-					'0%': {
-						opacity: '0',
-						transform: 'translateY(-100px) rotateX(-90deg)',
-					},
-					'100%': {
+					'0%, 100%': {
+						transform: 'scale(1)',
 						opacity: '1',
-						transform: 'translateY(0) rotateX(0deg)',
 					},
-				},
-				heroReveal: {
-					'0%': {
-						opacity: '0',
-						transform: 'translateX(-100px) rotateY(-20deg)',
-						filter: 'blur(20px)',
+					'50%': {
+						transform: 'scale(1.5)',
+						opacity: '0.5',
 					},
-					'100%': {
-						opacity: '1',
-						transform: 'translateX(0) rotateY(0deg)',
-						filter: 'blur(0)',
-					},
-				},
-				slideUp: {
-					from: { transform: 'translateY(100px)', opacity: '0' },
-					to: { transform: 'translateY(0)', opacity: '1' },
 				},
 			},
 		},

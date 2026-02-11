@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { cn } from '@/lib/utils';
 
 // THEME: Quantu₼
-export function SidePanelContainer({ children }: { children: React.ReactNode }) {
+export function SidePanelContainer({ children, className }: { children: React.ReactNode; className?: string }) {
 	const panelRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -30,7 +31,7 @@ export function SidePanelContainer({ children }: { children: React.ReactNode }) 
 	}, []);
 
 	return (
-		<div ref={panelRef} className={'relative w-full'}>
+		<div ref={panelRef} className={cn('relative w-full', className)}>
 			{children}
 		</div>
 	);

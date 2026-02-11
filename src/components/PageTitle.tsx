@@ -1,8 +1,14 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 type PageTitleProps = {
 	children: string | string[];
+	/** entire title */
 	className?: string;
+	/** Every line */
+	lineClassName?: string;
+	normalClassName?: string;
+	normalStyle?: React.HTMLAttributes<HTMLSpanElement>['style'];
 	highlightClassName?: string;
 	highlightStyle?: React.HTMLAttributes<HTMLSpanElement>['style'];
 };
@@ -11,7 +17,15 @@ const isHighlighted = (line: string) => line.startsWith('*') && line.length > 1;
 
 const stripMarkers = (line: string) => line.slice(1);
 
-export const PageTitle: React.FC<PageTitleProps> = ({ children: lines, className, highlightClassName, highlightStyle }) => {
+export const PageTitle: React.FC<PageTitleProps> = ({
+	children: lines,
+	className,
+	lineClassName,
+	normalClassName,
+	normalStyle,
+	highlightClassName,
+	highlightStyle,
+}) => {
 	const normalizedLines = Array.isArray(lines) ? lines : [lines];
 
 	return (
@@ -23,13 +37,13 @@ export const PageTitle: React.FC<PageTitleProps> = ({ children: lines, className
 
 				return (
 					<React.Fragment key={index}>
-						{highlight ? (
-							<span className={highlightClassName} style={highlightStyle}>
-								{text}
-							</span>
-						) : (
-							text
-						)}
+						<span
+							className={cn(lineClassName, highlight ? highlightClassName : normalClassName)}
+							style={highlight ? highlightStyle : normalStyle}
+						>
+							{text}
+						</span>
+
 						{!isLastLine && <br />}
 					</React.Fragment>
 				);
