@@ -8,6 +8,7 @@ import { ChromeBackground } from '@/components/ChromeBackground';
 
 import './globals.css';
 import { ChromeHeader } from '@/components/ChromeHeader';
+import { HeaderContainer } from './(home)/_components/HeaderContainer';
 
 export { metadata } from './_metadata';
 
@@ -67,8 +68,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 					</>
 
 					<div className={'relative z-10 max-w-[1400px] mx-auto px-10'}>
-						{/* <QuantumHeader /> */}
-						<ChromeHeader />
+						<HeaderContainer className='py-8'>
+							{/* <QuantumHeader /> */}
+							<ChromeHeader />
+						</HeaderContainer>
 						{children}
 					</div>
 				</div>
