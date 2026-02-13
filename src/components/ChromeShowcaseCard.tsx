@@ -1,7 +1,4 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 interface ChromeShowcaseCardProps {
@@ -9,32 +6,11 @@ interface ChromeShowcaseCardProps {
 	title: string;
 	description: string;
 	className?: string;
-	delay?: number;
 }
 
-export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, description, className, delay = 0 }) => {
-	const cardRef = useRef<HTMLDivElement>(null);
-	const iconRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!cardRef.current) return;
-
-		gsap.fromTo(
-			cardRef.current,
-			{ opacity: 0, y: 30 },
-			{
-				opacity: 1,
-				y: 0,
-				duration: 1,
-				ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-				delay: 0.9 + delay,
-			}
-		);
-	}, [delay]);
-
+export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, description, className }) => {
 	return (
 		<div
-			ref={cardRef}
 			className={cn(
 				'group relative p-10 rounded-[28px] overflow-hidden',
 				'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] backdrop-saturate-[180%] backdrop-brightness-[1.15]',
@@ -42,12 +18,10 @@ export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, ti
 				'transition-all duration-600 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
 				'hover:translate-y-[-10px] hover:scale-[1.01]',
 				'hover:border-accent-blue/30',
+				'shadow-[0_20px_60px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12),inset_0_-1px_0_rgba(240,240,240,0.05)]',
+				'hover:shadow-[0_30px_80px_rgba(0,0,0,0.6),0_8px_40px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(240,240,240,0.2)]',
 				className
 			)}
-			style={{
-				boxShadow:
-					'0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(59, 130, 246, 0.08), inset 0 1px 0 rgba(240, 240, 240, 0.12), inset 0 -1px 0 rgba(240, 240, 240, 0.05)',
-			}}
 		>
 			{/* Diagonal Glare Effect */}
 			<div
@@ -90,16 +64,14 @@ export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, ti
 			{/* Content */}
 			<div className='relative z-10'>
 				<div
-					ref={iconRef}
 					className={cn(
 						'flex items-center justify-center w-14 h-14 mb-6 rounded-2xl',
 						'bg-gradient-to-br from-accent-blue to-accent-cyan',
+						'shadow-[0_10px_30px_rgba(59,130,246,0.4),0_0_20px_rgba(59,130,246,0.2)]',
+						'group-hover:shadow-[0_12px_40px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)]',
 						'transition-all duration-500',
 						'group-hover:scale-110'
 					)}
-					style={{
-						boxShadow: '0 10px 30px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.2)',
-					}}
 				>
 					<div className='text-[26px]'>{icon}</div>
 				</div>
@@ -108,15 +80,6 @@ export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, ti
 
 				<p className='text-[13px] leading-relaxed text-chrome-silver/60'>{description}</p>
 			</div>
-
-			<style jsx>{`
-				.group:hover {
-					box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 8px 40px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(240, 240, 240, 0.2);
-				}
-				.group:hover > div:nth-child(5) > div:first-child {
-					box-shadow: 0 12px 40px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
-				}
-			`}</style>
 		</div>
 	);
 };

@@ -7,10 +7,14 @@ type PageTitleProps = {
 	className?: string;
 	/** Every line */
 	lineClassName?: string;
+	/** Line with no prefix */
 	normalClassName?: string;
-	normalStyle?: React.HTMLAttributes<HTMLSpanElement>['style'];
+	/** Line with no prefix */
+	normalStyle?: React.CSSProperties;
+	/** Line with the prefix `*` */
 	highlightClassName?: string;
-	highlightStyle?: React.HTMLAttributes<HTMLSpanElement>['style'];
+	/** Line with the prefix `*` */
+	highlightStyle?: React.CSSProperties;
 };
 
 const isHighlighted = (line: string) => line.startsWith('*') && line.length > 1;

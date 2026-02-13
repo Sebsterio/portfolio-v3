@@ -20,9 +20,7 @@ export default function HomePage() {
 						<PageTitle
 							className='font-urbanist text-[clamp(64px,8vw,110px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-8'
 							lineClassName='bg-clip-text text-transparent'
-							normalStyle={{
-								backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
-							}}
+							normalClassName='bg-chrome-metallic'
 							highlightStyle={{ backgroundImage: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)' }}
 							/* TODO: animate bg (update these colors)
 							highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue animate-gradient-shift'

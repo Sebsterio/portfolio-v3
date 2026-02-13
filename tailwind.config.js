@@ -4,8 +4,9 @@ const defaultConfig = require('tailwindcss/defaultConfig');
 // import type { Config } from 'tailwindcss'
 
 module.exports = {
-	darkMode: ['class'],
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+	plugins: [require('tailwindcss-animate')],
+	darkMode: ['class'],
 	theme: {
 		...defaultConfig.theme,
 		extend: {
@@ -18,7 +19,9 @@ module.exports = {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 
 				// Liquid Chrome
+				// TODO: repetition
 				'metallic-text': 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
+				'chrome-metallic': 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
 			},
 			colors: {
 				// Quantum
@@ -126,5 +129,4 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('tailwindcss-animate')],
 };

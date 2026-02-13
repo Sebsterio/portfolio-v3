@@ -1,16 +1,16 @@
 'use client';
 
-import { QuantumShowcaseCard } from '@/components/QuantumShowcaseCard';
-import { copy, highlights, quickFacts, techCategories } from './_content';
+import { PageTitle } from '@/components';
+import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
 import { ContentContainer } from './_components/ContentContainer';
 import { SidebarContainer } from './_components/SidebarContainer';
-import { PageTitle } from '@/components';
 import { GlassCard } from './_components/GlassCard';
 import { Section } from './_components/Section';
 import { SectionHeader } from './_components/SectionHeader';
 import { LabeledValueRow } from './_components/LabeledValueRow';
 import { TechPill } from './_components/TechPill';
 import { TechCategoryGroup } from './_components/TechCategoryGroup';
+import { copy, highlights, quickFacts, techCategories } from './_content';
 
 export default function AboutPage() {
 	return (
@@ -18,23 +18,30 @@ export default function AboutPage() {
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 				<ContentContainer className='space-y-12'>
 					<PageTitle
-						className='font-exo text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'
-						highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue bg-clip-text text-transparent animate-gradient-shift'
+						// about (L)
+						className='font-urbanist text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'
+						lineClassName='bg-clip-text text-transparent'
+						normalClassName='bg-chrome-metallic'
+						highlightStyle={{ backgroundImage: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)' }}
 					>
 						{copy.title}
 					</PageTitle>
 
 					<Section>
-						<p className='text-xl leading-relaxed text-white/90'>{copy.intro[0]}</p>
-						<p className='text-lg leading-relaxed text-white/70'>{copy.intro[1]}</p>
+						<p className='text-xl leading-relaxed text-chrome-silver/90'>{copy.intro[0]}</p>
+						<p className='text-lg leading-relaxed text-chrome-silver/70'>{copy.intro[1]}</p>
 					</Section>
 
 					<Section>
-						<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' dotClassName='bg-quantum-purple animate-status-pulse' />
+						<SectionHeader
+							title={copy.sectionTitles.highlights}
+							className='mb-8'
+							dotClassName='bg-accent-blue animate-status-pulse shadow-[0_0_15px_rgba(59,130,246,1)]'
+						/>
 
 						<div className='grid grid-cols-1 gap-6'>
 							{highlights.map((h, i) => (
-								<QuantumShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
+								<ChromeShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
 							))}
 						</div>
 					</Section>
@@ -47,8 +54,8 @@ export default function AboutPage() {
 								<LabeledValueRow
 									key={i}
 									rowClassName='py-4 border-b border-quantum-purple/10 last:border-b-0'
-									labelClassName='text-white/60'
-									valueClassName='bg-gradient-to-br from-quantum-purple to-quantum-magenta bg-clip-text text-transparent'
+									labelClassName='text-chrome-silver/60'
+									valueClassName='bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
 									{...{ label, value }}
 								/>
 							))}
@@ -58,9 +65,9 @@ export default function AboutPage() {
 					<GlassCard title={copy.sectionTitles.techStack}>
 						<div className='space-y-8 my-8'>
 							{techCategories.map(({ category, techs }) => (
-								<TechCategoryGroup key={category} label={category} labelClassName='text-quantum-purple'>
+								<TechCategoryGroup key={category} label={category} labelClassName='text-accent-blue'>
 									{techs.map((t) => (
-										<TechPill key={t} className='bg-quantum-purple/10 border border-quantum-purple/20 text-white/80'>
+										<TechPill key={t} className='bg-accent-blue/10 border border-accent-blue/20 text-chrome-silver/800'>
 											{t}
 										</TechPill>
 									))}
