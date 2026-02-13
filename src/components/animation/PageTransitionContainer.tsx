@@ -2,14 +2,14 @@
 
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, Variants } from 'motion/react';
 
 type PageTransitionContainerProps = {
 	children: ReactNode;
 	className?: string;
 };
 
-const TRANSITIONS = {
+const TRANSITIONS: Variants = {
 	initial: {
 		...{ opacity: 0, y: 20 },
 	},
