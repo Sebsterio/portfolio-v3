@@ -1,6 +1,6 @@
 'use client';
 
-import { Title } from '@/components';
+import { Title, TextBlock } from '@/components';
 import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
 import { ContentContainer } from './_components/ContentContainer';
 import { SidebarContainer } from './_components/SidebarContainer';
@@ -21,10 +21,7 @@ export default function AboutPage() {
 						{copy.title}
 					</Title>
 
-					<Section>
-						<p className='text-xl leading-relaxed text-chrome-silver/90'>{copy.intro[0]}</p>
-						<p className='text-lg leading-relaxed text-chrome-silver/70'>{copy.intro[1]}</p>
-					</Section>
+					<TextBlock highlightFirstParagraph>{copy.intro}</TextBlock>
 
 					<Section>
 						<SectionHeader

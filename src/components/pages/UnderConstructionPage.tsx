@@ -1,11 +1,10 @@
+import { Title, TextBlock } from '@/components';
+
 // TODO: mv these to src/components
 import { ContentContainer } from '@/app/about/_components/ContentContainer';
 import { SidebarContainer } from '@/app/about/_components/SidebarContainer';
 import { LabeledValueRow } from '@/app/about/_components/LabeledValueRow';
-import { Section } from '@/app/about/_components/Section';
 import { GlassCard } from '@/app/about/_components/GlassCard';
-
-import { Title } from '@/components/Title';
 
 const copy = {
 	title: '*Page in progress',
@@ -29,11 +28,9 @@ export function UnderConstructionPage() {
 						{copy.title}
 					</Title>
 
-					<Section className='max-w-2xl'>
-						<p className='text-xl leading-relaxed text-white/90'>{copy.text[0]}</p>
-						<p className='text-lg leading-relaxed text-white/70'>{copy.text[1]}</p>
-						<p className='text-lg leading-relaxed text-white/70'>{copy.text[2]}</p>
-					</Section>
+					<TextBlock className='max-w-2xl' highlightFirstParagraph>
+						{copy.text}
+					</TextBlock>
 				</ContentContainer>
 
 				<SidebarContainer>

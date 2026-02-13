@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { Title } from '@/components';
+import { TextBlock, Title } from '@/components';
 import { StatusBadge } from '@/components/StatusBadge';
 import { ChromeButton } from '@/components/ChromeButton';
 import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
@@ -13,15 +13,13 @@ export default function HomePage() {
 	return (
 		<section className='min-h-[calc(100vh-140px)] flex items-center py-16'>
 			<div className={cn('w-full grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center')}>
-				<div>
+				<div className='space-y-12'>
 					<HeroContainer>
 						<StatusBadge>{copy.superscript}</StatusBadge>
-
 						<Title variant='hero' className='mb-8'>
 							{copy.title}
 						</Title>
-
-						<p className='text-lg leading-relaxed text-chrome-silver/65 mb-12 max-w-xl'>{copy.subtitle}</p>
+						<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
 					</HeroContainer>
 
 					<div className='flex gap-5 animate-[slideUp_1s_ease-out_1.2s_backwards]'>
