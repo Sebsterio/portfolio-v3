@@ -34,8 +34,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 				<div className='relative min-h-screen bg-black overflow-hidden'>
 					<>
 						{/* <div className='fixed inset-0 pointer-events-none overflow-hidden'>
-							<QuantumBackground />
-						</div> */}
+					<QuantumBackground />
+				</div> */}
 						<ChromeBackground />
 					</>
 
