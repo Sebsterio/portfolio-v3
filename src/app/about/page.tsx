@@ -3,7 +3,6 @@
 import {
 	Title,
 	TextBlock,
-	ContentContainer,
 	ChromeShowcaseCard,
 	GlassCard,
 	Section,
@@ -11,7 +10,6 @@ import {
 	LabeledValueRow,
 	TechPill,
 	TechCategoryGroup,
-	SidePanelContainer,
 } from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 
@@ -19,13 +17,11 @@ export default function AboutPage() {
 	return (
 		<main className='py-20'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
-				<ContentContainer className='space-y-12'>
+				<div className='space-y-12'>
 					<Title variant='page' className='mb-6'>
 						{copy.title}
 					</Title>
-
 					<TextBlock highlightFirstParagraph>{copy.intro}</TextBlock>
-
 					<Section>
 						<SectionHeader
 							title={copy.sectionTitles.highlights}
@@ -39,9 +35,9 @@ export default function AboutPage() {
 							))}
 						</div>
 					</Section>
-				</ContentContainer>
+				</div>
 
-				<SidePanelContainer className='space-y-6'>
+				<div className='space-y-6'>
 					<GlassCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-6 my-6'>
 							{quickFacts.map(({ label, value }) => (
@@ -63,7 +59,7 @@ export default function AboutPage() {
 							))}
 						</div>
 					</GlassCard>
-				</SidePanelContainer>
+				</div>
 			</div>
 		</main>
 	);
