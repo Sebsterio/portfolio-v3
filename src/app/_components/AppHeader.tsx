@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 
-export function ChromeHeader() {
+export function AppHeader() {
 	return (
 		<header className='py-8'>
 			<nav

@@ -7,7 +7,7 @@ import { QuantumBackground } from '@/components';
 import { ChromeBackground } from '@/components/ChromeBackground';
 
 import './globals.css';
-import { ChromeHeader } from '@/components/ChromeHeader';
+import { AppHeader } from './_components/AppHeader';
 
 export { metadata } from './_metadata';
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 					</>
 
 					<div className={'relative z-10 max-w-[1400px] mx-auto px-10'}>
-						<ChromeHeader />
+						<AppHeader />
 						{children}
 					</div>
 				</div>
