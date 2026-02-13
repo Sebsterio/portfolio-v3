@@ -1,37 +1,43 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { StatusBadge, Title, TextBlock, ChromeShowcaseCard, ChromeButton } from '@/components';
+import { StatusBadge, Title, TextBlock, ChromeShowcaseCard, ChromeButton, PageLayout } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';
 
-export default function HomePage() {
+type HomePageProps = {};
+
+export default function HomePage({}: HomePageProps) {
 	return (
-		<main className='min-h-[calc(100vh-140px)] flex items-center py-16'>
+		<PageLayout variant='hero'>
 			<div className={cn('w-full grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center')}>
+				{/* Left Column - Hero Content */}
 				<div className='space-y-12'>
 					<div>
-						<StatusBadge>{copy.superscript}</StatusBadge>
+						<StatusBadge className='mb-10'>{copy.superscript}</StatusBadge>
+
 						<Title variant='hero' className='mb-8'>
 							{copy.title}
 						</Title>
+
 						<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
 					</div>
 
-					<div className='flex gap-5 animate-[slideUp_1s_ease-out_1.2s_backwards]'>
+					<div className='flex gap-5'>
 						<ChromeButton variant='primary'>{buttons.primary.text}</ChromeButton>
 						<ChromeButton variant='secondary'>{buttons.secondary.text}</ChromeButton>
 					</div>
 				</div>
 
+				{/* Right Column - Showcase Cards */}
 				<div className='flex justify-center lg:justify-end w-full'>
-					<div className={'relative w-full h-full p-10 space-y-6'}>
+					<div className='w-full space-y-6'>
 						{showcaseItems.map(({ id, icon, title, description }) => (
 							<ChromeShowcaseCard key={id} icon={icon} title={title} description={description} />
 						))}
 					</div>
 				</div>
 			</div>
-		</main>
+		</PageLayout>
 	);
 }

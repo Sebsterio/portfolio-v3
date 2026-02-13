@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
 
-interface QuantumStatusBadgeProps {
+interface StatusBadgeProps {
 	children: string;
 	className?: string;
 }
 
-export function StatusBadge({ children, className }: QuantumStatusBadgeProps) {
+export function StatusBadge({ children, className }: StatusBadgeProps) {
 	return (
 		<div
 			className={cn(

@@ -22,13 +22,11 @@ const CLASSES = {
 	),
 };
 
-function LabeledValueRow({ label, value, className }: LabeledValueRowProps) {
+export const LabeledValueRow = ({ label, value, className }: LabeledValueRowProps) => {
 	return (
 		<div className={cn(CLASSES.row, className)}>
 			<span className={CLASSES.label}>{label}</span>
 			<span className={CLASSES.value}>{value}</span>
 		</div>
 	);
-}
-
-export { LabeledValueRow };
+};

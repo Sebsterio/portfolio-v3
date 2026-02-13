@@ -10,24 +10,26 @@ import {
 	LabeledValueRow,
 	TechPill,
 	TechCategoryGroup,
+	PageLayout,
 } from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 
-export default function AboutPage() {
+type AboutPageProps = {};
+
+export default function AboutPage({}: AboutPageProps) {
 	return (
-		<main className='py-20'>
+		<PageLayout variant='two-column'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
+				{/* Main Content Column */}
 				<div className='space-y-12'>
 					<Title variant='page' className='mb-6'>
 						{copy.title}
 					</Title>
+
 					<TextBlock highlightFirstParagraph>{copy.intro}</TextBlock>
+
 					<Section>
-						<SectionHeader
-							title={copy.sectionTitles.highlights}
-							className='mb-8'
-							dotClassName='bg-accent-blue animate-status-pulse shadow-[0_0_15px_rgba(59,130,246,1)]' // TODO
-						/>
+						<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' />
 
 						<div className='grid grid-cols-1 gap-6'>
 							{highlights.map((h, i) => (
@@ -37,6 +39,7 @@ export default function AboutPage() {
 					</Section>
 				</div>
 
+				{/* Sidebar Column */}
 				<div className='space-y-6'>
 					<GlassCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-6 my-6'>
@@ -49,11 +52,9 @@ export default function AboutPage() {
 					<GlassCard title={copy.sectionTitles.techStack}>
 						<div className='space-y-8 my-8'>
 							{techCategories.map(({ category, techs }) => (
-								<TechCategoryGroup key={category} label={category} labelClassName='text-accent-blue'>
+								<TechCategoryGroup key={category} label={category}>
 									{techs.map((t) => (
-										<TechPill key={t} className='bg-accent-blue/10 border border-accent-blue/20 text-chrome-silver/800'>
-											{t}
-										</TechPill>
+										<TechPill key={t}>{t}</TechPill>
 									))}
 								</TechCategoryGroup>
 							))}
@@ -61,6 +62,6 @@ export default function AboutPage() {
 					</GlassCard>
 				</div>
 			</div>
-		</main>
+		</PageLayout>
 	);
 }

@@ -1,7 +1,12 @@
-import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
 
-function Section({ children, className }: { children: React.ReactNode; className?: string }) {
-	return <section className={cn('space-y-6', className)}>{children}</section>;
-}
+type SectionProps = {
+	children: ReactNode;
+	className?: string;
+};
 
-export { Section };
+export const Section = ({ children, className }: SectionProps) => {
+	return <section className={className}>{children}</section>;
+};
+
+export default Section;
