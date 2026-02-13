@@ -21,10 +21,7 @@ export default function HomePage() {
 							className='font-urbanist text-[clamp(64px,8vw,110px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-8'
 							lineClassName='bg-clip-text text-transparent'
 							normalClassName='bg-chrome-metallic'
-							highlightStyle={{ backgroundImage: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)' }}
-							/* TODO: animate bg (update these colors)
-							highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue animate-gradient-shift'
-							highlightStyle={{ backgroundSize: '200% 200%' }} */
+							highlightClassName='bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-[length:200%_200%]'
 						>
 							{copy.title}
 						</PageTitle>

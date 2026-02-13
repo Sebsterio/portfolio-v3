@@ -22,7 +22,7 @@ export default function AboutPage() {
 						className='font-urbanist text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'
 						lineClassName='bg-clip-text text-transparent'
 						normalClassName='bg-chrome-metallic'
-						highlightStyle={{ backgroundImage: 'linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%)' }}
+						highlightClassName='bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-[length:200%_200%]'
 					>
 						{copy.title}
 					</PageTitle>

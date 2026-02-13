@@ -38,11 +38,12 @@ module.exports = {
 				'accent-cyan': '#06b6d4',
 			},
 			animation: {
+				'gradient-shift': 'gradientShift 3s ease infinite', // NOTE: requires `backgroundSize: '200% 200%'`
+
 				// Quantum
 				'grid-perspective': 'gridPerspective 20s ease-in-out infinite',
 				'quantum-float': 'quantumFloat 10s ease-in-out infinite',
 				'shape-float': 'shapeFloat 8s ease-in-out infinite',
-				'gradient-shift': 'gradientShift 3s ease infinite',
 
 				// Liquid Chrome
 				'liquid-move': 'liquidMove 20s ease-in-out infinite',
@@ -50,6 +51,11 @@ module.exports = {
 				'status-pulse': 'statusPulse 2s ease-in-out infinite',
 			},
 			keyframes: {
+				gradientShift: {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+				},
+
 				// Quantum
 				gridPerspective: {
 					'0%, 100%': {
@@ -88,10 +94,6 @@ module.exports = {
 						transform: 'translateY(-30px) rotate(180deg)',
 						opacity: '0.6',
 					},
-				},
-				gradientShift: {
-					'0%, 100%': { backgroundPosition: '0% 50%' },
-					'50%': { backgroundPosition: '100% 50%' },
 				},
 
 				// Liquid Chrome
