@@ -5,7 +5,7 @@ import { LabeledValueRow } from '@/app/about/_components/LabeledValueRow';
 import { Section } from '@/app/about/_components/Section';
 import { GlassCard } from '@/app/about/_components/GlassCard';
 
-import { PageTitle } from '@/components/PageTitle';
+import { Title } from '@/components/Title';
 
 const copy = {
 	title: 'Page in progress',
@@ -15,12 +15,12 @@ export function UnderConstructionPage() {
 		<main className='py-20'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 				<ContentContainer className='space-y-10'>
-					<PageTitle
+					<Title
 						className='font-exo text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em]'
 						highlightClassName='bg-gradient-to-br from-quantum-purple via-quantum-magenta to-quantum-blue bg-clip-text text-transparent animate-gradient-shift'
 					>
 						{copy.title}
-					</PageTitle>
+					</Title>
 
 					<Section className='max-w-2xl'>
 						<p className='text-xl leading-relaxed text-white/90'>This section of the site is currently being shaped and refined.</p>

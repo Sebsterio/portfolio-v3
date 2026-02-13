@@ -1,8 +1,8 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { Title } from '@/components';
 import { StatusBadge } from '@/components/StatusBadge';
-import { PageTitle } from '@/components/PageTitle';
 import { ChromeButton } from '@/components/ChromeButton';
 import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
 import { HeroContainer } from './_components/HeroContainer';
@@ -17,9 +17,9 @@ export default function HomePage() {
 					<HeroContainer>
 						<StatusBadge>{copy.superscript}</StatusBadge>
 
-						<PageTitle variant='hero' className='mb-8'>
+						<Title variant='hero' className='mb-8'>
 							{copy.title}
-						</PageTitle>
+						</Title>
 
 						<p className='text-lg leading-relaxed text-chrome-silver/65 mb-12 max-w-xl'>{copy.subtitle}</p>
 					</HeroContainer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-type PageTitleProps = {
+type TitleProps = {
 	children: string | string[];
 	variant: 'hero' | 'page';
 	className?: string;
@@ -26,7 +26,7 @@ const isHighlighted = (line: string) => line.startsWith('*') && line.length > 1;
 
 const stripMarkers = (line: string) => line.slice(1);
 
-export const PageTitle: React.FC<PageTitleProps> = ({ children: lines, variant, className }) => {
+export const Title: React.FC<TitleProps> = ({ children: lines, variant, className }) => {
 	const normalizedLines = Array.isArray(lines) ? lines : [lines];
 
 	return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { PageTitle } from '@/components';
+import { Title } from '@/components';
 import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
 import { ContentContainer } from './_components/ContentContainer';
 import { SidebarContainer } from './_components/SidebarContainer';
@@ -17,9 +17,9 @@ export default function AboutPage() {
 		<main className='py-20'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 				<ContentContainer className='space-y-12'>
-					<PageTitle variant='page' className='mb-6'>
+					<Title variant='page' className='mb-6'>
 						{copy.title}
-					</PageTitle>
+					</Title>
 
 					<Section>
 						<p className='text-xl leading-relaxed text-chrome-silver/90'>{copy.intro[0]}</p>
