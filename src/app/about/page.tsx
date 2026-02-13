@@ -17,13 +17,7 @@ export default function AboutPage() {
 		<main className='py-20'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 				<ContentContainer className='space-y-12'>
-					<PageTitle
-						// about (L)
-						className='font-urbanist text-[clamp(48px,6vw,80px)] font-extrabold leading-tight tracking-[-0.02em] mb-6'
-						lineClassName='bg-clip-text text-transparent'
-						normalClassName='bg-chrome-metallic'
-						highlightClassName='bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-[length:200%_200%]'
-					>
+					<PageTitle variant='page' className='mb-6'>
 						{copy.title}
 					</PageTitle>
 

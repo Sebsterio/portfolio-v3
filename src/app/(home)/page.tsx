@@ -17,12 +17,7 @@ export default function HomePage() {
 					<HeroContainer>
 						<StatusBadge>{copy.superscript}</StatusBadge>
 
-						<PageTitle
-							className='font-urbanist text-[clamp(64px,8vw,110px)] font-extrabold leading-[1.05] tracking-[-0.03em] mb-8'
-							lineClassName='bg-clip-text text-transparent'
-							normalClassName='bg-chrome-metallic'
-							highlightClassName='bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-[length:200%_200%]'
-						>
+						<PageTitle variant='hero' className='mb-8'>
 							{copy.title}
 						</PageTitle>
 
