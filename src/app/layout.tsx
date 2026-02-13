@@ -1,13 +1,18 @@
 import type React from 'react';
 import { Urbanist, DM_Sans } from 'next/font/google';
 
-// import { SITE_VERIFICATION } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import { QuantumBackground } from '@/components';
-import { ChromeBackground } from '@/components/ChromeBackground';
+import { navItems } from '@/lib/nav-items';
+// import { SITE_VERIFICATION } from '@/lib/constants';
+import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
+import { HeaderContainer } from '@/components/layout/HeaderContainer';
+import { ContentContainer } from '@/components/layout/ContentContainer';
+import { ChromeBackground } from '@/components/background/ChromeBackground';
+import { QuantumBackground } from '@/components/background/QuantumBackground';
+
+import { AppHeader } from './_components/AppHeader';
 
 import './globals.css';
-import { AppHeader } from './_components/AppHeader';
 
 export { metadata } from './_metadata';
 
@@ -25,25 +30,35 @@ const dmSans = DM_Sans({
 
 // const SiteVerificationMeta = SITE_VERIFICATION && <meta name='google-site-verification' content={SITE_VERIFICATION} />;
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+type RootLayoutProps = {
+	children: React.ReactNode;
+};
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 	return (
 		<html lang='en'>
-			<head></head>
-
-			<body className={cn(urbanist.variable, dmSans.variable, `antialiased`)}>
-				<div className='relative min-h-screen bg-black overflow-hidden'>
-					<>
-						{/* <div className='fixed inset-0 pointer-events-none overflow-hidden'>
-					<QuantumBackground />
-				</div> */}
-						<ChromeBackground />
-					</>
-
-					<div className={'relative z-10 max-w-[1400px] mx-auto px-10'}>
-						<AppHeader />
-						{children}
+			<head />
+			<body className={cn(urbanist.variable, dmSans.variable, 'antialiased')}>
+				<>
+					{/* App Background */}
+					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
+						<BackgroundTransitionContainer bgKey='default'>
+							<ChromeBackground />
+							<QuantumBackground />
+						</BackgroundTransitionContainer>
 					</div>
-				</div>
+
+					{/* App Content */}
+					<div className='relative min-h-screen'>
+						<HeaderContainer width='content'>
+							<AppHeader logo='PORTFOLIO' navItems={navItems} />
+						</HeaderContainer>
+
+						<ContentContainer>
+							<>{children}</>
+						</ContentContainer>
+					</div>
+				</>
 			</body>
 		</html>
 	);

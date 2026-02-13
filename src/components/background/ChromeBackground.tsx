@@ -1,9 +1,9 @@
 'use client';
 
-export function ChromeBackground() {
+export const ChromeBackground = () => {
 	return (
 		<>
-			{/* Liquid Chrome Background */}
+			{/* Liquid Chrome Gradient */}
 			<div
 				className='fixed inset-0 pointer-events-none animate-liquid-move'
 				style={{
@@ -32,4 +32,4 @@ export function ChromeBackground() {
 			/>
 		</>
 	);
-}
+};

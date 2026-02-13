@@ -1,6 +1,6 @@
+export * from './layout';
 export * from './typography';
 
-export * from './Card';
 export * from './GlassCard';
 export * from './LabeledValueRow';
 export * from './Section';
@@ -9,7 +9,6 @@ export * from './StatusBadge';
 export * from './TechCategoryGroup';
 export * from './TechPill';
 
-export { QuantumBackground } from './QuantumBackground';
 export { QuantumHeader } from './QuantumHeader';
 export { QuantumMetricsGrid } from './QuantumMetricsGrid';
 export { QuantumButton } from './QuantumButton';
