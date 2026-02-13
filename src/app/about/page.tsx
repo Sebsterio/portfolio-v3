@@ -1,15 +1,18 @@
 'use client';
 
-import { Title, TextBlock } from '@/components';
-import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
-import { ContentContainer } from './_components/ContentContainer';
-import { SidebarContainer } from './_components/SidebarContainer';
-import { GlassCard } from './_components/GlassCard';
-import { Section } from './_components/Section';
-import { SectionHeader } from './_components/SectionHeader';
-import { LabeledValueRow } from './_components/LabeledValueRow';
-import { TechPill } from './_components/TechPill';
-import { TechCategoryGroup } from './_components/TechCategoryGroup';
+import {
+	Title,
+	TextBlock,
+	ContentContainer,
+	ChromeShowcaseCard,
+	GlassCard,
+	Section,
+	SectionHeader,
+	LabeledValueRow,
+	TechPill,
+	TechCategoryGroup,
+	SidePanelContainer,
+} from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 
 export default function AboutPage() {
@@ -27,7 +30,7 @@ export default function AboutPage() {
 						<SectionHeader
 							title={copy.sectionTitles.highlights}
 							className='mb-8'
-							dotClassName='bg-accent-blue animate-status-pulse shadow-[0_0_15px_rgba(59,130,246,1)]'
+							dotClassName='bg-accent-blue animate-status-pulse shadow-[0_0_15px_rgba(59,130,246,1)]' // TODO
 						/>
 
 						<div className='grid grid-cols-1 gap-6'>
@@ -38,7 +41,7 @@ export default function AboutPage() {
 					</Section>
 				</ContentContainer>
 
-				<SidebarContainer className='space-y-6'>
+				<SidePanelContainer className='space-y-6'>
 					<GlassCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-6 my-6'>
 							{quickFacts.map(({ label, value }) => (
@@ -60,7 +63,7 @@ export default function AboutPage() {
 							))}
 						</div>
 					</GlassCard>
-				</SidebarContainer>
+				</SidePanelContainer>
 			</div>
 		</main>
 	);

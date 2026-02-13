@@ -3,12 +3,12 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-interface SidebarContainerProps {
+interface SidePanelContainerProps {
 	children: React.ReactNode;
 	className?: string;
 }
 
-export function SidebarContainer({ children, className }: SidebarContainerProps) {
+export function SidePanelContainer({ children, className }: SidePanelContainerProps) {
 	const sidebarRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {

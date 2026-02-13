@@ -1,12 +1,9 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { TextBlock, Title } from '@/components';
-import { StatusBadge } from '@/components/StatusBadge';
-import { ChromeButton } from '@/components/ChromeButton';
-import { ChromeShowcaseCard } from '@/components/ChromeShowcaseCard';
+import { StatusBadge, Title, TextBlock, ChromeShowcaseCard, ChromeButton, SidePanelContainer } from '@/components';
 import { HeroContainer } from './_components/HeroContainer';
-import { SidePanelContainer } from './_components/SidePanelContainer';
+
 import { copy, buttons, showcaseItems } from './_content';
 
 export default function HomePage() {
@@ -29,7 +26,7 @@ export default function HomePage() {
 				</div>
 
 				<div className='flex justify-center lg:justify-end w-full'>
-					<SidePanelContainer className={'relative w-full h-full p-10 flex flex-col gap-6'}>
+					<SidePanelContainer className={'relative w-full h-full p-10 space-y-6'}>
 						{showcaseItems.map(({ id, icon, title, description }) => (
 							<ChromeShowcaseCard key={id} icon={icon} title={title} description={description} />
 						))}

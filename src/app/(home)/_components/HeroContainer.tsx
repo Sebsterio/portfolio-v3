@@ -14,7 +14,6 @@ export function HeroContainer({ children, className }: HeroContainerProps) {
 	useEffect(() => {
 		if (!heroRef.current) return;
 
-		// Animated entrance
 		gsap.fromTo(
 			heroRef.current,
 			{

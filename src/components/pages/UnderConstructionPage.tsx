@@ -1,10 +1,4 @@
-import { Title, TextBlock } from '@/components';
-
-// TODO: mv these to src/components
-import { ContentContainer } from '@/app/about/_components/ContentContainer';
-import { SidebarContainer } from '@/app/about/_components/SidebarContainer';
-import { LabeledValueRow } from '@/app/about/_components/LabeledValueRow';
-import { GlassCard } from '@/app/about/_components/GlassCard';
+import { ContentContainer, Title, TextBlock, SidePanelContainer, LabeledValueRow, GlassCard } from '@/components';
 
 const copy = {
 	title: '*Page in progress',
@@ -27,13 +21,12 @@ export function UnderConstructionPage() {
 					<Title variant='page' className='mb-6'>
 						{copy.title}
 					</Title>
-
 					<TextBlock className='max-w-2xl' highlightFirstParagraph>
 						{copy.text}
 					</TextBlock>
 				</ContentContainer>
 
-				<SidebarContainer>
+				<SidePanelContainer>
 					<GlassCard title={copy.cardTitle}>
 						<div className='space-y-6 my-6'>
 							{copy.cardRows.map(({ label, value }) => (
@@ -41,7 +34,7 @@ export function UnderConstructionPage() {
 							))}
 						</div>
 					</GlassCard>
-				</SidebarContainer>
+				</SidePanelContainer>
 			</div>
 		</main>
 	);
