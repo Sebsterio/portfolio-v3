@@ -39,14 +39,8 @@ export function UnderConstructionPage() {
 				<SidebarContainer>
 					<GlassCard title={copy.cardTitle}>
 						<div className='space-y-6 my-6'>
-							{copy.cardRows.map(({ label, value }, i) => (
-								<LabeledValueRow
-									key={i}
-									rowClassName='py-4 border-b border-quantum-purple/10 last:border-b-0'
-									labelClassName='text-chrome-silver/60'
-									valueClassName='bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
-									{...{ label, value }}
-								/>
+							{copy.cardRows.map(({ label, value }) => (
+								<LabeledValueRow key={label} {...{ label, value }} />
 							))}
 						</div>
 					</GlassCard>

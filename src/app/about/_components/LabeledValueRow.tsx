@@ -1,22 +1,32 @@
 import { cn } from '@/lib/utils';
 
-function LabeledValueRow({
-	label,
-	value,
-	rowClassName,
-	labelClassName,
-	valueClassName,
-}: {
+type LabeledValueRowProps = {
 	label: string;
 	value: string;
-	rowClassName?: string;
-	labelClassName?: string;
-	valueClassName?: string;
-}) {
+	className?: string;
+};
+
+const CLASSES = {
+	row: cn(
+		'flex justify-between items-center',
+		'py-4',
+		'border-b border-quantum-purple/10 last:border-b-0' //
+	),
+	label: cn(
+		'text-sm uppercase tracking-wider',
+		'text-chrome-silver/60' //
+	),
+	value: cn(
+		'font-urbanist text-lg font-bold',
+		'bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent' //
+	),
+};
+
+function LabeledValueRow({ label, value, className }: LabeledValueRowProps) {
 	return (
-		<div className={cn('flex justify-between items-center', rowClassName)}>
-			<span className={cn('text-sm uppercase tracking-wider', labelClassName)}>{label}</span>
-			<span className={cn('font-urbanist text-lg font-bold', valueClassName)}>{value}</span>
+		<div className={cn(CLASSES.row, className)}>
+			<span className={CLASSES.label}>{label}</span>
+			<span className={CLASSES.value}>{value}</span>
 		</div>
 	);
 }
