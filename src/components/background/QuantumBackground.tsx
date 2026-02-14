@@ -1,64 +1,63 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export function QuantumBackground() {
-	const particlesRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (!particlesRef.current) return;
-
-		// Generate quantum particles
-		for (let i = 0; i < 30; i++) {
-			const particle = document.createElement('div');
-			particle.className = cn('absolute w-[3px] h-[3px] rounded-full', 'bg-quantum-purple opacity-0', 'animate-quantum-float');
-			particle.style.left = `${Math.random() * 100}%`;
-			particle.style.top = `${Math.random() * 100}%`;
-			particle.style.animationDelay = `${Math.random() * 10}s`;
-			particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
-			particle.style.boxShadow = '0 0 10px rgba(178, 75, 243, 1), 0 0 20px rgba(178, 75, 243, 1)';
-
-			particlesRef.current.appendChild(particle);
-		}
-
-		// Cleanup
-		return () => {
-			if (particlesRef.current) {
-				particlesRef.current.innerHTML = '';
-			}
-		};
-	}, []);
-
 	return (
 		<>
 			{/* 3D Grid Background */}
 			<div
-				className='absolute inset-0 opacity-30 animate-grid-perspective'
+				className='absolute inset-0 opacity-20 animate-grid-perspective'
 				style={{
 					backgroundImage: `
-            linear-gradient(rgba(178, 75, 243, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(178, 75, 243, 0.1) 1px, transparent 1px)
+            linear-gradient(rgba(160, 160, 160, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(160, 160, 160, 0.08) 1px, transparent 1px)
           `,
 					backgroundSize: '60px 60px',
-					transform: 'rotateX(60deg) scale(2)',
+					transform: 'rotateX(60deg) scale(2) translateZ(0)',
 					transformOrigin: 'center center',
+					willChange: 'transform',
 				}}
 			/>
 
-			{/* Quantum Particles Container */}
-			<div ref={particlesRef} className='absolute inset-0' />
+			{/* Particles */}
+			<div className='absolute inset-0'>
+				{Array.from({ length: 15 }).map((_, i) => (
+					<div
+						key={i}
+						className={cn(
+							'absolute w-[3px] h-[3px] rounded-full opacity-0 animate-quantum-float',
+							i % 3 === 0 ? 'bg-accent-cyan' : 'bg-chrome-mid'
+						)}
+						style={{
+							left: `${(i * 7) % 100}%`,
+							top: `${(i * 13) % 100}%`,
+							animationDelay: `${(i * 0.7) % 10}s`,
+							animationDuration: `${8 + (i % 3)}s`,
+							boxShadow: i % 3 === 0 ? '0 0 8px rgba(6, 182, 212, 0.4)' : '0 0 6px rgba(160, 160, 160, 0.25)',
+							transform: 'translateZ(0)',
+							willChange: 'transform, opacity',
+						}}
+					/>
+				))}
+			</div>
 
 			{/* Floating Geometric Shapes */}
 			<div
-				className='absolute w-[100px] h-[100px] border-2 border-quantum-purple/30 
+				className='absolute w-[100px] h-[100px] border-2 border-accent-blue/40 
                    top-[20%] right-[15%] rotate-45 animate-shape-float'
+				style={{
+					boxShadow: '0 0 15px rgba(59, 130, 246, 0.3)',
+					transform: 'translateZ(0)',
+					willChange: 'transform',
+				}}
 			/>
 			<div
-				className='absolute w-[150px] h-[150px] border-2 border-quantum-purple/30 
+				className='absolute w-[150px] h-[150px] border-2 border-accent-cyan/30 
                    bottom-[20%] left-[10%] rounded-full'
 				style={{
 					animation: 'shapeFloat 10s ease-in-out infinite 2s',
+					boxShadow: '0 0 15px rgba(6, 182, 212, 0.3)',
+					transform: 'translateZ(0)',
+					willChange: 'transform',
 				}}
 			/>
 		</>
