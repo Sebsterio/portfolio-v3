@@ -31,7 +31,7 @@ export default function AboutPage({}: AboutPageProps) {
 					<Section>
 						<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' />
 
-						<div className='grid grid-cols-1 gap-6'>
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6'>
 							{highlights.map((h, i) => (
 								<ChromeShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
 							))}
