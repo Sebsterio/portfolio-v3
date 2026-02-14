@@ -2,7 +2,7 @@ import { Zap, Sparkles, Target } from 'lucide-react';
 
 export const copy = {
 	superscript: 'Available for Projects',
-	title: ['Crafting', '*Immersive', 'Experience'], // prefix "*" -> highlight styles
+	title: ['Crafting', '*Immersive', 'Experiences'], // prefix "*" -> highlight styles
 	subtitle:
 		'Merging modern web technologies and thoughtful design to deliver immersive, visually striking, and highly performant web	applications that scale.',
 };
