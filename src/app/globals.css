@@ -22,6 +22,11 @@
 		font-family: var(--font-dm-sans);
 	}
 }
+
+/*
+  -------------- Background Animations --------------
+*/
+
 /* THEME: Quantum Grid */
 /* @layer utilities {
 	.perspective-1000 {
@@ -44,4 +49,183 @@
 	66% {
 		transform: translate(-30px, 30px) scale(0.9);
 	}
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+
+/* ==========================================================================
+   View Transition Base Configuration
+   ========================================================================== */
+
+/**
+ * Disable default cross-fade behavior and set up custom animations
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 1000ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Prevent flickering during transition */
+::view-transition-old(root) {
+	animation-name: page-transition-fade-out;
+}
+
+::view-transition-new(root) {
+	animation-name: page-transition-fade-in;
+}
+
+/* ==========================================================================
+		Forward Navigation (default direction)
+		========================================================================== */
+
+/**
+	* Forward navigation: slide from right with fade
+	*/
+:root[data-transition-direction='forward'] ::view-transition-old(root) {
+	animation-name: page-transition-slide-out-left;
+}
+
+:root[data-transition-direction='forward'] ::view-transition-new(root) {
+	animation-name: page-transition-slide-in-right;
+}
+
+/* ==========================================================================
+		Back Navigation
+		========================================================================== */
+
+/**
+	* Back navigation: slide from left with fade
+	*/
+:root[data-transition-direction='back'] ::view-transition-old(root) {
+	animation-name: page-transition-slide-out-right;
+}
+
+:root[data-transition-direction='back'] ::view-transition-new(root) {
+	animation-name: page-transition-slide-in-left;
+}
+
+/* ==========================================================================
+		Animation Keyframes
+		========================================================================== */
+
+/* Fade animations */
+@keyframes page-transition-fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes page-transition-fade-in {
+	from {
+		opacity: 0;
+	}
+}
+
+/* Slide animations - Forward */
+@keyframes page-transition-slide-out-left {
+	to {
+		transform: translateX(-30%);
+		opacity: 0;
+	}
+}
+
+@keyframes page-transition-slide-in-right {
+	from {
+		transform: translateX(30%);
+		opacity: 0;
+	}
+}
+
+/* Slide animations - Back */
+@keyframes page-transition-slide-out-right {
+	to {
+		transform: translateX(30%);
+		opacity: 0;
+	}
+}
+
+@keyframes page-transition-slide-in-left {
+	from {
+		transform: translateX(-30%);
+		opacity: 0;
+	}
+}
+
+/* ==========================================================================
+		Element-Level Transitions
+		========================================================================== */
+
+/**
+	* Assign unique view-transition-names to elements you want to animate independently.
+	* These will morph smoothly between pages.
+	* 
+	* Example:
+	* .hero-image {
+	*   view-transition-name: hero;
+	* }
+	*/
+
+/* Common element transitions with smooth morphing */
+[data-transition-name] {
+	view-transition-name: var(--transition-name);
+}
+
+/* Header/Navigation transitions */
+::view-transition-old(header),
+::view-transition-new(header) {
+	animation-duration: 300ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Image transitions with smooth scaling */
+::view-transition-old(image),
+::view-transition-new(image) {
+	animation-duration: 500ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	overflow: clip;
+	/* Prevent images from stretching during transition */
+	object-fit: cover;
+}
+
+/* ==========================================================================
+		Reduced Motion Support
+		========================================================================== */
+
+/**
+	* Respect user's motion preferences
+	*/
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+	}
+
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}
+
+/* ==========================================================================
+		Utility Classes (optional Tailwind integration)
+		========================================================================== */
+
+/**
+	* Apply these classes to elements for automatic transition naming
+	*/
+.transition-element {
+	view-transition-name: auto;
+}
+
+/* Prevent specific elements from transitioning */
+.no-transition {
+	view-transition-name: none;
 }

@@ -1,7 +1,9 @@
 'use client';
 
-import Link from 'next/link';
+// import Link from 'next/link';
 import { cn } from '@/lib/utils';
+
+import Link from '@/lib/transitions/TransitionLink';
 
 type NavItem = {
 	label: string;

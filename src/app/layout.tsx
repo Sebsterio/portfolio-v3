@@ -13,6 +13,7 @@ import { QuantumBackground } from '@/components/background/QuantumBackground';
 import { AppHeader } from './_components/AppHeader';
 
 import './globals.css';
+import { PageTransitionProvider } from '@/lib/transitions';
 
 export { metadata } from './_metadata';
 
@@ -40,24 +41,26 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 			<head />
 			<body className={cn(urbanist.variable, dmSans.variable, 'antialiased')}>
 				<>
-					{/* App Background */}
-					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
-						<BackgroundTransitionContainer bgKey='default'>
-							<ChromeBackground />
-							<QuantumBackground />
-						</BackgroundTransitionContainer>
-					</div>
+					<PageTransitionProvider>
+						{/* App Background */}
+						<div className='fixed inset-0 pointer-events-none overflow-hidden'>
+							<BackgroundTransitionContainer bgKey='default'>
+								<ChromeBackground />
+								<QuantumBackground />
+							</BackgroundTransitionContainer>
+						</div>
 
-					{/* App Content */}
-					<div className='relative min-h-screen'>
-						<HeaderContainer width='content'>
-							<AppHeader logo='PORTFOLIO' navItems={navItems} />
-						</HeaderContainer>
+						{/* App Content */}
+						<div className='relative min-h-screen'>
+							<HeaderContainer width='content'>
+								<AppHeader logo='PORTFOLIO' navItems={navItems} />
+							</HeaderContainer>
 
-						<ContentContainer>
-							<>{children}</>
-						</ContentContainer>
-					</div>
+							<ContentContainer className='relative overflow-hidden'>
+								<>{children}</>
+							</ContentContainer>
+						</div>
+					</PageTransitionProvider>
 				</>
 			</body>
 		</html>
