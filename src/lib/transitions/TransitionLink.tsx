@@ -1,54 +1,41 @@
 'use client';
 
-/**
- * TransitionLink
- *
- * Drop-in replacement for Next.js Link that automatically triggers page transitions.
- * Supports all standard Link props plus transition configuration.
- */
-
+import { ComponentProps, MouseEvent } from 'react';
 import NextLink from 'next/link';
 import { usePageTransition } from './TransitionProvider';
 import type { TransitionConfig } from './types';
-import { ComponentProps, MouseEvent } from 'react';
 
+type ClickEvent = MouseEvent<HTMLAnchorElement>;
+type Href = TransitionLinkProps['href'];
 interface TransitionLinkProps extends Omit<ComponentProps<typeof NextLink>, 'onClick'> {
-	/** Optional transition configuration */
 	transition?: TransitionConfig;
-	/** Optional click handler */
-	onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+	onClick?: (e: ClickEvent) => void;
 }
 
-export function TransitionLink({ href, transition, onClick, ...props }: TransitionLinkProps) {
+const getUrlFromHref = (href: Href) => {
+	return typeof href === 'string' ? href : href.pathname || '';
+};
+
+const shouldInterceptClick = (e: ClickEvent, url: string) => {
+	return (
+		!(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) &&
+		!url.startsWith('http') &&
+		!url.startsWith('//')
+	);
+};
+
+export const TransitionLink = ({ href, transition, onClick, ...props }: TransitionLinkProps) => {
 	const { navigate } = usePageTransition();
+	const url = getUrlFromHref(href);
 
-	const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-		// Call user's onClick if provided
+	const handleClick = (e: ClickEvent) => {
 		onClick?.(e);
-
-		// Don't interfere with default behavior for these cases
-		if (
-			e.defaultPrevented ||
-			e.button !== 0 || // Not left click
-			e.metaKey || // Cmd/Win key pressed
-			e.ctrlKey || // Ctrl key pressed
-			e.shiftKey || // Shift key pressed
-			e.altKey // Alt key pressed
-		) {
-			return;
-		}
-
-		// Only handle internal navigation
-		const url = typeof href === 'string' ? href : href.pathname || '';
-		if (url.startsWith('http') || url.startsWith('//')) {
-			return;
-		}
-
+		if (!shouldInterceptClick(e, url)) return;
 		e.preventDefault();
 		navigate(url, transition);
 	};
 
 	return <NextLink href={href} onClick={handleClick} {...props} />;
-}
+};
 
 export default TransitionLink;

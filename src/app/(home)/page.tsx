@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTransitionRouter } from '@/lib/transitions';
+import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { StatusBadge, Title, TextBlock, ChromeShowcaseCard, ChromeButton, PageLayout } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';

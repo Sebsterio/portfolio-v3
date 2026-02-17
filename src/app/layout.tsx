@@ -4,6 +4,7 @@ import { Urbanist, DM_Sans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 // import { SITE_VERIFICATION } from '@/lib/constants';
+import { TransitionProvider } from '@/lib/transitions/TransitionProvider';
 import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
 import { HeaderContainer } from '@/components/layout/HeaderContainer';
 import { ContentContainer } from '@/components/layout/ContentContainer';
@@ -13,7 +14,6 @@ import { QuantumBackground } from '@/components/background/QuantumBackground';
 import { AppHeader } from './_components/AppHeader';
 
 import './globals.css';
-import { PageTransitionProvider } from '@/lib/transitions';
 
 export { metadata } from './_metadata';
 
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 			<head />
 			<body className={cn(urbanist.variable, dmSans.variable, 'antialiased')}>
 				<>
-					<PageTransitionProvider>
+					<TransitionProvider>
 						{/* App Background */}
 						<div className='fixed inset-0 pointer-events-none overflow-hidden'>
 							<BackgroundTransitionContainer bgKey='default'>
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 								<>{children}</>
 							</ContentContainer>
 						</div>
-					</PageTransitionProvider>
+					</TransitionProvider>
 				</>
 			</body>
 		</html>

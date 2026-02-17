@@ -2,131 +2,129 @@
  * Page transitions via the native ViewTransition API
  */
 
-@layer utilities {
-	/* ==========================================================================
+/* ==========================================================================
    Base Configuration
    ========================================================================== */
 
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 400ms;
-		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 400ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-	::view-transition-old(root) {
-		animation-name: page-transition-fade-out;
-	}
+::view-transition-old(root) {
+	animation-name: page-transition-fade-out;
+}
 
-	::view-transition-new(root) {
-		animation-name: page-transition-fade-in;
-	}
+::view-transition-new(root) {
+	animation-name: page-transition-fade-in;
+}
 
-	:root[data-transition-direction='forward'] ::view-transition-old(root) {
-		animation-name: page-transition-slide-out-left;
-	}
+:root[data-transition-direction='forward'] ::view-transition-old(root) {
+	animation-name: page-transition-slide-out-left;
+}
 
-	:root[data-transition-direction='forward'] ::view-transition-new(root) {
-		animation-name: page-transition-slide-in-right;
-	}
+:root[data-transition-direction='forward'] ::view-transition-new(root) {
+	animation-name: page-transition-slide-in-right;
+}
 
-	:root[data-transition-direction='back'] ::view-transition-old(root) {
-		animation-name: page-transition-slide-out-right;
-	}
+:root[data-transition-direction='back'] ::view-transition-old(root) {
+	animation-name: page-transition-slide-out-right;
+}
 
-	:root[data-transition-direction='back'] ::view-transition-new(root) {
-		animation-name: page-transition-slide-in-left;
-	}
+:root[data-transition-direction='back'] ::view-transition-new(root) {
+	animation-name: page-transition-slide-in-left;
+}
 
-	@media (prefers-reduced-motion: reduce) {
-		::view-transition-group(*),
-		::view-transition-old(*),
-		::view-transition-new(*) {
-			animation-duration: 0.001ms !important;
-			animation-iteration-count: 1 !important;
-		}
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
 	}
+}
 
-	/* ==========================================================================
+/* ==========================================================================
 	 Element-Level Transitions
 	 ========================================================================== */
 
-	/* Assign unique view-transition-names to animate elements independently. */
-	/* Example: `.hero-image { view-transition-name: hero; }` */
-	[data-transition-name] {
-		view-transition-name: var(--transition-name);
-	}
+/* Assign unique view-transition-names to animate elements independently. */
+/* Example: `.hero-image { view-transition-name: hero; }` */
+[data-transition-name] {
+	view-transition-name: var(--transition-name);
+}
 
-	/* Header/Navigation transitions */
-	::view-transition-old(header),
-	::view-transition-new(header) {
-		animation-duration: 300ms;
-		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	}
+/* Header/Navigation transitions */
+::view-transition-old(header),
+::view-transition-new(header) {
+	animation-duration: 300ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-	/* Image transitions with smooth scaling */
-	::view-transition-old(image),
-	::view-transition-new(image) {
-		animation-duration: 500ms;
-		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-		overflow: clip;
-		/* Prevent images from stretching during transition */
-		object-fit: cover;
-	}
+/* Image transitions with smooth scaling */
+::view-transition-old(image),
+::view-transition-new(image) {
+	animation-duration: 500ms;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	overflow: clip;
+	/* Prevent images from stretching during transition */
+	object-fit: cover;
+}
 
-	/* ==========================================================================
+/* ==========================================================================
 	 Tailwind Utility Classes
 	 ========================================================================== */
 
-	/* Automatic transition naming */
-	.transition-element {
-		view-transition-name: auto;
-	}
+/* Automatic transition naming */
+.transition-element {
+	view-transition-name: auto;
+}
 
-	.no-transition {
-		view-transition-name: none;
-	}
+.no-transition {
+	view-transition-name: none;
+}
 
-	/* ==========================================================================
+/* ==========================================================================
    Animation Keyframes
    ========================================================================== */
 
-	@keyframes page-transition-fade-out {
-		to {
-			opacity: 0;
-		}
+@keyframes page-transition-fade-out {
+	to {
+		opacity: 0;
 	}
+}
 
-	@keyframes page-transition-fade-in {
-		from {
-			opacity: 0;
-		}
+@keyframes page-transition-fade-in {
+	from {
+		opacity: 0;
 	}
+}
 
-	@keyframes page-transition-slide-out-left {
-		to {
-			transform: translateX(-30%);
-			opacity: 0;
-		}
+@keyframes page-transition-slide-out-left {
+	to {
+		transform: translateX(-30%);
+		opacity: 0;
 	}
+}
 
-	@keyframes page-transition-slide-in-right {
-		from {
-			transform: translateX(30%);
-			opacity: 0;
-		}
+@keyframes page-transition-slide-in-right {
+	from {
+		transform: translateX(30%);
+		opacity: 0;
 	}
+}
 
-	@keyframes page-transition-slide-out-right {
-		to {
-			transform: translateX(30%);
-			opacity: 0;
-		}
+@keyframes page-transition-slide-out-right {
+	to {
+		transform: translateX(30%);
+		opacity: 0;
 	}
+}
 
-	@keyframes page-transition-slide-in-left {
-		from {
-			transform: translateX(-30%);
-			opacity: 0;
-		}
+@keyframes page-transition-slide-in-left {
+	from {
+		transform: translateX(-30%);
+		opacity: 0;
 	}
 }
