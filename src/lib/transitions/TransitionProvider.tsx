@@ -1,16 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { createContext, useContext, useEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
 import type { TransitionDirection, NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
 
-/* Contexts */
-
 const TransitionStateContext = createContext<NavigationStateContext | null>(null);
-
 const TransitionMethodsContext = createContext<TransitionMethodsContext | null>(null);
-
-/* Helpers */
+const TransitionReadyContext = createContext<(() => void) | null>(null);
 
 const setDataAttribute = (key: string, value: string | boolean) => {
 	const { dataset } = document.documentElement;
@@ -18,7 +14,12 @@ const setDataAttribute = (key: string, value: string | boolean) => {
 	else dataset[key] = value;
 };
 
-const executeTransition = async (callback: () => void, direction: TransitionDirection, skip?: boolean) => {
+const executeTransition = async (
+	callback: () => void,
+	direction: TransitionDirection,
+	navigationComplete: Promise<void>,
+	skip?: boolean
+) => {
 	if (!document.startViewTransition || skip) {
 		callback();
 		return;
@@ -28,21 +29,12 @@ const executeTransition = async (callback: () => void, direction: TransitionDire
 	try {
 		await document.startViewTransition(async () => {
 			callback();
-			// In dev mode, wait for Next.js to flush updates
-			await new Promise((resolve) => {
-				if (process.env.NODE_ENV === 'development') {
-					requestAnimationFrame(() => requestAnimationFrame(resolve));
-				} else {
-					setTimeout(resolve, 0);
-				}
-			});
+			await navigationComplete;
 		}).finished;
 	} catch (error) {
 		console.error('View transition failed:', error);
 	}
 };
-
-/* Internal hooks */
 
 const useNavigationDirection = () => {
 	const isBackNavigation = useRef(false);
@@ -81,58 +73,63 @@ const useTransition = (
 	setDirection: (dir: TransitionDirection) => void,
 	setIsTransitioning: (value: boolean) => void
 ) => {
-	return useCallback(
+	const resolveNavigation = useRef<(() => void) | null>(null);
+
+	const signalReady = useCallback(() => {
+		resolveNavigation.current?.();
+		resolveNavigation.current = null;
+	}, []);
+
+	const performTransition = useCallback(
 		async (action: () => void, dir: TransitionDirection, config?: TransitionConfig) => {
 			setDirection(dir);
 			setIsTransitioning(true);
-			await executeTransition(action, dir, config?.skip);
+			const navigationComplete = new Promise<void>((resolve) => {
+				resolveNavigation.current = resolve;
+				setTimeout(resolve, 500); // fallback for back/forward with no history
+			});
+			await executeTransition(action, dir, navigationComplete, config?.skip);
 			setDirection('none');
 			setIsTransitioning(false);
 			isBackNavigationRef.current = false;
 		},
 		[setDirection, setIsTransitioning]
 	);
-};
 
-/* Providers */
+	return { performTransition, signalReady };
+};
 
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const { isBackNavigation, direction, setDirection } = useNavigationDirection();
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
-	const transition = useTransition(isBackNavigation, setDirection, setIsTransitioning);
+	const { performTransition, signalReady } = useTransition(isBackNavigation, setDirection, setIsTransitioning);
 
 	const methods = useMemo(
 		() => ({
 			navigate: (href: string, config?: TransitionConfig) => {
 				const dir = isBackNavigation.current ? 'back' : 'forward';
-				return transition(() => router.push(href), dir, config);
+				return performTransition(() => router.push(href), dir, config);
 			},
-			replace: (href: string, config?: TransitionConfig) => {
-				return transition(() => router.replace(href), 'none', config);
-			},
+			replace: (href: string, config?: TransitionConfig) => performTransition(() => router.replace(href), 'none', config),
 			back: (config?: TransitionConfig) => {
 				isBackNavigation.current = true;
-				transition(() => router.back(), 'back', config);
+				performTransition(() => router.back(), 'back', config);
 			},
-			forward: (config?: TransitionConfig) => {
-				transition(() => router.forward(), 'forward', config);
-			},
+			forward: (config?: TransitionConfig) => performTransition(() => router.forward(), 'forward', config),
 			prefetch: (href: string) => router.prefetch(href),
 		}),
-		[router, transition]
+		[router, performTransition]
 	);
-
-	const state = { direction, isTransitioning };
 
 	return (
-		<TransitionMethodsContext.Provider value={methods}>
-			<TransitionStateContext.Provider value={state}>{children}</TransitionStateContext.Provider>
-		</TransitionMethodsContext.Provider>
+		<TransitionReadyContext.Provider value={signalReady}>
+			<TransitionMethodsContext.Provider value={methods}>
+				<TransitionStateContext.Provider value={{ direction, isTransitioning }}>{children}</TransitionStateContext.Provider>
+			</TransitionMethodsContext.Provider>
+		</TransitionReadyContext.Provider>
 	);
 };
-
-/* External hooks */
 
 export const usePageTransition = () => {
 	const methods = useContext(TransitionMethodsContext);
@@ -144,4 +141,11 @@ export const usePageTransitionState = () => {
 	const state = useContext(TransitionStateContext);
 	if (!state) throw new Error('usePageTransitionState must be used within TransitionProvider');
 	return state;
+};
+
+export const useTransitionReady = () => {
+	const signalReady = useContext(TransitionReadyContext);
+	useLayoutEffect(() => {
+		signalReady?.();
+	}, []);
 };

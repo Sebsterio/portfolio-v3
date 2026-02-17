@@ -24,10 +24,10 @@ export default function HomePage({}: HomePageProps) {
 						<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
 					</div>
 					<div className='flex gap-5'>
-						<ChromeButton onClick={() => navigate('/')} variant='primary'>
+						<ChromeButton onClick={() => navigate('/projects')} variant='primary'>
 							{buttons.primary.text}
 						</ChromeButton>
-						<ChromeButton onClick={() => navigate('/about')} variant='secondary'>
+						<ChromeButton onClick={() => navigate('/contact')} variant='secondary'>
 							{buttons.secondary.text}
 						</ChromeButton>
 					</div>
