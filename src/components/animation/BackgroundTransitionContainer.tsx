@@ -19,7 +19,7 @@ const TRANSITIONS: Variants = {
 
 export const BackgroundTransitionContainer = ({ children, bgKey, className }: BackgroundProviderProps) => {
 	return (
-		<AnimatePresence mode='wait'>
+		<AnimatePresence mode='wait' initial={false}>
 			<motion.div
 				key={bgKey}
 				className={className}

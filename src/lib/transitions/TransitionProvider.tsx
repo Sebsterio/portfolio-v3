@@ -145,7 +145,7 @@ export const usePageTransitionState = () => {
 
 export const useTransitionReady = () => {
 	const signalReady = useContext(TransitionReadyContext);
-	useLayoutEffect(() => {
-		signalReady?.();
+	useEffect(() => {
+		requestAnimationFrame(() => signalReady?.());
 	}, []);
 };
