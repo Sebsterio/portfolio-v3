@@ -62,10 +62,10 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			/>
 
 			{/* Content */}
-			<div className='relative z-10'>
-				<div
+			<div className='relative z-10 flex gap-6'>
+				<div // NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page
 					className={cn(
-						'flex items-center justify-center w-14 h-14 mb-6 rounded-2xl',
+						'flex items-center justify-center w-14 h-14 rounded-2xl',
 						'bg-gradient-to-br from-accent-blue to-accent-cyan',
 						'shadow-[0_10px_30px_rgba(59,130,246,0.4),0_0_20px_rgba(59,130,246,0.2)]',
 						'group-hover:shadow-[0_12px_40px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)]',
@@ -75,10 +75,10 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 				>
 					<div className='text-[26px]'>{icon}</div>
 				</div>
-
-				<h3 className='font-urbanist text-xl font-bold text-chrome-silver mb-3'>{title}</h3>
-
-				<p className='text-[13px] leading-relaxed text-chrome-silver/60'>{description}</p>
+				<div>
+					<h3 className='font-urbanist text-xl font-bold text-chrome-silver mb-3'>{title}</h3>
+					<p className='text-[13px] leading-relaxed text-chrome-silver/60'>{description}</p>
+				</div>
 			</div>
 		</div>
 	);

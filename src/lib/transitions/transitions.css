@@ -8,21 +8,31 @@
 	--vt-distance: 100%;
 }
 
-/* Root switches instantly — all visible content is in named slots */
-::view-transition-old(root),
-::view-transition-new(root) {
-	animation-duration: 0.001ms;
-}
-
 ::view-transition-old(*),
 ::view-transition-new(*) {
 	animation-duration: var(--vt-duration);
 	animation-timing-function: var(--vt-easing);
 }
 
+/* FIX: Prevents flashing of some pages, in some cases, on some viewports, for reasons forever unknowable. */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.001ms;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+	::view-transition-group(*),
+	::view-transition-old(*),
+	::view-transition-new(*) {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}
+
 /* ==========================================================================
-		 Page-Slot Transitions
-		 ========================================================================== */
+	 Page-Slot Transitions
+   ========================================================================== */
 
 /* Mobile: all slots animate from bottom */
 ::view-transition-old(vt-left),
@@ -61,8 +71,8 @@
 }
 
 /* ==========================================================================
-		 Keyframes
-		 ========================================================================== */
+	 Keyframes
+	 ========================================================================== */
 
 @keyframes vt-exit-left {
 	to {
@@ -110,18 +120,5 @@
 	from {
 		transform: translateY(calc(var(--vt-distance) * -1));
 		opacity: 0;
-	}
-}
-
-/* ==========================================================================
-		 Reduced Motion
-		 ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-	::view-transition-group(*),
-	::view-transition-old(*),
-	::view-transition-new(*) {
-		animation-duration: 0.001ms !important;
-		animation-iteration-count: 1 !important;
 	}
 }
