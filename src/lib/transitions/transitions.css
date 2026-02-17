@@ -1,11 +1,17 @@
-/**
- * Page transitions via the native ViewTransition API
- */
+/* ==========================================================================
+   Base Configuration
+   ========================================================================== */
 
 :root {
 	--vt-duration: 400ms;
 	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
 	--vt-distance: 100%;
+}
+
+/* Root switches instantly — all visible content is in named slots */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 0.001ms;
 }
 
 ::view-transition-old(*),
@@ -14,30 +20,49 @@
 	animation-timing-function: var(--vt-easing);
 }
 
-::view-transition-old(vt-left) {
-	animation-name: vt-exit-left;
-}
-::view-transition-new(vt-left) {
-	animation-name: vt-enter-left;
-}
-::view-transition-old(vt-right) {
-	animation-name: vt-exit-right;
-}
-::view-transition-new(vt-right) {
-	animation-name: vt-enter-right;
-}
+/* ==========================================================================
+		 Page-Slot Transitions
+		 ========================================================================== */
+
+/* Mobile: all slots animate from bottom */
+::view-transition-old(vt-left),
+::view-transition-old(vt-right),
 ::view-transition-old(vt-bottom) {
 	animation-name: vt-exit-bottom;
 }
+
+::view-transition-new(vt-left),
+::view-transition-new(vt-right),
 ::view-transition-new(vt-bottom) {
 	animation-name: vt-enter-bottom;
 }
+
+/* lg: left/right animate horizontally */
+@media (min-width: 1024px) {
+	::view-transition-old(vt-left) {
+		animation-name: vt-exit-left;
+	}
+	::view-transition-new(vt-left) {
+		animation-name: vt-enter-left;
+	}
+	::view-transition-old(vt-right) {
+		animation-name: vt-exit-right;
+	}
+	::view-transition-new(vt-right) {
+		animation-name: vt-enter-right;
+	}
+}
+
 ::view-transition-old(vt-top) {
 	animation-name: vt-exit-top;
 }
 ::view-transition-new(vt-top) {
 	animation-name: vt-enter-top;
 }
+
+/* ==========================================================================
+		 Keyframes
+		 ========================================================================== */
 
 @keyframes vt-exit-left {
 	to {
@@ -87,6 +112,10 @@
 		opacity: 0;
 	}
 }
+
+/* ==========================================================================
+		 Reduced Motion
+		 ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
 	::view-transition-group(*),

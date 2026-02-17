@@ -22,7 +22,7 @@ export default function AboutPage({}: AboutPageProps) {
 		<PageLayout variant='two-column'>
 			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 				{/* Main Content Column */}
-				<div className={cn('space-y-12', 'vt-bottom lg:vt-left')}>
+				<div className={cn('space-y-12', 'vt-left')}>
 					<Title variant='page' className='mb-6'>
 						{copy.title}
 					</Title>
@@ -41,7 +41,7 @@ export default function AboutPage({}: AboutPageProps) {
 				</div>
 
 				{/* Sidebar Column */}
-				<div className={cn('space-y-6', 'vt-bottom lg:vt-right')}>
+				<div className={cn('space-y-6', 'vt-right')}>
 					<GlassCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-6 my-6'>
 							{quickFacts.map(({ label, value }) => (
