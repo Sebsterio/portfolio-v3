@@ -8,7 +8,7 @@ interface ChromeShowcaseCardProps {
 	className?: string;
 }
 
-export const ChromeShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, description, className }) => {
+export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, description, className }) => {
 	return (
 		<div
 			className={cn(

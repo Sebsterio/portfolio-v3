@@ -3,7 +3,7 @@
 import {
 	Title,
 	TextBlock,
-	ChromeShowcaseCard,
+	ShowcaseCard,
 	GlassCard,
 	Section,
 	SectionHeader,
@@ -34,7 +34,7 @@ export default function AboutPage({}: AboutPageProps) {
 
 						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6'>
 							{highlights.map((h, i) => (
-								<ChromeShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
+								<ShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
 							))}
 						</div>
 					</Section>

@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
-import { StatusBadge, Title, TextBlock, ChromeShowcaseCard, ChromeButton, PageLayout } from '@/components';
+import { StatusBadge, Title, TextBlock, ShowcaseCard, ChromeButton, PageLayout } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';
 
@@ -37,7 +37,7 @@ export default function HomePage({}: HomePageProps) {
 				<div className={cn('flex justify-center lg:justify-end w-full', 'vt-bottom lg:vt-right')}>
 					<div className='w-full space-y-6'>
 						{showcaseItems.map(({ id, icon, title, description }) => (
-							<ChromeShowcaseCard key={id} icon={icon} title={title} description={description} />
+							<ShowcaseCard key={id} icon={icon} title={title} description={description} />
 						))}
 					</div>
 				</div>
