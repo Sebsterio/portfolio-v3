@@ -13,11 +13,9 @@ const TransitionReadyContext = createContext<(() => void) | null>(null);
 /* Helpers */
 
 const setTransitioning = (value: boolean) => {
-	if (value) {
-		document.documentElement.dataset.transitioning = 'true';
-	} else {
-		delete document.documentElement.dataset.transitioning;
-	}
+	const { dataset } = document.documentElement;
+	if (value) dataset.transitioning = 'true';
+	else delete dataset.transitioning;
 };
 
 const executeTransition = async (callback: () => void, navigationComplete: Promise<void>, skip?: boolean) => {
@@ -25,9 +23,6 @@ const executeTransition = async (callback: () => void, navigationComplete: Promi
 		callback();
 		return;
 	}
-
-	setTransitioning(true);
-
 	try {
 		await document.startViewTransition(async () => {
 			callback();
@@ -38,7 +33,7 @@ const executeTransition = async (callback: () => void, navigationComplete: Promi
 	}
 };
 
-/* Internal Hooks */
+/* Private Hooks */
 
 const useIsTransitioning = () => {
 	const [isTransitioning, setIsTransitioning] = useState(false);
@@ -59,12 +54,11 @@ const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 		resolveNavigation.current = null;
 	}, []);
 
-	const performTransition = useCallback(
+	const transition = useCallback(
 		async (action: () => void, config?: TransitionConfig) => {
 			setIsTransitioning(true);
 			const navigationComplete = new Promise<void>((resolve) => {
 				resolveNavigation.current = resolve;
-				setTimeout(resolve, 500);
 			});
 			await executeTransition(action, navigationComplete, config?.skip);
 			setIsTransitioning(false);
@@ -72,25 +66,25 @@ const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 		[setIsTransitioning]
 	);
 
-	return { performTransition, signalReady };
+	return { transition, signalReady };
 };
 
-/* Provider */
+/* Providers */
 
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
-	const { performTransition, signalReady } = useTransition(setIsTransitioning);
+	const { transition, signalReady } = useTransition(setIsTransitioning);
 
 	const methods = useMemo(
 		() => ({
-			navigate: (href: string, config?: TransitionConfig) => performTransition(() => router.push(href), config),
-			replace: (href: string, config?: TransitionConfig) => performTransition(() => router.replace(href), config),
-			back: (config?: TransitionConfig) => performTransition(() => router.back(), config),
-			forward: (config?: TransitionConfig) => performTransition(() => router.forward(), config),
+			navigate: (href: string, config?: TransitionConfig) => transition(() => router.push(href), config),
+			replace: (href: string, config?: TransitionConfig) => transition(() => router.replace(href), config),
+			back: (config?: TransitionConfig) => transition(() => router.back(), config),
+			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
 			prefetch: (href: string) => router.prefetch(href),
 		}),
-		[router, performTransition]
+		[router, transition]
 	);
 
 	return (
@@ -102,7 +96,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	);
 };
 
-/* External Hooks */
+/* Public Hooks */
 
 export const useTransitionReady = () => {
 	const signalReady = useContext(TransitionReadyContext);
