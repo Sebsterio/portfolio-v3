@@ -5,7 +5,7 @@ export function QuantumBackground() {
 		<>
 			{/* 3D Grid Background */}
 			<div
-				className='absolute inset-0 opacity-20 animate-grid-perspective'
+				className='absolute inset-0 opacity-20 animate-quantum-grid-perspective'
 				style={{
 					backgroundImage: `
             linear-gradient(rgba(160, 160, 160, 0.08) 1px, transparent 1px),
@@ -43,7 +43,7 @@ export function QuantumBackground() {
 			{/* Floating Geometric Shapes */}
 			<div
 				className='absolute w-[100px] h-[100px] border-2 border-accent-blue/40 
-                   top-[20%] right-[15%] rotate-45 animate-shape-float'
+                   top-[20%] right-[15%] rotate-45 animate-quantum-shape-float'
 				style={{
 					boxShadow: '0 0 15px rgba(59, 130, 246, 0.3)',
 					transform: 'translateZ(0)',

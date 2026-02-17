@@ -9,9 +9,5 @@ export * from './StatusBadge';
 export * from './TechCategoryGroup';
 export * from './TechPill';
 
-export { QuantumHeader } from './QuantumHeader';
-export { QuantumMetricsGrid } from './QuantumMetricsGrid';
-export { QuantumButton } from './QuantumButton';
-
-export { ChromeShowcaseCard } from './ChromeShowcaseCard';
+export { ShowcaseCard as ChromeShowcaseCard } from './ShowcaseCard';
 export { ChromeButton } from './ChromeButton';
