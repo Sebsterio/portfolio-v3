@@ -26,9 +26,16 @@ const executeTransition = async (callback: () => void, direction: TransitionDire
 	setDataAttribute('transitionDirection', direction);
 	setDataAttribute('transitioning', true);
 	try {
-		await document.startViewTransition(() => {
+		await document.startViewTransition(async () => {
 			callback();
-			return new Promise((resolve) => setTimeout(resolve, 0));
+			// In dev mode, wait for Next.js to flush updates
+			await new Promise((resolve) => {
+				if (process.env.NODE_ENV === 'development') {
+					requestAnimationFrame(() => requestAnimationFrame(resolve));
+				} else {
+					setTimeout(resolve, 0);
+				}
+			});
 		}).finished;
 	} catch (error) {
 		console.error('View transition failed:', error);
