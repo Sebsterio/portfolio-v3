@@ -1,16 +1,13 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
-import { StatusBadge, Title, TextBlock, ShowcaseCard, Button, PageLayout } from '@/components';
+import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button, PageLayout } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';
 
 type HomePageProps = {};
 
 export default function HomePage({}: HomePageProps) {
-	const { navigate } = useTransitionRouter();
-
 	return (
 		<PageLayout variant='hero'>
 			<div className={cn('w-full grid gap-20 items-center', 'grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]')}>
@@ -24,10 +21,10 @@ export default function HomePage({}: HomePageProps) {
 						<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
 					</div>
 					<div className='flex gap-5'>
-						<Button onClick={() => navigate(buttons.primary.href)} variant='primary'>
+						<Button href={buttons.primary.href} variant='primary'>
 							{buttons.primary.text}
 						</Button>
-						<Button onClick={() => navigate(buttons.secondary.href)} variant='secondary'>
+						<Button href={buttons.secondary.href} variant='secondary'>
 							{buttons.secondary.text}
 						</Button>
 					</div>

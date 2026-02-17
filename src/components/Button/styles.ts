@@ -1,14 +1,7 @@
 import { cn } from '@/lib/utils';
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { ButtonVariant } from './types';
 
-type ChromeButtonVariant = 'primary' | 'secondary';
-
-type ChromeButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-	variant?: ChromeButtonVariant;
-	children: React.ReactNode;
-};
-
-const CLASSES = {
+export const CLASSES = {
 	common: cn(
 		'px-12 py-5 rounded-full',
 		'font-dm-sans text-[15px] font-bold',
@@ -29,12 +22,6 @@ const CLASSES = {
 	),
 };
 
-export const Button = ({ variant = 'primary', children, className, ...props }: ChromeButtonProps) => {
-	return (
-		<button className={cn(CLASSES.common, CLASSES[variant], className)} {...props}>
-			{children}
-		</button>
-	);
+export const getButtonClasses = (variant: ButtonVariant, className?: string) => {
+	return cn(CLASSES.common, CLASSES[variant], className);
 };
-
-export default Button;
