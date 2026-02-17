@@ -13,9 +13,9 @@ export default function HomePage({}: HomePageProps) {
 
 	return (
 		<PageLayout variant='hero'>
-			<div className={cn('w-full grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-20 items-center')}>
+			<div className={cn('w-full grid gap-20 items-center', 'grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]')}>
 				{/* Left Column - Hero Content */}
-				<div className='space-y-12'>
+				<div className={cn('space-y-12', 'vt-bottom lg:vt-left')}>
 					<div>
 						<StatusBadge className='mb-10'>{copy.superscript}</StatusBadge>
 						<Title variant='hero' className='mb-8'>
@@ -34,7 +34,7 @@ export default function HomePage({}: HomePageProps) {
 				</div>
 
 				{/* Right Column - Showcase Cards */}
-				<div className='flex justify-center lg:justify-end w-full'>
+				<div className={cn('flex justify-center lg:justify-end w-full', 'vt-bottom lg:vt-right')}>
 					<div className='w-full space-y-6'>
 						{showcaseItems.map(({ id, icon, title, description }) => (
 							<ChromeShowcaseCard key={id} icon={icon} title={title} description={description} />

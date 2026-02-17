@@ -1,39 +1,91 @@
-/** 
+/**
  * Page transitions via the native ViewTransition API
  */
 
-/* ==========================================================================
-   Base Configuration
-   ========================================================================== */
-
-::view-transition-old(root),
-::view-transition-new(root) {
-	animation-duration: 400ms;
-	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+:root {
+	--vt-duration: 400ms;
+	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
+	--vt-distance: 100%;
 }
 
-::view-transition-old(root) {
-	animation-name: page-transition-fade-out;
+::view-transition-old(*),
+::view-transition-new(*) {
+	animation-duration: var(--vt-duration);
+	animation-timing-function: var(--vt-easing);
 }
 
-::view-transition-new(root) {
-	animation-name: page-transition-fade-in;
+::view-transition-old(vt-left) {
+	animation-name: vt-exit-left;
+}
+::view-transition-new(vt-left) {
+	animation-name: vt-enter-left;
+}
+::view-transition-old(vt-right) {
+	animation-name: vt-exit-right;
+}
+::view-transition-new(vt-right) {
+	animation-name: vt-enter-right;
+}
+::view-transition-old(vt-bottom) {
+	animation-name: vt-exit-bottom;
+}
+::view-transition-new(vt-bottom) {
+	animation-name: vt-enter-bottom;
+}
+::view-transition-old(vt-top) {
+	animation-name: vt-exit-top;
+}
+::view-transition-new(vt-top) {
+	animation-name: vt-enter-top;
 }
 
-:root[data-transition-direction='forward'] ::view-transition-old(root) {
-	animation-name: page-transition-slide-out-left;
+@keyframes vt-exit-left {
+	to {
+		transform: translateX(calc(var(--vt-distance) * -1));
+		opacity: 0;
+	}
 }
-
-:root[data-transition-direction='forward'] ::view-transition-new(root) {
-	animation-name: page-transition-slide-in-right;
+@keyframes vt-enter-left {
+	from {
+		transform: translateX(calc(var(--vt-distance) * -1));
+		opacity: 0;
+	}
 }
-
-:root[data-transition-direction='back'] ::view-transition-old(root) {
-	animation-name: page-transition-slide-out-right;
+@keyframes vt-exit-right {
+	to {
+		transform: translateX(var(--vt-distance));
+		opacity: 0;
+	}
 }
-
-:root[data-transition-direction='back'] ::view-transition-new(root) {
-	animation-name: page-transition-slide-in-left;
+@keyframes vt-enter-right {
+	from {
+		transform: translateX(var(--vt-distance));
+		opacity: 0;
+	}
+}
+@keyframes vt-exit-bottom {
+	to {
+		transform: translateY(var(--vt-distance));
+		opacity: 0;
+	}
+}
+@keyframes vt-enter-bottom {
+	from {
+		transform: translateY(var(--vt-distance));
+		opacity: 0;
+	}
+}
+@keyframes vt-exit-top {
+	to {
+		transform: translateY(calc(var(--vt-distance) * -1));
+		opacity: 0;
+	}
+}
+@keyframes vt-enter-top {
+	from {
+		transform: translateY(calc(var(--vt-distance) * -1));
+		opacity: 0;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -42,89 +94,5 @@
 	::view-transition-new(*) {
 		animation-duration: 0.001ms !important;
 		animation-iteration-count: 1 !important;
-	}
-}
-
-/* ==========================================================================
-	 Element-Level Transitions
-	 ========================================================================== */
-
-/* Assign unique view-transition-names to animate elements independently. */
-/* Example: `.hero-image { view-transition-name: hero; }` */
-[data-transition-name] {
-	view-transition-name: var(--transition-name);
-}
-
-/* Header/Navigation transitions */
-::view-transition-old(header),
-::view-transition-new(header) {
-	animation-duration: 300ms;
-	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Image transitions with smooth scaling */
-::view-transition-old(image),
-::view-transition-new(image) {
-	animation-duration: 500ms;
-	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-	overflow: clip;
-	/* Prevent images from stretching during transition */
-	object-fit: cover;
-}
-
-/* ==========================================================================
-	 Tailwind Utility Classes
-	 ========================================================================== */
-
-/* Automatic transition naming */
-.transition-element {
-	view-transition-name: auto;
-}
-
-.no-transition {
-	view-transition-name: none;
-}
-
-/* ==========================================================================
-   Animation Keyframes
-   ========================================================================== */
-
-@keyframes page-transition-fade-out {
-	to {
-		opacity: 0;
-	}
-}
-
-@keyframes page-transition-fade-in {
-	from {
-		opacity: 0;
-	}
-}
-
-@keyframes page-transition-slide-out-left {
-	to {
-		transform: translateX(-30%);
-		opacity: 0;
-	}
-}
-
-@keyframes page-transition-slide-in-right {
-	from {
-		transform: translateX(30%);
-		opacity: 0;
-	}
-}
-
-@keyframes page-transition-slide-out-right {
-	to {
-		transform: translateX(30%);
-		opacity: 0;
-	}
-}
-
-@keyframes page-transition-slide-in-left {
-	from {
-		transform: translateX(-30%);
-		opacity: 0;
 	}
 }

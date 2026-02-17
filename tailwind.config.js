@@ -1,12 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-const defaultConfig = require('tailwindcss/defaultConfig');
+// /** @type {import('tailwindcss').Config} */
+// const defaultConfig = require('tailwindcss/defaultConfig');
 
-// import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
+import defaultConfig from 'tailwindcss/defaultConfig';
+import tailwindAnimatePlugin from 'tailwindcss-animate';
+import { viewTransitionPlugin } from './src/lib/transitions/tailwind';
 
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
-	plugins: [require('tailwindcss-animate')],
 	darkMode: ['class'],
+	plugins: [
+		tailwindAnimatePlugin,
+		viewTransitionPlugin, //
+	],
 	theme: {
 		...defaultConfig.theme,
 		extend: {
