@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
-import { StatusBadge, Title, TextBlock, ShowcaseCard, ChromeButton, PageLayout } from '@/components';
+import { StatusBadge, Title, TextBlock, ShowcaseCard, Button, PageLayout } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';
 
@@ -24,12 +24,12 @@ export default function HomePage({}: HomePageProps) {
 						<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
 					</div>
 					<div className='flex gap-5'>
-						<ChromeButton onClick={() => navigate('/projects')} variant='primary'>
+						<Button onClick={() => navigate(buttons.primary.href)} variant='primary'>
 							{buttons.primary.text}
-						</ChromeButton>
-						<ChromeButton onClick={() => navigate('/contact')} variant='secondary'>
+						</Button>
+						<Button onClick={() => navigate(buttons.secondary.href)} variant='secondary'>
 							{buttons.secondary.text}
-						</ChromeButton>
+						</Button>
 					</div>
 				</div>
 

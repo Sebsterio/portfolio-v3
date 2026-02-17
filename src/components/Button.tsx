@@ -29,7 +29,7 @@ const CLASSES = {
 	),
 };
 
-export const ChromeButton = ({ variant = 'primary', children, className, ...props }: ChromeButtonProps) => {
+export const Button = ({ variant = 'primary', children, className, ...props }: ChromeButtonProps) => {
 	return (
 		<button className={cn(CLASSES.common, CLASSES[variant], className)} {...props}>
 			{children}
@@ -37,4 +37,4 @@ export const ChromeButton = ({ variant = 'primary', children, className, ...prop
 	);
 };
 
-export default ChromeButton;
+export default Button;

@@ -10,9 +10,11 @@ export const copy = {
 export const buttons = {
 	primary: {
 		text: 'View Portfolio',
+		href: '/projects',
 	},
 	secondary: {
 		text: 'Start Project',
+		href: '/contact',
 	},
 };
 

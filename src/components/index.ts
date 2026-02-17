@@ -3,7 +3,7 @@ export * from './typography';
 
 //
 
-export * from './ChromeButton';
+export * from './Button';
 export * from './GlassCard';
 export * from './LabeledValueRow';
 export * from './Section';
