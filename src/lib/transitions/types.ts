@@ -1,5 +1,3 @@
-export type TransitionDirection = 'forward' | 'back' | 'none';
-
 export interface TransitionConfig {
 	skip?: boolean;
 }
@@ -7,7 +5,6 @@ export interface TransitionConfig {
 // Providers
 
 export interface NavigationStateContext {
-	direction: TransitionDirection;
 	isTransitioning: boolean;
 }
 
@@ -19,7 +16,7 @@ export type TransitionMethodsContext = {
 	prefetch: (href: string) => void;
 };
 
-// Router hook methods
+// Router
 
 export interface NavigationConfig extends TransitionConfig {
 	instant?: boolean;

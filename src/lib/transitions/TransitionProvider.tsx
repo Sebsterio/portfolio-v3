@@ -2,30 +2,32 @@
 
 import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
-import type { TransitionDirection, NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
+import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
+
+/* Contexts */
 
 const TransitionStateContext = createContext<NavigationStateContext | null>(null);
 const TransitionMethodsContext = createContext<TransitionMethodsContext | null>(null);
 const TransitionReadyContext = createContext<(() => void) | null>(null);
 
-const setDataAttribute = (key: string, value: string | boolean) => {
-	const { dataset } = document.documentElement;
-	if (typeof value === 'boolean') value ? (dataset[key] = 'true') : delete dataset[key];
-	else dataset[key] = value;
+/* Helpers */
+
+const setTransitioning = (value: boolean) => {
+	if (value) {
+		document.documentElement.dataset.transitioning = 'true';
+	} else {
+		delete document.documentElement.dataset.transitioning;
+	}
 };
 
-const executeTransition = async (
-	callback: () => void,
-	direction: TransitionDirection,
-	navigationComplete: Promise<void>,
-	skip?: boolean
-) => {
+const executeTransition = async (callback: () => void, navigationComplete: Promise<void>, skip?: boolean) => {
 	if (!document.startViewTransition || skip) {
 		callback();
 		return;
 	}
-	setDataAttribute('transitionDirection', direction);
-	setDataAttribute('transitioning', true);
+
+	setTransitioning(true);
+
 	try {
 		await document.startViewTransition(async () => {
 			callback();
@@ -36,43 +38,20 @@ const executeTransition = async (
 	}
 };
 
-const useNavigationDirection = () => {
-	const isBackNavigation = useRef(false);
-	const [direction, setDirection] = useState<TransitionDirection>('none');
-
-	useEffect(() => {
-		const handlePopState = () => {
-			isBackNavigation.current = true;
-		};
-		window.addEventListener('popstate', handlePopState);
-		return () => window.removeEventListener('popstate', handlePopState);
-	}, []);
-
-	useEffect(() => {
-		const hasDirection = direction !== 'none';
-		hasDirection && setDataAttribute('transitionDirection', direction);
-		return () => setDataAttribute('transitionDirection', false);
-	}, [direction]);
-
-	return { isBackNavigation, direction, setDirection };
-};
+/* Internal Hooks */
 
 const useIsTransitioning = () => {
 	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	useEffect(() => {
-		setDataAttribute('transitioning', isTransitioning);
-		return () => setDataAttribute('transitioning', false);
+		setTransitioning(isTransitioning);
+		return () => setTransitioning(false);
 	}, [isTransitioning]);
 
 	return { isTransitioning, setIsTransitioning };
 };
 
-const useTransition = (
-	isBackNavigationRef: React.MutableRefObject<boolean>,
-	setDirection: (dir: TransitionDirection) => void,
-	setIsTransitioning: (value: boolean) => void
-) => {
+const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 	const resolveNavigation = useRef<(() => void) | null>(null);
 
 	const signalReady = useCallback(() => {
@@ -81,42 +60,34 @@ const useTransition = (
 	}, []);
 
 	const performTransition = useCallback(
-		async (action: () => void, dir: TransitionDirection, config?: TransitionConfig) => {
-			setDirection(dir);
+		async (action: () => void, config?: TransitionConfig) => {
 			setIsTransitioning(true);
 			const navigationComplete = new Promise<void>((resolve) => {
 				resolveNavigation.current = resolve;
-				setTimeout(resolve, 500); // fallback for back/forward with no history
+				setTimeout(resolve, 500);
 			});
-			await executeTransition(action, dir, navigationComplete, config?.skip);
-			setDirection('none');
+			await executeTransition(action, navigationComplete, config?.skip);
 			setIsTransitioning(false);
-			isBackNavigationRef.current = false;
 		},
-		[setDirection, setIsTransitioning]
+		[setIsTransitioning]
 	);
 
 	return { performTransition, signalReady };
 };
 
+/* Provider */
+
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
-	const { isBackNavigation, direction, setDirection } = useNavigationDirection();
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
-	const { performTransition, signalReady } = useTransition(isBackNavigation, setDirection, setIsTransitioning);
+	const { performTransition, signalReady } = useTransition(setIsTransitioning);
 
 	const methods = useMemo(
 		() => ({
-			navigate: (href: string, config?: TransitionConfig) => {
-				const dir = isBackNavigation.current ? 'back' : 'forward';
-				return performTransition(() => router.push(href), dir, config);
-			},
-			replace: (href: string, config?: TransitionConfig) => performTransition(() => router.replace(href), 'none', config),
-			back: (config?: TransitionConfig) => {
-				isBackNavigation.current = true;
-				performTransition(() => router.back(), 'back', config);
-			},
-			forward: (config?: TransitionConfig) => performTransition(() => router.forward(), 'forward', config),
+			navigate: (href: string, config?: TransitionConfig) => performTransition(() => router.push(href), config),
+			replace: (href: string, config?: TransitionConfig) => performTransition(() => router.replace(href), config),
+			back: (config?: TransitionConfig) => performTransition(() => router.back(), config),
+			forward: (config?: TransitionConfig) => performTransition(() => router.forward(), config),
 			prefetch: (href: string) => router.prefetch(href),
 		}),
 		[router, performTransition]
@@ -125,10 +96,19 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	return (
 		<TransitionReadyContext.Provider value={signalReady}>
 			<TransitionMethodsContext.Provider value={methods}>
-				<TransitionStateContext.Provider value={{ direction, isTransitioning }}>{children}</TransitionStateContext.Provider>
+				<TransitionStateContext.Provider value={{ isTransitioning }}>{children}</TransitionStateContext.Provider>
 			</TransitionMethodsContext.Provider>
 		</TransitionReadyContext.Provider>
 	);
+};
+
+/* External Hooks */
+
+export const useTransitionReady = () => {
+	const signalReady = useContext(TransitionReadyContext);
+	useLayoutEffect(() => {
+		signalReady?.();
+	}, [signalReady]);
 };
 
 export const usePageTransition = () => {
@@ -141,11 +121,4 @@ export const usePageTransitionState = () => {
 	const state = useContext(TransitionStateContext);
 	if (!state) throw new Error('usePageTransitionState must be used within TransitionProvider');
 	return state;
-};
-
-export const useTransitionReady = () => {
-	const signalReady = useContext(TransitionReadyContext);
-	useEffect(() => {
-		requestAnimationFrame(() => signalReady?.());
-	}, []);
 };
