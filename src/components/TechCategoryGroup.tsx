@@ -10,8 +10,16 @@ type TechCategoryGroupProps = {
 export const TechCategoryGroup = ({ label, children, className }: TechCategoryGroupProps) => {
 	return (
 		<div className={className}>
-			<h4 className='text-xs uppercase tracking-wider mb-3 font-semibold text-accent-blue'>{label}</h4>
-			<div className='flex flex-wrap gap-2'>{children}</div>
+			<h4
+				className={cn(
+					'text-[11px] md:text-xs tracking-[1.5px] md:tracking-wider',
+					'text-accent-blue font-semibold uppercase',
+					'mb-2 md:mb-3'
+				)}
+			>
+				{label}
+			</h4>
+			<div className='flex flex-wrap gap-2 md:gap-2.5'>{children}</div>
 		</div>
 	);
 };

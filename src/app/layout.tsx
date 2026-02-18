@@ -42,7 +42,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 						<AppHeader logo='PORTFOLIO' navItems={navItems} />
 					</header>
 
-					<main className='relative flex-1 content-container md:px-7 flex flex-col'>
+					<main className='relative flex-1 content-container sm:px-5 md:px-7 flex flex-col'>
 						<>{children}</>
 					</main>
 				</TransitionProvider>

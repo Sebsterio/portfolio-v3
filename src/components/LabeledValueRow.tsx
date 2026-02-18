@@ -9,16 +9,18 @@ type LabeledValueRowProps = {
 const CLASSES = {
 	row: cn(
 		'flex justify-between items-center',
-		'py-4',
+		'py-3 md:py-4',
 		'border-b border-chrome-light/10 last:border-b-0' //
 	),
+
 	label: cn(
-		'text-sm uppercase tracking-wider',
-		'text-chrome-silver/60' //
+		'text-[11px] md:text-sm uppercase tracking-wider', //
+		'text-chrome-silver/60'
 	),
+
 	value: cn(
-		'font-urbanist text-lg font-bold',
-		'bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent' //
+		'font-urbanist text-base md:text-lg font-bold',
+		'bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
 	),
 };
 

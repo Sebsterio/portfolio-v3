@@ -21,10 +21,15 @@ export default function AboutPage({}: AboutPageProps) {
 	useTransitionReady();
 
 	return (
-		<div className='w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
+		<div
+			className={cn(
+				'w-full grid grid-cols-1 lg:grid-cols-[1fr_400px]',
+				'gap-10 md:gap-12 lg:gap-16' //
+			)}
+		>
 			{/* Main Content Column */}
-			<div className='space-y-12 vt-left'>
-				<Title variant='page' className='mb-6'>
+			<div className='vt-left space-y-10 md:space-y-12'>
+				<Title variant='page' className='mb-4 md:mb-6'>
 					{copy.title}
 				</Title>
 
@@ -33,7 +38,7 @@ export default function AboutPage({}: AboutPageProps) {
 				<Section /* className='vt-bottom' - GLITCH: page flash */>
 					<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' />
 
-					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6'>
+					<div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2', 'gap-4 md:gap-6')}>
 						{highlights.map((h, i) => (
 							<ShowcaseCard key={i} icon={h.icon} title={h.title} description={h.description} />
 						))}
@@ -42,9 +47,9 @@ export default function AboutPage({}: AboutPageProps) {
 			</div>
 
 			{/* Sidebar Column */}
-			<div className={cn('space-y-6', 'vt-right')}>
+			<div className={cn('space-y-5 md:space-y-6', 'vt-right')}>
 				<GlassCard title={copy.sectionTitles.quickFacts}>
-					<div className='space-y-6 my-6'>
+					<div className='space-y-4 md:space-y-6 my-5 md:my-6'>
 						{quickFacts.map(({ label, value }) => (
 							<LabeledValueRow key={label} {...{ label, value }} />
 						))}
@@ -52,7 +57,7 @@ export default function AboutPage({}: AboutPageProps) {
 				</GlassCard>
 
 				<GlassCard title={copy.sectionTitles.techStack}>
-					<div className='space-y-8 my-8'>
+					<div className='space-y-6 md:space-y-8 my-6 md:my-8'>
 						{techCategories.map(({ category, techs }) => (
 							<TechCategoryGroup key={category} label={category}>
 								{techs.map((t) => (

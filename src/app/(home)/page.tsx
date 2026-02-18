@@ -12,19 +12,19 @@ export default function HomePage({}: HomePageProps) {
 	useTransitionReady();
 
 	return (
-		<div className={cn('w-full grid gap-20 items-center', 'grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]')}>
+		<div className={cn('w-full grid items-center gap-14 md:gap-20 grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]')}>
 			{/* Left Column - Hero Content */}
 			<div className=''>
-				<StatusBadge className='vt-top'>{copy.superscript}</StatusBadge>
+				<StatusBadge className='vt-top mb-7 md:mb-9'>{copy.superscript}</StatusBadge>
 
-				<div className='space-y-12 vt-left'>
+				<div className='vt-left space-y-8 md:space-y-12'>
 					<Title variant='hero' className='mb-8'>
 						{copy.title}
 					</Title>
 
-					<TextBlock className='max-w-xl'>{copy.subtitle}</TextBlock>
+					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
-					<div className='flex gap-5'>
+					<div className='flex flex-wrap gap-5'>
 						<Button href={buttons.primary.href} variant='primary'>
 							{buttons.primary.text}
 						</Button>
@@ -36,7 +36,7 @@ export default function HomePage({}: HomePageProps) {
 			</div>
 
 			{/* Right Column - Showcase Cards */}
-			<div className='w-full space-y-6 vt-right'>
+			<div className='vt-right w-full space-y-4 md:space-y-6'>
 				{showcaseItems.map(({ id, icon, title, description }) => (
 					<ShowcaseCard key={id} icon={icon} title={title} description={description} />
 				))}
