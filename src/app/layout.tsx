@@ -26,8 +26,10 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 				className={cn(
 					[urbanist.variable, dmSans.variable, 'antialiased'],
 					'relative min-h-screen flex flex-col',
-					'gap-20 md:gap-28 px-3 pt-4 md:pt-6 md:pb-28',
-					'pb-8' // rm when adding Footer
+					'gap-16 md:gap-24 lg:gap-28',
+					'px-4 sm:px-6 md:px-8',
+					'pt-6 md:pt-10',
+					'pb-12 md:pb-20 lg:pb-28' // rm when adding Footer
 				)}
 			>
 				<TransitionProvider>
