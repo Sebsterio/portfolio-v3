@@ -2,7 +2,6 @@ import type React from 'react';
 
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
-// import { SITE_VERIFICATION } from '@/lib/constants';
 import { TransitionProvider } from '@/lib/transitions/TransitionProvider';
 import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
 import { HeaderContainer } from '@/components/layout/HeaderContainer';
@@ -15,9 +14,7 @@ import { AppHeader } from './_components/AppHeader';
 
 import './globals.css';
 
-export { metadata } from './_config/metadata';
-
-// const SiteVerificationMeta = SITE_VERIFICATION && <meta name='google-site-verification' content={SITE_VERIFICATION} />;
+export { metadata, viewport } from './_config/metadata';
 
 type RootLayoutProps = {
 	children: React.ReactNode;

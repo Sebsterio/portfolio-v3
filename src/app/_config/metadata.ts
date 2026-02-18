@@ -2,6 +2,15 @@ import type { Metadata } from 'next';
 
 import { SITE_URL, IMAGE_URL, THUMBNAIL_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, LICENCE_URL } from '@/lib/constants';
 
+// TODO
+// import { SITE_VERIFICATION } from '@/lib/constants';
+// const SiteVerificationMeta = <meta name='google-site-verification' content={SITE_VERIFICATION} />;
+
+export const viewport = {
+	width: 'device-width',
+	initialScale: 1,
+};
+
 const description = 'Portfolio of Sebastian Rosloniec, an experienced web developer with expertise in modern web technologies.';
 
 export const metadata: Metadata = {
@@ -13,7 +22,6 @@ export const metadata: Metadata = {
 	creator: 'Sebastian Rosloniec',
 	publisher: 'Sebastian Rosloniec',
 	robots: 'index, follow',
-	viewport: 'width=device-width, initial-scale=1',
 	openGraph: {
 		type: 'website',
 		locale: 'en_US',
