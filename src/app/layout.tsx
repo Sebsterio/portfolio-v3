@@ -1,5 +1,4 @@
 import type React from 'react';
-import { Urbanist, DM_Sans } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
@@ -11,23 +10,12 @@ import { ContentContainer } from '@/components/layout/ContentContainer';
 import { ChromeBackground } from '@/components/background/ChromeBackground';
 import { QuantumBackground } from '@/components/background/QuantumBackground';
 
+import { dmSans, urbanist } from './_config/fonts';
 import { AppHeader } from './_components/AppHeader';
 
 import './globals.css';
 
-export { metadata } from './_metadata';
-
-const urbanist = Urbanist({
-	subsets: ['latin'],
-	variable: '--font-urbanist',
-	weight: ['300', '500', '700', '800'],
-});
-
-const dmSans = DM_Sans({
-	subsets: ['latin'],
-	variable: '--font-dm-sans',
-	weight: ['400', '500', '700'],
-});
+export { metadata } from './_config/metadata';
 
 // const SiteVerificationMeta = SITE_VERIFICATION && <meta name='google-site-verification' content={SITE_VERIFICATION} />;
 
