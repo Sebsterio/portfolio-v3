@@ -4,8 +4,6 @@ import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/TransitionProvider';
 import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
-import { HeaderContainer } from '@/components/layout/HeaderContainer';
-import { ContentContainer } from '@/components/layout/ContentContainer';
 import { ChromeBackground } from '@/components/background/ChromeBackground';
 import { QuantumBackground } from '@/components/background/QuantumBackground';
 
@@ -24,29 +22,28 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 	return (
 		<html lang='en'>
 			<head />
-			<body className={cn(urbanist.variable, dmSans.variable, 'antialiased')}>
-				<>
-					<TransitionProvider>
-						{/* App Background */}
-						<div className='fixed inset-0 pointer-events-none overflow-hidden'>
-							<BackgroundTransitionContainer bgKey='default'>
-								<ChromeBackground />
-								<QuantumBackground />
-							</BackgroundTransitionContainer>
-						</div>
+			<body
+				className={cn(
+					[urbanist.variable, dmSans.variable, 'antialiased'],
+					'relative min-h-screen flex flex-col gap-28 p-8 pb-28' //
+				)}
+			>
+				<TransitionProvider>
+					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
+						<BackgroundTransitionContainer bgKey='default'>
+							<ChromeBackground />
+							<QuantumBackground />
+						</BackgroundTransitionContainer>
+					</div>
 
-						{/* App Content */}
-						<div className='relative min-h-screen'>
-							<HeaderContainer width='content'>
-								<AppHeader logo='PORTFOLIO' navItems={navItems} />
-							</HeaderContainer>
+					<header className='content-container'>
+						<AppHeader logo='PORTFOLIO' navItems={navItems} />
+					</header>
 
-							<ContentContainer className='relative overflow-hidden'>
-								<>{children}</>
-							</ContentContainer>
-						</div>
-					</TransitionProvider>
-				</>
+					<main className='relative flex-1 content-container'>
+						<>{children}</>
+					</main>
+				</TransitionProvider>
 			</body>
 		</html>
 	);

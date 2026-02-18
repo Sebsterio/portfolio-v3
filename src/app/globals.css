@@ -26,6 +26,12 @@
 	}
 }
 
+@layer components {
+	.content-container {
+		@apply w-full max-w-[1400px] mx-auto;
+	}
+}
+
 /*
   -------------- Background Animations --------------
 */
