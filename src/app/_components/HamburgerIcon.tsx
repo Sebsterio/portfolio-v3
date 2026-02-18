@@ -25,7 +25,7 @@ export const HamburgerIcon = ({ isOpen }: HamburgerIconProps) => {
 			width='24'
 			height='24'
 			viewBox='0 0 24 24'
-			className='text-chrome-silver overflow-visible'
+			className='text-chrome-silver/80 overflow-visible'
 			initial={false}
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
@@ -35,7 +35,8 @@ export const HamburgerIcon = ({ isOpen }: HamburgerIconProps) => {
 		>
 			<defs>
 				<filter id='hamburgerGlow' x='-50%' y='-50%' width='200%' height='200%'>
-					<feDropShadow dx='0' dy='0' stdDeviation='3' floodColor='rgb(59,130,246)' floodOpacity='0.8' />
+					<feDropShadow dx='0' dy='0' stdDeviation='3' floodColor='rgb(255,255,255)' floodOpacity='0.1' />
+					<feDropShadow dx='0' dy='0' stdDeviation='2' floodColor='rgb(59,130,246)' floodOpacity='1' />
 				</filter>
 			</defs>
 
