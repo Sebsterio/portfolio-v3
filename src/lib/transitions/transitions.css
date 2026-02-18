@@ -3,15 +3,20 @@
    ========================================================================== */
 
 :root {
-	--vt-duration: 400ms;
-	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
 	--vt-distance: 100%;
+	--vt-exit-duration: 200ms;
+	--vt-enter-duration: 400ms;
+	--vt-exit-easing: cubic-bezier(0.4, 0, 1, 1);
+	--vt-enter-easing: cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-::view-transition-old(*),
+::view-transition-old(*) {
+	animation-duration: var(--vt-exit-duration);
+	animation-timing-function: var(--vt-exit-easing);
+}
 ::view-transition-new(*) {
-	animation-duration: var(--vt-duration);
-	animation-timing-function: var(--vt-easing);
+	animation-duration: var(--vt-enter-duration);
+	animation-timing-function: var(--vt-enter-easing);
 }
 
 /* FIX: Prevents flashing of some pages, in some cases, on some viewports, for reasons forever unknowable. */
