@@ -1,18 +1,16 @@
 import plugin from 'tailwindcss/plugin';
 
+const SLOTS = ['left', 'right', 'bottom', 'top'] as const;
+
 /**
- * CAVEAT: `view-transition-name` must be unique per page snapshot.
- * Since we're using fixed names (vt-left, vt-right, etc.),only one element per page should carry each class
- * — which naturally holds true for page-level column slots.
+ * Shared transtion utilities (vt-background, vt-sidepanel)
+ * - Enables smooth morphing of elements across pages
+ * - NOTE: slots must be unique per page snapshot.
  */
-
 export const viewTransitionPlugin = plugin(({ addUtilities }) => {
-	const slots = ['left', 'right', 'bottom', 'top'] as const;
-
-	// Base utilities: vt-left, vt-right, vt-bottom, vt-top
 	addUtilities(
 		Object.fromEntries(
-			slots.map((slot) => [
+			SLOTS.map((slot) => [
 				`.vt-${slot}`,
 				{ 'view-transition-name': `vt-${slot}` }, //
 			])

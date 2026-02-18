@@ -23,14 +23,14 @@ export default function AboutPage({}: AboutPageProps) {
 	return (
 		<div className='w-full grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
 			{/* Main Content Column */}
-			<div className={cn('space-y-12', 'vt-left')}>
+			<div className='space-y-12 vt-left'>
 				<Title variant='page' className='mb-6'>
 					{copy.title}
 				</Title>
 
 				<TextBlock highlightFirstParagraph>{copy.intro}</TextBlock>
 
-				<Section>
+				<Section /* className='vt-bottom' - GLITCH: page flash */>
 					<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' />
 
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6'>
