@@ -1,29 +1,32 @@
+'use client';
+
 import { Title, TextBlock, LabeledValueRow, GlassCard } from '@/components';
 import { copy } from './_content';
+import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 
 export function UnderConstructionPage() {
-	return (
-		<main className='py-20'>
-			<div className='grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12'>
-				<div className='space-y-10'>
-					<Title variant='page' className='mb-6'>
-						{copy.title}
-					</Title>
-					<TextBlock className='max-w-2xl' highlightFirstParagraph>
-						{copy.text}
-					</TextBlock>
-				</div>
+	useTransitionReady();
 
-				<div>
-					<GlassCard title={copy.cardTitle}>
-						<div className='space-y-6 my-6'>
-							{copy.cardRows.map(({ label, value }) => (
-								<LabeledValueRow key={label} {...{ label, value }} />
-							))}
-						</div>
-					</GlassCard>
-				</div>
+	return (
+		<div className='grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12'>
+			<div className='space-y-10 vt-left'>
+				<Title variant='page' className='mb-6'>
+					{copy.title}
+				</Title>
+				<TextBlock className='max-w-2xl' highlightFirstParagraph>
+					{copy.text}
+				</TextBlock>
 			</div>
-		</main>
+
+			<div className='vt-right mt-8'>
+				<GlassCard title={copy.cardTitle}>
+					<div className='space-y-6 my-6'>
+						{copy.cardRows.map(({ label, value }) => (
+							<LabeledValueRow key={label} {...{ label, value }} />
+						))}
+					</div>
+				</GlassCard>
+			</div>
+		</div>
 	);
 }
