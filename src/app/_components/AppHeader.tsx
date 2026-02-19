@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import Link from '@/lib/transitions/TransitionLink';
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
+import { useGetIsCurrentPage } from '@/lib/transitions/TransitionProvider';
 
 type NavItem = {
 	label: string;
@@ -18,6 +19,7 @@ type AppHeaderProps = {
 };
 
 export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
+	const getIsCurrentPage = useGetIsCurrentPage();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
@@ -52,23 +54,33 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 
 					{/* Desktop Navigation */}
 					<ul className='hidden md:flex gap-12 list-none'>
-						{navItems.map((item) => (
-							<li key={item.label}>
-								<Link
-									href={item.href}
-									className='group relative text-chrome-silver/60 text-[13px] font-semibold tracking-wider uppercase transition-all duration-300 hover:text-chrome-silver'
-								>
-									{item.label}
-									<span
-										className='absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] transition-all duration-300 group-hover:w-full'
-										style={{
-											background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
-											boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
-										}}
-									/>
-								</Link>
-							</li>
-						))}
+						{navItems.map((item) => {
+							const isCurrent = getIsCurrentPage(item.href);
+							return (
+								<li key={item.label}>
+									<Link
+										href={item.href}
+										className={cn(
+											'group relative text-[13px] font-semibold tracking-wider uppercase',
+											isCurrent
+												? 'text-chrome-silver pointer-events-none'
+												: 'text-chrome-silver/60 hover:text-chrome-silver  transition-all duration-300'
+										)}
+									>
+										{item.label}
+										{!isCurrent && (
+											<span
+												className='absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] transition-all duration-300 group-hover:w-full'
+												style={{
+													background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
+													boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
+												}}
+											/>
+										)}
+									</Link>
+								</li>
+							);
+						})}
 					</ul>
 				</nav>
 

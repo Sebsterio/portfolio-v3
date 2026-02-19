@@ -2,8 +2,11 @@
 
 import { ComponentProps, MouseEvent } from 'react';
 import NextLink from 'next/link';
-import { usePageTransition } from './TransitionProvider';
+import { useIsCurrentPage, usePageTransition } from './TransitionProvider';
 import type { TransitionConfig } from './types';
+import { usePathname } from 'next/navigation';
+import { cn } from '../utils';
+import { getNormalizeHref } from './utils';
 
 type ClickEvent = MouseEvent<HTMLAnchorElement>;
 type Href = TransitionLinkProps['href'];
@@ -11,10 +14,6 @@ interface TransitionLinkProps extends Omit<ComponentProps<typeof NextLink>, 'onC
 	transition?: TransitionConfig;
 	onClick?: (e: ClickEvent) => void;
 }
-
-const getUrlFromHref = (href: Href) => {
-	return typeof href === 'string' ? href : href.pathname || '';
-};
 
 const shouldInterceptClick = (e: ClickEvent, url: string) => {
 	return (
@@ -24,9 +23,10 @@ const shouldInterceptClick = (e: ClickEvent, url: string) => {
 	);
 };
 
-export const TransitionLink = ({ href, transition, onClick, ...props }: TransitionLinkProps) => {
+export const TransitionLink = ({ className, href, transition, onClick, ...props }: TransitionLinkProps) => {
 	const { navigate } = usePageTransition();
-	const url = getUrlFromHref(href);
+	const isCurrent = useIsCurrentPage(href);
+	const url = getNormalizeHref(href);
 
 	const handleClick = (e: ClickEvent) => {
 		onClick?.(e);
@@ -35,7 +35,16 @@ export const TransitionLink = ({ href, transition, onClick, ...props }: Transiti
 		navigate(url, transition);
 	};
 
-	return <NextLink href={href} onClick={handleClick} {...props} />;
+	return (
+		<NextLink
+			href={href}
+			onClick={handleClick}
+			className={cn(className, isCurrent && 'pointer-events-none')}
+			aria-current={isCurrent ? 'page' : undefined}
+			aria-disabled={isCurrent}
+			{...props}
+		/>
+	);
 };
 
 export default TransitionLink;

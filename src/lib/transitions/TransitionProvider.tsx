@@ -1,8 +1,9 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
 import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
+import { getNormalizeHref, isCurrentPage } from './utils';
 
 /* Contexts */
 
@@ -12,7 +13,11 @@ const TransitionReadyContext = createContext<(() => void) | null>(null);
 
 /* Helpers */
 
-const setTransitioning = (value: boolean) => {
+const isDev = process.env.NODE_ENV === 'development';
+
+const devWarn = (msg: string) => isDev && console.warn(msg);
+
+const updateDocumentTransitioning = (value: boolean) => {
 	const { dataset } = document.documentElement;
 	if (value) dataset.transitioning = 'true';
 	else delete dataset.transitioning;
@@ -39,8 +44,8 @@ const useIsTransitioning = () => {
 	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	useEffect(() => {
-		setTransitioning(isTransitioning);
-		return () => setTransitioning(false);
+		updateDocumentTransitioning(isTransitioning);
+		return () => updateDocumentTransitioning(false);
 	}, [isTransitioning]);
 
 	return { isTransitioning, setIsTransitioning };
@@ -73,13 +78,22 @@ const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
+	const pathname = usePathname();
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
 	const { transition, signalReady } = useTransition(setIsTransitioning);
 
+	const navigate = useCallback(
+		(href: string, action: () => void, config?: TransitionConfig) => {
+			if (!isCurrentPage(href, pathname)) return transition(action, config);
+			return devWarn(`[Navigation] Blocked: Already on ${href}`), Promise.resolve();
+		},
+		[pathname, transition]
+	);
+
 	const methods = useMemo(
 		() => ({
-			navigate: (href: string, config?: TransitionConfig) => transition(() => router.push(href), config),
-			replace: (href: string, config?: TransitionConfig) => transition(() => router.replace(href), config),
+			navigate: (href: string, config?: TransitionConfig) => navigate(href, () => router.push(href), config),
+			replace: (href: string, config?: TransitionConfig) => navigate(href, () => router.replace(href), config),
 			back: (config?: TransitionConfig) => transition(() => router.back(), config),
 			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
 			prefetch: (href: string) => router.prefetch(href),
@@ -115,4 +129,14 @@ export const usePageTransitionState = () => {
 	const state = useContext(TransitionStateContext);
 	if (!state) throw new Error('usePageTransitionState must be used within TransitionProvider');
 	return state;
+};
+
+export const useIsCurrentPage = (href: string | object) => {
+	const pathname = usePathname();
+	return isCurrentPage(getNormalizeHref(href), pathname);
+};
+
+export const useGetIsCurrentPage = () => {
+	const pathname = usePathname();
+	return useCallback((href: string | object) => isCurrentPage(getNormalizeHref(href), pathname), [pathname]);
 };

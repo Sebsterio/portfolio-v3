@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useGetIsCurrentPage } from '@/lib/transitions/TransitionProvider';
 
 type NavItem = {
 	label: string;
@@ -13,6 +14,8 @@ type MobileMenuOverlayProps = {
 };
 
 export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverlayProps) => {
+	const getIsCurrentPage = useGetIsCurrentPage();
+
 	return (
 		<div
 			className={cn(
@@ -29,7 +32,10 @@ export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverl
 						key={item.label}
 						href={item.href}
 						onClick={onClose}
-						className='text-chrome-silver text-2xl font-semibold tracking-wide uppercase transition-colors duration-300 hover:text-accent-blue py-3 px-6'
+						className={cn(
+							'text-2xl font-semibold tracking-wide uppercase transition-all duration-300 py-3 px-6',
+							getIsCurrentPage(item.href) ? 'text-accent-blue pointer-events-none' : 'text-chrome-silver hover:text-accent-blue'
+						)}
 					>
 						{item.label}
 					</Link>
