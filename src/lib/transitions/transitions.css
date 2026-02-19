@@ -32,6 +32,14 @@
 	 Page-Slot Transitions
    ========================================================================== */
 
+/* SPEC:
+		TRANSITION		|	MOBILE	| DESKTOP
+		 vt-left			|  left		|  left
+		 vt-right			|  fade		|  right
+		 vt-top				|  top		|  top
+		 vt-bottom		|  fade		|  bottom
+*/
+
 /* MOBILE */
 /* prettier-ignore */
 @media (min-width: 0px) {
@@ -44,14 +52,14 @@
 	::view-transition-old(vt-left)		{ animation-name: vt-exit-left }	
 	::view-transition-new(vt-left)		{ animation-name: vt-enter-left }
 
-	::view-transition-old(vt-right)		{ animation-name: vt-exit-right	}
-	::view-transition-new(vt-right)		{ animation-name: vt-enter-right }
+	::view-transition-old(vt-right)		{ animation-name: vt-exit-fade	}
+	::view-transition-new(vt-right)		{ animation-name: vt-enter-fade }
 
 	::view-transition-old(vt-top)			{ animation-name: vt-exit-top	}
 	::view-transition-new(vt-top)			{ animation-name: vt-enter-top	}
 
-	::view-transition-old(vt-bottom)	{ animation-name: vt-exit-bottom	}
-	::view-transition-new(vt-bottom)	{ animation-name: vt-enter-bottom	}
+	::view-transition-old(vt-bottom)	{ animation-name: vt-exit-fade	}
+	::view-transition-new(vt-bottom)	{ animation-name: vt-enter-fade	}
 }
 
 /* DESKTOP */
@@ -66,11 +74,8 @@
 		animation-timing-function: var(--vt-enter-easing);
 	}
 
-	::view-transition-old(vt-left)		{ animation-name: vt-exit-left }	
-	::view-transition-new(vt-left)		{ animation-name: vt-enter-left }
-	
-	::view-transition-old(vt-top)			{ animation-name: vt-exit-top	}
-	::view-transition-new(vt-top)			{ animation-name: vt-enter-top	}
+	::view-transition-old(vt-right)		{ animation-name: vt-exit-right	}
+	::view-transition-new(vt-right)		{ animation-name: vt-enter-right }
 
 	::view-transition-old(vt-bottom)	{ animation-name: vt-exit-bottom	}
 	::view-transition-new(vt-bottom)	{ animation-name: vt-enter-bottom	}
