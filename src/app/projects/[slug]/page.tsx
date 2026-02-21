@@ -1,25 +1,26 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { notFound } from 'next/navigation';
+import { use } from 'react';
+import { useSearchParams, notFound } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 import { ViewSwitcher } from '../_components/ViewSwitcher';
-import { TimelineProject } from './_components/TimelineProjectPage';
-import { CardsProject } from './_components/CardsProjectPage';
-import { MagazineProject } from './_components/MagazineProjectPage';
 import { getProjectBySlug } from '../_content';
 import type { ViewMode } from '../types';
+import { TimelineProjectPage } from './_components/TimelineProjectPage';
+import { CardsProjectPage } from './_components/CardsProjectPage';
+import { MagazineProjectPage } from './_components/MagazineProjectPage';
 
 type ProjectPageProps = {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 };
 
 export default function ProjectPage({ params }: ProjectPageProps) {
 	useTransitionReady();
+	const { slug } = use(params);
 	const searchParams = useSearchParams();
 	const view = (searchParams.get('view') as ViewMode) || 'timeline';
 
-	const project = getProjectBySlug(params.slug);
+	const project = getProjectBySlug(slug);
 
 	if (!project) {
 		notFound();
@@ -27,11 +28,19 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
 	return (
 		<div className='w-full space-y-8'>
-			<ViewSwitcher currentView={view} basePath={`/projects/${params.slug}`} />
+			{/* Page Header */}
+			<div className='text-center space-y-4'>
+				<h1 className='font-urbanist text-4xl md:text-5xl font-bold text-chrome-silver'>{project.title}</h1>
+				<p className='text-chrome-silver/70 text-lg'>
+					{project.company} · {project.period}
+				</p>
+				<ViewSwitcher currentView={view} basePath={`/projects/${slug}`} />
+			</div>
 
-			{view === 'timeline' && <TimelineProject project={project} />}
-			{view === 'cards' && <CardsProject project={project} />}
-			{view === 'magazine' && <MagazineProject project={project} />}
+			{/* View Content */}
+			{view === 'timeline' && <TimelineProjectPage project={project} />}
+			{view === 'cards' && <CardsProjectPage project={project} />}
+			{view === 'magazine' && <MagazineProjectPage project={project} />}
 		</div>
 	);
 }

@@ -3,11 +3,11 @@
 import { useSearchParams } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 import { ViewSwitcher } from './_components/ViewSwitcher';
-import { TimelineCollection } from './_components/TimelineCollectionPage';
-import { CardsCollection } from './_components/CardsCollectionPage';
-import { MagazineCollection } from './_components/MagazineCollectionPage';
+import { TimelineCollectionPage } from './_components/TimelineCollectionPage';
+import { CardsCollectionPage } from './_components/CardsCollectionPage';
+import { MagazineCollectionPage } from './_components/MagazineCollectionPage';
 import { projects } from './_content';
-import { ViewMode } from './types';
+import type { ViewMode } from './types';
 
 export default function ProjectsPage() {
 	useTransitionReady();
@@ -16,11 +16,19 @@ export default function ProjectsPage() {
 
 	return (
 		<div className='w-full space-y-8'>
-			<ViewSwitcher currentView={view} />
+			{/* Page Header */}
+			<div className='text-center space-y-4'>
+				<h1 className='font-urbanist text-5xl md:text-6xl font-bold bg-gradient-to-r from-white to-accent-cyan bg-clip-text text-transparent'>
+					Projects
+				</h1>
+				<p className='text-chrome-silver/60 text-lg'>Case studies & development work from recent years</p>
+				<ViewSwitcher currentView={view} />
+			</div>
 
-			{view === 'timeline' && <TimelineCollection projects={projects} />}
-			{view === 'cards' && <CardsCollection projects={projects} />}
-			{view === 'magazine' && <MagazineCollection projects={projects} />}
+			{/* View Content */}
+			{view === 'timeline' && <TimelineCollectionPage projects={projects} />}
+			{view === 'cards' && <CardsCollectionPage projects={projects} />}
+			{view === 'magazine' && <MagazineCollectionPage projects={projects} />}
 		</div>
 	);
 }
