@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import { projects, type Project } from '../../_content';
+import { projects } from '../../_content';
+import { Project } from '../../types';
 
-type MagazineProjectProps = {
+type MagazineProjectPageProps = {
 	project: Project;
 };
 
@@ -25,7 +26,7 @@ const sections: { id: Section; label: string }[] = [
  * Each section is a full-page "article".
  * Navigation index is rotated 90deg on the right edge.
  */
-export const MagazineProject = ({ project }: MagazineProjectProps) => {
+export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 	const [activeSection, setActiveSection] = useState<Section>('overview');
 	const containerRef = useRef<HTMLDivElement>(null);

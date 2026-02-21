@@ -4,13 +4,13 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import type { Project } from '../_content';
+import type { Project } from '../types';
 
-type CardsCollectionProps = {
+type CardsCollectionPageProps = {
 	projects: Project[];
 };
 
-export const CardsCollection = ({ projects }: CardsCollectionProps) => {
+export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 	const [hoveredId, setHoveredId] = useState<string | null>(null);
 

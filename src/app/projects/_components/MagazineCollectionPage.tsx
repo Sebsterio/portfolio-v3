@@ -2,9 +2,9 @@
 
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import type { Project } from '../_content';
+import type { Project } from '../types';
 
-type MagazineCollectionProps = {
+type MagazineCollectionPageProps = {
 	projects: Project[];
 };
 
@@ -16,7 +16,7 @@ type MagazineCollectionProps = {
  * Others show text-heavy layouts with small images.
  * Mix of portrait, landscape, and square aspect ratios.
  */
-export const MagazineCollection = ({ projects }: MagazineCollectionProps) => {
+export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	// Grid positioning - vary card sizes

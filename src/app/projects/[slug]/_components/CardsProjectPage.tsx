@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import { projects, type Project } from '../../_content';
+import { projects } from '../../_content';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Project } from '../../types';
 
-type CardsProjectProps = {
+type CardsProjectPageProps = {
 	project: Project;
 };
 
-export const CardsProject = ({ project }: CardsProjectProps) => {
+export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 	const [flipped, setFlipped] = useState(false);
 	const currentIndex = projects.findIndex((p) => p.id === project.id);
