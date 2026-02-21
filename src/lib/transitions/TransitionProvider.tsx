@@ -79,15 +79,27 @@ const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const pathname = usePathname();
+	const pathnameRef = useRef(pathname);
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
 	const { transition, signalReady } = useTransition(setIsTransitioning);
 
+	// Keep ref in sync with pathname
+	useEffect(() => {
+		pathnameRef.current = pathname;
+	}, [pathname]);
+
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
-			if (!isCurrentPage(href, pathname)) return transition(action, config);
-			return devWarn(`[Navigation] Blocked: Already on ${href}`), Promise.resolve();
+			const currentPath = pathnameRef.current;
+
+			if (isCurrentPage(href, currentPath)) {
+				devWarn(`[Navigation] Blocked: Already on ${href}`);
+				return Promise.resolve();
+			}
+
+			return transition(action, config);
 		},
-		[pathname, transition]
+		[transition]
 	);
 
 	const methods = useMemo(
@@ -98,7 +110,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
 			prefetch: (href: string) => router.prefetch(href),
 		}),
-		[router, transition]
+		[router, navigate, transition]
 	);
 
 	return (
