@@ -42,7 +42,7 @@
 
 /* MOBILE */
 /* prettier-ignore */
-@media (min-width: 0px) {
+@media (max-width: 1023px) {
 	::view-transition-old(*),
 	::view-transition-new(*) {
 		animation-duration: var(--vt-duration);
