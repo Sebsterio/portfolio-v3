@@ -7,7 +7,7 @@ import { TimelineCollectionPage } from './_components/TimelineCollectionPage';
 import { CardsCollectionPage } from './_components/CardsCollectionPage';
 import { MagazineCollectionPage } from './_components/MagazineCollectionPage';
 import { projects } from './_content';
-import type { DisplayMode } from './types';
+import type { DisplayMode } from '../../types';
 
 export default function ProjectsPage() {
 	useTransitionReady();

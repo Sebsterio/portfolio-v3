@@ -5,7 +5,7 @@ import { useSearchParams, notFound } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 import { DisplayModeSwitcher } from '../_components/DisplayModeSwitcher';
 import { getProjectBySlug } from '../_content';
-import type { DisplayMode } from '../types';
+import type { DisplayMode } from '../../../types';
 import { TimelineProjectPage } from './_components/TimelineProjectPage';
 import { CardsProjectPage } from './_components/CardsProjectPage';
 import { MagazineProjectPage } from './_components/MagazineProjectPage';

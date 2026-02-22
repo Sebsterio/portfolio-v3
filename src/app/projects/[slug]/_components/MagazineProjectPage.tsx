@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
 import { projects } from '../../_content';
-import { Project } from '../../types';
+import { Project } from '../../../../types';
 
 type MagazineProjectPageProps = {
 	project: Project;

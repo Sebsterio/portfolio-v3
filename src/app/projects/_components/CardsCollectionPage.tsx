@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import type { Project } from '../types';
+import type { Project } from '../../../types';
 
 type CardsCollectionPageProps = {
 	projects: Project[];

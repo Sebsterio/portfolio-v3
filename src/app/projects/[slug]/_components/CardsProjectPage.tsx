@@ -6,7 +6,7 @@ import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
 import { projects } from '../../_content';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Project } from '../../types';
+import { Project } from '../../../../types';
 
 type CardsProjectPageProps = {
 	project: Project;

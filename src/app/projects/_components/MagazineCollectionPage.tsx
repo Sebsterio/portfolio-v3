@@ -2,7 +2,7 @@
 
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import type { Project } from '../types';
+import type { Project } from '../../../types';
 
 type MagazineCollectionPageProps = {
 	projects: Project[];

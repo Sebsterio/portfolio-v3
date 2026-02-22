@@ -2,7 +2,7 @@
 
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import type { DisplayMode } from '../types';
+import type { DisplayMode } from '../../../types';
 
 type DisplayModeSwitcherProps = {
 	currentMode: DisplayMode;
