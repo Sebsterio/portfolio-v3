@@ -10,6 +10,7 @@ import { TimelineProjectPage } from './_components/TimelineProjectPage';
 import { CardsProjectPage } from './_components/CardsProjectPage';
 import { UnderConstructionPage } from '@/components/pages/UnderConstructionPage';
 // import { MagazineProjectPage } from './_components/MagazineProjectPage';
+import { BackLink } from '@/components/BackLink';
 
 type ProjectPageProps = {
 	params: Promise<{ slug: string }>;
@@ -32,7 +33,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 				<div className='text-center'>
 					<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
 				</div>
-				<UnderConstructionPage />;
+				<div className='space-y-4'>
+					<BackLink href='/projects?view=magazine'>All Projects</BackLink>
+					<UnderConstructionPage />;
+				</div>
 			</div>
 		);
 	}
