@@ -8,7 +8,8 @@ import { getProjectBySlug } from '../_content';
 import type { DisplayMode } from '../../../types';
 import { TimelineProjectPage } from './_components/TimelineProjectPage';
 import { CardsProjectPage } from './_components/CardsProjectPage';
-import { MagazineProjectPage } from './_components/MagazineProjectPage';
+import { UnderConstructionPage } from '@/components/pages/UnderConstructionPage';
+// import { MagazineProjectPage } from './_components/MagazineProjectPage';
 
 type ProjectPageProps = {
 	params: Promise<{ slug: string }>;
@@ -25,7 +26,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 	if (!project) {
 		notFound();
 	}
-
+	if (view === 'magazine') {
+		return (
+			<div className='w-full space-y-16'>
+				<div className='text-center'>
+					<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
+				</div>
+				<UnderConstructionPage />;
+			</div>
+		);
+	}
 	return (
 		<div className='w-full space-y-8'>
 			{/* Page Header */}
@@ -40,7 +50,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 			{/* Page Content */}
 			{view === 'timeline' && <TimelineProjectPage project={project} />}
 			{view === 'cards' && <CardsProjectPage project={project} />}
-			{view === 'magazine' && <MagazineProjectPage project={project} />}
+			{/* {view === 'magazine' && <MagazineProjectPage project={project} />} */}
 		</div>
 	);
 }
