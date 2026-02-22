@@ -2,17 +2,17 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
-import { ViewSwitcher } from './_components/ViewSwitcher';
+import { DisplayModeSwitcher } from './_components/DisplayModeSwitcher';
 import { TimelineCollectionPage } from './_components/TimelineCollectionPage';
 import { CardsCollectionPage } from './_components/CardsCollectionPage';
 import { MagazineCollectionPage } from './_components/MagazineCollectionPage';
 import { projects } from './_content';
-import type { ViewMode } from './types';
+import type { DisplayMode } from './types';
 
 export default function ProjectsPage() {
 	useTransitionReady();
 	const searchParams = useSearchParams();
-	const view = (searchParams.get('view') as ViewMode) || 'timeline';
+	const view = (searchParams.get('view') as DisplayMode) || 'timeline';
 
 	return (
 		<div className='w-full space-y-8'>
@@ -22,10 +22,10 @@ export default function ProjectsPage() {
 					Projects
 				</h1>
 				<p className='text-chrome-silver/60 text-lg'>Case studies & development work from recent years</p>
-				<ViewSwitcher currentView={view} />
+				<DisplayModeSwitcher currentMode={view} />
 			</div>
 
-			{/* View Content */}
+			{/* Page Content */}
 			{view === 'timeline' && <TimelineCollectionPage projects={projects} />}
 			{view === 'cards' && <CardsCollectionPage projects={projects} />}
 			{view === 'magazine' && <MagazineCollectionPage projects={projects} />}

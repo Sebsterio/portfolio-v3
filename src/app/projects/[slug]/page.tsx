@@ -3,9 +3,9 @@
 import { use } from 'react';
 import { useSearchParams, notFound } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
-import { ViewSwitcher } from '../_components/ViewSwitcher';
+import { DisplayModeSwitcher } from '../_components/DisplayModeSwitcher';
 import { getProjectBySlug } from '../_content';
-import type { ViewMode } from '../types';
+import type { DisplayMode } from '../types';
 import { TimelineProjectPage } from './_components/TimelineProjectPage';
 import { CardsProjectPage } from './_components/CardsProjectPage';
 import { MagazineProjectPage } from './_components/MagazineProjectPage';
@@ -18,7 +18,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 	useTransitionReady();
 	const { slug } = use(params);
 	const searchParams = useSearchParams();
-	const view = (searchParams.get('view') as ViewMode) || 'timeline';
+	const view = (searchParams.get('view') as DisplayMode) || 'timeline';
 
 	const project = getProjectBySlug(slug);
 
@@ -34,10 +34,10 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 				<p className='text-chrome-silver/70 text-lg'>
 					{project.company} · {project.period}
 				</p>
-				<ViewSwitcher currentView={view} basePath={`/projects/${slug}`} />
+				<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
 			</div>
 
-			{/* View Content */}
+			{/* Page Content */}
 			{view === 'timeline' && <TimelineProjectPage project={project} />}
 			{view === 'cards' && <CardsProjectPage project={project} />}
 			{view === 'magazine' && <MagazineProjectPage project={project} />}

@@ -1,4 +1,4 @@
-export type ViewMode = 'timeline' | 'cards' | 'magazine';
+export type DisplayMode = 'timeline' | 'cards' | 'magazine';
 
 export type Project = {
 	id: string;
