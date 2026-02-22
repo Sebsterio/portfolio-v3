@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { Project } from '@/types';
@@ -14,6 +14,16 @@ type CardsProjectPageProps = {
 	project: Project;
 };
 
+const projectGradients: Record<string, string> = {
+	'bounce-component-library': 'bg-gradient-bounce-main',
+	'underground-meco-event-platform': 'bg-gradient-meco-main',
+	'tt-education-modernization': 'bg-gradient-tt',
+	'tokensite-blockchain-analytics': 'bg-gradient-ebit-main',
+	'ao-payment-system': 'bg-gradient-ao-main',
+	'animalysis-vet-clinic': 'bg-gradient-freelance-main',
+	'narbon-ecommerce': 'bg-gradient-freelance-small',
+};
+
 const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; onClick: () => void }) => {
 	const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
 
@@ -21,13 +31,13 @@ const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; 
 		<button
 			onClick={onClick}
 			className={cn(
-				'w-14 h-14 rounded-full',
+				'w-12 h-12 md:w-14 md:h-14 rounded-full',
 				'bg-white/[0.05] hover:bg-white/[0.1]',
 				'flex items-center justify-center',
 				'transition-all duration-300 hover:scale-110'
 			)}
 		>
-			<Icon className='w-7 h-7 text-chrome-silver' />
+			<Icon className='w-6 h-6 md:w-7 md:h-7 text-chrome-silver' />
 		</button>
 	);
 };
@@ -47,8 +57,8 @@ const ProjectIndicators = ({
 				key={p.id}
 				onClick={() => onNavigate(p.slug)}
 				className={cn(
-					'w-2 h-2 rounded-full transition-all duration-300',
-					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50'
+					'h-2 rounded-full transition-all duration-300',
+					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50 w-2'
 				)}
 			/>
 		))}
@@ -58,7 +68,47 @@ const ProjectIndicators = ({
 export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 	const [flipped, setFlipped] = useState(false);
+	const frontRef = useRef<HTMLDivElement>(null);
+	const backRef = useRef<HTMLDivElement>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 	const currentIndex = projects.findIndex((p) => p.id === project.id);
+	const gradientClass = projectGradients[project.slug] || 'bg-gradient-bounce-main';
+
+	// Measure and update container height whenever flip state changes
+	useEffect(() => {
+		const updateHeight = () => {
+			const activeRef = flipped ? backRef.current : frontRef.current;
+			const container = containerRef.current;
+
+			if (activeRef && container) {
+				const height = activeRef.offsetHeight;
+				container.style.height = `${height}px`;
+			}
+		};
+
+		// Immediate update
+		updateHeight();
+
+		// Also update after animation completes
+		const timer = setTimeout(updateHeight, 650);
+
+		return () => clearTimeout(timer);
+	}, [flipped]);
+
+	// Reset height on project change
+	useEffect(() => {
+		setFlipped(false);
+		const container = containerRef.current;
+		const front = frontRef.current;
+
+		if (container && front) {
+			const timer = setTimeout(() => {
+				container.style.height = `${front.offsetHeight}px`;
+			}, 100);
+
+			return () => clearTimeout(timer);
+		}
+	}, [project.id]);
 
 	const goToNext = () => {
 		const nextIndex = (currentIndex + 1) % projects.length;
@@ -78,283 +128,180 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	};
 
 	return (
-		<div className='w-full space-y-8'>
-			<BackLink href='/projects?view=cards'>All Projects</BackLink>
-
-			{/* Desktop Layout */}
-			<div className='hidden md:block'>
-				<div className='vt-card-deck relative h-[700px] flex items-center justify-center perspective-[2000px]'>
-					{/* Navigation Arrows */}
-					<div className='absolute left-8 z-20'>
-						<NavigationButton direction='prev' onClick={goToPrev} />
-					</div>
-					<div className='absolute right-8 z-20'>
-						<NavigationButton direction='next' onClick={goToNext} />
-					</div>
-
-					{/* Card Container */}
-					<div className='relative w-full max-w-4xl h-[600px]'>
-						<AnimatePresence mode='wait'>
-							<motion.div
-								key={project.id}
-								initial={{ rotateY: 90, opacity: 0 }}
-								animate={{ rotateY: 0, opacity: 1 }}
-								exit={{ rotateY: -90, opacity: 0 }}
-								transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
-								className='absolute inset-0'
-								style={{ transformStyle: 'preserve-3d' }}
-							>
-								{/* Flip Container */}
-								<motion.div
-									animate={{ rotateY: flipped ? 180 : 0 }}
-									transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-									className='relative w-full h-full cursor-pointer'
-									style={{ transformStyle: 'preserve-3d' }}
-									onClick={() => setFlipped(!flipped)}
-								>
-									{/* Front Side */}
-									<div
-										className={cn(
-											'absolute inset-0 rounded-[32px] p-12',
-											'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
-											'border border-chrome-silver/[0.12]'
-										)}
-										style={{ backfaceVisibility: 'hidden' }}
-									>
-										<div className='h-full flex flex-col justify-between'>
-											<div className='space-y-6'>
-												<div className='flex items-center gap-4 text-sm text-accent-cyan'>
-													<span>{project.period}</span>
-													<span>•</span>
-													<span>{project.location}</span>
-												</div>
-												<h2 className='font-urbanist text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
-												<p className='text-2xl text-chrome-silver/80'>{project.company}</p>
-											</div>
-
-											<div className='space-y-6'>
-												<p className='text-xl text-chrome-silver/70 leading-relaxed'>{project.summary}</p>
-												<ProjectTags tags={project.tags} />
-												<p className='text-sm text-accent-blue animate-pulse'>Tap to flip →</p>
-											</div>
-										</div>
-									</div>
-
-									{/* Back Side - Case Study */}
-									<div
-										className={cn(
-											'absolute inset-0 rounded-[32px] p-12',
-											'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
-											'border border-accent-blue/[0.3]'
-										)}
-										style={{
-											backfaceVisibility: 'hidden',
-											transform: 'rotateY(180deg)',
-										}}
-									>
-										<div className='h-full overflow-y-auto space-y-6'>
-											<h3 className='font-urbanist text-3xl font-bold text-accent-blue'>Case Study</h3>
-
-											<div className='space-y-4'>
-												<div>
-													<h4 className='font-urbanist text-xl font-bold text-accent-cyan mb-2'>The Challenge</h4>
-													<p className='text-chrome-silver/80 text-sm leading-relaxed'>{project.challenge}</p>
-												</div>
-
-												<div>
-													<h4 className='font-urbanist text-xl font-bold text-accent-cyan mb-2'>The Solution</h4>
-													<p className='text-chrome-silver/80 text-sm leading-relaxed'>{project.solution}</p>
-												</div>
-											</div>
-
-											<div className='space-y-3'>
-												<h4 className='font-urbanist text-xl font-bold text-accent-cyan'>Impact</h4>
-												<ul className='space-y-2'>
-													{project.impact.map((item, i) => (
-														<li key={i} className='flex items-start gap-3'>
-															<span className='text-accent-cyan mt-1'>→</span>
-															<span className='text-chrome-silver/90 text-sm'>{item}</span>
-														</li>
-													))}
-												</ul>
-											</div>
-
-											{project.link && (
-												<a
-													href={project.link}
-													target='_blank'
-													rel='noopener noreferrer'
-													onClick={(e) => e.stopPropagation()}
-													className={cn(
-														'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-														'bg-gradient-to-br from-accent-blue to-accent-cyan',
-														'text-white text-sm font-semibold',
-														'hover:scale-105 transition-transform duration-300'
-													)}
-												>
-													Visit Project →
-												</a>
-											)}
-										</div>
-									</div>
-								</motion.div>
-							</motion.div>
-						</AnimatePresence>
-
-						{/* Background Cards (Depth) */}
-						{[1, 2].map((offset) => (
-							<motion.div
-								key={offset}
-								className={cn(
-									'absolute inset-0 rounded-[32px]',
-									'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
-									'border border-chrome-silver/[0.06]',
-									'pointer-events-none'
-								)}
-								style={{
-									transform: `translateZ(-${offset * 100}px) scale(${1 - offset * 0.1})`,
-									opacity: 1 - offset * 0.3,
-									zIndex: -offset,
-								}}
-							/>
-						))}
-					</div>
-
-					{/* Indicators */}
-					<div className='absolute bottom-8 left-1/2 -translate-x-1/2'>
-						<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={goToProject} />
-					</div>
-				</div>
+		<div className='w-full flex flex-col gap-8'>
+			{/* Container that matches card width on desktop */}
+			<div className='w-full max-w-4xl mx-auto'>
+				<BackLink href='/projects?view=cards'>All Projects</BackLink>
 			</div>
 
-			{/* Mobile Layout */}
-			<div className='md:hidden space-y-6'>
-				<div className='vt-card-deck relative flex items-center justify-center perspective-[2000px]'>
-					{/* Card Container */}
-					<div className='relative w-full h-[600px]'>
-						<AnimatePresence mode='wait'>
-							<motion.div
-								key={project.id}
-								initial={{ rotateY: 90, opacity: 0 }}
-								animate={{ rotateY: 0, opacity: 1 }}
-								exit={{ rotateY: -90, opacity: 0 }}
-								transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
-								className='absolute inset-0'
-								style={{ transformStyle: 'preserve-3d' }}
-							>
-								{/* Flip Container */}
+			<div className='flex flex-col items-center gap-8'>
+				{/* Card Container with Navigation */}
+				<div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-start w-full max-w-[1400px]'>
+					{/* Desktop Left Button */}
+					<div className='hidden lg:flex lg:items-start lg:pt-40'>
+						<NavigationButton direction='prev' onClick={goToPrev} />
+					</div>
+
+					{/* Card Deck */}
+					<div className='vt-card-deck perspective-[2000px] w-full max-w-4xl mx-auto'>
+						<div ref={containerRef} className='relative transition-all duration-500 ease-in-out' style={{ minHeight: '600px' }}>
+							<AnimatePresence mode='wait'>
 								<motion.div
-									animate={{ rotateY: flipped ? 180 : 0 }}
-									transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-									className='relative w-full h-full cursor-pointer'
+									key={project.id}
+									initial={{ rotateY: 90, opacity: 0 }}
+									animate={{ rotateY: 0, opacity: 1 }}
+									exit={{ rotateY: -90, opacity: 0 }}
+									transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
+									className='w-full'
 									style={{ transformStyle: 'preserve-3d' }}
-									onClick={() => setFlipped(!flipped)}
 								>
-									{/* Front Side */}
-									<div
-										className={cn(
-											'absolute inset-0 rounded-[32px] p-8',
-											'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
-											'border border-chrome-silver/[0.12]'
-										)}
-										style={{ backfaceVisibility: 'hidden' }}
+									{/* Flip Container */}
+									<motion.div
+										animate={{ rotateY: flipped ? 180 : 0 }}
+										transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
+										className='relative w-full cursor-pointer'
+										style={{ transformStyle: 'preserve-3d' }}
+										onClick={() => setFlipped(!flipped)}
 									>
-										<div className='h-full flex flex-col justify-between'>
-											<div className='space-y-4'>
-												<div className='text-xs text-accent-cyan font-dm-sans'>{project.period}</div>
-												<h2 className='font-urbanist text-3xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
-												<p className='text-lg text-chrome-silver/80'>{project.company}</p>
-											</div>
-
-											<div className='space-y-4'>
-												<p className='text-chrome-silver/70 leading-relaxed'>{project.summary}</p>
-												<ProjectTags tags={project.tags} size='sm' />
-												<p className='text-sm text-accent-blue animate-pulse'>Tap to flip →</p>
-											</div>
-										</div>
-									</div>
-
-									{/* Back Side */}
-									<div
-										className={cn(
-											'absolute inset-0 rounded-[32px] p-8',
-											'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
-											'border border-accent-blue/[0.3]'
-										)}
-										style={{
-											backfaceVisibility: 'hidden',
-											transform: 'rotateY(180deg)',
-										}}
-									>
-										<div className='h-full overflow-y-auto space-y-4'>
-											<h3 className='font-urbanist text-2xl font-bold text-accent-blue'>Case Study</h3>
-
-											<div className='space-y-3'>
-												<div>
-													<h4 className='font-urbanist font-bold text-accent-cyan mb-2'>The Challenge</h4>
-													<p className='text-chrome-silver/80 text-sm leading-relaxed'>{project.challenge}</p>
-												</div>
-
-												<div>
-													<h4 className='font-urbanist font-bold text-accent-cyan mb-2'>The Solution</h4>
-													<p className='text-chrome-silver/80 text-sm leading-relaxed'>{project.solution}</p>
-												</div>
-											</div>
-
-											<div className='space-y-2'>
-												<h4 className='font-urbanist font-bold text-accent-cyan'>Impact</h4>
-												<ul className='space-y-2'>
-													{project.impact.map((item, i) => (
-														<li key={i} className='flex items-start gap-2 text-sm'>
-															<span className='text-accent-cyan'>→</span>
-															<span className='text-chrome-silver/90'>{item}</span>
-														</li>
-													))}
-												</ul>
-											</div>
-
-											{project.link && (
-												<a
-													href={project.link}
-													target='_blank'
-													rel='noopener noreferrer'
-													onClick={(e) => e.stopPropagation()}
-													className='inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm bg-gradient-to-br from-accent-blue to-accent-cyan text-white font-semibold'
-												>
-													Visit Project →
-												</a>
+										{/* Front Side */}
+										<div
+											ref={frontRef}
+											className={cn(
+												'rounded-[32px] p-8 md:p-12',
+												'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
+												'border border-chrome-silver/[0.12]'
 											)}
-										</div>
-									</div>
-								</motion.div>
-							</motion.div>
-						</AnimatePresence>
+											style={{
+												backfaceVisibility: 'hidden',
+												WebkitBackfaceVisibility: 'hidden',
+											}}
+										>
+											<div className='space-y-6 md:space-y-8'>
+												{/* Header */}
+												<div className='space-y-3 md:space-y-4'>
+													<div className='flex items-center gap-4 text-sm text-accent-cyan'>
+														<span>{project.period}</span>
+														<span>•</span>
+														<span>{project.location}</span>
+													</div>
+													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
+													<p className='text-xl md:text-2xl text-chrome-silver/80'>{project.company}</p>
+												</div>
 
-						{/* Background Cards (Depth) */}
-						{[1, 2].map((offset) => (
-							<motion.div
-								key={offset}
-								className={cn(
-									'absolute inset-0 rounded-[32px]',
-									'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
-									'border border-chrome-silver/[0.06]',
-									'pointer-events-none'
-								)}
-								style={{
-									transform: `translateZ(-${offset * 80}px) scale(${1 - offset * 0.1})`,
-									opacity: 1 - offset * 0.3,
-									zIndex: -offset,
-								}}
-							/>
-						))}
+												{/* Image Placeholder */}
+												<div className={cn('h-64 md:h-80 rounded-2xl flex items-center justify-center', gradientClass)}>
+													<span className='text-white/40 text-sm font-semibold'>Project Screenshot</span>
+												</div>
+
+												{/* Footer */}
+												<div className='space-y-4 pb-2'>
+													<p className='text-base md:text-xl text-chrome-silver/70 leading-relaxed'>{project.summary}</p>
+													<ProjectTags tags={project.tags} />
+													<p className='text-sm text-accent-blue animate-pulse'>Tap to flip →</p>
+												</div>
+											</div>
+										</div>
+
+										{/* Back Side */}
+										<div
+											ref={backRef}
+											className={cn(
+												'absolute inset-0 rounded-[32px] p-8 md:p-12',
+												'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
+												'border border-accent-blue/[0.3]'
+											)}
+											style={{
+												backfaceVisibility: 'hidden',
+												WebkitBackfaceVisibility: 'hidden',
+												transform: 'rotateY(180deg)',
+											}}
+										>
+											<div className='space-y-6 pb-2'>
+												<h3 className='font-urbanist text-2xl md:text-3xl font-bold text-accent-blue'>Case Study</h3>
+
+												<div className='space-y-6'>
+													<div>
+														<h4 className='font-urbanist text-lg md:text-xl font-bold text-accent-cyan mb-2'>The Challenge</h4>
+														<p className='text-chrome-silver/80 text-sm md:text-base leading-relaxed'>{project.challenge}</p>
+													</div>
+
+													<div>
+														<h4 className='font-urbanist text-lg md:text-xl font-bold text-accent-cyan mb-2'>The Solution</h4>
+														<p className='text-chrome-silver/80 text-sm md:text-base leading-relaxed'>{project.solution}</p>
+													</div>
+
+													<div>
+														<h4 className='font-urbanist text-lg md:text-xl font-bold text-accent-cyan mb-2'>Impact</h4>
+														<ul className='space-y-2'>
+															{project.impact.map((item, i) => (
+																<li key={i} className='flex items-start gap-3'>
+																	<span className='text-accent-cyan mt-1'>→</span>
+																	<span className='text-chrome-silver/90 text-sm md:text-base'>{item}</span>
+																</li>
+															))}
+														</ul>
+													</div>
+												</div>
+
+												{project.link && (
+													<a
+														href={project.link}
+														target='_blank'
+														rel='noopener noreferrer'
+														onClick={(e) => e.stopPropagation()}
+														className={cn(
+															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
+															'bg-gradient-to-br from-accent-blue to-accent-cyan',
+															'text-white text-sm font-semibold',
+															'hover:scale-105 transition-transform duration-300'
+														)}
+													>
+														Visit Project →
+													</a>
+												)}
+											</div>
+										</div>
+									</motion.div>
+
+									{/* Background Cards (Depth Effect) - only visible when not flipped */}
+									{!flipped &&
+										[1, 2].map((offset) => (
+											<div
+												key={offset}
+												className={cn(
+													'absolute inset-0 rounded-[32px]',
+													'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
+													'border border-chrome-silver/[0.06]',
+													'pointer-events-none'
+												)}
+												style={{
+													transform: `translateZ(-${offset * 100}px) scale(${1 - offset * 0.1})`,
+													opacity: 1 - offset * 0.3,
+													zIndex: -offset,
+												}}
+											/>
+										))}
+								</motion.div>
+							</AnimatePresence>
+						</div>
+					</div>
+
+					{/* Desktop Right Button */}
+					<div className='hidden lg:flex lg:items-start lg:pt-40'>
+						<NavigationButton direction='next' onClick={goToNext} />
 					</div>
 				</div>
 
-				{/* Navigation (Below Card) */}
-				<div className='flex items-center justify-between px-4'>
+				{/* Mobile/Tablet Navigation (Below Card) */}
+				<div className='lg:hidden flex items-center justify-between w-full max-w-sm'>
 					<NavigationButton direction='prev' onClick={goToPrev} />
 					<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={goToProject} />
 					<NavigationButton direction='next' onClick={goToNext} />
+				</div>
+
+				{/* Desktop Indicators (Below Card) */}
+				<div className='hidden lg:block'>
+					<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={goToProject} />
 				</div>
 			</div>
 		</div>

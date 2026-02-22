@@ -41,7 +41,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 		);
 	}
 	return (
-		<div className='w-full space-y-8'>
+		<div className='w-full flex flex-col gap-6'>
 			{/* Page Header */}
 			<div className='text-center space-y-4'>
 				<h1 className='font-urbanist text-4xl md:text-5xl font-bold text-chrome-silver'>{project.title}</h1>
@@ -51,7 +51,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 				<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
 			</div>
 
-			{/* Page Content */}
+			{/* View Content */}
 			{view === 'timeline' && <TimelineProjectPage project={project} />}
 			{view === 'cards' && <CardsProjectPage project={project} />}
 			{/* {view === 'magazine' && <MagazineProjectPage project={project} />} */}
