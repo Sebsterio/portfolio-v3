@@ -3,14 +3,22 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-export function MecoProject() {
+interface MecoProjectProps {
+	number: string;
+	label: string;
+	title: string;
+	role: string;
+	description: string[];
+}
+
+export function MecoProject({ number, label, title, role, description }: MecoProjectProps) {
 	return (
-		<section className='relative -mt-8'>
+		<section className='relative -mt-8 group'>
 			{/* Number */}
-			<div className='text-xl md:text-2xl xl:text-3xl font-urbanist font-bold text-white/30 mb-4 relative z-20'>02</div>
+			<div className='text-xl md:text-2xl xl:text-3xl font-urbanist font-bold text-white/30 mb-4 relative z-20'>{number}</div>
 
 			{/* Decorative Background Text */}
-			<div className='project-decorative-text project-decorative-faded text-[clamp(6rem,20vw,20rem)] absolute top-[-2rem] md:top-[-4rem] left-[-1rem] md:left-[-2rem] w-full lg:w-auto z-10'>
+			<div className='project-decorative-text project-decorative-faded text-[clamp(6rem,20vw,20rem)] absolute top-[-2rem] md:top-[-4rem] left-[-1rem] md:left-[-2rem] w-full lg:w-auto z-10 transition-all duration-500 group-hover:text-white/10'>
 				MECO
 			</div>
 
@@ -18,26 +26,22 @@ export function MecoProject() {
 			<div className='relative z-20 max-w-[1400px] ml-0 lg:ml-auto mr-0 grid lg:grid-cols-[0.8fr_1.2fr] gap-8 md:gap-12 lg:gap-16 items-center'>
 				{/* Text Column */}
 				<div className='py-4 md:py-8'>
-					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>
-						Music Festival · Lisbon
-					</p>
+					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{label}</p>
 
-					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-black text-white leading-[0.95] mb-3'>
-						Underground Meco
+					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-black text-white leading-[0.95] mb-3 transition-all duration-300 group-hover:text-accent-cyan'>
+						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>Full-Stack Developer (Contract)</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
 
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-						Developed a comprehensive event management ecosystem that significantly improved operational efficiency for this music festival.
-						The solution included a back-office platform for real-time inventory management, financial reporting, dashboards, and analytics.
-					</p>
-
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>
-						Built a customer-facing progressive web app with custom CMS, integrated payments processing via Stripe, geolocation services for
-						venue navigation, and social media features to enhance attendee engagement. The system streamlined operations and created a
-						seamless experience for both organizers and festival-goers.
-					</p>
+					{description.map((paragraph, index) => (
+						<p
+							key={index}
+							className={`text-sm md:text-base leading-relaxed text-chrome-silver/75 ${index < description.length - 1 ? 'mb-6' : ''}`}
+						>
+							{paragraph}
+						</p>
+					))}
 				</div>
 
 				{/* Images Column */}

@@ -4,18 +4,26 @@
 import { TechTags } from '@/components/TechTags';
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-export function BounceProject() {
+interface BounceProjectProps {
+	number: string;
+	company: string;
+	role: string;
+	description: string[];
+	tags: string[];
+}
+
+export function BounceProject({ number, company, role, description, tags }: BounceProjectProps) {
 	return (
-		<section className='relative grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 xl:gap-20 items-start'>
+		<section className='relative grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 xl:gap-20 items-start group'>
 			{/* Left Column */}
 			<div className='relative'>
 				{/* Number */}
 				<div className='text-right lg:text-left text-3xl md:text-4xl xl:text-5xl font-urbanist font-black text-accent-cyan mb-4 [text-shadow:0_0_40px_rgba(0,217,255,0.5)]'>
-					01
+					{number}
 				</div>
 
 				{/* Decorative Title */}
-				<h2 className='project-decorative-text project-decorative-outline project-decorative-outline-hover text-[clamp(4rem,13vw,13rem)] absolute top-[-1rem] lg:top-[-1rem] left-[-0.5rem] lg:left-[-2rem] z-10'>
+				<h2 className='project-decorative-text project-decorative-outline project-decorative-outline-hover text-[clamp(4rem,13vw,13rem)] absolute top-[-1rem] lg:top-[-1rem] left-[-0.5rem] lg:left-[-2rem] z-10 transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.3)] group-hover:[text-shadow:0_0_60px_rgba(0,217,255,0.3)]'>
 					BOUNCE
 				</h2>
 
@@ -38,23 +46,18 @@ export function BounceProject() {
 
 			{/* Right Column - Content */}
 			<div className='pt-4 lg:pt-16 order-2 lg:order-none'>
-				<h3 className='font-urbanist text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-2 tracking-tight'>Bounce.com</h3>
-				<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>Software Engineer (Contract) · Leading Travel Startup</p>
+				<h3 className='font-urbanist text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-2 tracking-tight transition-all duration-300 group-hover:text-accent-cyan'>
+					{company}
+				</h3>
+				<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
 
-				<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-					Architected and delivered a production-ready{' '}
-					<span className='text-accent-cyan font-semibold'>cross-platform component library</span> serving web, iOS, and Android platforms.
-					This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster
-					feature development.
-				</p>
+				{description.map((paragraph, index) => (
+					<p key={index} className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
+						{paragraph}
+					</p>
+				))}
 
-				<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-					Led the migration from legacy components and established clear patterns, comprehensive Storybook documentation, and technical
-					guidance for organization-wide adoption. The system enabled three product teams to work independently while maintaining
-					consistency, reducing UI inconsistencies by 80% and decreasing time-to-market for new features by 40%.
-				</p>
-
-				<TechTags tags={['Next.js', 'React Native', 'TypeScript', 'Storybook', 'Monorepo']} />
+				<TechTags tags={tags} />
 			</div>
 		</section>
 	);

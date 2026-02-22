@@ -3,12 +3,19 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-export function EbitProject() {
+interface EbitProjectProps {
+	number: string;
+	title: string;
+	role: string;
+	description: string[];
+}
+
+export function EbitProject({ number, title, role, description }: EbitProjectProps) {
 	return (
-		<section className='relative -mt-8'>
+		<section className='relative -mt-8 group'>
 			{/* Decorative Number */}
-			<div className='project-decorative-text text-transparent text-[clamp(6rem,15vw,12rem)] absolute top-[-3rem] md:top-[-5rem] lg:top-[-6rem] right-[2%] md:right-[5%] z-30 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)]'>
-				04
+			<div className='project-decorative-text text-transparent text-[clamp(6rem,15vw,12rem)] absolute top-[-3rem] md:top-[-5rem] lg:top-[-6rem] right-[2%] md:right-[5%] z-30 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
+				{number}
 			</div>
 
 			{/* Large Image */}
@@ -22,23 +29,20 @@ export function EbitProject() {
 			<div className='grid lg:grid-cols-[1fr_400px] gap-8 md:gap-12 lg:gap-16 items-start relative'>
 				{/* Text Column */}
 				<div className='py-4 md:py-8 relative z-20 lg:bg-transparent bg-black/80 lg:backdrop-blur-0 backdrop-blur-md lg:p-0 p-8 lg:rounded-none rounded-2xl lg:border-0 border border-accent-cyan/20 lg:mt-0 -mt-24'>
-					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] font-black text-white leading-[0.95] mb-2'>
-						eBit labs
+					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] font-black text-white leading-[0.95] mb-2 transition-all duration-300 group-hover:text-accent-cyan'>
+						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>Software Developer (Contract) · Blockchain Analytics Startup</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
 
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-						Served as the principal front-end developer and first front-end hire for this blockchain analytics startup. Architected and
-						built tokensite.com from the ground up, featuring Web3 integration, a custom component library, and a complete CI/CD workflow
-						using modern tooling.
-					</p>
-
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>
-						Led and mentored junior developers as the team grew, establishing front-end best practices and coding standards. Created
-						reusable components that became the foundation for the company's design system, enabling rapid feature development while
-						maintaining code quality and consistency across the application.
-					</p>
+					{description.map((paragraph, index) => (
+						<p
+							key={index}
+							className={`text-sm md:text-base leading-relaxed text-chrome-silver/75 ${index < description.length - 1 ? 'mb-6' : ''}`}
+						>
+							{paragraph}
+						</p>
+					))}
 				</div>
 
 				{/* Small Image */}

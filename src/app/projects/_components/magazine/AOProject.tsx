@@ -2,17 +2,25 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-export function AOProject() {
+interface AOProjectProps {
+	number: string;
+	label: string;
+	title: string;
+	role: string;
+	description: string[];
+}
+
+export function AOProject({ number, label, title, role, description }: AOProjectProps) {
 	return (
-		<section className='relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%]'>
+		<section className='relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%] group'>
 			{/* Decorative Mega Title */}
-			<h2 className='project-decorative-text text-transparent text-[clamp(8rem,22vw,18rem)] absolute top-[-4rem] md:top-[-6rem] right-0 lg:right-[-5%] z-10 pointer-events-none [-webkit-text-stroke:2px_rgba(255,255,255,0.1)]'>
+			<h2 className='project-decorative-text text-transparent text-[clamp(8rem,22vw,18rem)] absolute top-[-4rem] md:top-[-6rem] right-0 lg:right-[-5%] z-10 pointer-events-none [-webkit-text-stroke:2px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
 				AO.COM
 			</h2>
 
 			{/* Number */}
 			<div className='font-urbanist text-3xl md:text-4xl font-black bg-gradient-to-br from-accent-cyan to-white bg-clip-text text-transparent mb-4 relative z-20'>
-				05
+				{number}
 			</div>
 
 			{/* Content Grid */}
@@ -34,25 +42,22 @@ export function AOProject() {
 
 				{/* Text Column */}
 				<div className='pt-8 lg:pt-20 order-2 lg:order-none'>
-					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>E-Commerce Platform</p>
+					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{label}</p>
 
-					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] font-black text-white leading-[0.85] mb-4'>
-						AO.com
+					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] font-black text-white leading-[0.85] mb-4 transition-all duration-300 group-hover:text-accent-cyan'>
+						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>Front-End Developer · Payments Team</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
 
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-						Sole front-end developer in the Payments Team, responsible for integrating and maintaining payment and finance services across
-						the e-commerce platform. Architected, built, and maintained a centralized payment system distributed as a micro frontend across
-						multiple teams.
-					</p>
-
-					<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>
-						This system replaced legacy payment implementations and streamlined the process of integrating new payment providers. Also
-						maintained the finance application website section, implementing improvements that reduced errors and saved the company £16,000
-						per month through enhanced validation and error handling.
-					</p>
+					{description.map((paragraph, index) => (
+						<p
+							key={index}
+							className={`text-sm md:text-base leading-relaxed text-chrome-silver/75 ${index < description.length - 1 ? 'mb-6' : ''}`}
+						>
+							{paragraph}
+						</p>
+					))}
 				</div>
 			</div>
 		</section>

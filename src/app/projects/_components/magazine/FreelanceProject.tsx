@@ -3,58 +3,59 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-export function FreelanceProject() {
+interface FreelanceProjectProps {
+	number: string;
+	title: string;
+	role: string;
+	projects: Array<{
+		name: string;
+		description: string;
+	}>;
+}
+
+export function FreelanceProject({ number, title, role, projects }: FreelanceProjectProps) {
 	return (
-		<section className='relative -mt-8'>
+		<section className='relative -mt-8 group'>
 			{/* Number */}
-			<div className='font-urbanist text-lg md:text-xl font-black text-accent-cyan/60 tracking-wider mb-8'>06 — FREELANCE</div>
+			<div className='font-urbanist text-lg md:text-xl font-black text-accent-cyan/60 tracking-wider mb-8'>{number}</div>
 
 			{/* Content Grid */}
 			<div className='max-w-[85%] mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 lg:gap-20 items-center'>
 				{/* Text Column */}
 				<div className='pr-0 lg:pr-8'>
-					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5.5rem] font-black text-white leading-[0.85] mb-4'>
-						Freelance Projects
+					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5.5rem] font-black text-white leading-[0.85] mb-4 transition-all duration-300 group-hover:text-accent-cyan'>
+						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-10'>Web Developer & Designer · Various Clients</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-10'>{role}</p>
 
-					{/* Animalysis - with small image on mobile */}
-					<div className='grid md:grid-cols-1 lg:grid-cols-1 gap-6 mb-10 pb-10 border-b border-accent-cyan/15 transition-all duration-400 hover:border-accent-cyan/40 hover:pl-4'>
-						<div>
-							<h4 className='font-urbanist text-2xl md:text-3xl font-bold text-accent-cyan mb-3 transition-transform duration-300 hover:translate-x-1'>
-								Animalysis
-							</h4>
+					{projects.map((project, index) => (
+						<div
+							key={project.name}
+							className={`grid md:grid-cols-1 lg:grid-cols-1 gap-6 ${
+								index === 0 ? 'mb-10 pb-10 border-b border-accent-cyan/15' : ''
+							} transition-all duration-400 hover:border-accent-cyan/40 hover:pl-4`}
+						>
+							<div>
+								<h4 className='font-urbanist text-2xl md:text-3xl font-bold text-accent-cyan mb-3 transition-transform duration-300 hover:translate-x-1'>
+									{project.name}
+								</h4>
 
-							<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>
-								Built a full-stack progressive web app that streamlines the process of reporting pet health problems to vet clinics through
-								dynamically generated, personalized surveys. Developed the accompanying vet clinic management system for searching report
-								history and survey customization.
-							</p>
+								<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>{project.description}</p>
+							</div>
+
+							{/* Small image - shows next to text on mobile for first project only */}
+							{index === 0 && (
+								<div className='md:hidden'>
+									<ProjectImage
+										gradient='bg-gradient-freelance-small'
+										className='w-full h-[150px] border-4 md:border-6 border-white/90'
+										overlayType='none'
+									/>
+								</div>
+							)}
 						</div>
-
-						{/* Small image - shows next to text on mobile, hidden on desktop */}
-						<div className='md:hidden'>
-							<ProjectImage
-								gradient='bg-gradient-freelance-small'
-								className='w-full h-[150px] border-4 md:border-6 border-white/90'
-								overlayType='none'
-							/>
-						</div>
-					</div>
-
-					{/* Narbon Fashion */}
-					<div className='transition-all duration-400 hover:pl-4'>
-						<h4 className='font-urbanist text-2xl md:text-3xl font-bold text-accent-cyan mb-3 transition-transform duration-300 hover:translate-x-1'>
-							Narbon Fashion
-						</h4>
-
-						<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>
-							Created a modern e-commerce progressive web app using React, Redux, and Node.js. Implemented Firebase user authentication and
-							database integration, Stripe payments processing, and cloud infrastructure optimization using Heroku, Atlas, and Cloudinary to
-							minimize server load and maximize performance.
-						</p>
-					</div>
+					))}
 				</div>
 
 				{/* Images Column */}

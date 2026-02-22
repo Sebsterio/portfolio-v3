@@ -4,6 +4,7 @@ import { TTEducationProject } from './magazine/TTEducationProject';
 import { EbitProject } from './magazine/EbitProject';
 import { AOProject } from './magazine/AOProject';
 import { FreelanceProject } from './magazine/FreelanceProject';
+import { projectsContent } from './magazine/_content';
 
 function MagazineCollectionPageDecorations() {
 	return (
@@ -27,12 +28,12 @@ export const MagazineCollectionPage = () => {
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-32'>
-				<BounceProject />
-				<MecoProject />
-				<TTEducationProject />
-				<EbitProject />
-				<AOProject />
-				<FreelanceProject />
+				<BounceProject {...projectsContent.bounce} />
+				<MecoProject {...projectsContent.meco} />
+				<TTEducationProject {...projectsContent.ttEducation} />
+				<EbitProject {...projectsContent.ebit} />
+				<AOProject {...projectsContent.ao} />
+				<FreelanceProject {...projectsContent.freelance} />
 			</div>
 		</div>
 	);
