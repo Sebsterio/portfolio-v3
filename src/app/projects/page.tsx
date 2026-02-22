@@ -28,7 +28,7 @@ export default function ProjectsPage() {
 			{/* Page Content */}
 			{view === 'timeline' && <TimelineCollectionPage projects={projects} />}
 			{view === 'cards' && <CardsCollectionPage projects={projects} />}
-			{view === 'magazine' && <MagazineCollectionPage projects={projects} />}
+			{view === 'magazine' && <MagazineCollectionPage /* projects={projects} */ />}
 		</div>
 	);
 }

@@ -23,6 +23,20 @@ module.exports = {
 			backgroundImage: {
 				'metallic-text': 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
 				'chrome-metallic': 'linear-gradient(180deg, #ffffff 0%, #e8e8e8 20%, #b8b8b8 50%, #888888 51%, #b8b8b8 80%, #ffffff 100%)',
+
+				// TEMP: image placeholder bgs (projects/magazine)
+				'gradient-bounce-main': 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+				'gradient-bounce-small': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+				'gradient-meco-main': 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+				'gradient-meco-2': 'linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)',
+				'gradient-meco-3': 'linear-gradient(135deg, #fddb92 0%, #d1fdff 100%)',
+				'gradient-tt': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+				'gradient-ebit-main': 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
+				'gradient-ebit-small': 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+				'gradient-ao-main': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+				'gradient-ao-small': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
+				'gradient-freelance-main': 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
+				'gradient-freelance-small': 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
 			},
 			colors: {
 				'chrome-silver': '#f0f0f0',
@@ -40,8 +54,18 @@ module.exports = {
 				'quantum-grid-perspective': 'gridPerspective 20s ease-in-out infinite',
 				'quantum-float': 'quantumFloat 10s ease-in-out infinite',
 				'quantum-shape-float': 'shapeFloat 8s ease-in-out infinite',
+
+				// TEMP: projects/magazine
+				'shine-sweep': 'shineSweep 0.8s ease',
 			},
 			keyframes: {
+				// TEMP: projects/magazine
+				shineSweep: {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' },
+				},
+				// END TEMP
+
 				gradientShift: {
 					'0%, 100%': { backgroundPosition: '0% 50%' },
 					'50%': { backgroundPosition: '100% 50%' },
