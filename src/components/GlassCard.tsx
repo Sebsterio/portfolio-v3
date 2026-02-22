@@ -35,3 +35,44 @@ export const GlassCard = ({ title, children, className }: GlassCardProps) => {
 };
 
 export default GlassCard;
+
+/**
+ * --- // TEMP // ---
+ */
+
+type GlassCard1Props = {
+	children: React.ReactNode;
+	className?: string;
+	withAccent?: boolean;
+	accentPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+	onClick?: () => void;
+};
+
+const accentPositions = {
+	'top-right': 'top-0 right-0 bg-gradient-to-bl',
+	'top-left': 'top-0 left-0 bg-gradient-to-br',
+	'bottom-right': 'bottom-0 right-0 bg-gradient-to-tl',
+	'bottom-left': 'bottom-0 left-0 bg-gradient-to-tr',
+};
+
+export const GlassCard1 = ({ children, className, withAccent = false, accentPosition = 'top-right', onClick }: GlassCard1Props) => {
+	const Component = onClick ? 'button' : 'div';
+
+	return (
+		<Component
+			onClick={onClick}
+			className={cn(
+				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]',
+				'border border-chrome-silver/[0.08]',
+				'relative overflow-hidden',
+				onClick && 'transition-all duration-300 hover:border-accent-blue/30',
+				className
+			)}
+		>
+			{withAccent && (
+				<div className={cn('absolute w-32 h-32 from-accent-blue/10 to-transparent rounded-2xl', accentPositions[accentPosition])} />
+			)}
+			{children}
+		</Component>
+	);
+};
