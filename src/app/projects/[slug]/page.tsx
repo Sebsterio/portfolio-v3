@@ -11,6 +11,7 @@ import { CardsProjectPage } from './_components/CardsProjectPage';
 import { UnderConstructionPage } from '@/components/pages/UnderConstructionPage';
 // import { MagazineProjectPage } from './_components/MagazineProjectPage';
 import { BackLink } from '@/components/BackLink';
+import { PROJECT_PAGE_TITLE_ID } from './_config';
 
 const getProjectBySlug = (slug: string) => projects.find((project) => project.slug === slug);
 
@@ -29,6 +30,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 	if (!project) {
 		notFound();
 	}
+	// TEMP
 	if (view === 'magazine') {
 		return (
 			<div className='w-full space-y-16'>
@@ -46,14 +48,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 		<div className='w-full flex flex-col gap-6'>
 			{/* Page Header */}
 			<div className='text-center space-y-4'>
-				<h1 className='font-urbanist text-4xl md:text-5xl font-bold text-chrome-silver'>{project.title}</h1>
+				<h1 id={PROJECT_PAGE_TITLE_ID} className='font-urbanist text-4xl md:text-5xl font-bold text-chrome-silver'>
+					{project.title}
+				</h1>
 				<p className='text-chrome-silver/70 text-lg'>
 					{project.company} · {project.period}
 				</p>
 				<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
 			</div>
 
-			{/* View Content */}
+			{/* Page Content */}
 			{view === 'timeline' && <TimelineProjectPage project={project} />}
 			{view === 'cards' && <CardsProjectPage project={project} />}
 			{/* {view === 'magazine' && <MagazineProjectPage project={project} />} */}

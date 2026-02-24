@@ -10,6 +10,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
 import { projects } from '../../_content';
+import { PROJECT_PAGE_TITLE_ID } from '../_config';
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -112,7 +113,7 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 
 	const handleProjectClick = (p: Project) => {
 		setExpandedId(p.id);
-		navigate(`/projects/${p.slug}?view=timeline`);
+		navigate(`/projects/${p.slug}?view=timeline`, { scrollTo: PROJECT_PAGE_TITLE_ID });
 	};
 
 	return (
