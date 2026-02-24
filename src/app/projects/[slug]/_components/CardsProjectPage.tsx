@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
-import { projects } from '../../_content';
 import { ProjectImage } from '@/components/ProjectImage';
+import { projects } from '../../_content';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -115,18 +115,18 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	const goToNext = () => {
 		const nextIndex = (currentIndex + 1) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/${projects[nextIndex].slug}?view=cards`);
+		navigate(`/projects/${projects[nextIndex].slug}?view=cards`, { scroll: false });
 	};
 
 	const goToPrev = () => {
 		const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/${projects[prevIndex].slug}?view=cards`);
+		navigate(`/projects/${projects[prevIndex].slug}?view=cards`, { scroll: false });
 	};
 
 	const goToProject = (slug: string) => {
 		setFlipped(false);
-		navigate(`/projects/${slug}?view=cards`);
+		navigate(`/projects/${slug}?view=cards`, { scroll: false });
 	};
 
 	return (
