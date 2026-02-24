@@ -1,16 +1,15 @@
-// src/app/projects/components/EbitProject.tsx
 'use client';
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface EbitProjectProps {
+interface MagazineSectionDProps {
 	number: string;
 	title: string;
-	role: string;
+	subtitle: string;
 	description: string[];
 }
 
-export function EbitProject({ number, title, role, description }: EbitProjectProps) {
+export function MagazineSectionD({ number, title, subtitle, description }: MagazineSectionDProps) {
 	return (
 		<section className='relative -mt-8 group'>
 			{/* Decorative Number */}
@@ -33,7 +32,7 @@ export function EbitProject({ number, title, role, description }: EbitProjectPro
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subtitle}</p>
 
 					{description.map((paragraph, index) => (
 						<p

@@ -2,14 +2,14 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface TTProjectProps {
+interface MagazineSectionCProps {
 	number: string;
 	title: string;
-	role: string;
+	subTitle: string;
 	description: string[];
 }
 
-export function TTProject({ number, title, role, description }: TTProjectProps) {
+export function MagazineSectionC({ number, title, subTitle, description }: MagazineSectionCProps) {
 	return (
 		<section className='relative -mt-12 ml-0 lg:ml-[5%] group'>
 			<div className='grid lg:grid-cols-2 gap-8 md:gap-12 items-start'>
@@ -24,7 +24,7 @@ export function TTProject({ number, title, role, description }: TTProjectProps) 
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subTitle}</p>
 
 					{description.map((paragraph, index) => (
 						<p

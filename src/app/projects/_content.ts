@@ -2,7 +2,7 @@ import { Project } from '../../types';
 
 export const projects: Project[] = [
 	{
-		id: '1',
+		id: 'bounce',
 		slug: 'bounce-component-library',
 		title: 'Cross-Platform Component Library',
 		company: 'Bounce.com',
@@ -33,7 +33,7 @@ export const projects: Project[] = [
 		link: 'https://bounce.com',
 	},
 	{
-		id: '2',
+		id: 'meco',
 		slug: 'underground-meco-event-platform',
 		title: 'Event Management Ecosystem',
 		company: 'Underground Meco',
@@ -63,7 +63,7 @@ export const projects: Project[] = [
 		],
 	},
 	{
-		id: '3',
+		id: 'tt',
 		slug: 'tt-education-modernization',
 		title: 'Platform Modernization',
 		company: 'TT Education',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
 		link: 'https://www.tteducation.co.uk/',
 	},
 	{
-		id: '4',
+		id: 'ebit',
 		slug: 'tokensite-blockchain-analytics',
 		title: 'Blockchain Analytics Platform',
 		company: 'eBit labs',
@@ -125,7 +125,7 @@ export const projects: Project[] = [
 		link: 'https://app.tokensite.com/',
 	},
 	{
-		id: '5',
+		id: 'ao',
 		slug: 'ao-payment-system',
 		title: 'Centralized Payment System',
 		company: 'AO.com',
@@ -157,7 +157,8 @@ export const projects: Project[] = [
 		link: 'https://ao.com/',
 	},
 	{
-		id: '6',
+		id: 'animalysis',
+		freelance: true,
 		slug: 'animalysis-vet-clinic',
 		title: 'Vet Clinic Management System',
 		company: 'Animalysis',
@@ -187,7 +188,8 @@ export const projects: Project[] = [
 		link: 'http://www.animalysis.com/demo',
 	},
 	{
-		id: '7',
+		id: 'narbon',
+		freelance: true,
 		slug: 'narbon-ecommerce',
 		title: 'E-Commerce Progressive Web App',
 		company: 'Narbon Fashion',
@@ -217,5 +219,3 @@ export const projects: Project[] = [
 		link: 'https://www.shop.narbonpatricia.com',
 	},
 ];
-
-export const getProjectBySlug = (slug: string) => projects.find((p) => p.slug === slug);

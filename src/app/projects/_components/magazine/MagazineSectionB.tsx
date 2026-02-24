@@ -1,17 +1,17 @@
-// src/app/projects/components/MecoProject.tsx
 'use client';
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface MecoProjectProps {
+interface MagazineSectionBProps {
 	number: string;
-	label: string;
+	megaTitle: string;
+	preTitle: string;
 	title: string;
-	role: string;
+	subtitle: string;
 	description: string[];
 }
 
-export function MecoProject({ number, label, title, role, description }: MecoProjectProps) {
+export function MagazineSectionB({ number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionBProps) {
 	return (
 		<section className='relative -mt-8 group'>
 			{/* Number */}
@@ -19,20 +19,20 @@ export function MecoProject({ number, label, title, role, description }: MecoPro
 
 			{/* Decorative Background Text */}
 			<div className='project-decorative-text project-decorative-faded text-[clamp(6rem,20vw,20rem)] absolute top-[-2rem] md:top-[-4rem] left-[-1rem] md:left-[-2rem] w-full lg:w-auto z-10 transition-all duration-500 group-hover:text-white/10'>
-				MECO
+				{megaTitle}
 			</div>
 
 			{/* Content Grid */}
 			<div className='relative z-20 max-w-[1400px] ml-0 lg:ml-auto mr-0 grid lg:grid-cols-[0.8fr_1.2fr] gap-8 md:gap-12 lg:gap-16 items-center'>
 				{/* Text Column */}
 				<div className='py-4 md:py-8'>
-					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{label}</p>
+					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{preTitle}</p>
 
 					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] font-black text-white leading-[0.95] mb-3 transition-all duration-300 group-hover:text-accent-cyan'>
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subtitle}</p>
 
 					{description.map((paragraph, index) => (
 						<p

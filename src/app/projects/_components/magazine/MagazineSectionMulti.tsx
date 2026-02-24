@@ -1,19 +1,18 @@
-// src/app/projects/components/FreelanceProject.tsx
 'use client';
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface FreelanceProjectProps {
+interface MagazineSectionMultiProps {
 	number: string;
 	title: string;
-	role: string;
-	projects: Array<{
-		name: string;
-		description: string;
+	subtitle: string;
+	entries: Array<{
+		title: string;
+		description: string[];
 	}>;
 }
 
-export function FreelanceProject({ number, title, role, projects }: FreelanceProjectProps) {
+export function MagazineSectionMulti({ number, title, subtitle, entries }: MagazineSectionMultiProps) {
 	return (
 		<section className='relative -mt-8 group'>
 			{/* Number */}
@@ -27,21 +26,21 @@ export function FreelanceProject({ number, title, role, projects }: FreelancePro
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-10'>{role}</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-10'>{subtitle}</p>
 
-					{projects.map((project, index) => (
+					{entries.map(({ title, description }, index) => (
 						<div
-							key={project.name}
+							key={title}
 							className={`grid md:grid-cols-1 lg:grid-cols-1 gap-6 ${
 								index === 0 ? 'mb-10 pb-10 border-b border-accent-cyan/15' : ''
 							} transition-all duration-400 hover:border-accent-cyan/40 hover:pl-4`}
 						>
 							<div>
 								<h4 className='font-urbanist text-2xl md:text-3xl font-bold text-accent-cyan mb-3 transition-transform duration-300 hover:translate-x-1'>
-									{project.name}
+									{title}
 								</h4>
 
-								<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>{project.description}</p>
+								<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>{description}</p>
 							</div>
 
 							{/* Small image - shows next to text on mobile for first project only */}

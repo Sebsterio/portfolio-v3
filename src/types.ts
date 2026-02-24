@@ -20,4 +20,5 @@ export type Project = {
 	label: string;
 	link?: string;
 	roleDetail?: string;
+	freelance?: boolean;
 };

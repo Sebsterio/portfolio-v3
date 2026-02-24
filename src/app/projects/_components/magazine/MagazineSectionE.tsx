@@ -2,20 +2,21 @@
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface AOProjectProps {
+interface MagazineSectionEProps {
 	number: string;
-	label: string;
+	megaTitle: string;
+	preTitle: string;
 	title: string;
-	role: string;
+	subtitle: string;
 	description: string[];
 }
 
-export function AOProject({ number, label, title, role, description }: AOProjectProps) {
+export function MagazineSectionE({ number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionEProps) {
 	return (
 		<section className='relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%] group'>
 			{/* Decorative Mega Title */}
 			<h2 className='project-decorative-text text-transparent text-[clamp(8rem,22vw,18rem)] absolute top-[-4rem] md:top-[-6rem] right-0 lg:right-[-5%] z-10 pointer-events-none [-webkit-text-stroke:2px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
-				AO.COM
+				{megaTitle}
 			</h2>
 
 			{/* Number */}
@@ -42,13 +43,13 @@ export function AOProject({ number, label, title, role, description }: AOProject
 
 				{/* Text Column */}
 				<div className='pt-8 lg:pt-20 order-2 lg:order-none'>
-					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{label}</p>
+					<p className='font-urbanist text-xs md:text-sm font-bold uppercase tracking-wider text-accent-cyan mb-6'>{preTitle}</p>
 
 					<h3 className='font-urbanist text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] font-black text-white leading-[0.85] mb-4 transition-all duration-300 group-hover:text-accent-cyan'>
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{role}</p>
+					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subtitle}</p>
 
 					{description.map((paragraph, index) => (
 						<p
