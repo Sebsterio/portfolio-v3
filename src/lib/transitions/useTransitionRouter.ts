@@ -1,10 +1,9 @@
 'use client';
 
 import { useCallback } from 'react';
-import { usePageTransition, usePageTransitionState } from './TransitionProvider';
 import type { NavigationConfig } from './types';
-
-const SCROLL_RESTORATION_DELAY = 500;
+import { usePageTransition, usePageTransitionState } from './TransitionProvider';
+import { DEFAULT_IS_SCROLL } from './config';
 
 export const useTransitionRouter = () => {
 	const { navigate: baseNavigate, back, forward, replace, prefetch } = usePageTransition();
@@ -16,11 +15,15 @@ export const useTransitionRouter = () => {
 			if (config?.prefetch) prefetch(href);
 			if (config?.delay) await new Promise((resolve) => setTimeout(resolve, config.delay));
 
-			await baseNavigate(href, { ...config, skip: config?.instant });
+			await baseNavigate(href, {
+				...config,
+				skip: config?.instant,
+				scroll: config?.scrollTo ? false : config?.scroll ?? DEFAULT_IS_SCROLL, // Our `scrollTo` overrides Next.js `scroll`
+			});
 
 			if (config?.scrollTo) {
 				const element = document.getElementById(config.scrollTo);
-				element && setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), SCROLL_RESTORATION_DELAY);
+				element && element.scrollIntoView({ behavior: 'smooth' });
 			}
 		},
 		[baseNavigate, prefetch]

@@ -2,18 +2,15 @@
 
 import { ComponentProps, MouseEvent } from 'react';
 import NextLink from 'next/link';
-import { useIsCurrentPage, usePageTransition } from './TransitionProvider';
+import { cn } from '@/lib/utils';
 import type { TransitionConfig } from './types';
-import { usePathname } from 'next/navigation';
-import { cn } from '../utils';
+import { useIsCurrentPage, usePageTransition } from './TransitionProvider';
 import { getNormalizeHref } from './utils';
 
 type ClickEvent = MouseEvent<HTMLAnchorElement>;
-type Href = TransitionLinkProps['href'];
-interface TransitionLinkProps extends Omit<ComponentProps<typeof NextLink>, 'onClick'> {
-	transition?: TransitionConfig;
-	onClick?: (e: ClickEvent) => void;
-}
+
+type TransitionLinkProps = Omit<ComponentProps<typeof NextLink>, 'onClick' | 'scroll'> &
+	TransitionConfig & { onClick?: (e: ClickEvent) => void };
 
 const shouldInterceptClick = (e: ClickEvent, url: string) => {
 	return (
@@ -23,7 +20,7 @@ const shouldInterceptClick = (e: ClickEvent, url: string) => {
 	);
 };
 
-export const TransitionLink = ({ className, href, transition, onClick, ...props }: TransitionLinkProps) => {
+export const TransitionLink = ({ href, className, skip, scroll, onClick, ...props }: TransitionLinkProps) => {
 	const { navigate } = usePageTransition();
 	const isCurrent = useIsCurrentPage(href);
 	const url = getNormalizeHref(href);
@@ -32,7 +29,7 @@ export const TransitionLink = ({ className, href, transition, onClick, ...props 
 		onClick?.(e);
 		if (!shouldInterceptClick(e, url)) return;
 		e.preventDefault();
-		navigate(url, transition);
+		navigate(url, { skip, scroll });
 	};
 
 	return (
@@ -42,6 +39,7 @@ export const TransitionLink = ({ className, href, transition, onClick, ...props 
 			className={cn(className, isCurrent && 'pointer-events-none')}
 			aria-current={isCurrent ? 'page' : undefined}
 			aria-disabled={isCurrent}
+			scroll={false} // Handled it in navigate()
 			{...props}
 		/>
 	);

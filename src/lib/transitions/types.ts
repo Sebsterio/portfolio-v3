@@ -1,5 +1,6 @@
 export interface TransitionConfig {
 	skip?: boolean;
+	scroll?: boolean; // Control Next.js scroll behavior
 }
 
 // Providers
@@ -19,7 +20,7 @@ export type TransitionMethodsContext = {
 // Router
 
 export interface NavigationConfig extends TransitionConfig {
-	instant?: boolean;
+	instant?: boolean; // alias for `skip`
 	delay?: number;
 	scrollTo?: string;
 	prefetch?: boolean;

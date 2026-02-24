@@ -1,9 +1,24 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+/**
+ * TransitionProvider
+ *
+ * Architecture:
+ * - Provider: Core transition execution + navigation guard + sync with View Transitions API
+ * - useTransitionRouter: Convenience layer (delay, prefetch, condition, scrollTo)
+ * - TransitionLink: Link-specific wrapper
+ *
+ * Promise mechanism:
+ * - useTransitionReady signals when page is rendered (via useLayoutEffect)
+ * - Resolves the navigationComplete promise
+ * - Ensures View Transitions API captures correct DOM snapshot
+ */
+
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
 import { getNormalizeHref, isCurrentPage } from './utils';
+import { DEFAULT_IS_SCROLL } from './config';
 
 /* Contexts */
 
@@ -83,7 +98,6 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
 	const { transition, signalReady } = useTransition(setIsTransitioning);
 
-	// Keep ref in sync with pathname
 	useEffect(() => {
 		pathnameRef.current = pathname;
 	}, [pathname]);
@@ -104,10 +118,16 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 
 	const methods = useMemo(
 		() => ({
-			navigate: (href: string, config?: TransitionConfig) => navigate(href, () => router.push(href), config),
-			replace: (href: string, config?: TransitionConfig) => navigate(href, () => router.replace(href), config),
+			navigate: (href: string, config?: TransitionConfig) =>
+				navigate(href, () => router.push(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
+
+			replace: (href: string, config?: TransitionConfig) =>
+				navigate(href, () => router.replace(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
+
 			back: (config?: TransitionConfig) => transition(() => router.back(), config),
+
 			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
+
 			prefetch: (href: string) => router.prefetch(href),
 		}),
 		[router, navigate, transition]
