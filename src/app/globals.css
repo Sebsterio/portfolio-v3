@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import '@/lib/transitions/styles.css'; /* Page transitions */
-@import './projects/styles.css'; /* "Projects" page transitions */
 
 @layer base {
 	:root {

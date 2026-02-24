@@ -8,10 +8,7 @@ import { cn } from '@/lib/utils';
 import { BackLink } from '@/components/BackLink';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
-
-type CardsCollectionPageProps = {
-	projects: Project[];
-};
+import { PROJECT_PAGE_TITLE_ID } from '../[slug]/_config';
 
 const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: () => void }) => {
 	const [isHovered, setIsHovered] = useState(false);
@@ -21,7 +18,8 @@ const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: ()
 			onClick={onNavigate}
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
-			className='vt-project-card group relative h-[420px] rounded-[28px] overflow-hidden text-left'
+			className={cn('group relative h-[420px] rounded-[28px] overflow-hidden text-left')}
+			style={{ viewTransitionName: `project-card-${project.id}` }}
 			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
 		>
@@ -88,6 +86,10 @@ const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: ()
 	);
 };
 
+type CardsCollectionPageProps = {
+	projects: Project[];
+};
+
 export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
@@ -97,7 +99,11 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'>
 				{projects.map((project) => (
-					<ProjectCard key={project.id} project={project} onNavigate={() => navigate(`/projects/${project.slug}?view=cards`)} />
+					<ProjectCard
+						key={project.id}
+						project={project}
+						onNavigate={() => navigate(`/projects/${project.slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+					/>
 				))}
 			</div>
 		</div>

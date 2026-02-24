@@ -10,6 +10,7 @@ import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { projects } from '../../_content';
+import { PROJECT_PAGE_TITLE_ID } from '../_config';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -28,7 +29,6 @@ const projectGradients: Record<string, string> = {
 
 const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; onClick: () => void }) => {
 	const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
-
 	return (
 		<button
 			onClick={onClick}
@@ -126,14 +126,15 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 
 	const goToProject = (slug: string) => {
 		setFlipped(false);
-		navigate(`/projects/${slug}?view=cards`, { scroll: false });
+		navigate(`/projects/${slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID });
 	};
 
 	return (
 		<div className='w-full flex flex-col gap-8'>
-			{/* Container that matches card width on desktop */}
 			<div className='w-full max-w-4xl mx-auto'>
-				<BackLink href='/projects?view=cards'>All Projects</BackLink>
+				<BackLink href={`/projects?view=cards`} scroll={false}>
+					All Projects
+				</BackLink>
 			</div>
 
 			<div className='flex flex-col items-center gap-8'>
@@ -145,12 +146,12 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 					</div>
 
 					{/* Card Deck */}
-					<div className='vt-card-deck perspective-[2000px] w-full max-w-4xl mx-auto'>
+					<div className={cn('perspective-[2000px] w-full max-w-4xl mx-auto')} style={{ viewTransitionName: `project-card-${project.id}` }}>
 						<div ref={containerRef} className='relative transition-all duration-500 ease-in-out' style={{ minHeight: '600px' }}>
 							<AnimatePresence mode='wait'>
 								<motion.div
 									key={project.id}
-									initial={{ rotateY: 90, opacity: 0 }}
+									initial={{ rotateY: 0, opacity: 1 }}
 									animate={{ rotateY: 0, opacity: 1 }}
 									exit={{ rotateY: -90, opacity: 0 }}
 									transition={{ duration: 0.6, type: 'spring', stiffness: 100, damping: 20 }}
