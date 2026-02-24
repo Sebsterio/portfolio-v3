@@ -11,10 +11,13 @@ export type Project = {
 	role: string;
 	tags: string[];
 	thumbnail: string;
+	description: string[];
 	summary: string;
 	intro: string;
 	challenge: string;
 	solution: string;
 	impact: string[];
+	label: string;
 	link?: string;
+	roleDetail?: string;
 };

@@ -1,16 +1,15 @@
-// src/app/projects/components/TTEducationProject.tsx
 'use client';
 
 import { ProjectImage } from '../../../../components/ProjectImage';
 
-interface TTEducationProjectProps {
+interface TTProjectProps {
 	number: string;
 	title: string;
 	role: string;
 	description: string[];
 }
 
-export function TTEducationProject({ number, title, role, description }: TTEducationProjectProps) {
+export function TTProject({ number, title, role, description }: TTProjectProps) {
 	return (
 		<section className='relative -mt-12 ml-0 lg:ml-[5%] group'>
 			<div className='grid lg:grid-cols-2 gap-8 md:gap-12 items-start'>
