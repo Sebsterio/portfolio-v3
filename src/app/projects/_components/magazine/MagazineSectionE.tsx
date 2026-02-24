@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionEProps {
 	number: string;
@@ -28,13 +28,13 @@ export function MagazineSectionE({ number, megaTitle, preTitle, title, subtitle,
 			<div className='grid lg:grid-cols-[1fr_0.9fr] gap-8 md:gap-12 lg:gap-16 items-start pl-0 lg:pl-12 relative z-20'>
 				{/* Images Column */}
 				<div className='flex flex-col gap-8'>
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-ao-main'
 						className='w-full h-[200px] md:h-[280px] lg:h-[300px] shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(240,147,251,0.2)] hover:scale-[1.02] hover:-rotate-1'
 						overlayType='dark'
 					/>
 
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-ao-small'
 						className='w-3/4 h-[150px] md:h-[200px] lg:h-[220px] ml-auto shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 order-3 lg:order-none'
 						overlayType='none'

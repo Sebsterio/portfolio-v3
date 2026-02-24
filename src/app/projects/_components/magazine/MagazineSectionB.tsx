@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionBProps {
 	number: string;
@@ -46,19 +46,19 @@ export function MagazineSectionB({ number, megaTitle, preTitle, title, subtitle,
 
 				{/* Images Column */}
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-6 order-[-1] lg:order-none'>
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-meco-main'
 						className='md:col-span-2 h-[200px] md:h-[280px] lg:h-[300px] shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(250,112,154,0.2)] hover:scale-[1.02]'
 						overlayType='dark'
 					/>
 
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-meco-2'
 						className='h-[150px] md:h-[180px] lg:h-[200px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:-rotate-2'
 						overlayType='none'
 					/>
 
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-meco-3'
 						className='h-[150px] md:h-[180px] lg:h-[200px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:rotate-2'
 						overlayType='none'

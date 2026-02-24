@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionDProps {
 	number: string;
@@ -18,7 +18,7 @@ export function MagazineSectionD({ number, title, subtitle, description }: Magaz
 			</div>
 
 			{/* Large Image */}
-			<ProjectImage
+			<ProjectImage_Placeholder
 				gradient='bg-gradient-ebit-main'
 				className='w-full h-[250px] md:h-[320px] lg:h-[380px] mb-8 lg:mb-8 shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(106,17,203,0.2)] hover:scale-[1.01]'
 				overlayType='light'
@@ -45,7 +45,7 @@ export function MagazineSectionD({ number, title, subtitle, description }: Magaz
 				</div>
 
 				{/* Small Image */}
-				<ProjectImage
+				<ProjectImage_Placeholder
 					gradient='bg-gradient-ebit-small'
 					className='w-full lg:w-full h-[200px] md:h-[250px] lg:h-[350px] shadow-[0_25px_60px_rgba(0,0,0,0.6)] lg:-translate-x-12 lg:translate-y-8 -translate-y-12 lg:mt-0 w-[70%] hover:lg:-translate-x-14 hover:lg:translate-y-6 hover:scale-[1.02] transition-all duration-500'
 					overlayType='none'

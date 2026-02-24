@@ -10,7 +10,6 @@ export type Project = {
 	location: string;
 	role: string;
 	tags: string[];
-	thumbnail: string;
 	description: string[];
 	summary: string;
 	intro: string;
@@ -18,6 +17,10 @@ export type Project = {
 	solution: string;
 	impact: string[];
 	label: string;
+	images: {
+		thumbnail: string;
+		main: string;
+	};
 	link?: string;
 	roleDetail?: string;
 	freelance?: boolean;

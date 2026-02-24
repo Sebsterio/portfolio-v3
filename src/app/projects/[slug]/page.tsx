@@ -4,13 +4,15 @@ import { use } from 'react';
 import { useSearchParams, notFound } from 'next/navigation';
 import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 import { DisplayModeSwitcher } from '../_components/DisplayModeSwitcher';
-import { getProjectBySlug } from '../_content';
+import { projects } from '../_content';
 import type { DisplayMode } from '../../../types';
 import { TimelineProjectPage } from './_components/TimelineProjectPage';
 import { CardsProjectPage } from './_components/CardsProjectPage';
 import { UnderConstructionPage } from '@/components/pages/UnderConstructionPage';
 // import { MagazineProjectPage } from './_components/MagazineProjectPage';
 import { BackLink } from '@/components/BackLink';
+
+const getProjectBySlug = (slug: string) => projects.find((project) => project.slug === slug);
 
 type ProjectPageProps = {
 	params: Promise<{ slug: string }>;

@@ -9,11 +9,13 @@ import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { projects } from '../../_content';
+import { ProjectImage } from '@/components/ProjectImage';
 
 type CardsProjectPageProps = {
 	project: Project;
 };
 
+// TODO: mv out of here; and index by id; also rename these tw classes
 const projectGradients: Record<string, string> = {
 	'bounce-component-library': 'bg-gradient-bounce-main',
 	'underground-meco-event-platform': 'bg-gradient-meco-main',
@@ -188,10 +190,14 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 													<p className='text-xl md:text-2xl text-chrome-silver/80'>{project.company}</p>
 												</div>
 
-												{/* Image Placeholder */}
-												<div className={cn('h-64 md:h-80 rounded-2xl flex items-center justify-center', gradientClass)}>
-													<span className='text-white/40 text-sm font-semibold'>Project Screenshot</span>
-												</div>
+												<ProjectImage
+													src={project.images.main}
+													alt={`Screenshot of ${project.title}`}
+													sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 896px'
+													className={cn('h-64 md:h-80 rounded-2xl', gradientClass)}
+													fallbackClass='text-white/50 text-sm font-semibold'
+													fallbackText='Screenshot Unavailable'
+												/>
 
 												{/* Footer */}
 												<div className='space-y-4 pb-2'>

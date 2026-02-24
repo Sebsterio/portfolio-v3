@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionCProps {
 	number: string;
@@ -38,7 +38,7 @@ export function MagazineSectionC({ number, title, subTitle, description }: Magaz
 
 				{/* Image Column */}
 				<div className='pt-4 md:pt-8 lg:mr-0 xl:mr-12'>
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-tt'
 						className='w-full h-[250px] md:h-[320px] lg:h-[380px] shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_50px_rgba(79,172,254,0.2)] hover:scale-[1.02] hover:-rotate-1'
 					/>

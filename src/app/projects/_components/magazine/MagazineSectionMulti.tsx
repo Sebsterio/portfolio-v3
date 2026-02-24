@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionMultiProps {
 	number: string;
@@ -46,7 +46,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 							{/* Small image - shows next to text on mobile for first project only */}
 							{index === 0 && (
 								<div className='md:hidden'>
-									<ProjectImage
+									<ProjectImage_Placeholder
 										gradient='bg-gradient-freelance-small'
 										className='w-full h-[150px] border-4 md:border-6 border-white/90'
 										overlayType='none'
@@ -60,15 +60,15 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 				{/* Images Column */}
 				<div className='relative'>
 					{/* Main Image */}
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-freelance-main'
 						className='w-full h-[300px] md:h-[400px] lg:h-[500px] shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] hover:scale-[1.02] hover:rotate-1'
 					>
 						<div className='absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30' />
-					</ProjectImage>
+					</ProjectImage_Placeholder>
 
 					{/* Small Polaroid Image - desktop only */}
-					<ProjectImage
+					<ProjectImage_Placeholder
 						gradient='bg-gradient-freelance-small'
 						className='hidden lg:block absolute bottom-[-15%] left-[-8%] w-[45%] h-[180px] xl:h-[220px] shadow-[0_20px_50px_rgba(0,0,0,0.6)] rotate-[8deg] hover:rotate-[5deg] hover:scale-105 border-8 border-white/90'
 						overlayType='none'
