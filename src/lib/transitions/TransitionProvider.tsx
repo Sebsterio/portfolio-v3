@@ -104,14 +104,11 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
-			const currentPath = pathnameRef.current;
-
-			if (isCurrentPage(href, currentPath)) {
-				devWarn(`[Navigation] Blocked: Already on ${href}`);
-				return Promise.resolve();
+			if (!isCurrentPage(href, pathnameRef.current)) {
+				return transition(action, config);
 			}
-
-			return transition(action, config);
+			devWarn(`[Navigation] Blocked: Already on ${href}`);
+			return Promise.resolve();
 		},
 		[transition]
 	);

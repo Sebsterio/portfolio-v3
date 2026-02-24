@@ -47,7 +47,7 @@ export default function AboutPage({}: AboutPageProps) {
 			</div>
 
 			{/* Sidebar Column */}
-			<div className={cn('space-y-5 md:space-y-6', 'vt-right')}>
+			<div className={cn('space-y-5 md:space-y-6', 'vt-right lg:vt-main')}>
 				<GlassCard title={copy.sectionTitles.quickFacts}>
 					<div className='space-y-4 md:space-y-6 my-5 md:my-6'>
 						{quickFacts.map(({ label, value }) => (

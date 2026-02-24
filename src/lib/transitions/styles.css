@@ -5,9 +5,9 @@
 :root {
 	--vt-distance: 100%;
 	--vt-duration: 400ms;
-	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
 	--vt-exit-duration: 200ms;
 	--vt-enter-duration: 400ms;
+	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
 	--vt-exit-easing: cubic-bezier(0.4, 0, 1, 1);
 	--vt-enter-easing: cubic-bezier(0.2, 0, 0.2, 1);
 }
@@ -32,39 +32,8 @@
 	 Page-Slot Transitions
    ========================================================================== */
 
-/* SPEC:
-		TRANSITION		|	MOBILE	| DESKTOP
-		 vt-left			|  left		|  left
-		 vt-right			|  fade		|  right
-		 vt-top				|  top		|  top
-		 vt-bottom		|  fade		|  bottom
-*/
-
-/* MOBILE */
 /* prettier-ignore */
-@media (max-width: 1023px) {
-	::view-transition-old(*),
-	::view-transition-new(*) {
-		animation-duration: var(--vt-duration);
-		animation-timing-function: var(--vt-easing);
-	}
-
-	::view-transition-old(vt-left)		{ animation-name: vt-exit-left }	
-	::view-transition-new(vt-left)		{ animation-name: vt-enter-left }
-
-	::view-transition-old(vt-right)		{ animation-name: vt-exit-fade	}
-	::view-transition-new(vt-right)		{ animation-name: vt-enter-fade }
-
-	::view-transition-old(vt-top)			{ animation-name: vt-exit-top	}
-	::view-transition-new(vt-top)			{ animation-name: vt-enter-top	}
-
-	::view-transition-old(vt-bottom)	{ animation-name: vt-exit-fade	}
-	::view-transition-new(vt-bottom)	{ animation-name: vt-enter-fade	}
-}
-
-/* DESKTOP */
-/* prettier-ignore */
-@media (min-width: 1024px) {
+@media screen {
 	::view-transition-old(*) {
 		animation-duration: var(--vt-exit-duration);
 		animation-timing-function: var(--vt-exit-easing);
@@ -73,6 +42,18 @@
 		animation-duration: var(--vt-enter-duration);
 		animation-timing-function: var(--vt-enter-easing);
 	}
+
+	::view-transition-old(vt-main)		{ animation-name: vt-exit-fade }	
+	::view-transition-new(vt-main)		{ animation-name: vt-enter-fade }
+
+	::view-transition-old(vt-card)		{ animation-name: vt-exit-fade }	
+	::view-transition-new(vt-card)		{ animation-name: vt-enter-fade }
+
+	::view-transition-old(vt-left)		{ animation-name: vt-exit-left }	
+	::view-transition-new(vt-left)		{ animation-name: vt-enter-left }
+
+	::view-transition-old(vt-top)			{ animation-name: vt-exit-top	}
+	::view-transition-new(vt-top)			{ animation-name: vt-enter-top	}
 
 	::view-transition-old(vt-right)		{ animation-name: vt-exit-right	}
 	::view-transition-new(vt-right)		{ animation-name: vt-enter-right }

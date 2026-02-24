@@ -1,8 +1,9 @@
 'use client';
 
+import { cn } from '@/lib/utils';
+import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 import { Title, TextBlock, LabeledValueRow, GlassCard } from '@/components';
 import { copy } from './_content';
-import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
 
 export function UnderConstructionPage() {
 	useTransitionReady();
@@ -18,7 +19,7 @@ export function UnderConstructionPage() {
 				</TextBlock>
 			</div>
 
-			<div className='vt-right mt-8'>
+			<div className={cn('vt-right lg:vt-main', 'mt-8')}>
 				<GlassCard title={copy.cardTitle}>
 					<div className='space-y-6 my-6'>
 						{copy.cardRows.map(({ label, value }) => (

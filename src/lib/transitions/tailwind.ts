@@ -1,6 +1,19 @@
 import plugin from 'tailwindcss/plugin';
 
-const SLOTS = ['left', 'right', 'bottom', 'top'] as const;
+const SLOTS = [
+	'main',
+	'left',
+	'right',
+	'bottom',
+	'top',
+	'project-card',
+	'card',
+	'card-deck',
+	'magazine-card',
+	'magazine-project',
+	'timeline-side',
+	'timeline-main',
+] as const;
 
 /**
  * Shared transtion utilities (vt-background, vt-sidepanel)
