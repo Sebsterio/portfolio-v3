@@ -23,6 +23,7 @@ const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Project; 
 			'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300',
 			isActive ? 'bg-accent-blue/10 border border-accent-blue/30' : 'hover:bg-white/[0.03] border border-transparent'
 		)}
+		// style={{ viewTransitionName: `project-card-${project.id}` }}
 	>
 		<TimelineDot active={isActive} size='sm' className='absolute left-[14px] top-1/2 -translate-y-1/2' />
 
@@ -38,8 +39,8 @@ const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Project; 
 	</button>
 );
 
-const ProjectContentCard = ({ project }: { project: Project }) => (
-	<GlassCard className='p-8 md:p-12 space-y-8'>
+const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
+	<GlassCard className={cn('p-8 md:p-12 space-y-8', className)}>
 		{/* Decorative gradients */}
 		<div className='gradient-accent-tr' />
 		<div className='absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-cyan/10 to-transparent rounded-2xl' />
@@ -113,7 +114,7 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 
 	const handleProjectClick = (p: Project) => {
 		setExpandedId(p.id);
-		navigate(`/projects/${p.slug}?view=timeline`, { scrollTo: PROJECT_PAGE_TITLE_ID });
+		navigate(`/projects/${p.slug}?view=timeline`, { scroll: false /* scrollTo: PROJECT_PAGE_TITLE_ID */ });
 	};
 
 	return (
@@ -122,7 +123,7 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 
 			{/* Desktop */}
 			<div className='hidden lg:grid lg:grid-cols-[320px_1fr] gap-8 w-full'>
-				<aside className='relative'>
+				<aside className='vt-main relative'>
 					<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
 
 					<div className='space-y-3'>
@@ -133,7 +134,7 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 				</aside>
 
 				<main>
-					<ProjectContentCard project={project} />
+					<ProjectContentCard className={cn('vt-right')} project={project} />
 				</main>
 			</div>
 

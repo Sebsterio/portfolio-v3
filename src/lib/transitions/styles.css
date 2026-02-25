@@ -46,9 +46,6 @@
 	::view-transition-old(vt-main)		{ animation-name: vt-exit-fade }	
 	::view-transition-new(vt-main)		{ animation-name: vt-enter-fade }
 
-	::view-transition-old(vt-card)		{ animation-name: vt-exit-fade }	
-	::view-transition-new(vt-card)		{ animation-name: vt-enter-fade }
-
 	::view-transition-old(vt-left)		{ animation-name: vt-exit-left }	
 	::view-transition-new(vt-left)		{ animation-name: vt-enter-left }
 

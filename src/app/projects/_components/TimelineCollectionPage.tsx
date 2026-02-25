@@ -1,5 +1,6 @@
 'use client';
 
+import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';
@@ -16,7 +17,8 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	const { navigate } = useTransitionRouter();
 
 	return (
-		<div className='w-full space-y-8'>
+		// TRY to move into both inner divs, once this works
+		<div className='vt-main w-full space-y-8'>
 			<BackLink href='/'>Back to Home</BackLink>
 
 			{/* Desktop Wide (horizontal dates) */}
@@ -38,7 +40,8 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 							<GlassCard
 								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
 								withAccent
-								className='vt-project-card flex-1 text-left p-8 hover:translate-x-2'
+								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
+								// style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-4'>
 									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
@@ -83,7 +86,8 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 							<GlassCard
 								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
 								withAccent
-								className='vt-project-card w-full text-left ml-8 p-8 hover:translate-x-2'
+								className={cn('w-full text-left ml-8 p-8 hover:translate-x-2')}
+								// style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-4'>
 									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
@@ -122,7 +126,8 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
 								withAccent
 								accentPosition='top-right'
-								className='vt-project-card w-full text-left p-6'
+								className={cn('', 'w-full text-left p-6')}
+								// style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-3'>
 									<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>{project.title}</h3>
