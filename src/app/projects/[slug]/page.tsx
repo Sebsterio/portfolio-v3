@@ -25,11 +25,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 	const searchParams = useSearchParams();
 	const view = (searchParams.get('view') as DisplayMode) || 'timeline';
 
-	const project = getProjectBySlug(slug);
+	const currentProject = getProjectBySlug(slug);
 
-	if (!project) {
-		notFound();
-	}
+	if (!currentProject) notFound();
 	// TEMP
 	if (view === 'magazine') {
 		return (
@@ -49,18 +47,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 			{/* Page Header */}
 			<div className='text-center space-y-4'>
 				<h1 id={PROJECT_PAGE_TITLE_ID} className='font-urbanist text-4xl md:text-5xl font-bold text-chrome-silver'>
-					{project.title}
+					{currentProject.title}
 				</h1>
 				<p className='text-chrome-silver/70 text-lg'>
-					{project.company} · {project.period}
+					{currentProject.company} · {currentProject.period}
 				</p>
 				<DisplayModeSwitcher currentMode={view} basePath={`/projects/${slug}`} />
 			</div>
 
 			{/* Page Content */}
-			{view === 'timeline' && <TimelineProjectPage project={project} />}
-			{view === 'cards' && <CardsProjectPage project={project} />}
-			{/* {view === 'magazine' && <MagazineProjectPage project={project} />} */}
+			{view === 'timeline' && <TimelineProjectPage project={currentProject} />}
+			{view === 'cards' && <CardsProjectPage project={currentProject} />}
+			{/* {view === 'magazine' && <MagazineProjectPage project={currentProject} />} */}
 		</div>
 	);
 }

@@ -37,10 +37,12 @@
 	::view-transition-old(*) {
 		animation-duration: var(--vt-exit-duration);
 		animation-timing-function: var(--vt-exit-easing);
+		animation-name: vt-fade-out;
 	}
 	::view-transition-new(*) {
 		animation-duration: var(--vt-enter-duration);
 		animation-timing-function: var(--vt-enter-easing);
+		animation-name: vt-fade-in;
 	}
 
 	::view-transition-old(vt-main)		{ animation-name: vt-fade-out }	
@@ -57,22 +59,29 @@
 	
 	::view-transition-old(vt-bottom)	{ animation-name: vt-slide-out-bottom	}
 	::view-transition-new(vt-bottom)	{ animation-name: vt-slide-in-bottom	}
+	
+	::view-transition-old(vt-accordeon)	{ animation-name: vt-y-collapse	}
+	::view-transition-new(vt-accordeon)	{ animation-name: vt-y-expand	}
 }
 
 /* ==========================================================================
    Keyframes
    ========================================================================== */
 
-@keyframes vt-fade-out {
-	to {
-		opacity: 0;
-	}
+/* @keyframes vt-y-collapse {
+	from { transform-origin: top;	}
+	to { transform-origin: top;	transform: scaleY(0);	}
 }
-@keyframes vt-fade-in {
-	from {
-		opacity: 0;
-	}
-}
+@keyframes vt-y-expand {
+	from { transform-origin: top; transform: scaleY(0);	}
+	to { transform-origin: top;	}
+} */
+
+/* prettier-ignore */
+@keyframes vt-fade-out 	{ to 		{ opacity: 0;	}}
+/* prettier-ignore */
+@keyframes vt-fade-in 	{ from 	{ opacity: 0; }}
+
 @keyframes vt-slide-out-left {
 	to {
 		transform: translateX(calc(var(--vt-distance) * -1));
@@ -85,7 +94,8 @@
 		opacity: 0;
 	}
 }
-@keyframes vt-slide-in-right {
+
+@keyframes vt-slide-out-right {
 	to {
 		transform: translateX(var(--vt-distance));
 		opacity: 0;
@@ -97,6 +107,7 @@
 		opacity: 0;
 	}
 }
+
 @keyframes vt-slide-out-bottom {
 	to {
 		transform: translateY(var(--vt-distance));
@@ -109,6 +120,7 @@
 		opacity: 0;
 	}
 }
+
 @keyframes vt-slide-out-top {
 	to {
 		transform: translateY(calc(var(--vt-distance) * -1));

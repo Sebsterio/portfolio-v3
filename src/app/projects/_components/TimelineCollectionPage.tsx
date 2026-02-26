@@ -17,12 +17,11 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	const { navigate } = useTransitionRouter();
 
 	return (
-		// TRY to move into both inner divs, once this works
-		<div className='vt-main w-full space-y-8'>
+		<div className='w-full space-y-8'>
 			<BackLink href='/'>Back to Home</BackLink>
 
 			{/* Desktop Wide (horizontal dates) */}
-			<div className='hidden xl:block relative w-full'>
+			<div className='vt-main hidden xl:block relative w-full'>
 				<TimelineLine position='center' className='left-32' />
 
 				<div className='space-y-12'>
@@ -63,7 +62,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow (rotated dates) */}
-			<div className='hidden md:block xl:hidden relative w-full pl-8'>
+			<div className='vt-main hidden md:block xl:hidden relative w-full pl-8'>
 				<TimelineLine position='left' />
 
 				<div className='space-y-12'>
@@ -84,10 +83,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
+								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
 								withAccent
 								className={cn('w-full text-left ml-8 p-8 hover:translate-x-2')}
-								// style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-4'>
 									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
@@ -109,7 +107,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Mobile */}
-			<div className='md:hidden relative'>
+			<div className={cn(/* 'vt-main', */ 'md:hidden relative')}>
 				<TimelineLine position='left' />
 
 				<div className='space-y-6'>
@@ -123,11 +121,11 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
+								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
 								withAccent
 								accentPosition='top-right'
-								className={cn('', 'w-full text-left p-6')}
-								// style={{ viewTransitionName: `project-card-${project.id}` }}
+								className={cn('w-full text-left p-6')}
+								style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-3'>
 									<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>{project.title}</h3>

@@ -110,16 +110,16 @@ const ProjectContentCard = ({ project, className }: { project: Project; classNam
 
 export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
-	const [expandedId, setExpandedId] = useState(project.id);
 
 	const handleProjectClick = (p: Project) => {
-		setExpandedId(p.id);
-		navigate(`/projects/${p.slug}?view=timeline`, { scroll: false /* scrollTo: PROJECT_PAGE_TITLE_ID */ });
+		navigate(`/projects/${p.slug}?view=timeline`, { scroll: false });
 	};
 
 	return (
 		<>
-			<BackLink href='/projects?view=timeline'>All Projects</BackLink>
+			<BackLink href='/projects?view=timeline' scroll={false}>
+				All Projects
+			</BackLink>
 
 			{/* Desktop */}
 			<div className='hidden lg:grid lg:grid-cols-[320px_1fr] gap-8 w-full'>
@@ -128,34 +128,38 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 
 					<div className='space-y-3'>
 						{projects.map((p) => (
-							<ProjectSidebarItem key={p.id} project={p} isActive={expandedId === p.id} onClick={() => handleProjectClick(p)} />
+							<ProjectSidebarItem key={p.id} project={p} isActive={project.id === p.id} onClick={() => handleProjectClick(p)} />
 						))}
 					</div>
 				</aside>
 
 				<main>
-					<ProjectContentCard className={cn('vt-right')} project={project} />
+					<ProjectContentCard className='vt-right' project={project} />
 				</main>
 			</div>
 
 			{/* Mobile */}
-			<div className='lg:hidden relative'>
+			<div className={cn('lg:hidden relative')}>
 				<TimelineLine position='left' />
 
 				<div className='space-y-3'>
 					{projects.map((p) => {
-						const isExpanded = expandedId === p.id;
+						const isExpanded = p.id === project.id;
 
 						return (
 							<div key={p.id}>
 								{isExpanded ? (
-									<div className='space-y-4'>
+									<div className={cn('space-y-4')}>
 										<div className='flex items-center gap-3'>
 											<TimelineDot active />
 											<div className='text-xs text-accent-cyan font-semibold'>{p.period}</div>
 										</div>
 
-										<GlassCard withAccent className='p-6 space-y-6 border-accent-blue/30'>
+										<GlassCard
+											withAccent
+											className='p-6 space-y-6 border-accent-blue/30'
+											style={{ viewTransitionName: `project-card-${p.id}` }}
+										>
 											<div className='relative space-y-4'>
 												<div className='space-y-2'>
 													<h2 className='font-urbanist text-3xl font-bold text-chrome-silver'>{p.title}</h2>
@@ -205,7 +209,10 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 								) : (
 									<button
 										onClick={() => handleProjectClick(p)}
-										className='relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/[0.03] border border-transparent'
+										className={cn(
+											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/[0.03] border border-transparent'
+										)}
+										style={{ viewTransitionName: `project-card-${p.id}` }}
 									>
 										<TimelineDot size='sm' className='absolute left-[6px] top-1/2 -translate-y-1/2' />
 

@@ -13,6 +13,7 @@ const SLOTS = [
 	'magazine-project',
 	'timeline-side',
 	'timeline-main',
+	'accordeon',
 ] as const;
 
 /**
