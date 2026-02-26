@@ -2,20 +2,23 @@
    Base Configuration
    ========================================================================== */
 
-:root {
-	--vt-distance: 100%;
-	--vt-duration: 400ms;
-	--vt-exit-duration: 200ms;
-	--vt-enter-duration: 400ms;
-	--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
-	--vt-exit-easing: cubic-bezier(0.4, 0, 1, 1);
-	--vt-enter-easing: cubic-bezier(0.2, 0, 0.2, 1);
-}
+/* TEMP wrapper */
+@media all {
+	:root {
+		--vt-distance: 100%;
+		--vt-duration: 400ms;
+		--vt-exit-duration: 200ms;
+		--vt-enter-duration: 400ms;
+		--vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
+		--vt-exit-easing: cubic-bezier(0.4, 0, 1, 1);
+		--vt-enter-easing: cubic-bezier(0.2, 0, 0.2, 1);
+	}
 
-/* Prevent root flash (edge cases) */
-::view-transition-old(root),
-::view-transition-new(root) {
-	animation-duration: 0.001ms;
+	/* Prevent root flash (edge cases) */
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 0.001ms;
+	}
 }
 
 /* Reduced motion */
@@ -32,56 +35,54 @@
 	 Page-Slot Transitions
    ========================================================================== */
 
+/* TODO: check specificity vs reduced-motion - OR: ignore file - OR: use pre-proc - OR: up TW */
 /* prettier-ignore */
-@media screen {
+@media all {
 	::view-transition-old(*) {
-		animation-duration: var(--vt-exit-duration);
-		animation-timing-function: var(--vt-exit-easing);
-		animation-name: vt-fade-out;
+		animation-duration: 					var(--vt-exit-duration);
+		animation-timing-function: 		var(--vt-exit-easing);
+		animation-name: 							vt-fade-out;
 	}
 	::view-transition-new(*) {
-		animation-duration: var(--vt-enter-duration);
-		animation-timing-function: var(--vt-enter-easing);
-		animation-name: vt-fade-in;
+		animation-duration: 					var(--vt-enter-duration);
+		animation-timing-function:		var(--vt-enter-easing);
+		animation-name:								vt-fade-in;
 	}
 
-	::view-transition-old(vt-main)		{ animation-name: vt-fade-out }	
-	::view-transition-new(vt-main)		{ animation-name: vt-fade-in }
+	::view-transition-old(vt-main)		{ animation-name: vt-fade-out 				}	
+	::view-transition-new(vt-main)		{ animation-name: vt-fade-in  				}
 
-	::view-transition-old(vt-left)		{ animation-name: vt-slide-out-left }	
-	::view-transition-new(vt-left)		{ animation-name: vt-slide-in-left }
+	::view-transition-old(vt-left)		{ animation-name: vt-slide-out-left 	}	
+	::view-transition-new(vt-left)		{ animation-name: vt-slide-in-left  	}
 	
-	::view-transition-old(vt-top)			{ animation-name: vt-slide-out-top	}
-	::view-transition-new(vt-top)			{ animation-name: vt-slide-in-top	}
+	::view-transition-old(vt-top)			{ animation-name: vt-slide-out-top  	}
+	::view-transition-new(vt-top)			{ animation-name: vt-slide-in-top	 		}
 
-	::view-transition-old(vt-right)		{ animation-name: vt-slide-out-right	}
-	::view-transition-new(vt-right)		{ animation-name: vt-slide-in-right }
+	::view-transition-old(vt-right)		{ animation-name: vt-slide-out-right  }
+	::view-transition-new(vt-right)		{ animation-name: vt-slide-in-right   }
 	
 	::view-transition-old(vt-bottom)	{ animation-name: vt-slide-out-bottom	}
 	::view-transition-new(vt-bottom)	{ animation-name: vt-slide-in-bottom	}
-	
-	::view-transition-old(vt-accordeon)	{ animation-name: vt-y-collapse	}
-	::view-transition-new(vt-accordeon)	{ animation-name: vt-y-expand	}
+
 }
 
 /* ==========================================================================
    Keyframes
    ========================================================================== */
 
-/* @keyframes vt-y-collapse {
-	from { transform-origin: top;	}
-	to { transform-origin: top;	transform: scaleY(0);	}
+/* Fade */
+@keyframes vt-fade-out {
+	to {
+		opacity: 0;
+	}
 }
-@keyframes vt-y-expand {
-	from { transform-origin: top; transform: scaleY(0);	}
-	to { transform-origin: top;	}
-} */
+@keyframes vt-fade-in {
+	from {
+		opacity: 0;
+	}
+}
 
-/* prettier-ignore */
-@keyframes vt-fade-out 	{ to 		{ opacity: 0;	}}
-/* prettier-ignore */
-@keyframes vt-fade-in 	{ from 	{ opacity: 0; }}
-
+/* Slide Left */
 @keyframes vt-slide-out-left {
 	to {
 		transform: translateX(calc(var(--vt-distance) * -1));
@@ -95,6 +96,7 @@
 	}
 }
 
+/* Slide Right */
 @keyframes vt-slide-out-right {
 	to {
 		transform: translateX(var(--vt-distance));
@@ -108,6 +110,7 @@
 	}
 }
 
+/* Slide Bottom */
 @keyframes vt-slide-out-bottom {
 	to {
 		transform: translateY(var(--vt-distance));
@@ -121,6 +124,7 @@
 	}
 }
 
+/* Slide Top  */
 @keyframes vt-slide-out-top {
 	to {
 		transform: translateY(calc(var(--vt-distance) * -1));

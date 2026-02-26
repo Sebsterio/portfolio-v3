@@ -21,7 +21,10 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			<BackLink href='/'>Back to Home</BackLink>
 
 			{/* Desktop Wide (horizontal dates) */}
-			<div className='vt-main hidden xl:block relative w-full'>
+			<div
+				className='vt-main hidden xl:block relative w-full'
+				// className={cn(/* 'vt-main', */ 'hidden xl:block relative w-full')} //
+			>
 				<TimelineLine position='center' className='left-32' />
 
 				<div className='space-y-12'>
@@ -37,7 +40,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`)}
+								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
 								withAccent
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 								// style={{ viewTransitionName: `project-card-${project.id}` }}
@@ -62,7 +65,10 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow (rotated dates) */}
-			<div className='vt-main hidden md:block xl:hidden relative w-full pl-8'>
+			<div
+				className='vt-main hidden md:block xl:hidden relative w-full pl-8'
+				// className={cn(/* 'vt-main', */ 'hidden md:block xl:hidden relative w-full pl-8')}
+			>
 				<TimelineLine position='left' />
 
 				<div className='space-y-12'>

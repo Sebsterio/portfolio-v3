@@ -19,7 +19,7 @@ export const DisplayModeSwitcher = ({ currentMode, basePath = '/projects' }: Dis
 	const { navigate } = useTransitionRouter();
 
 	const handleModeChange = (view: DisplayMode) => {
-		navigate(`${basePath}?view=${view}`);
+		navigate(`${basePath}?view=${view}`, { scroll: false });
 	};
 
 	return (

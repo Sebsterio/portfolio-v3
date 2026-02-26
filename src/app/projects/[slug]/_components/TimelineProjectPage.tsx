@@ -123,7 +123,10 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 
 			{/* Desktop */}
 			<div className='hidden lg:grid lg:grid-cols-[320px_1fr] gap-8 w-full'>
-				<aside className='vt-main relative'>
+				<aside
+					className='vt-main relative'
+					// className='relative' //
+				>
 					<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
 
 					<div className='space-y-3'>

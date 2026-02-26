@@ -6,7 +6,7 @@ import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
 import { BackLink } from '@/components/BackLink';
-import { GlassCard1 as GlassCard } from '@/components/GlassCard';
+// import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../[slug]/_config';
 
@@ -97,7 +97,10 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 		<div className='w-full space-y-8'>
 			<BackLink href='/'>Back to Home</BackLink>
 
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'>
+			<div
+				className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'
+				//  className={cn(/* 'vt-main', */ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto')}
+			>
 				{projects.map((project) => (
 					<ProjectCard
 						key={project.id}
