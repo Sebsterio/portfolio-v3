@@ -9,7 +9,7 @@ import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
-import { projects } from '../_content';
+import { projects } from '../../_content';
 import { PROJECT_PAGE_TITLE_ID } from '../_config';
 
 type CardsProjectPageProps = {
@@ -115,24 +115,24 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	const goToNext = () => {
 		const nextIndex = (currentIndex + 1) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/cards/${projects[nextIndex].slug}`, { scroll: false });
+		navigate(`/projects/${projects[nextIndex].slug}?view=cards`, { scroll: false });
 	};
 
 	const goToPrev = () => {
 		const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/cards/${projects[prevIndex].slug}`, { scroll: false });
+		navigate(`/projects/${projects[prevIndex].slug}?view=cards`, { scroll: false });
 	};
 
 	const goToProject = (slug: string) => {
 		setFlipped(false);
-		navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID });
+		navigate(`/projects/${slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID });
 	};
 
 	return (
 		<div className='w-full flex flex-col gap-8'>
 			<div className='w-full max-w-4xl mx-auto'>
-				<BackLink href={`/projects/cards`} scroll={false}>
+				<BackLink href={`/projects?view=cards`} scroll={false}>
 					All Projects
 				</BackLink>
 			</div>

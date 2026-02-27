@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { BackLink } from '@/components/BackLink';
 // import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
-import { PROJECT_PAGE_TITLE_ID } from '../_config';
+import { PROJECT_PAGE_TITLE_ID } from '../[slug]/_config';
 
 const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: () => void }) => {
 	const [isHovered, setIsHovered] = useState(false);
@@ -105,7 +105,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 					<ProjectCard
 						key={project.id}
 						project={project}
-						onNavigate={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+						onNavigate={() => navigate(`/projects/${project.slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
 					/>
 				))}
 			</div>

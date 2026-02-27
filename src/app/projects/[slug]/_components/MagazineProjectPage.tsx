@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import { projects } from '../_content';
-import { Project } from '../../../types';
+import { projects } from '../../_content';
+import { Project } from '../../../../types';
 
 type MagazineProjectPageProps = {
 	project: Project;
@@ -86,7 +86,7 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 					{projects.map((p) => (
 						<button
 							key={p.id}
-							onClick={() => navigate(`/projects/magazine/${p.slug}`)}
+							onClick={() => navigate(`/projects/${p.slug}?view=magazine`)}
 							className={cn(
 								'w-2 h-2 rounded-full transition-all duration-300',
 								p.id === project.id ? 'bg-accent-blue w-6' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50'

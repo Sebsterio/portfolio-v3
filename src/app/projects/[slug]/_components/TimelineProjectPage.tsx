@@ -9,7 +9,7 @@ import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
-import { projects } from '../_content';
+import { projects } from '../../_content';
 import { PROJECT_PAGE_TITLE_ID } from '../_config';
 
 type TimelineProjectPageProps = {
@@ -112,12 +112,12 @@ export const TimelineProjectPage = ({ project }: TimelineProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	const handleProjectClick = (p: Project) => {
-		navigate(`/projects/timeline/${p.slug}`, { scroll: false });
+		navigate(`/projects/${p.slug}?view=timeline`, { scroll: false });
 	};
 
 	return (
 		<>
-			<BackLink href='/projects/timeline' scroll={false}>
+			<BackLink href='/projects?view=timeline' scroll={false}>
 				All Projects
 			</BackLink>
 

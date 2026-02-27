@@ -5,9 +5,8 @@ import { cn } from '@/lib/utils';
 import type { DisplayMode } from '../../../types';
 
 type DisplayModeSwitcherProps = {
-	currentMode?: DisplayMode;
+	currentMode: DisplayMode;
 	basePath?: string;
-	subPath?: string;
 };
 
 const views: { value: DisplayMode; label: string }[] = [
@@ -16,16 +15,11 @@ const views: { value: DisplayMode; label: string }[] = [
 	{ value: 'magazine', label: 'Magazine' },
 ];
 
-export const DisplayModeSwitcher = ({
-	currentMode,
-	basePath = '/projects',
-	subPath, //
-}: DisplayModeSwitcherProps) => {
+export const DisplayModeSwitcher = ({ currentMode, basePath = '/projects' }: DisplayModeSwitcherProps) => {
 	const { navigate } = useTransitionRouter();
 
 	const handleModeChange = (view: DisplayMode) => {
-		const path = [basePath, view, subPath].filter(Boolean).join('/');
-		navigate(path), { scroll: false };
+		navigate(`${basePath}?view=${view}`, { scroll: false });
 	};
 
 	return (
