@@ -18,8 +18,6 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 	return (
 		<div className='w-full space-y-8'>
-			<BackLink href='/'>Back to Home</BackLink>
-
 			{/* Desktop Wide (horizontal dates) */}
 			<div
 				className='vt-main hidden xl:block relative w-full'
