@@ -40,7 +40,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 								// style={{ viewTransitionName: `project-card-${project.id}` }}
@@ -89,7 +89,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								className={cn('w-full text-left ml-8 p-8 hover:translate-x-2')}
 							>
@@ -127,7 +127,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								accentPosition='top-right'
 								className={cn('w-full text-left p-6')}
