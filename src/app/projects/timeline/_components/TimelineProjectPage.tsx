@@ -27,7 +27,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 	return (
 		<>
-			<BackLink href='/projects/timeline' scroll={false}>
+			<BackLink href='/projects/timeline' scroll={false} className='mb-8'>
 				All Projects
 			</BackLink>
 
@@ -46,8 +46,8 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 					</div>
 				</aside>
 
-				<main>
-					<ProjectContentCard className='vt-right' project={project} />
+				<main className='vt-right'>
+					<ProjectContentCard project={project} />
 				</main>
 			</div>
 

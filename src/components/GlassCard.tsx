@@ -67,7 +67,7 @@ export const GlassCard1 = ({ children, className, style, withAccent = false, acc
 			className={cn(
 				'relative overflow-hidden',
 				'border border-chrome-silver/[0.08]',
-				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]',
+				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]', // NOTE: backdrop glitches if element has vt
 				onClick && 'transition-all duration-300 hover:border-accent-blue/30',
 				className
 			)}

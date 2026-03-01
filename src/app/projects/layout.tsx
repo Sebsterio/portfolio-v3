@@ -2,13 +2,6 @@ import { Suspense } from 'react';
 import { ProjectsPageHeader } from './_components/ProjectsPageHeader';
 import { DisplayModeSwitcher } from './_components/DisplayModeSwitcher';
 import { ProjectsPageHeader_Client } from './_components/ProjectsPageHeader_Client';
-// import type { Metadata } from 'next';
-// import { projects } from './_content';
-
-// export const metadata: Metadata = {
-// 	title: 'Projects | Sebastian Rosloniec',
-// 	description: 'Case studies & development work from recent years',
-// };
 
 type ProjectsLayoutProps = {
 	children: React.ReactNode;
