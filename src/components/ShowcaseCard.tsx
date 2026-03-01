@@ -16,7 +16,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 				'p-6 sm:p-8 md:p-10 rounded-[24px] md:rounded-[28px]',
 				'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] backdrop-saturate-[180%] backdrop-brightness-[1.15]',
 				'border border-chrome-silver/[0.08]',
-				'transition-all duration-600 ease-[cubic-bezier(0.34,1.56,0.64,1)]',
+				'transition-all duration-600 transition-ease-[cubic-bezier(0.34,1.56,0.64,1)]',
 				'hover:translate-y-[-6px] md:hover:translate-y-[-10px] hover:scale-[1.01]',
 				'hover:border-accent-blue/30',
 				'shadow-[0_20px_60px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12),inset_0_-1px_0_rgba(240,240,240,0.05)]',
@@ -57,7 +57,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			<div
 				className={cn(
 					'absolute top-0 left-[-100%] w-full h-full pointer-events-none group-hover:left-[100%]',
-					'transition-all duration-[800ms] ease-out'
+					'transition-all transition-duration-[800ms] ease-out'
 				)}
 				style={{
 					background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.25), transparent)',
