@@ -36,6 +36,7 @@
    ========================================================================== */
 
 /* TODO: check specificity vs reduced-motion - OR: ignore file - OR: use pre-proc - OR: up TW */
+
 /* prettier-ignore */
 @media all {
 	::view-transition-old(*) {
@@ -49,20 +50,44 @@
 		animation-name:								vt-fade-in;
 	}
 
-	::view-transition-old(vt-main)		{ animation-name: vt-fade-out 				}	
-	::view-transition-new(vt-main)		{ animation-name: vt-fade-in  				}
+	/* TODO: rename these */
 
-	::view-transition-old(vt-left)		{ animation-name: vt-slide-out-left 	}	
-	::view-transition-new(vt-left)		{ animation-name: vt-slide-in-left  	}
-	
-	::view-transition-old(vt-top)			{ animation-name: vt-slide-out-top  	}
-	::view-transition-new(vt-top)			{ animation-name: vt-slide-in-top	 		}
+	::view-transition-new(vt-main):only-child {	animation-name: vt-slide-in-right	  }
+	::view-transition-old(vt-main)						{ animation-name: vt-fade-out 				}	
+	::view-transition-new(vt-main)						{ animation-name: vt-fade-in  				}
+	::view-transition-old(vt-main):only-child {	animation-name: vt-slide-out-right  }
 
-	::view-transition-old(vt-right)		{ animation-name: vt-slide-out-right  }
-	::view-transition-new(vt-right)		{ animation-name: vt-slide-in-right   }
+	::view-transition-old(vt-left)						{ animation-name: vt-slide-out-left 	}	
+	::view-transition-new(vt-left)						{ animation-name: vt-slide-in-left  	}
+
+	::view-transition-old(vt-top)							{ animation-name: vt-slide-out-top  	}
+	::view-transition-new(vt-top)							{ animation-name: vt-slide-in-top	 		}
+
+	::view-transition-old(vt-right)						{ animation-name: vt-slide-out-right  }
+	::view-transition-new(vt-right)						{ animation-name: vt-slide-in-right   }
+
+	::view-transition-old(vt-bottom)					{ animation-name: vt-slide-out-bottom	}
+	::view-transition-new(vt-bottom)					{ animation-name: vt-slide-in-bottom	}
+
+	/* Timeline */
+
+	::view-transition-new(vt-timeline-list):only-child { animation-name: vt-slide-in-left	  }
+	::view-transition-old(vt-timeline-list):only-child { animation-name: vt-slide-out-left  }
+	::view-transition-old(vt-timeline-list)						 { animation-name: vt-fade-out 				}	
+	::view-transition-new(vt-timeline-list)						 { animation-name: vt-fade-in  				}
 	
-	::view-transition-old(vt-bottom)	{ animation-name: vt-slide-out-bottom	}
-	::view-transition-new(vt-bottom)	{ animation-name: vt-slide-in-bottom	}
+	::view-transition-old(vt-timeline-detail)		{ animation-name: vt-slide-out-right  }
+	::view-transition-new(vt-timeline-detail)		{ animation-name: vt-slide-in-right   }
+	
+	/* Magazine */
+
+	::view-transition-new(vt-magazine):only-child { animation-name: vt-slide-in-right	  }
+	::view-transition-old(vt-magazine):only-child { animation-name: vt-slide-out-right  }
+	
+	/* Cards */
+
+	/* ::view-transition-new(vt-cards-layout):only-child { animation-name: vt-slide-in-bottom	  }
+	::view-transition-old(vt-cards-layout):only-child { animation-name: vt-slide-out-bottom  } */
 
 }
 

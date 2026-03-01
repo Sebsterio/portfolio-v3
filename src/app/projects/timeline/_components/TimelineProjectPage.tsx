@@ -34,7 +34,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			{/* Desktop */}
 			<div className='hidden lg:grid lg:grid-cols-[320px_1fr] gap-8 w-full'>
 				<aside
-					className='vt-main relative'
+					className='vt-timeline-list relative'
 					// className='relative' //
 				>
 					<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
@@ -46,7 +46,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 					</div>
 				</aside>
 
-				<main className='vt-right'>
+				<main className='vt-timeline-detail'>
 					<ProjectContentCard project={project} />
 				</main>
 			</div>

@@ -7,13 +7,17 @@ const SLOTS = [
 	'bottom',
 	'top',
 	'project-card',
+	'timeline-list',
+	'timeline-detail',
+	'magazine',
+	'cards-layout',
+
 	'card',
 	'card-deck',
 	'magazine-card',
 	'magazine-project',
 	'timeline-side',
 	'timeline-main',
-	'accordeon',
 ] as const;
 
 /**

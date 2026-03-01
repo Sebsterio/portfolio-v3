@@ -24,7 +24,8 @@ export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 
 			<div
 				className='relative w-full' //
-				style={{ viewTransitionName: 'page-content' }} //
+				// className='vt-bottom relative w-full' //
+				style={{ viewTransitionName: 'content' }} //
 			>
 				{children}
 			</div>

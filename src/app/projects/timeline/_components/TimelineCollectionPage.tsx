@@ -10,18 +10,16 @@ import type { Project } from '@/types';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
-	activeSlug?: string;
 };
 
-export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollectionPageProps) => {
+export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	return (
 		<div className='w-full space-y-8'>
 			{/* Desktop Wide (horizontal dates) */}
 			<div
-				className='vt-main hidden xl:block relative w-full'
-				// className={cn(/* 'vt-main', */ 'hidden xl:block relative w-full')} //
+				className='vt-timeline-list hidden xl:block relative w-full' //
 			>
 				<TimelineLine position='center' className='left-32' />
 
@@ -41,7 +39,6 @@ export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollect
 								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
-								// style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-4'>
 									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
@@ -64,8 +61,7 @@ export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollect
 
 			{/* Desktop Narrow (rotated dates) */}
 			<div
-				className='vt-main hidden md:block xl:hidden relative w-full pl-8'
-				// className={cn(/* 'vt-main', */ 'hidden md:block xl:hidden relative w-full pl-8')}
+				className='vt-timeline-list hidden md:block xl:hidden relative w-full pl-8' //
 			>
 				<TimelineLine position='left' />
 
@@ -111,7 +107,7 @@ export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollect
 			</div>
 
 			{/* Mobile */}
-			<div className={cn(/* 'vt-main', */ 'md:hidden relative')}>
+			<div className={cn('md:hidden relative')}>
 				<TimelineLine position='left' />
 
 				<div className='space-y-6'>
@@ -129,7 +125,9 @@ export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollect
 								withAccent
 								accentPosition='top-right'
 								className={cn('w-full text-left p-6')}
-								style={{ viewTransitionName: `project-card-${project.id}` }}
+								style={{
+									viewTransitionName: `project-card-${project.id}`,
+								}}
 							>
 								<div className='relative space-y-3'>
 									<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>{project.title}</h3>
