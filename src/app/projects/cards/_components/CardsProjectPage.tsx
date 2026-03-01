@@ -9,11 +9,11 @@ import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
-import { projects } from '../../_content';
-import { PROJECT_PAGE_TITLE_ID } from '../_config';
+import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 
 type CardsProjectPageProps = {
 	project: Project;
+	allProjects: Project[];
 };
 
 // TODO: mv out of here; and index by id; also rename these tw classes
@@ -67,7 +67,9 @@ const ProjectIndicators = ({
 	</div>
 );
 
-export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
+// ----------------------------------------------------------------------------
+
+export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 	const [flipped, setFlipped] = useState(false);
 	const frontRef = useRef<HTMLDivElement>(null);
@@ -115,24 +117,24 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 	const goToNext = () => {
 		const nextIndex = (currentIndex + 1) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/${projects[nextIndex].slug}?view=cards`, { scroll: false });
+		navigate(`/projects/cards/${projects[nextIndex].slug}`, { scroll: false });
 	};
 
 	const goToPrev = () => {
 		const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
 		setFlipped(false);
-		navigate(`/projects/${projects[prevIndex].slug}?view=cards`, { scroll: false });
+		navigate(`/projects/cards/${projects[prevIndex].slug}`, { scroll: false });
 	};
 
 	const goToProject = (slug: string) => {
 		setFlipped(false);
-		navigate(`/projects/${slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID });
+		navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID });
 	};
 
 	return (
 		<div className='w-full flex flex-col gap-8'>
 			<div className='w-full max-w-4xl mx-auto'>
-				<BackLink href={`/projects?view=cards`} scroll={false}>
+				<BackLink href={`/projects/cards`} scroll={false}>
 					All Projects
 				</BackLink>
 			</div>
@@ -146,7 +148,12 @@ export const CardsProjectPage = ({ project }: CardsProjectPageProps) => {
 					</div>
 
 					{/* Card Deck */}
-					<div className={cn('perspective-[2000px] w-full max-w-4xl mx-auto')} style={{ viewTransitionName: `project-card-${project.id}` }}>
+					<div
+						className={cn('perspective-[2000px] w-full max-w-4xl mx-auto')}
+						style={
+							{ viewTransitionName: `project-card-${project.id}` } //
+						}
+					>
 						<div ref={containerRef} className='relative transition-all duration-500 ease-in-out' style={{ minHeight: '600px' }}>
 							<AnimatePresence mode='wait'>
 								<motion.div

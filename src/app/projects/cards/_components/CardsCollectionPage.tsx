@@ -5,10 +5,38 @@ import { motion } from 'motion/react';
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import { BackLink } from '@/components/BackLink';
 // import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
-import { PROJECT_PAGE_TITLE_ID } from '../[slug]/_config';
+import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+
+// ----------------------------------------------------------------------------
+
+type CardsCollectionPageProps = {
+	projects: Project[];
+};
+
+export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
+	const { navigate } = useTransitionRouter();
+
+	return (
+		<div className='w-full space-y-8'>
+			<div
+				className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'
+				//  className={cn(/* 'vt-main', */ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto')}
+			>
+				{projects.map((project) => (
+					<ProjectCard
+						key={project.id}
+						project={project}
+						onNavigate={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+					/>
+				))}
+			</div>
+		</div>
+	);
+};
+
+// ----------------------------------------------------------------------------
 
 const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: () => void }) => {
 	const [isHovered, setIsHovered] = useState(false);
@@ -19,7 +47,9 @@ const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: ()
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
 			className={cn('group relative h-[420px] rounded-[28px] overflow-hidden text-left')}
-			style={{ viewTransitionName: `project-card-${project.id}` }}
+			style={
+				{ viewTransitionName: `project-card-${project.id}` } //
+			}
 			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
 		>
@@ -83,30 +113,5 @@ const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: ()
 				→
 			</div>
 		</motion.button>
-	);
-};
-
-type CardsCollectionPageProps = {
-	projects: Project[];
-};
-
-export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
-	const { navigate } = useTransitionRouter();
-
-	return (
-		<div className='w-full space-y-8'>
-			<div
-				className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'
-				//  className={cn(/* 'vt-main', */ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto')}
-			>
-				{projects.map((project) => (
-					<ProjectCard
-						key={project.id}
-						project={project}
-						onNavigate={() => navigate(`/projects/${project.slug}?view=cards`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
-					/>
-				))}
-			</div>
-		</div>
 	);
 };

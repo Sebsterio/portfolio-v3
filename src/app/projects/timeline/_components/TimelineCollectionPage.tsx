@@ -2,7 +2,6 @@
 
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
-import { BackLink } from '@/components/BackLink';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
@@ -11,9 +10,10 @@ import type { Project } from '@/types';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
+	activeSlug?: string;
 };
 
-export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps) => {
+export const TimelineCollectionPage = ({ projects, activeSlug }: TimelineCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	return (
@@ -38,7 +38,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 								// style={{ viewTransitionName: `project-card-${project.id}` }}
@@ -87,7 +87,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								className={cn('w-full text-left ml-8 p-8 hover:translate-x-2')}
 							>
@@ -125,7 +125,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 							{/* Card */}
 							<GlassCard
-								onClick={() => navigate(`/projects/${project.slug}?view=timeline`, { scroll: false })}
+								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								accentPosition='top-right'
 								className={cn('w-full text-left p-6')}

@@ -1,10 +1,10 @@
 import { Project } from '@/types';
-import { MagazineSectionA } from './magazine/MagazineSectionA';
-import { MagazineSectionB } from './magazine/MagazineSectionB';
-import { MagazineSectionC } from './magazine/MagazineSectionC';
-import { MagazineSectionD } from './magazine/MagazineSectionD';
-import { MagazineSectionE } from './magazine/MagazineSectionE';
-import { MagazineSectionMulti } from './magazine/MagazineSectionMulti';
+import { MagazineSectionA } from './MagazineSectionA';
+import { MagazineSectionB } from './MagazineSectionB';
+import { MagazineSectionC } from './MagazineSectionC';
+import { MagazineSectionD } from './MagazineSectionD';
+import { MagazineSectionE } from './MagazineSectionE';
+import { MagazineSectionMulti } from './MagazineSectionMulti';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
