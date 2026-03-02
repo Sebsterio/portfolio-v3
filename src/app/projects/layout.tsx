@@ -10,7 +10,7 @@ type ProjectsLayoutProps = {
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 	return (
 		<div className='w-full space-y-16'>
-			<div className='space-y-8'>
+			<div className='vt-p-header space-y-8'>
 				{/* TODO: transition, id */}
 				<Suspense fallback={<ProjectsPageHeader />}>
 					<ProjectsPageHeader_Client />
@@ -24,8 +24,6 @@ export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 
 			<div
 				className='relative w-full' //
-				// className='vt-bottom relative w-full' //
-				style={{ viewTransitionName: 'content' }} //
 			>
 				{children}
 			</div>

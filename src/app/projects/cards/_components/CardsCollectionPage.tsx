@@ -20,15 +20,13 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 
 	return (
 		<div className='w-full space-y-8'>
-			<div
-				className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'
-				//  className={cn(/* 'vt-main', */ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto')}
-			>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'>
 				{projects.map((project) => (
 					<ProjectCard
 						key={project.id}
 						project={project}
 						onNavigate={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+						style={{ viewTransitionName: `project-card-${project.id}` }}
 					/>
 				))}
 			</div>
@@ -38,20 +36,24 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 
 // ----------------------------------------------------------------------------
 
-const ProjectCard = ({ project, onNavigate }: { project: Project; onNavigate: () => void }) => {
+type ProjectCardProps = {
+	project: Project;
+	style: React.CSSProperties;
+	onNavigate: () => void;
+};
+
+const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
 		<motion.button
-			onClick={onNavigate}
-			onHoverStart={() => setIsHovered(true)}
-			onHoverEnd={() => setIsHovered(false)}
 			className={cn('group relative h-[420px] rounded-[28px] overflow-hidden text-left')}
-			style={
-				{ viewTransitionName: `project-card-${project.id}` } //
-			}
 			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
+			style={style}
+			onHoverStart={() => setIsHovered(true)}
+			onHoverEnd={() => setIsHovered(false)}
+			onClick={onNavigate}
 		>
 			{/* Thumbnail Layer (default visible) */}
 			<div
