@@ -6,18 +6,13 @@ const SLOTS = [
 	'right',
 	'bottom',
 	'top',
-	'project-card',
-	'timeline-list',
-	'timeline-detail',
-	'magazine',
-	'cards-layout',
 
-	'card',
-	'card-deck',
-	'magazine-card',
-	'magazine-project',
-	'timeline-side',
-	'timeline-main',
+	't-list',
+	't-detail',
+	'm-page',
+	'c-page',
+
+	'project-card', //
 ] as const;
 
 /**
@@ -30,7 +25,7 @@ export const viewTransitionPlugin = plugin(({ addUtilities }) => {
 		Object.fromEntries(
 			SLOTS.map((slot) => [
 				`.vt-${slot}`,
-				{ 'view-transition-name': `vt-${slot}` }, //
+				{ 'view-transition-name': `${slot}` }, //
 			])
 		)
 	);

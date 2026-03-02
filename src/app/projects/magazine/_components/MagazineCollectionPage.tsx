@@ -28,7 +28,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 	const freelanceProjects = projects.filter((p) => p.freelance);
 
 	return (
-		<div className='vt-magazine relative pt-20'>
+		<div className='vt-m-page relative pt-20'>
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-32'>

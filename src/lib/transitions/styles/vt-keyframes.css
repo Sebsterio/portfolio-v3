@@ -1,0 +1,23 @@
+/*
+ *  ===  View Transition Keyframes  === 
+ */
+
+/* Fade */
+
+@keyframes vt-fade-out		{	to 		{ opacity: 0;	}}
+@keyframes vt-fade-in 		{	from 	{ opacity: 0; }}
+
+/* Fade & Slide */
+
+@keyframes vt-slide-to-l	{	to 		{	opacity: 0;  transform: translateX(calc(var(--distance-vt-slide) * -1));	}}
+@keyframes vt-slide-in-l 	{	from 	{	opacity: 0;  transform: translateX(calc(var(--distance-vt-slide) * -1));	}}
+
+@keyframes vt-slide-to-t 	{	to 		{	opacity: 0;  transform: translateY(calc(var(--distance-vt-slide) * -1));	}}
+@keyframes vt-slide-in-t	{	from	{	opacity: 0;  transform: translateY(calc(var(--distance-vt-slide) * -1));	}}
+
+@keyframes vt-slide-to-r 	{	to 		{	opacity: 0;  transform: translateX(			var(--distance-vt-slide));				}}
+@keyframes vt-slide-in-r	{	from 	{	opacity: 0;  transform: translateX(			var(--distance-vt-slide));				}}
+
+@keyframes vt-slide-to-b	{	to 		{	opacity: 0;  transform: translateY(			var(--distance-vt-slide));				}}
+@keyframes vt-slide-in-b	{	from 	{	opacity: 0;  transform: translateY(			var(--distance-vt-slide));				}}
+

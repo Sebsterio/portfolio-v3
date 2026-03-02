@@ -63,7 +63,7 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 	}, []);
 
 	return (
-		<div className='vt-magazine-project relative'>
+		<div className='m-page-project relative'>
 			{/* Vertical Navigation Index (Right Edge, Rotated) */}
 			<nav className='fixed right-6 top-1/2 -translate-y-1/2 z-50'>
 				<div className='flex flex-col gap-4 items-center rotate-90 origin-center'>
