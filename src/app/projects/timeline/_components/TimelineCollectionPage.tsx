@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
+import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';

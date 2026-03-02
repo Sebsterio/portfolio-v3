@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } from '@/components';
 
 import { copy, buttons, showcaseItems } from './_content';
-import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
+import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 
 type HomePageProps = {};
 

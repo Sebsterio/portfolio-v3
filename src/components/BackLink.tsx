@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { TransitionLink } from '@/lib/transitions/TransitionLink';
+import { TransitionLink } from '@/lib/transitions/components/TransitionLink';
 
 type BackLinkProps = ComponentProps<typeof TransitionLink> & {
 	children: React.ReactNode;

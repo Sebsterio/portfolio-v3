@@ -1,4 +1,4 @@
-import { PageTransition } from '@/lib/transitions/PageTransition';
+import { PageTransition } from '@/lib/transitions/components/PageTransition';
 import { CardsCollectionPage } from './_components/CardsCollectionPage';
 import { getProjects } from '../_lib';
 

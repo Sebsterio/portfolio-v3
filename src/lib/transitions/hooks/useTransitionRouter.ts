@@ -1,9 +1,9 @@
 'use client';
 
 import { useCallback } from 'react';
-import type { NavigationConfig } from './types';
-import { usePageTransition, usePageTransitionState } from './TransitionProvider';
-import { DEFAULT_IS_SCROLL } from './config';
+import type { NavigationConfig } from '../types';
+import { usePageTransition, usePageTransitionState } from '../components/TransitionProvider';
+import { DEFAULT_IS_SCROLL } from '../config';
 
 export const useTransitionRouter = () => {
 	const { navigate: baseNavigate, back, forward, replace, prefetch } = usePageTransition();

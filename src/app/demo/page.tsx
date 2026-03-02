@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
+import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { CardExpansion } from './_concepts/CardExpansion';
 import { SplitTimeline } from './_concepts/SplitTimeline';
 import { CardDeck3D } from './_concepts/CardDeck3D';

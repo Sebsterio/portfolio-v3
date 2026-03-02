@@ -4,7 +4,7 @@
 import type { Config } from 'tailwindcss';
 import defaultConfig from 'tailwindcss/defaultConfig';
 import tailwindAnimatePlugin from 'tailwindcss-animate';
-import { viewTransitionPlugin } from './src/lib/transitions/tailwind';
+import { viewTransitionPlugin } from './src/lib/transitions/styles/tailwind';
 
 module.exports = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],

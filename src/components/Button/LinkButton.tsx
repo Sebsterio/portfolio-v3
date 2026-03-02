@@ -1,7 +1,7 @@
 'use client';
 
 import { forwardRef } from 'react';
-import { TransitionLink } from '@/lib/transitions/TransitionLink';
+import { TransitionLink } from '@/lib/transitions/components/TransitionLink';
 import type { ButtonVariant } from './types';
 import { getButtonClasses } from './styles';
 

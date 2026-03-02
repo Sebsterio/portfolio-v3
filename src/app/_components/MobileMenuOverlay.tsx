@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
-import { useGetIsCurrentPage } from '@/lib/transitions/TransitionProvider';
-import { TransitionLink as Link } from '@/lib/transitions/TransitionLink';
+import { useGetIsCurrentPage } from '@/lib/transitions/components/TransitionProvider';
+import { TransitionLink as Link } from '@/lib/transitions/components/TransitionLink';
 
 type NavItem = {
 	label: string;

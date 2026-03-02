@@ -1,4 +1,4 @@
-import { PageTransition } from '@/lib/transitions/PageTransition';
+import { PageTransition } from '@/lib/transitions/components/PageTransition';
 import { getProjects } from '../_lib';
 import { TimelineCollectionPage } from './_components/TimelineCollectionPage';
 

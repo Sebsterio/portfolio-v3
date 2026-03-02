@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import type { Project } from '@/types';
-import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
+import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { cn } from '@/lib/utils';
 // import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';

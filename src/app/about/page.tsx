@@ -13,7 +13,7 @@ import {
 } from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 import { cn } from '@/lib/utils';
-import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
+import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 
 type AboutPageProps = {};
 

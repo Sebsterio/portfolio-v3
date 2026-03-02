@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { CardsProjectPage } from '../_components/CardsProjectPage';
 import { getProject, getProjects } from '../../_lib';
-import { PageTransition } from '@/lib/transitions/PageTransition';
+import { PageTransition } from '@/lib/transitions/components/PageTransition';
 
 export async function generateStaticParams() {
 	const projects = await getProjects();

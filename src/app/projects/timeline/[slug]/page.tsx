@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { PageTransition } from '@/lib/transitions/PageTransition';
+import { PageTransition } from '@/lib/transitions/components/PageTransition';
 import { TimelineProjectPage } from '@/app/projects/timeline/_components/TimelineProjectPage';
 import { getProjects, getProject } from '@/app/projects/_lib';
 

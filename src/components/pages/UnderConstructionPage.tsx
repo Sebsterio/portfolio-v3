@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { useTransitionReady } from '@/lib/transitions/TransitionProvider';
+import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { Title, TextBlock, LabeledValueRow, GlassCard } from '@/components';
 import { copy } from './_content';
 

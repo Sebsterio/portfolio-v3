@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
-import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
+import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';

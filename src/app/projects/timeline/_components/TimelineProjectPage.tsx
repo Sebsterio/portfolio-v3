@@ -1,7 +1,7 @@
 'use client';
 
 import type { Project } from '@/types';
-import { useTransitionRouter } from '@/lib/transitions/useTransitionRouter';
+import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { cn } from '@/lib/utils';
 import { BackLink } from '@/components/BackLink';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';

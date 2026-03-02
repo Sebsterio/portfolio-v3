@@ -3,9 +3,9 @@
 import { ComponentProps, MouseEvent } from 'react';
 import NextLink from 'next/link';
 import { cn } from '@/lib/utils';
-import type { TransitionConfig } from './types';
+import type { TransitionConfig } from '../types';
 import { useIsCurrentPage, usePageTransition } from './TransitionProvider';
-import { getNormalizeHref } from './utils';
+import { getNormalizeHref } from '../utils';
 
 type ClickEvent = MouseEvent<HTMLAnchorElement>;
 

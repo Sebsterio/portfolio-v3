@@ -16,9 +16,9 @@
 
 import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from './types';
-import { getNormalizeHref, isCurrentPage } from './utils';
-import { DEFAULT_IS_SCROLL } from './config';
+import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from '../types';
+import { getNormalizeHref, isCurrentPage } from '../utils';
+import { DEFAULT_IS_SCROLL } from '../config';
 
 /* Contexts */
 

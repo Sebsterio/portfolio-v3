@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { TransitionLink } from '@/lib/transitions/TransitionLink';
+import { TransitionLink } from '@/lib/transitions/components/TransitionLink';
 import { cn } from '@/lib/utils';
 import type { DisplayMode } from '@/types';
 

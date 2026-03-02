@@ -2,7 +2,7 @@ import type React from 'react';
 
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
-import { TransitionProvider } from '@/lib/transitions/TransitionProvider';
+import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
 import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
 import { ChromeBackground } from '@/components/background/ChromeBackground';
 import { QuantumBackground } from '@/components/background/QuantumBackground';
