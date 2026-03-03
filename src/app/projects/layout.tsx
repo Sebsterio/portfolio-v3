@@ -10,23 +10,16 @@ type ProjectsLayoutProps = {
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 	return (
 		<div className='w-full space-y-16'>
-			<div className='vt-p-header space-y-8'>
-				{/* TODO: transition, id */}
+			<div className='vt-p-header space-y-8 flex flex-col items-center'>
 				<Suspense fallback={<ProjectsPageHeader />}>
 					<ProjectsPageHeader_Client />
 				</Suspense>
-
-				{/* TODO: loader; pass to header ? */}
-				<Suspense fallback={<div style={{ width: 120 }} />}>
+				<Suspense fallback={<div className='h-[44px] w-[340px]' />}>
 					<DisplayModeSwitcher />
 				</Suspense>
 			</div>
 
-			<div
-				className='relative w-full' //
-			>
-				{children}
-			</div>
+			<div className='relative w-full'>{children}</div>
 		</div>
 	);
 }
