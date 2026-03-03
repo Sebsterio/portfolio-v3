@@ -10,6 +10,7 @@ import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { InlineList } from '@/components/InlineList';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -189,11 +190,9 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											<div className='space-y-6 md:space-y-8'>
 												{/* Header */}
 												<div className='space-y-3 md:space-y-4'>
-													<div className='flex items-center gap-4 text-sm text-accent-cyan'>
-														<span>{project.period}</span>
-														<span>•</span>
-														<span>{project.location}</span>
-													</div>
+													<InlineList className='flex items-center gap-4 text-sm text-accent-cyan'>
+														{[project.period, project.location]}
+													</InlineList>
 													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 													<p className='text-xl md:text-2xl text-chrome-silver/80'>
 														<span className=''>{project.company}</span>

@@ -7,6 +7,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
+import { InlineList } from '@/components/InlineList';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
@@ -41,11 +42,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
-										<span>{project.location}</span>
-										<span>•</span>
-										<span>{project.role}</span>
-									</div>
+									<InlineList className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+										{[project.location, project.role]}
+									</InlineList>
 
 									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
 									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
@@ -83,11 +82,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('w-full text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
-										<span>{project.location}</span>
-										<span>•</span>
-										<span>{project.role}</span>
-									</div>
+									<InlineList className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+										{[project.location, project.role]}
+									</InlineList>
 
 									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
 									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
