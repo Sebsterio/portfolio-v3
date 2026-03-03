@@ -21,3 +21,5 @@
 @keyframes vt-slide-to-b	{	to 		{	opacity: 0;  transform: translateY(			var(--distance-vt-slide));				}}
 @keyframes vt-slide-in-b	{	from 	{	opacity: 0;  transform: translateY(			var(--distance-vt-slide));				}}
 
+/* @keyframes vt-shrink-y		{	to 		{	opacity: 0;  transform: scaleY(0); }}
+	 @keyframes vt-expand-y		{	from 	{	opacity: 0;  transform: scaleY(0); }} */

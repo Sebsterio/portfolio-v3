@@ -18,9 +18,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	return (
 		<div className='w-full space-y-8'>
 			{/* Desktop Wide (horizontal dates) */}
-			<div
-				className='vt-t-list hidden xl:block relative w-full' //
-			>
+			<div className='vt-t-list hidden xl:block relative w-full'>
 				<TimelineLine position='center' className='left-32' />
 
 				<div className='space-y-12'>
@@ -60,9 +58,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow (rotated dates) */}
-			<div
-				className='vt-t-list hidden md:block xl:hidden relative w-full pl-8' //
-			>
+			<div className='vt-t-list hidden md:block xl:hidden relative w-full pl-8'>
 				<TimelineLine position='left' />
 
 				<div className='space-y-12'>

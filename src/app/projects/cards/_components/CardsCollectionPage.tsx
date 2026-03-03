@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'motion/react';
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
@@ -8,6 +7,7 @@ import { cn } from '@/lib/utils';
 // import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { ProjectImage } from '@/components/ProjectImage';
 
 // ----------------------------------------------------------------------------
 
@@ -43,58 +43,41 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
-	const [isHovered, setIsHovered] = useState(false);
-
 	return (
 		<motion.button
 			className={cn('group relative h-[420px] rounded-[28px] overflow-hidden text-left')}
 			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
 			style={style}
-			onHoverStart={() => setIsHovered(true)}
-			onHoverEnd={() => setIsHovered(false)}
 			onClick={onNavigate}
 		>
-			{/* Thumbnail Layer (default visible) */}
+			{/* Glass Background */}
 			<div
-				className={cn(
-					'absolute inset-x-0 top-0 h-48 transition-all duration-500',
-					'bg-gradient-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
-					isHovered ? 'opacity-0' : 'opacity-100'
-				)}
-			>
-				<div className='w-full h-full flex items-center justify-center text-chrome-silver/40 text-sm font-semibold'>{project.title}</div>
-			</div>
-
-			{/* Background Image on Hover */}
-			<div
-				className={cn(
-					'absolute inset-0 transition-opacity duration-500',
-					'bg-gradient-to-br from-accent-blue/40 via-accent-cyan/30 to-purple-500/30',
-					isHovered ? 'opacity-100' : 'opacity-0'
-				)}
-			>
-				<div className='w-full h-full flex items-center justify-center text-chrome-silver/20 text-2xl font-bold'>{project.title}</div>
-			</div>
-
-			{/* Glass Overlay */}
-			<div
-				className={cn(
-					'absolute inset-0',
-					'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]',
-					'border border-chrome-silver/[0.08]',
-					'transition-all duration-500',
-					'group-hover:border-accent-blue/30'
-				)}
+				className={cn('absolute inset-0', [
+					'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] border border-chrome-silver/[0.08]',
+					'group-hover:border-accent-blue/30 transition-colors transition-duration-500',
+				])}
 			/>
 
 			{/* Content */}
-			<div className='relative h-full p-8 flex flex-col justify-between'>
+			<div className='relative h-full p-8 flex flex-col justify-between gap-6'>
 				<div className='space-y-3'>
 					<div className='text-xs text-accent-cyan font-dm-sans uppercase tracking-wider'>{project.year}</div>
 					<h3 className='font-urbanist text-2xl font-bold text-chrome-silver line-clamp-2'>{project.title}</h3>
 					<p className='text-chrome-silver/70'>{project.company}</p>
 				</div>
+
+				<ProjectImage
+					src={project.images.main}
+					alt={`Screenshot of ${project.title}`}
+					className={cn(
+						'h-full w-full rounded-lg',
+						'bg-gradient-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+						'opacity-75 group-hover:opacity-100 transition-opacity transition-duration-300'
+					)}
+					fallbackClass='text-white/50 text-sm font-semibold'
+					fallbackText='Screenshot Unavailable'
+				/>
 
 				<div className='space-y-4'>
 					<p className='text-sm text-chrome-silver/60 line-clamp-3'>{project.summary}</p>
@@ -105,11 +88,9 @@ const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
 			{/* Arrow Indicator */}
 			<div
 				className={cn(
-					'absolute bottom-8 right-8 w-12 h-12 rounded-full',
-					'bg-accent-blue/10 border border-accent-blue/30',
-					'flex items-center justify-center text-accent-cyan text-xl',
-					'transition-all duration-300',
-					'group-hover:translate-x-2 group-hover:bg-accent-blue/20'
+					'absolute bottom-8 right-8 w-12 h-12 rounded-full flex items-center justify-center',
+					'text-xl text-accent-cyan bg-accent-blue/10 border border-accent-blue/30',
+					'group-hover:translate-x-2 group-hover:bg-accent-blue/20 transition-all transition-duration-300'
 				)}
 			>
 				→

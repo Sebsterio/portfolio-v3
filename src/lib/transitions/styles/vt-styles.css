@@ -7,13 +7,13 @@
  ***************************************************************************/
 
 :root {
-	--distance-vt-slide: 100%;
-	--duration-vt-base: 400ms;
-	--duration-vt-exit: 200ms;
-	--duration-vt-enter: 400ms;
-	--easing-vt-default: cubic-bezier(0.4, 0, 0.2, 1);
-	--easing-spring-release: cubic-bezier(0.4, 0, 1, 1);
-	--easing-panel-slide-in: cubic-bezier(0.2, 0, 0.2, 1);
+	--distance-vt-slide: 			100%;
+	--duration-vt-base: 			300ms;
+	--duration-vt-exit: 			200ms;
+	--duration-vt-enter: 			400ms;
+	--easing-vt-default: 			cubic-bezier(0.4, 0, 0.2, 1);
+	--easing-spring-release: 	cubic-bezier(0.4, 0, 1, 1);
+	--easing-panel-slide-in: 	cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 /* Prevent root flash (edge cases) */
@@ -47,7 +47,7 @@
 	animation-name: 						vt-fade-in;
 }
 
-/* BASE - Page Sections  // TODO: rename these slots */
+/* --- BASE: Page Sections --- */ /* TODO: rename these slots */
 
 ::view-transition-new(main):only-child 	{ animation-name: vt-slide-in-r;	}
 ::view-transition-old(main) 						{ animation-name: vt-fade-out;		}
@@ -67,17 +67,18 @@
 ::view-transition-new(bottom) 					{ animation-name: vt-slide-in-b;	}
 
 
-::view-transition-new(p-header):only-child 	{ animation-name: vt-slide-in-t;	}
-::view-transition-old(p-header) 						{ animation-name: vt-fade-out;		}
-::view-transition-new(p-header) 						{ animation-name: vt-fade-in;			}
-::view-transition-old(p-header):only-child 	{ animation-name: vt-slide-to-t;	}
+::view-transition-new(p-header):only-child 			{ animation-name: vt-slide-in-t;	}
+::view-transition-old(p-header) 								{ animation-name: vt-fade-out;		}
+::view-transition-new(p-header) 								{ animation-name: vt-fade-in;			}
+::view-transition-old(p-header):only-child 			{ animation-name: vt-slide-to-t;	}
 
-/* ::view-transition-new(p-content):only-child { animation-name: vt-slide-in-b;	}
-::view-transition-old(p-content) 						{ animation-name: none;						}
-::view-transition-new(p-content) 						{ animation-name: none;						}
-::view-transition-old(p-content):only-child { animation-name: vt-slide-to-b;	} */
+/* ::view-transition-new(p-content):only-child 	{ animation-name: vt-slide-in-b;	}
+	 ::view-transition-old(p-content) 						{ animation-name: none;						}
+	 ::view-transition-new(p-content) 						{ animation-name: none;						}
+	 ::view-transition-old(p-content):only-child 	{ animation-name: vt-slide-to-b;	} */
 
-/* PROJECTS - Timeline View */
+
+/* --- PROJECTS: Timeline View --- */
 
 ::view-transition-new(t-list):only-child	{ animation-name: vt-slide-in-l;	}
 ::view-transition-old(t-list)							{ animation-name: vt-fade-out;		}
@@ -87,15 +88,18 @@
 ::view-transition-old(t-detail)						{ animation-name: vt-slide-to-r;	}
 ::view-transition-new(t-detail)						{ animation-name: vt-slide-in-r;	}
 
+/* ::view-transition-old(.accordeon) 			{ animation-name: vt-shrink-y;  animation-timing-function: linear; 	}
+	 ::view-transition-new(.accordeon) 			{ animation-name: vt-expand-y;  animation-timing-function: linear; 	} */
 
-/* PROJECTS - Magazine View */
+	 
+/* --- PROJECTS: Magazine View --- */
 
 ::view-transition-new(m-page):only-child 	{ animation-name: vt-slide-in-r		}
 ::view-transition-old(m-page):only-child 	{ animation-name: vt-slide-to-r		}
 
 
-/* PROJECTS - Cards View */
+/* --- PROJECTS: Cards View --- */
 
 /* ::view-transition-new(c-page):only-child { animation-name: vt-slide-in-b	 }
-::view-transition-old(c-page):only-child { animation-name: vt-slide-to-b  }  */
+	 ::view-transition-old(c-page):only-child { animation-name: vt-slide-to-b  }  */
 

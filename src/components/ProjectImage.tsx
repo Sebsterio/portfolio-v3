@@ -12,7 +12,7 @@ type ImageProps = Omit<NextImageProps, 'src' | 'onError'> & {
 	className?: string;
 } & XOR<
 		{ fallback: ReactNode },
-		{ fallbackText?: string; fallbackClass?: string } //
+		{ fallbackText?: string | false; fallbackClass?: string | false } //
 	>;
 
 /**
@@ -23,6 +23,7 @@ type ImageProps = Omit<NextImageProps, 'src' | 'onError'> & {
 export const Image = ({
 	src,
 	className,
+	children,
 	fallbackText = 'Error Loading Image',
 	fallbackClass = 'text-white/40 text-sm font-semibold', // ?
 	fallback = <span className={cn('z-10', fallbackClass)}>{fallbackText}</span>,
@@ -32,10 +33,13 @@ export const Image = ({
 	return (
 		<div className={cn('relative overflow-hidden flex items-center justify-center', className)}>
 			{!!src && !imageError ? (
-				<NextImage className='object-cover' fill src={src} onError={() => setImageError(true)} {...imageProps} />
+				<NextImage className='object-cover' fill src={src} onError={() => setImageError(true)} {...imageProps}>
+					{children}
+				</NextImage>
 			) : (
 				fallback
 			)}
+			{children}
 		</div>
 	);
 };
