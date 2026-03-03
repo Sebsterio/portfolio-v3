@@ -1,9 +1,10 @@
+/* @import '../lib/transitions/styles/vt-styles.css';  */	 /* View Transitions */
+@import '../lib/transitions/styles/vt-keyframes.css'; /* View Transitions */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import '@/lib/transitions/styles/vt-styles.css'; 	 /* View Transitions */
-@import '@/lib/transitions/styles/vt-keyframes.css'; /* View Transitions */
 
 @layer base {
 	:root {

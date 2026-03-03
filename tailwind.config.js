@@ -1,20 +1,17 @@
-// /** @type {import('tailwindcss').Config} */
-// const defaultConfig = require('tailwindcss/defaultConfig');
-
-import type { Config } from 'tailwindcss';
 import defaultConfig from 'tailwindcss/defaultConfig';
-import tailwindAnimatePlugin from 'tailwindcss-animate';
-import { viewTransitionPlugin } from './src/lib/transitions/styles/tailwind';
+// import tailwindAnimatePlugin from 'tailwindcss-animate';
+// import { viewTransitionPlugin } from './src/lib/transitions/styles/tailwind';
 
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+const config = {
 	content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 	darkMode: ['class'],
 	plugins: [
-		tailwindAnimatePlugin,
-		viewTransitionPlugin, //
+		// tailwindAnimatePlugin,
+		// viewTransitionPlugin, //
 	],
 	theme: {
-		...defaultConfig.theme,
+		// ...defaultConfig.theme,
 		extend: {
 			fontFamily: {
 				urbanist: 'var(--font-urbanist)',
@@ -145,3 +142,5 @@ module.exports = {
 		},
 	},
 };
+
+export default config;

@@ -14,7 +14,7 @@ const SLOTS = [
 	't-detail',
 	'm-page',
 	'c-page', //
-] as const;
+];
 
 /**
  * Shared transtion utilities (vt-background, vt-sidepanel)
