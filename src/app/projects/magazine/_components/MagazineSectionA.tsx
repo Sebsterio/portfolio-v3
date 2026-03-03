@@ -23,7 +23,7 @@ export function MagazineSectionA({ number, megaTitle, title, subtitle, descripti
 				</div>
 
 				{/* Decorative Title */}
-				<h2 className='project-decorative-text project-decorative-outline project-decorative-outline-hover text-[clamp(4rem,13vw,13rem)] absolute top-[-1rem] lg:top-[-1rem] left-[-0.5rem] lg:left-[-2rem] z-10 transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.3)] group-hover:[text-shadow:0_0_60px_rgba(0,217,255,0.3)]'>
+				<h2 className='project-decorative-text project-decorative-outline project-decorative-outline-hover text-[clamp(4rem,13vw,13rem)] absolute -top-4 lg:-top-4 -left-2 lg:-left-8 z-10 transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.3)] group-hover:[text-shadow:0_0_60px_rgba(0,217,255,0.3)]'>
 					{megaTitle}
 				</h2>
 
@@ -36,16 +36,16 @@ export function MagazineSectionA({ number, megaTitle, title, subtitle, descripti
 
 					<ProjectImage_Placeholder
 						gradient='bg-gradient-bounce-small'
-						className='w-3/5 md:w-3/5 lg:w-3/5 h-[150px] md:h-[180px] lg:h-[200px] mt-8 ml-0 lg:ml-[25%] order-3 lg:order-none shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2'
+						className='w-3/5 md:w-3/5 lg:w-3/5 h-[150px] md:h-[180px] lg:h-[200px] mt-8 ml-0 lg:ml-[25%] order-3 lg:order-0 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2'
 						overlayType='none'
 					>
-						<div className='absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/20 to-transparent' />
+						<div className='absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-white/20 to-transparent' />
 					</ProjectImage_Placeholder>
 				</div>
 			</div>
 
 			{/* Right Column - Content */}
-			<div className='pt-4 lg:pt-16 order-2 lg:order-none'>
+			<div className='pt-4 lg:pt-16 order-2 lg:order-0'>
 				<h3 className='font-urbanist text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-2 tracking-tight transition-all duration-300 group-hover:text-accent-cyan'>
 					{title}
 				</h3>

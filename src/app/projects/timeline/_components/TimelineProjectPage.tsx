@@ -108,7 +108,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 														href={p.link}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-gradient-to-br from-accent-blue to-accent-cyan text-white font-semibold'
+														className='inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold'
 													>
 														Visit Project →
 													</a>
@@ -120,7 +120,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 									<button
 										onClick={() => handleProjectClick(p)}
 										className={cn(
-											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/[0.03] border border-transparent'
+											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/3 border border-transparent'
 										)}
 										style={{ viewTransitionName: `project-card-${p.id}` }}
 									>

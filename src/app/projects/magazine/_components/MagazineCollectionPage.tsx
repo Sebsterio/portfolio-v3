@@ -13,7 +13,7 @@ const MagazineCollectionPageDecorations = () => (
 		<div className='deco-circle w-[120px] h-[120px] bottom-[18%] right-[15%]' />
 		<div className='deco-line top-[26%] left-0 w-[40%]' />
 		<div className='deco-line bottom-[32%] right-0 w-[35%]' />
-		<div className='deco-line top-[60%] left-[20%] w-[25%] rotate-[15deg]' />
+		<div className='deco-line top-[60%] left-[20%] w-[25%] rotate-15' />
 	</>
 );
 

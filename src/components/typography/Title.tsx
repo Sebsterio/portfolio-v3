@@ -12,7 +12,7 @@ const CLASSES = {
 		title: 'font-urbanist font-extrabold',
 		lineNormal: 'bg-clip-text text-transparent bg-chrome-metallic',
 		lineStrong:
-			'bg-clip-text text-transparent bg-gradient-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-[length:200%_200%]',
+			'bg-clip-text text-transparent bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]',
 	},
 	hero: {
 		title: 'text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]',

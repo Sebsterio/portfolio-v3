@@ -111,7 +111,7 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 							</p>
 						</div>
 
-						<div className='h-[1px] bg-gradient-to-r from-transparent via-chrome-silver/20 to-transparent' />
+						<div className='h-px bg-linear-to-r from-transparent via-chrome-silver/20 to-transparent' />
 
 						<p className='text-2xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
 
@@ -149,8 +149,8 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 									key={i}
 									className={cn(
 										'aspect-video rounded-xl',
-										'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]',
-										'border border-chrome-silver/[0.08]',
+										'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl',
+										'border border-chrome-silver/8',
 										'flex items-center justify-center text-chrome-silver/30'
 									)}
 								>
@@ -177,9 +177,9 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 						<div className='pt-8'>
 							<div
 								className={cn(
-									'aspect-[21/9] rounded-xl',
-									'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]',
-									'border border-chrome-silver/[0.08]',
+									'aspect-21/9 rounded-xl',
+									'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl',
+									'border border-chrome-silver/8',
 									'flex items-center justify-center text-chrome-silver/30'
 								)}
 							>
@@ -203,7 +203,7 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 									key={i}
 									className={cn(
 										'p-8 rounded-xl',
-										'bg-gradient-to-br from-accent-blue/10 to-accent-cyan/10',
+										'bg-linear-to-br from-accent-blue/10 to-accent-cyan/10',
 										'border border-accent-blue/20'
 									)}
 								>
@@ -223,7 +223,7 @@ export const MagazineProjectPage = ({ project }: MagazineProjectPageProps) => {
 									rel='noopener noreferrer'
 									className={cn(
 										'inline-flex items-center gap-3 px-10 py-5 rounded-full',
-										'bg-gradient-to-br from-accent-blue to-accent-cyan',
+										'bg-linear-to-br from-accent-blue to-accent-cyan',
 										'text-white text-lg font-semibold',
 										'hover:scale-105 transition-transform duration-300'
 									)}

@@ -14,8 +14,8 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			className={cn(
 				'group relative overflow-hidden',
 				'p-6 sm:p-8 md:p-10 rounded-[24px] md:rounded-[28px]',
-				'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] backdrop-saturate-[180%] backdrop-brightness-[1.15]',
-				'border border-chrome-silver/[0.08]',
+				'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]',
+				'border border-chrome-silver/8',
 				'transition-all duration-600 transition-ease-[cubic-bezier(0.34,1.56,0.64,1)]',
 				'hover:translate-y-[-6px] md:hover:translate-y-[-10px] hover:scale-[1.01]',
 				'hover:border-accent-blue/30',
@@ -56,7 +56,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			{/* Animated Shine Effect on Hover */}
 			<div
 				className={cn(
-					'absolute top-0 left-[-100%] w-full h-full pointer-events-none group-hover:left-[100%]',
+					'absolute top-0 -left-full w-full h-full pointer-events-none group-hover:left-full',
 					'transition-all transition-duration-[800ms] ease-out'
 				)}
 				style={{
@@ -69,8 +69,8 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			<div className='relative z-10 flex gap-6'>
 				<div // NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page
 					className={cn(
-						'flex-shrink-0 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl',
-						'bg-gradient-to-br from-accent-blue to-accent-cyan',
+						'shrink-0 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-2xl',
+						'bg-linear-to-br from-accent-blue to-accent-cyan',
 						'shadow-[0_10px_30px_rgba(59,130,246,0.4),0_0_20px_rgba(59,130,246,0.2)]',
 						'group-hover:shadow-[0_12px_40px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)]',
 						'group-hover:scale-110',

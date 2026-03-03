@@ -1,0 +1,18 @@
+/* ----------------------------------------
+   View Transition Slots
+   ---------------------------------------- */
+
+	 @utility vt-main { view-transition-name: main; }
+	 @utility vt-left { view-transition-name: left; }
+	 @utility vt-right { view-transition-name: right; }
+	 @utility vt-bottom { view-transition-name: bottom; }
+	 @utility vt-top { view-transition-name: top; }
+	 
+	 @utility vt-p-header { view-transition-name: p-header; }
+	 @utility vt-p-content { view-transition-name: p-content; }
+	 
+	 @utility vt-t-list { view-transition-name: t-list; }
+	 @utility vt-t-detail { view-transition-name: t-detail; }
+	 
+	 @utility vt-m-page { view-transition-name: m-page; }
+	 @utility vt-c-page { view-transition-name: c-page; }

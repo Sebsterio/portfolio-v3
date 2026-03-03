@@ -20,7 +20,7 @@ const CLASSES = {
 
 	value: cn(
 		'font-urbanist text-base md:text-lg font-bold',
-		'bg-gradient-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
+		'bg-linear-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
 	),
 };
 

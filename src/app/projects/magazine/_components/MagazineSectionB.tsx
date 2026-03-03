@@ -18,7 +18,7 @@ export function MagazineSectionB({ number, megaTitle, preTitle, title, subtitle,
 			<div className='text-xl md:text-2xl xl:text-3xl font-urbanist font-bold text-white/30 mb-4 relative z-20'>{number}</div>
 
 			{/* Decorative Background Text */}
-			<div className='project-decorative-text project-decorative-faded text-[clamp(6rem,20vw,20rem)] absolute top-[-2rem] md:top-[-4rem] left-[-1rem] md:left-[-2rem] w-full lg:w-auto z-10 transition-all duration-500 group-hover:text-white/10'>
+			<div className='project-decorative-text project-decorative-faded text-[clamp(6rem,20vw,20rem)] absolute -top-8 md:-top-16 -left-4 md:-left-8 w-full lg:w-auto z-10 transition-all duration-500 group-hover:text-white/10'>
 				{megaTitle}
 			</div>
 
@@ -45,7 +45,7 @@ export function MagazineSectionB({ number, megaTitle, preTitle, title, subtitle,
 				</div>
 
 				{/* Images Column */}
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-6 order-[-1] lg:order-none'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6 -order-1 lg:order-0'>
 					<ProjectImage_Placeholder
 						gradient='bg-gradient-meco-main'
 						className='md:col-span-2 h-[200px] md:h-[280px] lg:h-[300px] shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(250,112,154,0.2)] hover:scale-[1.02]'

@@ -21,11 +21,11 @@ export const TimelineLine = ({ position, fadeEnds = true, className, ...rest }: 
 	>
 		{fadeEnds ? (
 			<>
-				<div className='absolute inset-0 bg-gradient-to-b from-transparent via-accent-cyan to-transparent' />
-				<div className='absolute inset-0 bg-gradient-to-b from-accent-blue/80 via-accent-cyan to-accent-blue/20' />
+				<div className='absolute inset-0 bg-linear-to-b from-transparent via-accent-cyan to-transparent' />
+				<div className='absolute inset-0 bg-linear-to-b from-accent-blue/80 via-accent-cyan to-accent-blue/20' />
 			</>
 		) : (
-			<div className='absolute inset-0 bg-gradient-to-b from-accent-blue/80 via-accent-cyan to-transparent' />
+			<div className='absolute inset-0 bg-linear-to-b from-accent-blue/80 via-accent-cyan to-transparent' />
 		)}
 	</div>
 );

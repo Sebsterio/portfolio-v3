@@ -10,7 +10,7 @@ type ProjectTagsProps = {
 export const ProjectTags = ({ tags, limit, size = 'md', className }: ProjectTagsProps) => {
 	const displayTags = limit ? tags.slice(0, limit) : tags;
 	const sizeClasses = {
-		sm: 'px-2 py-1 rounded text-xs',
+		sm: 'px-2 py-1 rounded-sm text-xs',
 		md: 'px-4 py-2 rounded-lg text-sm',
 	};
 

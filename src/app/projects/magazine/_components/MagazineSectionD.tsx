@@ -13,7 +13,7 @@ export function MagazineSectionD({ number, title, subtitle, description }: Magaz
 	return (
 		<section className='relative -mt-8 group'>
 			{/* Decorative Number */}
-			<div className='project-decorative-text text-transparent text-[clamp(6rem,15vw,12rem)] absolute top-[-3rem] md:top-[-5rem] lg:top-[-6rem] right-[2%] md:right-[5%] z-30 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
+			<div className='project-decorative-text text-transparent text-[clamp(6rem,15vw,12rem)] absolute -top-12 md:-top-20 lg:-top-24 right-[2%] md:right-[5%] z-30 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
 				{number}
 			</div>
 
@@ -47,7 +47,7 @@ export function MagazineSectionD({ number, title, subtitle, description }: Magaz
 				{/* Small Image */}
 				<ProjectImage_Placeholder
 					gradient='bg-gradient-ebit-small'
-					className='w-full lg:w-full h-[200px] md:h-[250px] lg:h-[350px] shadow-[0_25px_60px_rgba(0,0,0,0.6)] lg:-translate-x-12 lg:translate-y-8 -translate-y-12 lg:mt-0 w-[70%] hover:lg:-translate-x-14 hover:lg:translate-y-6 hover:scale-[1.02] transition-all duration-500'
+					className='w-full lg:w-full h-[200px] md:h-[250px] lg:h-[350px] shadow-[0_25px_60px_rgba(0,0,0,0.6)] lg:-translate-x-12 lg:translate-y-8 -translate-y-12 lg:mt-0 w-[70%] lg:hover:-translate-x-14 lg:hover:translate-y-6 hover:scale-[1.02] transition-all duration-500'
 					overlayType='none'
 				/>
 			</div>
