@@ -2,6 +2,7 @@
 
 /**
  * TransitionProvider
+ * - Orchestrates view transitions around Next.js App Router navigation
  *
  * Architecture:
  * - Provider: Core transition execution + navigation guard + sync with View Transitions API
