@@ -2,12 +2,13 @@ import { cn } from '@/lib/utils';
 import { Project } from '@/types';
 import { ProjectTags } from '@/components/ProjectTags';
 import { GlassCard1 as GlassCard } from '@/components/GlassCard';
+import { ProjectImage } from '@/components/ProjectImage';
 
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
-	<GlassCard className={cn('p-8 md:p-12 space-y-8', className)}>
+	<GlassCard className={cn('p-8 md:p-12', className)}>
 		{/* Decorative gradients */}
-		<div className='gradient-accent-tr' />
-		<div className='absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-cyan/10 to-transparent rounded-2xl' />
+		<div className='absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-accent-blue/10 via-transparent to-transparent' />
+		<div className='absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-cyan/10 via-transparent to-transparent' />
 
 		<div className='relative space-y-8'>
 			<div className='space-y-4'>
@@ -22,10 +23,19 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 
 			{/* Screenshots Placeholder */}
 			<div className='grid grid-cols-3 gap-4'>
-				{[1, 2, 3].map((i) => (
-					<div key={i} className='aspect-video rounded-xl glass-card flex items-center justify-center text-chrome-silver/30 text-sm'>
-						Screenshot {i}
-					</div>
+				{[0, 1, 2].map((i) => (
+					<ProjectImage
+						key={i}
+						src={project.images.screens[i]}
+						alt={`Screenshot of ${project.title}`}
+						className={cn(
+							'aspect-video rounded-xl border border-chrome-silver/[0.08]',
+							'bg-gradient-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+							'opacity-75 hover:opacity-100 transition-opacity transition-duration-300'
+						)}
+						fallbackClass='text-white/50 text-sm font-semibold'
+						fallbackText='Screenshot Unavailable'
+					/>
 				))}
 			</div>
 

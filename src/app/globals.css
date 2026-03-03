@@ -95,16 +95,6 @@
 	.content-container {
 		@apply w-full max-w-[1400px] mx-auto;
 	}
-
-	/* Projects Page  */
-
-	.glass-card {
-		@apply rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] border border-chrome-silver/[0.08];
-	}
-
-	.gradient-accent-tr {
-		@apply absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-accent-blue/10 to-transparent rounded-2xl;
-	}
 }
 
 /*

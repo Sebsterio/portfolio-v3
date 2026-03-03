@@ -74,7 +74,7 @@ export const GlassCard1 = ({ children, className, style, withAccent = false, acc
 			{...{ style }}
 		>
 			{withAccent && (
-				<div className={cn('absolute w-32 h-32 from-accent-blue/10 to-transparent rounded-2xl', accentPositions[accentPosition])} />
+				<div className={cn('absolute w-32 h-32 from-accent-blue/10 via-transparent to-transparent', accentPositions[accentPosition])} />
 			)}
 			{children}
 		</Component>

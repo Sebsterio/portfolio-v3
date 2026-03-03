@@ -20,6 +20,7 @@ export type Project = {
 	images: {
 		thumbnail: string;
 		main: string;
+		screens: string[];
 	};
 	link?: string;
 	roleDetail?: string;
