@@ -72,11 +72,6 @@
 ::view-transition-new(p-header) 								{ animation-name: vt-fade-in;			}
 ::view-transition-old(p-header):only-child 			{ animation-name: vt-slide-to-t;	}
 
-/* ::view-transition-new(p-content):only-child 	{ animation-name: vt-slide-in-b;	}
-	 ::view-transition-old(p-content) 						{ animation-name: none;						}
-	 ::view-transition-new(p-content) 						{ animation-name: none;						}
-	 ::view-transition-old(p-content):only-child 	{ animation-name: vt-slide-to-b;	} */
-
 
 /* --- PROJECTS: Timeline View --- */
 

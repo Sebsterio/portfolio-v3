@@ -11,15 +11,20 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 		<div className='absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-cyan/10 via-transparent to-transparent' />
 
 		<div className='relative space-y-8'>
-			<div className='space-y-4'>
-				<div className='text-sm text-accent-cyan font-semibold uppercase tracking-wider'>
-					{project.company} · {project.role}
+			<div className='space-y-3 md:space-y-4'>
+				<div className='flex items-center gap-4 text-sm text-accent-cyan'>
+					<span>{project.period}</span>
+					<span>•</span>
+					<span>{project.location}</span>
 				</div>
-				<p className='text-lg text-chrome-silver/70'>
-					{project.period} · {project.location}
+				<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
+				<p className='text-xl md:text-2xl text-chrome-silver/80'>
+					<span className=''>{project.company}</span>
+					<span className='text-chrome-silver/40'>{' - ' + project.label}</span>
 				</p>
-				<p className='text-xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
 			</div>
+
+			<p className='text-xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
 
 			{/* Screenshots Placeholder */}
 			<div className='grid grid-cols-3 gap-4'>

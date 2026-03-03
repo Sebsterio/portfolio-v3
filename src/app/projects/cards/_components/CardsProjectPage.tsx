@@ -195,7 +195,10 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														<span>{project.location}</span>
 													</div>
 													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
-													<p className='text-xl md:text-2xl text-chrome-silver/80'>{project.company}</p>
+													<p className='text-xl md:text-2xl text-chrome-silver/80'>
+														<span className=''>{project.company}</span>
+														<span className='text-chrome-silver/40'>{' - ' + project.label}</span>
+													</p>
 												</div>
 
 												<ProjectImage

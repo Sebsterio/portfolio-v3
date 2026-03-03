@@ -1,5 +1,10 @@
 import { Project } from '../../types';
 
+export const header = {
+	title: 'Projects',
+	subtitle: 'Case studies & development work from recent years',
+} as const;
+
 export const projects: Project[] = [
 	{
 		id: 'bounce',
@@ -11,7 +16,7 @@ export const projects: Project[] = [
 		location: 'Lisbon, PT',
 		role: 'Software Engineer (Contract)',
 		label: 'Leading Travel Startup',
-		tags: ['Next.js', 'React Native', 'TypeScript', 'Accessibility', `i18n`, 'Storybook', 'Monorepo'],
+		tags: ['Next.js', 'React Native', 'TypeScript', 'a11y', `i18n`, 'Storybook', 'Monorepo'],
 		summary: 'Leading travel startup experiencing UI fragmentation across web and mobile products',
 		intro:
 			'Led the architecture and delivery of a production-ready cross-platform component library serving web, iOS, and Android platforms. This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster feature development.',
