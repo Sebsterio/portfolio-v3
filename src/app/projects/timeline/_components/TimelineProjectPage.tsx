@@ -124,7 +124,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 										)}
 										style={{ viewTransitionName: `project-card-${p.id}` }}
 									>
-										<TimelineDot size='sm' className='absolute left-[6px] top-1/2 -translate-y-1/2' />
+										<TimelineDot size='sm' className='absolute left-0 top-1/2 -translate-y-1/2' />
 
 										<div className='space-y-1'>
 											<div className='text-xs text-accent-cyan font-dm-sans'>{p.period}</div>

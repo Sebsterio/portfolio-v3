@@ -11,7 +11,7 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 		)}
 		// style={{ viewTransitionName: `project-card-${project.id}` }}
 	>
-		<TimelineDot active={isActive} size='sm' className='absolute left-[14px] top-1/2 -translate-y-1/2' />
+		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute left-[10px] top-1/2 -translate-y-1/2' />
 
 		<div className='space-y-1'>
 			<div className='text-xs text-accent-cyan font-dm-sans'>{project.period}</div>

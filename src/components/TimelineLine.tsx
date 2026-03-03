@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { CSSProperties } from 'react';
 
 type TimelineLineProps = {
-	position: 'left' | 'center';
+	position?: 'left' | 'center' | 'right';
 	fadeEnds?: boolean;
 	className?: string;
 	style?: CSSProperties;
@@ -11,11 +11,12 @@ type TimelineLineProps = {
 const positions = {
 	left: 'left-[7px]',
 	center: 'left-4',
+	right: 'left-32',
 };
 
 export const TimelineLine = ({ position, fadeEnds = true, className, ...rest }: TimelineLineProps) => (
 	<div
-		className={cn('absolute top-0 bottom-0 w-[2px]', positions[position], className)}
+		className={cn('absolute top-0 bottom-0 w-[2px]', position && positions[position], className)}
 		{...rest} //
 	>
 		{fadeEnds ? (

@@ -19,18 +19,20 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 		<div className='w-full space-y-8'>
 			{/* Desktop Wide (horizontal dates) */}
 			<div className='vt-t-list hidden xl:block relative w-full'>
-				<TimelineLine position='center' className='left-32' />
+				<TimelineLine position='right' />
 
 				<div className='space-y-12'>
 					{projects.map((project) => (
 						<div key={project.id} className='relative flex items-start gap-8'>
-							{/* Date */}
-							<div className='w-32 flex-shrink-0 flex items-start justify-end pt-8'>
-								<div className='text-sm font-semibold text-accent-cyan whitespace-nowrap pr-4'>{project.period.replace(' – ', ' - ')}</div>
+							{/* Dot and Date */}
+							<div className='relative'>
+								<div className='w-32 flex-shrink-0 flex items-start justify-end pt-8'>
+									<div className='text-sm font-semibold whitespace-nowrap pr-4'>
+										<span className='text-accent-cyan'>{project.period}</span>
+									</div>
+								</div>
+								<TimelineDot active className='z-10 absolute top-8 right-[-1px] translate-x-1/2' />
 							</div>
-
-							{/* Dot */}
-							<TimelineDot active className='absolute left-[127px] top-8 z-10' />
 
 							{/* Card */}
 							<GlassCard
@@ -58,30 +60,27 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow (rotated dates) */}
-			<div className='vt-t-list hidden md:block xl:hidden relative w-full pl-8'>
-				<TimelineLine position='left' />
+			<div className='vt-t-list hidden md:block xl:hidden relative w-full'>
+				<TimelineLine className='left-8' />
 
 				<div className='space-y-12'>
 					{projects.map((project) => (
-						<div key={project.id} className='relative flex items-start gap-8'>
-							{/* Rotated Date */}
-							<div className='absolute left-0 top-8'>
-								<div
-									className='text-sm font-semibold text-accent-cyan whitespace-nowrap origin-top-left -rotate-90'
-									style={{ transform: 'rotate(-90deg) translateX(-100%)' }}
-								>
-									{project.period.replace(' – ', ' - ')}
+						<div key={project.id} className='relative flex gap-8'>
+							{/* Dot and Date (Rotated) */}
+							<div className='relative w-8 self-stretch'>
+								<div className='absolute left-2 top-1/2 -translate-y-1/2'>
+									<div className='origin-center -translate-x-1/2 -rotate-90 text-sm font-semibold tracking-wider whitespace-nowrap'>
+										<span className='text-accent-cyan'>{project.period}</span>
+									</div>
 								</div>
+								<TimelineDot active className='z-10 absolute top-8 right-[-3px] translate-x-1/2' />
 							</div>
-
-							{/* Dot */}
-							<TimelineDot active className='absolute left-[7px] top-8 z-10' />
 
 							{/* Card */}
 							<GlassCard
 								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
-								className={cn('w-full text-left ml-8 p-8 hover:translate-x-2')}
+								className={cn('w-full text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
 									<div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
@@ -109,10 +108,12 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 				<div className='space-y-6'>
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
-							{/* Date and Dot */}
+							{/* Dot and Date */}
 							<div className='flex items-center gap-3 mb-3'>
 								<TimelineDot active />
-								<div className='text-xs font-semibold text-accent-cyan'>{project.period}</div>
+								<div className='text-xs font-semibold translate-y-[1px]'>
+									<span className='text-accent-cyan'>{project.period}</span>
+								</div>
 							</div>
 
 							{/* Card */}
