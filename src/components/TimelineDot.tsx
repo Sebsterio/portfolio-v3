@@ -8,7 +8,7 @@ type TimelineDotProps = {
 
 const sizeClasses = {
 	sm: 'w-2 h-2 ml-[3px]',
-	md: 'w-3 h-3 ml-[1px]',
+	md: 'w-3 h-3 ml-px',
 	lg: 'w-4 h-4',
 };
 

@@ -11,7 +11,7 @@ export function StatusBadge({ children, className }: StatusBadgeProps) {
 			className={cn(
 				'inline-flex items-center gap-2',
 				'px-4 py-2 lg:px-7 lg:py-3 rounded-full',
-				'bg-accent-blue/[0.08] border border-accent-blue/25',
+				'bg-accent-blue/8 border border-accent-blue/25',
 				className
 			)}
 		>

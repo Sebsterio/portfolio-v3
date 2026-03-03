@@ -54,7 +54,7 @@ const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
 			{/* Glass Background */}
 			<div
 				className={cn('absolute inset-0', [
-					'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] border border-chrome-silver/[0.08]',
+					'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl border border-chrome-silver/8',
 					'group-hover:border-accent-blue/30 transition-colors transition-duration-500',
 				])}
 			/>
@@ -72,7 +72,7 @@ const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
 					alt={`Screenshot of ${project.title}`}
 					className={cn(
 						'h-full w-full rounded-lg',
-						'bg-gradient-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+						'bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
 						'opacity-75 group-hover:opacity-100 transition-opacity transition-duration-300'
 					)}
 					fallbackClass='text-white/50 text-sm font-semibold'

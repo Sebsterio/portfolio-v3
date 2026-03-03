@@ -34,7 +34,7 @@ const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; 
 			onClick={onClick}
 			className={cn(
 				'w-12 h-12 md:w-14 md:h-14 rounded-full',
-				'bg-white/[0.05] hover:bg-white/[0.1]',
+				'bg-white/5 hover:bg-white/10',
 				'flex items-center justify-center',
 				'transition-all duration-300 hover:scale-110'
 			)}
@@ -179,7 +179,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											className={cn(
 												'rounded-[32px] p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
-												'border border-chrome-silver/[0.12]'
+												'border border-chrome-silver/12'
 											)}
 											style={{
 												backfaceVisibility: 'hidden',
@@ -225,7 +225,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											className={cn(
 												'absolute inset-0 rounded-[32px] p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
-												'border border-accent-blue/[0.3]'
+												'border border-accent-blue/30'
 											)}
 											style={{
 												backfaceVisibility: 'hidden',
@@ -268,7 +268,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														onClick={(e) => e.stopPropagation()}
 														className={cn(
 															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-															'bg-gradient-to-br from-accent-blue to-accent-cyan',
+															'bg-linear-to-br from-accent-blue to-accent-cyan',
 															'text-white text-sm font-semibold',
 															'hover:scale-105 transition-transform duration-300'
 														)}
@@ -288,7 +288,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 												className={cn(
 													'absolute inset-0 rounded-[32px]',
 													'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
-													'border border-chrome-silver/[0.06]',
+													'border border-chrome-silver/6',
 													'pointer-events-none'
 												)}
 												style={{

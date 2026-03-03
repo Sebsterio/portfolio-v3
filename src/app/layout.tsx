@@ -10,7 +10,7 @@ import { QuantumBackground } from '@/components/background/QuantumBackground';
 import { dmSans, urbanist } from './_config/fonts';
 import { AppHeader } from './_components/AppHeader';
 
-import './globals.css';
+import '@/styles/globals.css';
 
 export { metadata, viewport } from './_config/metadata';
 

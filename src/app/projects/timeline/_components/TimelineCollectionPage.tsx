@@ -26,12 +26,12 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative flex items-start gap-8'>
 							{/* Dot and Date */}
 							<div className='relative'>
-								<div className='w-32 flex-shrink-0 flex items-start justify-end pt-8'>
+								<div className='w-32 shrink-0 flex items-start justify-end pt-8'>
 									<div className='text-sm font-semibold whitespace-nowrap pr-4'>
 										<span className='text-accent-cyan'>{project.period}</span>
 									</div>
 								</div>
-								<TimelineDot active className='z-10 absolute top-8 right-[-1px] translate-x-1/2' />
+								<TimelineDot active className='z-10 absolute top-8 -right-px translate-x-1/2' />
 							</div>
 
 							{/* Card */}
@@ -111,7 +111,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 							{/* Dot and Date */}
 							<div className='flex items-center gap-3 mb-3'>
 								<TimelineDot active />
-								<div className='text-xs font-semibold translate-y-[1px]'>
+								<div className='text-xs font-semibold translate-y-px'>
 									<span className='text-accent-cyan'>{project.period}</span>
 								</div>
 							</div>

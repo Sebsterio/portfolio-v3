@@ -64,7 +64,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 						gradient='bg-gradient-freelance-main'
 						className='w-full h-[300px] md:h-[400px] lg:h-[500px] shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] hover:scale-[1.02] hover:rotate-1'
 					>
-						<div className='absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-black/30' />
+						<div className='absolute inset-0 bg-linear-to-t from-transparent via-transparent to-black/30' />
 					</ProjectImage_Placeholder>
 
 					{/* Small Polaroid Image - desktop only */}

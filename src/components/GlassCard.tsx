@@ -13,8 +13,8 @@ export const GlassCard = ({ title, children, className, style }: GlassCardProps)
 		<div
 			className={cn(
 				'relative p-8 rounded-[28px] overflow-hidden',
-				'bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px] backdrop-saturate-[180%] backdrop-brightness-[1.15]',
-				'border border-chrome-silver/[0.08]',
+				'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]',
+				'border border-chrome-silver/8',
 				'shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12)]',
 				className
 			)}
@@ -52,10 +52,10 @@ type GlassCard1Props = {
 };
 
 const accentPositions = {
-	'top-right': 'top-0 right-0 bg-gradient-to-bl',
-	'top-left': 'top-0 left-0 bg-gradient-to-br',
-	'bottom-right': 'bottom-0 right-0 bg-gradient-to-tl',
-	'bottom-left': 'bottom-0 left-0 bg-gradient-to-tr',
+	'top-right': 'top-0 right-0 bg-linear-to-bl',
+	'top-left': 'top-0 left-0 bg-linear-to-br',
+	'bottom-right': 'bottom-0 right-0 bg-linear-to-tl',
+	'bottom-left': 'bottom-0 left-0 bg-linear-to-tr',
 };
 
 export const GlassCard1 = ({ children, className, style, withAccent = false, accentPosition = 'top-right', onClick }: GlassCard1Props) => {
@@ -66,8 +66,8 @@ export const GlassCard1 = ({ children, className, style, withAccent = false, acc
 			onClick={onClick}
 			className={cn(
 				'relative overflow-hidden',
-				'border border-chrome-silver/[0.08]',
-				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-[40px]', // NOTE: backdrop glitches if element has vt
+				'border border-chrome-silver/8',
+				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl', // NOTE: backdrop glitches if element has vt
 				onClick && 'transition-all duration-300 hover:border-accent-blue/30',
 				className
 			)}

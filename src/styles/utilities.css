@@ -1,0 +1,21 @@
+/* ================================================
+   Utilities
+   ================================================ */
+
+@utility content-container {
+  @apply w-full max-w-[1400px] mx-auto;
+}
+
+
+/* ================================================
+   Quantum Grid Theme — unused, kept for reference
+   ================================================
+   Uncomment and move out of this block to enable.
+
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+   ================================================ */

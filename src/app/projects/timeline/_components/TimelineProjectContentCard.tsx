@@ -7,8 +7,8 @@ import { ProjectImage } from '@/components/ProjectImage';
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
 	<GlassCard className={cn('p-8 md:p-12', className)}>
 		{/* Decorative gradients */}
-		<div className='absolute top-0 right-0 w-48 h-48 bg-gradient-to-bl from-accent-blue/10 via-transparent to-transparent' />
-		<div className='absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-accent-cyan/10 via-transparent to-transparent' />
+		<div className='absolute top-0 right-0 w-48 h-48 bg-linear-to-bl from-accent-blue/10 via-transparent to-transparent' />
+		<div className='absolute bottom-0 left-0 w-48 h-48 bg-linear-to-tr from-accent-cyan/10 via-transparent to-transparent' />
 
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
@@ -34,8 +34,8 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 						src={project.images.screens[i]}
 						alt={`Screenshot of ${project.title}`}
 						className={cn(
-							'aspect-video rounded-xl border border-chrome-silver/[0.08]',
-							'bg-gradient-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+							'aspect-video rounded-xl border border-chrome-silver/8',
+							'bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
 							'opacity-75 hover:opacity-100 transition-opacity transition-duration-300'
 						)}
 						fallbackClass='text-white/50 text-sm font-semibold'
@@ -75,7 +75,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 					rel='noopener noreferrer'
 					className={cn(
 						'inline-flex items-center gap-2 px-8 py-4 rounded-full',
-						'bg-gradient-to-br from-accent-blue to-accent-cyan',
+						'bg-linear-to-br from-accent-blue to-accent-cyan',
 						'text-white font-semibold',
 						'hover:scale-105 transition-transform duration-300'
 					)}
