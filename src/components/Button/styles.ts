@@ -6,7 +6,7 @@ export const CLASSES = {
 		'px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-5 rounded-full border-2',
 		'font-dm-sans text-[14px] sm:text-[15px] font-bold',
 		'transition-all duration-300 transition-ease-[cubic-bezier(0.34,1.56,0.64,1)]',
-		'hover:translate-y-[-4px] hover:scale-[1.02]',
+		'hover:-translate-y-1 hover:scale-[1.02]',
 		'active:translate-y-0 active:scale-[0.98] active:duration-150'
 	),
 	primary: cn(

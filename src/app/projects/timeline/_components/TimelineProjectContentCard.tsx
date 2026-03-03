@@ -1,32 +1,34 @@
 import { cn } from '@/lib/utils';
 import { Project } from '@/types';
 import { ProjectTags } from '@/components/ProjectTags';
-import { GlassCard1 as GlassCard } from '@/components/GlassCard';
 import { ProjectImage } from '@/components/ProjectImage';
+import { GlassSurface } from '@/components/ui/GlassSurface';
+import { InlineList } from '@/components/InlineList';
+
+const decorativeGradientClasses = {
+	base: cn('absolute w-48 h-48 via-transparent to-transparent'),
+	topRight: cn('top-0 right-0 bg-linear-to-bl', 'from-accent-blue/10'),
+	bottomLeft: cn('bottom-0 left-0 bg-linear-to-tr', 'from-accent-cyan/10'),
+};
 
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
-	<GlassCard className={cn('p-8 md:p-12', className)}>
-		{/* Decorative gradients */}
-		<div className='absolute top-0 right-0 w-48 h-48 bg-linear-to-bl from-accent-blue/10 via-transparent to-transparent' />
-		<div className='absolute bottom-0 left-0 w-48 h-48 bg-linear-to-tr from-accent-cyan/10 via-transparent to-transparent' />
+	<GlassSurface className={cn('p-8 md:p-12', className)} rounded='2xl'>
+		<div className={cn(decorativeGradientClasses.base, decorativeGradientClasses.topRight)} />
+		<div className={cn(decorativeGradientClasses.base, decorativeGradientClasses.bottomLeft)} />
 
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
-				<div className='flex items-center gap-4 text-sm text-accent-cyan'>
-					<span>{project.period}</span>
-					<span>•</span>
-					<span>{project.location}</span>
-				</div>
+				<InlineList as='div' className='flex items-center gap-4 text-sm text-accent-cyan'>
+					{[project.period, project.location]}
+				</InlineList>
 				<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 				<p className='text-xl md:text-2xl text-chrome-silver/80'>
-					<span className=''>{project.company}</span>
-					<span className='text-chrome-silver/40'>{' - ' + project.label}</span>
+					<span className=''>{project.company}</span> <span className='text-chrome-silver/40'>{' - ' + project.label}</span>
 				</p>
 			</div>
 
 			<p className='text-xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
 
-			{/* Screenshots Placeholder */}
 			<div className='grid grid-cols-3 gap-4'>
 				{[0, 1, 2].map((i) => (
 					<ProjectImage
@@ -73,16 +75,13 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 					href={project.link}
 					target='_blank'
 					rel='noopener noreferrer'
-					className={cn(
-						'inline-flex items-center gap-2 px-8 py-4 rounded-full',
-						'bg-linear-to-br from-accent-blue to-accent-cyan',
-						'text-white font-semibold',
-						'hover:scale-105 transition-transform duration-300'
-					)}
+					className={cn('inline-flex items-center gap-2 px-8 py-4 rounded-full ', [
+						'bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold',
+					])}
 				>
 					Visit Project →
 				</a>
 			)}
 		</div>
-	</GlassCard>
+	</GlassSurface>
 );
