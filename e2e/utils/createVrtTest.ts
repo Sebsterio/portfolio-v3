@@ -1,9 +1,10 @@
 import type { Page } from '@playwright/test';
 import { test, expect } from '@playwright/test';
-import { disableAnimations } from './disableAnimations';
+// import { safeMode } from './safeMode';
 
 type VrtOptions = {
 	name?: string;
+	timeout?: number;
 	fullPage?: boolean;
 	beforeScreenshot?: (page: Page) => Promise<void>;
 };
@@ -13,18 +14,21 @@ function normalizeName(route: string) {
 	return route.replace(/\//g, '_').replace(/^_/, '');
 }
 
-export function createVrtTest(route: string, options?: VrtOptions) {
-	const { name, fullPage = true, beforeScreenshot } = options ?? {};
-	const snapshotName = name ?? normalizeName(route);
+export function createVrtTest(route: string, config: VrtOptions = {}) {
+	const {
+		name: snapshotName = normalizeName(route), //
+		beforeScreenshot = async () => {},
+		fullPage = true,
+		timeout = 15000,
+	} = config;
 
 	test(`VRT: ${route}`, async ({ page }) => {
-		await page.goto(`http://localhost:3000${route}`);
-		await page.waitForLoadState('networkidle');
+		await page.goto(`http://localhost:3000${route}`, { waitUntil: 'domcontentloaded' });
 
-		await disableAnimations(page);
+		// await safeMode(page);
 
-		if (beforeScreenshot) await beforeScreenshot(page);
+		await beforeScreenshot(page);
 
-		await expect(page).toHaveScreenshot(`${snapshotName}.png`, { fullPage });
+		await expect(page).toHaveScreenshot(`${snapshotName}.png`, { fullPage, timeout });
 	});
 }

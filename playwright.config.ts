@@ -12,8 +12,9 @@ export default defineConfig({
 	workers: process.env.CI ? 1 : undefined,
 	reporter: 'html',
 	use: {
-		viewport: { width: 1440, height: 900 },
 		baseURL: 'http://localhost:3000',
+		viewport: { width: 1440, height: 900 },
+		deviceScaleFactor: 1,
 		trace: 'on-first-retry',
 	},
 	projects: [

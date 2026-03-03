@@ -11,14 +11,23 @@ type TitleProps = {
 
 const CLASSES = {
 	base: {
-		title: 'font-urbanist font-extrabold',
-		line: 'bg-clip-text text-transparent',
-		normal: 'bg-chrome-metallic',
-		highlight: 'bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]',
+		title: cn('font-urbanist font-extrabold'),
+		line: cn('bg-clip-text text-transparent'),
+		normal: cn('bg-chrome-metallic'),
+		highlight: cn('bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]'),
 	},
-	hero: { title: 'text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]' },
-	page: { title: 'text-[clamp(48px,6vw,80px)] leading-tight tracking-[-0.02em]' },
-	projects: { title: 'text-5xl md:text-6xl font-bold bg-linear-to-r from-white to-accent-cyan' },
+	hero: {
+		title: cn('text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]'),
+		normal: cn(''),
+	},
+	page: {
+		title: cn('text-[clamp(48px,6vw,80px)] leading-tight tracking-[-0.02em]'),
+		normal: cn(''),
+	},
+	projects: {
+		title: cn('text-5xl md:text-6xl font-bold'),
+		normal: cn('bg-linear-to-r from-white to-accent-cyan'), // BUG: styles not picked up
+	},
 };
 
 export const Title: React.FC<TitleProps> = ({ children: lines, variant, className, ...props }) => {
@@ -30,7 +39,11 @@ export const Title: React.FC<TitleProps> = ({ children: lines, variant, classNam
 				const isLastLine = index === normalizedLines.length - 1;
 				return (
 					<React.Fragment key={index}>
-						<ParsedText className={CLASSES.base.line} normal={CLASSES.base.normal} highlight={CLASSES.base.highlight}>
+						<ParsedText
+							className={CLASSES.base.line}
+							normal={cn(CLASSES.base.normal, CLASSES[variant]?.normal)}
+							highlight={CLASSES.base.highlight}
+						>
 							{rawLine}
 						</ParsedText>
 

@@ -26,7 +26,7 @@ const parseSegment = (
 
 /**
  * Converts markdown-like syntax into an immutable array of JSX nodes using Tailwind classes.
- * Syntax: `**bold**`, `__italics__`, `==highlight==`
+ * - Syntax: `**bold**`, `__italics__`, `==highlight==`
  */
 export const parseString = (text: string, overrides?: MarkdownOverrides): ReactNode[] => {
 	if (!text) return [text];
