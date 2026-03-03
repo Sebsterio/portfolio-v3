@@ -4,8 +4,9 @@ import { ParsedText } from '@/lib/parser/ParsedText';
 
 type TitleProps = {
 	children: string | string[];
-	variant: 'hero' | 'page';
+	variant: 'hero' | 'page' | 'projects';
 	className?: string;
+	id?: string;
 };
 
 const CLASSES = {
@@ -17,16 +18,16 @@ const CLASSES = {
 	},
 	hero: { title: 'text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]' },
 	page: { title: 'text-[clamp(48px,6vw,80px)] leading-tight tracking-[-0.02em]' },
+	projects: { title: 'text-5xl md:text-6xl font-bold bg-linear-to-r from-white to-accent-cyan' },
 };
 
-export const Title: React.FC<TitleProps> = ({ children: lines, variant, className }) => {
+export const Title: React.FC<TitleProps> = ({ children: lines, variant, className, ...props }) => {
 	const normalizedLines = Array.isArray(lines) ? lines : [lines];
 
 	return (
-		<h1 className={cn(CLASSES.base.title, CLASSES[variant].title, className)}>
+		<h1 className={cn(CLASSES.base.title, CLASSES[variant].title, className)} {...props}>
 			{normalizedLines.map((rawLine, index) => {
 				const isLastLine = index === normalizedLines.length - 1;
-
 				return (
 					<React.Fragment key={index}>
 						<ParsedText className={CLASSES.base.line} normal={CLASSES.base.normal} highlight={CLASSES.base.highlight}>

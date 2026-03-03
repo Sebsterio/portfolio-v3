@@ -45,7 +45,7 @@ type ProjectCardProps = {
 const ProjectCard = ({ project, style, onNavigate }: ProjectCardProps) => {
 	return (
 		<motion.button
-			className={cn('group relative h-[420px] rounded-[28px] overflow-hidden text-left')}
+			className={cn('group relative h-105 rounded-[28px] overflow-hidden text-left')}
 			whileHover={{ scale: 1.02, y: -8 }}
 			whileTap={{ scale: 0.98 }}
 			style={style}

@@ -141,7 +141,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 
 			<div className='flex flex-col items-center gap-8'>
 				{/* Card Container with Navigation */}
-				<div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-start w-full max-w-[1400px]'>
+				<div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-start w-full max-w-350'>
 					{/* Desktop Left Button */}
 					<div className='hidden lg:flex lg:items-start lg:pt-40'>
 						<NavigationButton direction='prev' onClick={goToPrev} />
@@ -177,7 +177,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										<div
 											ref={frontRef}
 											className={cn(
-												'rounded-[32px] p-8 md:p-12',
+												'rounded-4xl p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
 												'border border-chrome-silver/12'
 											)}
@@ -223,7 +223,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										<div
 											ref={backRef}
 											className={cn(
-												'absolute inset-0 rounded-[32px] p-8 md:p-12',
+												'absolute inset-0 rounded-4xl p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
 												'border border-accent-blue/30'
 											)}
@@ -286,7 +286,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											<div
 												key={offset}
 												className={cn(
-													'absolute inset-0 rounded-[32px]',
+													'absolute inset-0 rounded-4xl',
 													'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
 													'border border-chrome-silver/6',
 													'pointer-events-none'
