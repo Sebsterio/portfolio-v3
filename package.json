@@ -7,7 +7,10 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"e2e": "playwright test",
+		"e2e:up": "playwright test --update-snapshots",
+		"e2e:ui": "playwright test --ui"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
@@ -19,6 +22,7 @@
 		"tailwind-merge": "^3.5.0"
 	},
 	"devDependencies": {
+		"@playwright/test": "^1.58.2",
 		"@tailwindcss/postcss": "^4.2.1",
 		"@types/node": "^25.3.3",
 		"@types/react": "19.2.14",

@@ -31,3 +31,10 @@ next-env.d.ts
 /_proto
 /public/_proto
 /src/app/proto
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
