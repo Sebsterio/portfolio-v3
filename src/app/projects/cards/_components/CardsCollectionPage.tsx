@@ -45,7 +45,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
 		<GlassSurface
 			className={cn('group h-105 p-8', 'hover:scale-[102%] -hover:translate-y-2', 'active:scale-[98%]')}
-			rounded='5xl'
+			rounded={3}
 			hoverable
 			{...{ style, onClick }}
 		>

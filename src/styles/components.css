@@ -1,139 +1,141 @@
 
-@layer components {
 
-	/* ================================================
-		 Components — Common
-		 ================================================ */
+/* @layer components { */
 
-	.overlay						 { @apply absolute pointer-events-none }
-	.overlay-full				 { @apply absolute pointer-events-none inset-0 }
-	
-	.rounded-glass-1		 { @apply rounded-2xl; }
-	.rounded-glass-2		 { @apply rounded-4xl md:rounded-5xl; }
+/* ================================================
+		Components — Common
+		================================================ */
 
-	.backdrop-glass-0		 { @apply backdrop-blur-[20px] }
-	.backdrop-glass-1		 { @apply backdrop-blur-[30px] backdrop-brightness-[1.2]; }
-	.backdrop-glass-2		 { @apply backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]; } /* 2xl = 40px */
-	.backdrop-glass-3		 { @apply backdrop-blur-[60px] } 
-	.backdrop-glass			 { @apply backdrop-glass-2 } 
+.overlay						 { @apply absolute pointer-events-none }
+.overlay-full				 { @apply absolute pointer-events-none inset-0 }
 
-	.shadow-glass-0			 { @apply shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.1),inset_0_1px_0_rgba(240,240,240,0.1)]; 	}
-	.shadow-glass-1			 { @apply shadow-[0_20px_60px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12),inset_0_-1px_0_rgba(240,240,240,0.05)]; 	}
-	.shadow-glass-2			 { @apply shadow-[0_30px_80px_rgba(0,0,0,0.6),0_8px_40px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(240,240,240,0.2)];	}
-	
-	.surface-glass-1 	 	 { @apply bg-[rgba(13,13,13,0.4)] border border-chrome-silver/6; }
-	.surface-glass-2		 { @apply bg-[rgba(13,13,13,0.6)] border border-chrome-silver/8; }
-	.surface-glass-3  	 { @apply bg-[rgba(13,13,13,0.8)] border border-chrome-silver/12; }
+.rounded-glass-1		 { @apply rounded-2xl; }
+.rounded-glass-2		 { @apply rounded-3xl md:rounded-4xl; }
+.rounded-glass-3		 { @apply rounded-[28px]; }
 
-	.gradient-text        	{ @apply text-transparent bg-clip-text; } /* @companion */
-	.gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;		}
-	.gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; }
+.backdrop-glass-0		 { @apply backdrop-blur-[20px] }
+.backdrop-glass-1		 { @apply backdrop-blur-[30px] backdrop-brightness-[1.2]; }
+.backdrop-glass-2		 { @apply backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]; } /* 2xl = 40px */
+.backdrop-glass-3		 { @apply backdrop-blur-[60px] } 
 
-	.gradient-gleam 				{ @apply via-transparent to-transparent } /* @companion */ 
-		.gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10 ; }
-		.gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10 ; }
+.shadow-glass-0			 { @apply shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.1),inset_0_1px_0_rgba(240,240,240,0.1)]; 	}
+.shadow-glass-1			 { @apply shadow-[0_20px_60px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12),inset_0_-1px_0_rgba(240,240,240,0.05)]; 	}
+.shadow-glass-2			 { @apply shadow-[0_30px_80px_rgba(0,0,0,0.6),0_8px_40px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(240,240,240,0.2)];	}
 
-	.gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0 ; 		}
-	.gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0 ; 	}
-	.gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0 ; 		}
-	.gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0 ; }
+.surface-glass-1 	 	 { @apply bg-[rgba(13,13,13,0.4)] border border-chrome-silver/6; }
+.surface-glass-2		 { @apply bg-[rgba(13,13,13,0.6)] border border-chrome-silver/8; }
+.surface-glass-3  	 { @apply bg-[rgba(13,13,13,0.8)] border border-chrome-silver/12; }
 
-	.reflection-light 			{ @apply bg-linear-to-br from-white/25 to-transparent; }
-	.reflection-dark  			{ @apply bg-linear-to-br from-black/30 to-transparent; }
-	.reflection-top   			{ @apply bg-linear-to-t from-transparent via-transparent to-white/25; }
+.gradient-text        	{ @apply text-transparent bg-clip-text; } /* @companion */
+.gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;		}
+.gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; }
 
-	.reflection-diagonal { 
-		background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 20%, transparent 50%); /* GlassCard: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 20%, transparent 50%) */
-	}
-	.noise-overlay { 
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-		opacity: 0.02;
-	}
-	.reflection-animated {
-		background: linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
-		transform:  skewX(-20deg);
-		transition: all 800ms ease-out;
-	}
-	.top-edge-glow  { /* Not sure if this is used... */
-		background: linear-gradient(90deg, transparent, rgba(59,130,246,0.8), transparent); 
-		filter:     blur(2px);
-		opacity:    40% 
-	}
+@utility gradient-gleam { @apply via-transparent to-transparent; } /* @companion */ 
+	.gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10 ; }
+	.gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10 ; }
 
+.gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0 ; 		}
+.gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0 ; 	}
+.gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0 ; 		}
+.gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0 ; }
 
-	/* ================================================
-		 Components — Magazine Page
-		 ================================================ */
+.reflection-light 			{ @apply bg-linear-to-br from-white/25 to-transparent; }
+.reflection-dark  			{ @apply bg-linear-to-br from-black/30 to-transparent; }
+.reflection-top   			{ @apply bg-linear-to-t from-transparent via-transparent to-white/25; }
 
-	/* --- Layout --- */
-
-	.project-decorative-text {
-		@apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
-	}
-
-	.project-decorative-outline {
-		@apply text-transparent;
-		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
-	}
-
-	.project-decorative-outline-hover {
-		@apply transition-all duration-500;
-	}
-
-	.project-decorative-outline-hover:hover {
-		-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);
-		text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
-	}
-
-	.project-decorative-faded {
-		@apply text-white/6;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.project-image {
-		@apply rounded-2xl relative overflow-hidden transition-all duration-500;
-	}
-
-	.project-image::before {
-		@apply content-[''] absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
-	}
-
-	.project-image::after {
-		@apply content-[''] absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
-		background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
-	}
-
-	.project-image:hover::after {
-		@apply translate-x-full;
-	}
-
-	.project-image-overlay-dark {
-		@apply absolute inset-0 bg-linear-to-br from-black/30 to-transparent;
-	}
-
-	.project-image-overlay-light {
-		@apply absolute inset-0 bg-linear-to-t from-transparent via-transparent to-white/25;
-	}
-
-	/* --- Tech Tags --- */
-
-	.tech-tag {
-		@apply px-4 py-2 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30
-						text-xs md:text-sm font-semibold text-accent-cyan
-						transition-all duration-300 hover:bg-accent-cyan/20 hover:border-accent-cyan hover:-translate-y-0.5;
-	}
-
-	/* --- Decorative Elements --- */
-
-	.deco-circle {
-		@apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60
-						transition-transform duration-1000 hover:scale-110 hover:rotate-45;
-	}
-
-	.deco-line {
-		@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
-	}
+.reflection-diagonal { 
+	background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 20%, transparent 50%); /* GlassCard: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 20%, transparent 50%) */
 }
+.noise-overlay { 
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+	opacity: 0.02;
+}
+.reflection-animated {
+	background: linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
+	transform:  skewX(-20deg);
+	transition: all 800ms ease-out;
+}
+.top-edge-glow  { /* Not sure if this is used... */
+	background: linear-gradient(90deg, transparent, rgba(59,130,246,0.8), transparent); 
+	filter:     blur(2px);
+	opacity:    40% 
+}
+
+
+/* ================================================
+		Components — Magazine Page
+		================================================ */
+
+/* --- Layout --- */
+
+.project-decorative-text {
+	@apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
+}
+
+.project-decorative-outline {
+	@apply text-transparent;
+	-webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
+}
+
+.project-decorative-outline-hover {
+	@apply transition-all duration-500;
+}
+
+.project-decorative-outline-hover:hover {
+	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);
+	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
+}
+
+.project-decorative-faded {
+	@apply text-white/6;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.project-image {
+	@apply rounded-2xl relative overflow-hidden transition-all duration-500;
+}
+
+.project-image::before {
+	@apply content-[''] absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
+}
+
+.project-image::after {
+	@apply content-[''] absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+	background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+}
+
+.project-image:hover::after {
+	@apply translate-x-full;
+}
+
+.project-image-overlay-dark {
+	@apply absolute inset-0 bg-linear-to-br from-black/30 to-transparent;
+}
+
+.project-image-overlay-light {
+	@apply absolute inset-0 bg-linear-to-t from-transparent via-transparent to-white/25;
+}
+
+/* --- Tech Tags --- */
+
+.tech-tag {
+	@apply px-4 py-2 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30
+					text-xs md:text-sm font-semibold text-accent-cyan
+					transition-all duration-300 hover:bg-accent-cyan/20 hover:border-accent-cyan hover:-translate-y-0.5;
+}
+
+/* --- Decorative Elements --- */
+
+.deco-circle {
+	@apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60
+					transition-transform duration-1000 hover:scale-110 hover:rotate-45;
+}
+
+.deco-line {
+	@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
+}
+
+/* } */

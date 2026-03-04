@@ -13,7 +13,7 @@ type GlassCardProps = {
 
 export function GlassCard({ title, children, className, style }: GlassCardProps) {
 	return (
-		<GlassSurface rounded='5xl' className={cn('p-8', className)} style={style}>
+		<GlassSurface rounded={3} className={cn('p-8', className)} style={style}>
 			<div className='overlay-full reflection-diagonal' />
 			<div className='relative z-10'>
 				<h3 className='mb-6 font-urbanist text-lg font-bold text-chrome-silver'>{title}</h3>
@@ -50,7 +50,7 @@ export const GlassCard1 = ({ children, className, style, withAccent, accentPosit
 	return (
 		<GlassSurface
 			as={onClick ? 'button' : 'div'}
-			rounded='2xl'
+			rounded={1}
 			hoverable // ={!!onClick}
 			// interactive={!!onClick}
 			{...{ className, style, onClick }}

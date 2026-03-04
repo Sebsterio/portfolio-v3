@@ -6,7 +6,7 @@ import { GlassSurface } from '@/components/ui/GlassSurface';
 import { InlineList } from '@/components/InlineList';
 
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
-	<GlassSurface className={cn('p-8 md:p-12', className)} rounded='2xl'>
+	<GlassSurface className={cn('p-8 md:p-12', className)} rounded={1}>
 		<div className={cn('overlay w-48 h-48 gradient-corner-tr gradient-gleam-blue')} />
 		<div className={cn('overlay w-48 h-48 gradient-corner-bl gradient-gleam-cyan')} />
 
