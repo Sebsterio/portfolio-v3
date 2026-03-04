@@ -103,6 +103,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 												<ProjectTags tags={p.tags} size='sm' />
 
+												{/* TODO: extract component or styles */}
 												{p.link && (
 													<a
 														href={p.link}

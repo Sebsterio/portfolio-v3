@@ -6,6 +6,15 @@
   @apply w-full max-w-[1400px] mx-auto;
 }
 
+.glow-primary {
+  box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.4);
+}
+.glow-primary-soft {
+  box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.2);
+}
+.bg-primary-soft {
+  background: rgb(var(--accent-blue-rgb) / 0.1);
+}
 
 /* ================================================
    Quantum Grid Theme — unused, kept for reference

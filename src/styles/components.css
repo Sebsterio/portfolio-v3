@@ -1,8 +1,57 @@
-/* ================================================
-   Components — Magazine Page
-   ================================================ */
 
 @layer components {
+
+	/* ================================================
+		 Components — Common
+		 ================================================ */
+
+	/* Card */
+	
+	.rounded-glass-1		 { @apply rounded-2xl; }
+	.rounded-glass-2		 { @apply rounded-4xl md:rounded-5xl; }
+
+	.backdrop-glass			 { @apply backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]; }
+
+	.shadow-glass-1			 { @apply shadow-[0_20px_60px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12),inset_0_-1px_0_rgba(240,240,240,0.05)]; 	}
+	.shadow-glass-2			 { @apply shadow-[0_30px_80px_rgba(0,0,0,0.6),0_8px_40px_rgba(59,130,246,0.3),inset_0_1px_0_rgba(240,240,240,0.2)];	}
+	
+	.surface-glass-1 	 	 { @apply bg-[rgba(13,13,13,0.4)] border border-chrome-silver/6; }
+	.surface-glass-2		 { @apply bg-[rgba(13,13,13,0.6)] border border-chrome-silver/8; }
+	.surface-glass-3  	 { @apply bg-[rgba(13,13,13,0.8)] border border-chrome-silver/12; }
+
+	.gradient-text        	{ @apply text-transparent bg-clip-text; } /* @companion */
+	.gradient-primary 			{ @apply bg-linear-to-br from-accent-blue     to-accent-cyan;		}
+	.gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; }
+
+	.gradient-corner 				{ @apply via-transparent to-transparent pointer-events-none } /* @companion */ /* TODO: try applying on :before and :after */
+		.gradient-corner-tr 	{ @apply gradient-corner from-accent-blue/10 bg-linear-to-bl top-0 right-0 ; }
+		.gradient-corner-bl		{ @apply gradient-corner from-accent-cyan/10 bg-linear-to-tr bottom-0 left-0 ; }
+
+	.reflection-light 			{ @apply bg-linear-to-br from-white/25 to-transparent; }
+	.reflection-dark  			{ @apply bg-linear-to-br from-black/30 to-transparent; }
+	.reflection-top   			{ @apply bg-linear-to-t from-transparent via-transparent to-white/25; }
+
+	.reflection-diagonal { 
+		background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 20%, transparent 50%); 
+	}
+	.noise-overlay { 
+		background-image: url("data:image/svg+xml,..."); /* centralize the data URI */
+		opacity: 0.02;
+	}
+	.reflection-animated {
+		background: linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
+		transform:  skewX(-20deg);
+		transition: all 800ms ease-out;
+	}
+	.top-edge-glow  { /* Not sure if this is used... */
+		background: linear-gradient(90deg, transparent, rgba(59,130,246,0.8), transparent); 
+		filter:     blur(2px);
+	}
+
+
+	/* ================================================
+		 Components — Magazine Page
+		 ================================================ */
 
 	/* --- Layout --- */
 

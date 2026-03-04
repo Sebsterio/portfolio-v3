@@ -68,6 +68,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 
 			<ProjectTags tags={project.tags} />
 
+			{/* TODO: extract component or styles */}
 			{project.link && (
 				<a
 					href={project.link}
