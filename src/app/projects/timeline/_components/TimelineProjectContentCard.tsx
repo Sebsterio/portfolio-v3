@@ -18,9 +18,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
-				<InlineList as='div' className='flex items-center gap-4 text-sm text-accent-cyan'>
-					{[project.period, project.location]}
-				</InlineList>
+				<InlineList.Div className='flex items-center gap-4 text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
 				<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 				<p className='text-xl md:text-2xl text-chrome-silver/80'>
 					<span className=''>{project.company}</span> <span className='text-chrome-silver/40'>{' - ' + project.label}</span>

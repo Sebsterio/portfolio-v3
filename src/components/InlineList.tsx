@@ -1,12 +1,16 @@
 import { ReactNode, Fragment, Children } from 'react';
-import { AtLeastTwo } from '@/types';
+import { AtLeastTwo, XOR } from '@/types';
 
 type InlineListProps = {
-	as?: 'div' | typeof Fragment;
 	children: AtLeastTwo<ReactNode>;
 	separator?: ReactNode;
-	className?: string;
-};
+} & XOR<
+	{
+		as: 'div';
+		className?: string;
+	},
+	{}
+>;
 
 const DEFAULT_SEPARATOR = '•';
 
@@ -18,10 +22,12 @@ const filterItems = (items: ReactNode[]) => items.filter((item) => !!item && !(t
  * - Accepts strings, numbers, or JSX elements.
  * - Filters out null, undefined, false, and empty strings.
  */
-export const InlineList = ({ as: Component = Fragment, children, separator = DEFAULT_SEPARATOR, ...props }: InlineListProps) => {
+export const InlineList = ({ as, children, separator = DEFAULT_SEPARATOR, ...props }: InlineListProps) => {
 	const filtered = filterItems(Children.toArray(children));
+	const Component = as ?? Fragment;
+	const componentProps = as ? props : {};
 	return (
-		<Component {...props}>
+		<Component {...componentProps}>
 			{filtered.map((item, index) => {
 				const isLastItem = index >= filtered.length - 1;
 				return (
@@ -33,3 +39,7 @@ export const InlineList = ({ as: Component = Fragment, children, separator = DEF
 		</Component>
 	);
 };
+
+const Div = (props: Omit<InlineListProps, 'as'>) => <InlineList as='div' {...props} />;
+
+InlineList.Div = Div;

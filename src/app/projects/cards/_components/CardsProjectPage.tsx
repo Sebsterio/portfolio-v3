@@ -190,9 +190,9 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											<div className='space-y-6 md:space-y-8'>
 												{/* Header */}
 												<div className='space-y-3 md:space-y-4'>
-													<InlineList className='flex items-center gap-4 text-sm text-accent-cyan'>
+													<InlineList.Div className='flex items-center gap-4 text-sm text-accent-cyan'>
 														{[project.period, project.location]}
-													</InlineList>
+													</InlineList.Div>
 													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 													<p className='text-xl md:text-2xl text-chrome-silver/80'>
 														<span className=''>{project.company}</span>

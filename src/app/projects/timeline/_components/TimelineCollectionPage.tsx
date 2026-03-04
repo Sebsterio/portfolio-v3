@@ -42,9 +42,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+									<InlineList.Div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
 										{[project.location, project.role]}
-									</InlineList>
+									</InlineList.Div>
 
 									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
 									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
@@ -82,9 +82,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('w-full text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+									<InlineList.Div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
 										{[project.location, project.role]}
-									</InlineList>
+									</InlineList.Div>
 
 									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
 									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
