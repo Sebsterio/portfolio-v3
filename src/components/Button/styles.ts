@@ -10,7 +10,7 @@ export const CLASSES = {
 		'active:translate-y-0 active:scale-[0.98] active:duration-150'
 	),
 	primary: cn(
-		'bg-linear-to-br from-accent-blue to-accent-cyan',
+		'gradient-primary',
 		'text-white border-transparent',
 		'shadow-[0_15px_50px_rgba(59,130,246,0.35)]',
 		'hover:shadow-[0_25px_70px_rgba(59,130,246,0.5)]'

@@ -11,14 +11,10 @@ type GlassCardProps = {
 	style?: React.CSSProperties;
 };
 
-const diagonalGlareBgStyles = {
-	background: `linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 20%, transparent 50%)`,
-};
-
 export function GlassCard({ title, children, className, style }: GlassCardProps) {
 	return (
 		<GlassSurface rounded='5xl' className={cn('p-8', className)} style={style}>
-			<div className='absolute inset-0  pointer-events-none' style={diagonalGlareBgStyles} />
+			<div className='overlay-full reflection-diagonal' />
 			<div className='relative z-10'>
 				<h3 className='mb-6 font-urbanist text-lg font-bold text-chrome-silver'>{title}</h3>
 				{children}
@@ -40,13 +36,11 @@ type GlassCard1Props = {
 	onClick?: () => void;
 };
 
-const accentGradientClasses = cn('from-accent-blue/10 via-transparent to-transparent');
-
 const accentPositions = {
-	'top-right': cn('top-0 right-0 bg-linear-to-bl'),
-	'top-left': cn('top-0 left-0 bg-linear-to-br'),
-	'bottom-right': cn('bottom-0 right-0 bg-linear-to-tl'),
-	'bottom-left': cn('bottom-0 left-0 bg-linear-to-tr'),
+	'top-right': cn('gradient-corner-tr'),
+	'top-left': cn('gradient-corner-tl'),
+	'bottom-right': cn('gradient-corner-br'),
+	'bottom-left': cn('gradient-corner-bl'),
 };
 
 /**
@@ -61,7 +55,7 @@ export const GlassCard1 = ({ children, className, style, withAccent, accentPosit
 			// interactive={!!onClick}
 			{...{ className, style, onClick }}
 		>
-			{withAccent && <div className={cn('absolute w-32 h-32', accentGradientClasses, accentPositions[accentPosition])} />}
+			{withAccent && <div className={cn('overlay w-32 h-32 gradient-gleam-blue', accentPositions[accentPosition])} />}
 			{children}
 		</GlassSurface>
 	);

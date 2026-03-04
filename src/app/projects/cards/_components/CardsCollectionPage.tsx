@@ -60,8 +60,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 					<ProjectImage
 						src={project.images.main}
 						alt={`Screenshot of ${project.title}`}
-						className={cn('h-full w-full rounded-lg', [
-							'bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+						className={cn('h-full w-full rounded-lg gradient-primary-soft', [
 							'opacity-75 group-hover:opacity-100 transition-opacity transition-duration-300',
 						])}
 						fallbackClass='text-white/50 text-sm font-semibold'

@@ -49,7 +49,7 @@ export function DisplayModeSwitcher({ onViewChange, className }: DisplayModeSwit
 					className={cn(
 						'px-6 py-3 rounded-full font-dm-sans text-sm font-semibold transition-colors transition-duration-300',
 						currentMode === mode
-							? 'bg-linear-to-br from-accent-blue to-accent-cyan text-white'
+							? 'gradient-primary text-white'
 							: 'bg-white/3 text-chrome-silver/60 hover:text-chrome-silver hover:bg-white/8'
 					)}
 				>

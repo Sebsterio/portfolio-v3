@@ -16,8 +16,8 @@ const roundedMap = {
 	md: cn('rounded-md'),
 	lg: cn('rounded-lg'),
 	xl: cn('rounded-xl'),
-	'2xl': cn('rounded-2xl'),
-	'4xl/md:5xl': cn('rounded-3xl md:rounded-[28px]'),
+	'2xl': cn('rounded-glass-1'),
+	'4xl/md:5xl': cn('rounded-glass-2'),
 	'5xl': cn('rounded-[28px'),
 };
 
@@ -30,9 +30,7 @@ export function GlassSurface(props: GlassSurfaceProps) {
 		<Component
 			className={cn(
 				['relative overflow-hidden', roundedMap[rounded]],
-				'bg-[rgba(13,13,13,0.6)] border border-chrome-silver/8',
-				'backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]', // NOTE: backdrop glitches if element has vt
-				'shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12)]',
+				'surface-glass-2 backdrop-glass shadow-glass-0', // NOTE: backdrop glitches if element has vt
 				hoverable && 'transition-colors transition-duration-300 hover:border-accent-blue/30',
 				interactive && 'cursor-pointer',
 				className

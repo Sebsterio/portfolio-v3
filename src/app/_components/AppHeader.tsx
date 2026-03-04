@@ -32,9 +32,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 						'-mx-2 sm:mx-0 -mt-2 sm:mt-0',
 						'px-6 md:px-10 py-3 md:py-5 ',
 						'flex justify-between items-center',
-						'bg-[rgba(13,13,13,0.5)] backdrop-blur-[30px] backdrop-brightness-[1.2]',
-						'border border-chrome-silver/8',
-						'shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.1),inset_0_1px_0_rgba(240,240,240,0.1)]',
+						'surface-glass-2 backdrop-glass-1 shadow-glass-0',
 						'transition-opacity duration-300',
 						isMenuOpen && 'opacity-0.2 pointer-events-none',
 						className

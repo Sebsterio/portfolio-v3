@@ -5,16 +5,10 @@ import { ProjectImage } from '@/components/ProjectImage';
 import { GlassSurface } from '@/components/ui/GlassSurface';
 import { InlineList } from '@/components/InlineList';
 
-const decorativeGradientClasses = {
-	base: cn('absolute w-48 h-48 via-transparent to-transparent'),
-	topRight: cn('top-0 right-0 bg-linear-to-bl', 'from-accent-blue/10'),
-	bottomLeft: cn('bottom-0 left-0 bg-linear-to-tr', 'from-accent-cyan/10'),
-};
-
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
 	<GlassSurface className={cn('p-8 md:p-12', className)} rounded='2xl'>
-		<div className={cn(decorativeGradientClasses.base, decorativeGradientClasses.topRight)} />
-		<div className={cn(decorativeGradientClasses.base, decorativeGradientClasses.bottomLeft)} />
+		<div className={cn('overlay w-48 h-48 gradient-corner-tr gradient-gleam-blue')} />
+		<div className={cn('overlay w-48 h-48 gradient-corner-bl gradient-gleam-cyan')} />
 
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
@@ -34,8 +28,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 						src={project.images.screens[i]}
 						alt={`Screenshot of ${project.title}`}
 						className={cn(
-							'aspect-video rounded-xl border border-chrome-silver/8',
-							'bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20',
+							'aspect-video rounded-xl surface-glass-2 shadow-none gradient-primary-soft',
 							'opacity-75 hover:opacity-100 transition-opacity transition-duration-300'
 						)}
 						fallbackClass='text-white/50 text-sm font-semibold'
@@ -74,9 +67,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 					href={project.link}
 					target='_blank'
 					rel='noopener noreferrer'
-					className={cn('inline-flex items-center gap-2 px-8 py-4 rounded-full ', [
-						'bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold',
-					])}
+					className={cn('inline-flex items-center gap-2 px-8 py-4 rounded-full gradient-primary text-white font-semibold')}
 				>
 					Visit Project →
 				</a>

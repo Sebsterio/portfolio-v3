@@ -177,11 +177,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										{/* Front Side */}
 										<div
 											ref={frontRef}
-											className={cn(
-												'rounded-4xl p-8 md:p-12',
-												'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
-												'border border-chrome-silver/12'
-											)}
+											className={cn('rounded-4xl p-8 md:p-12', 'surface-glass-3 backdrop-glass-3')}
 											style={{
 												backfaceVisibility: 'hidden',
 												WebkitBackfaceVisibility: 'hidden',
@@ -267,8 +263,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														onClick={(e) => e.stopPropagation()}
 														className={cn(
 															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-															'bg-linear-to-br from-accent-blue to-accent-cyan',
-															'text-white text-sm font-semibold',
+															'text-white text-sm font-semibold gradient-primary',
 															'hover:scale-105 transition-transform duration-300'
 														)}
 													>
@@ -284,12 +279,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										[1, 2].map((offset) => (
 											<div
 												key={offset}
-												className={cn(
-													'absolute inset-0 rounded-4xl',
-													'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
-													'border border-chrome-silver/6',
-													'pointer-events-none'
-												)}
+												className={cn('absolute inset-0 rounded-4xl', 'surface-glass-1 backdrop-glass-0', 'pointer-events-none')}
 												style={{
 													transform: `translateZ(-${offset * 100}px) scale(${1 - offset * 0.1})`,
 													opacity: 1 - offset * 0.3,
