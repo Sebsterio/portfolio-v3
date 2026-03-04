@@ -37,7 +37,7 @@ const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; 
 				'w-12 h-12 md:w-14 md:h-14 rounded-full',
 				'bg-white/5 hover:bg-white/10',
 				'flex items-center justify-center',
-				'transition-all duration-300 hover:scale-110'
+				'transition-all duration-300 hover:scale-110',
 			)}
 		>
 			<Icon className='w-6 h-6 md:w-7 md:h-7 text-chrome-silver' />
@@ -61,7 +61,7 @@ const ProjectIndicators = ({
 				onClick={() => onNavigate(p.slug)}
 				className={cn(
 					'h-2 rounded-full transition-all duration-300',
-					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50 w-2'
+					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50 w-2',
 				)}
 			/>
 		))}
@@ -220,7 +220,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											className={cn(
 												'absolute inset-0 rounded-4xl p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
-												'border border-accent-blue/30'
+												'border border-accent-blue/30',
 											)}
 											style={{
 												backfaceVisibility: 'hidden',
@@ -264,7 +264,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														className={cn(
 															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
 															'text-white text-sm font-semibold gradient-primary',
-															'hover:scale-105 transition-transform duration-300'
+															'hover:scale-105 transition-transform duration-300',
 														)}
 													>
 														Visit Project →
