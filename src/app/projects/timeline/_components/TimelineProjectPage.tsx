@@ -11,7 +11,7 @@ import { TimelineDot } from '@/components/TimelineDot';
 import { ProjectContentCard } from './TimelineProjectContentCard';
 import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 
-import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+// import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -121,7 +121,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 									<button
 										onClick={() => handleProjectClick(p)}
 										className={cn(
-											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/3 border border-transparent'
+											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/3 border border-transparent',
 										)}
 										style={{ viewTransitionName: `project-card-${p.id}` }}
 									>

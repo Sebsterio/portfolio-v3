@@ -100,9 +100,8 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 		return () => clearTimeout(timer);
 	}, [flipped]);
 
-	// Reset height on project change
+	// Update container height when project changes (without resetting flip state)
 	useEffect(() => {
-		setFlipped(false);
 		const container = containerRef.current;
 		const front = frontRef.current;
 

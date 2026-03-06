@@ -1,7 +1,6 @@
 'use client';
 
 // import { PageTransition } from '@/lib/transitions/PageTransition';
-import { useParams } from 'next/navigation';
 
 type Props = {
 	list: React.ReactNode;

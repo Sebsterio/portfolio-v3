@@ -15,7 +15,7 @@ import { copy, highlights, quickFacts, techCategories } from './_content';
 import { cn } from '@/lib/utils';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 
-type AboutPageProps = {};
+type AboutPageProps = Record<string, never>;
 
 export default function AboutPage({}: AboutPageProps) {
 	useTransitionReady();
@@ -24,7 +24,7 @@ export default function AboutPage({}: AboutPageProps) {
 		<div
 			className={cn(
 				'w-full grid grid-cols-1 lg:grid-cols-[1fr_400px]',
-				'gap-10 md:gap-12 lg:gap-16' //
+				'gap-10 md:gap-12 lg:gap-16', //
 			)}
 		>
 			{/* Main Content Column */}

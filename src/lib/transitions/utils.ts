@@ -5,7 +5,9 @@ export const getTransitionNameCss = (name: string) => ({
 export const getSupportsViewTransitions = () => typeof document !== 'undefined' && 'startViewTransition' in document;
 
 export const getNormalizeHref = (href: string | object): string => {
-	return typeof href === 'string' ? href : (href as any).pathname || '';
+	if (typeof href === 'string') return href;
+	if ('pathname' in href && typeof href.pathname === 'string') return href.pathname;
+	return '';
 };
 
 export const isCurrentPage = (href: string, pathname: string): boolean => {

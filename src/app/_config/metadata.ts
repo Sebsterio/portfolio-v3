@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 
-import { SITE_URL, IMAGE_URL, THUMBNAIL_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, LICENCE_URL } from '@/lib/constants';
+import { SITE_URL, IMAGE_URL } from '@/lib/constants';
 
 // TODO
+// import { SITE_URL, IMAGE_URL, THUMBNAIL_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, LICENCE_URL } from '@/lib/constants';
 // import { SITE_VERIFICATION } from '@/lib/constants';
 // const SiteVerificationMeta = <meta name='google-site-verification' content={SITE_VERIFICATION} />;
 
@@ -43,39 +44,39 @@ export const metadata: Metadata = {
 		canonical: SITE_URL,
 	},
 	// Schema Markup (Structured Data)
-	structuredData: {
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Sebastian Rosloniec',
-		jobTitle: 'Web Developer',
-		url: SITE_URL,
-		sameAs: [GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, SITE_URL],
-		worksFor: {
-			'@type': 'Organization',
-			name: 'Sebastian Rosloniec Portfolio',
-		},
-		image: IMAGE_URL,
-		description,
-		hasOccupation: {
-			'@type': 'Occupation',
-			name: 'Web Developer',
-			startDate: '2017-01',
-			endDate: 'present',
-		},
-	},
-	// Portfolio Schema Markup
-	portfolio: {
-		'@context': 'https://schema.org',
-		'@type': 'CreativeWork',
-		name: 'Sebastian Rosloniec - Web Developer Portfolio',
-		url: SITE_URL,
-		description,
-		creator: {
-			'@type': 'Person',
-			name: 'Sebastian Rosloniec',
-		},
-		genre: 'Web Development, Full-Stack, Front-End, UI/UX',
-		license: LICENCE_URL,
-		image: THUMBNAIL_URL,
-	},
+	// structuredData: {
+	// 	'@context': 'https://schema.org',
+	// 	'@type': 'Person',
+	// 	name: 'Sebastian Rosloniec',
+	// 	jobTitle: 'Web Developer',
+	// 	url: SITE_URL,
+	// 	sameAs: [GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, SITE_URL],
+	// 	worksFor: {
+	// 		'@type': 'Organization',
+	// 		name: 'Sebastian Rosloniec Portfolio',
+	// 	},
+	// 	image: IMAGE_URL,
+	// 	description,
+	// 	hasOccupation: {
+	// 		'@type': 'Occupation',
+	// 		name: 'Web Developer',
+	// 		startDate: '2017-01',
+	// 		endDate: 'present',
+	// 	},
+	// },
+	// // Portfolio Schema Markup
+	// portfolio: {
+	// 	'@context': 'https://schema.org',
+	// 	'@type': 'CreativeWork',
+	// 	name: 'Sebastian Rosloniec - Web Developer Portfolio',
+	// 	url: SITE_URL,
+	// 	description,
+	// 	creator: {
+	// 		'@type': 'Person',
+	// 		name: 'Sebastian Rosloniec',
+	// 	},
+	// 	genre: 'Web Development, Full-Stack, Front-End, UI/UX',
+	// 	license: LICENCE_URL,
+	// 	image: THUMBNAIL_URL,
+	// },
 };

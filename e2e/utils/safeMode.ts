@@ -44,7 +44,7 @@ export async function disableIntersectionObserver(page: Page) {
 			unobserve() {}
 			disconnect() {}
 		}
-		// @ts-ignore
+		// @ts-expect-error - Overriding IntersectionObserver for e2e tests
 		window.IntersectionObserver = NoopObserver;
 	});
 }

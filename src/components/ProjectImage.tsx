@@ -48,7 +48,7 @@ export const Image = ({
 
 // TODO: include interaction styles of ProjectImage_Placeholder
 
-export const ProjectImage = (props: ImageProps) => <Image {...props} />;
+export const ProjectImage = ({ alt, ...props }: ImageProps) => <Image {...props} alt={alt} />;
 
 // ----------------------------------------------------------------------------
 

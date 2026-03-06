@@ -1,16 +1,11 @@
-import { ReactNode, Fragment, Children } from 'react';
-import { AtLeastTwo, XOR } from '@/types';
+import { ReactNode, Fragment, Children, ElementType } from 'react';
+import { AtLeastTwo, PolymorphicProps } from '@/types';
 
-type InlineListProps = {
+type InlineListProps<T extends ElementType = typeof Fragment> = PolymorphicProps<T, InlineListOwnProps>;
+type InlineListOwnProps = {
 	children: AtLeastTwo<ReactNode>;
 	separator?: ReactNode;
-} & XOR<
-	{
-		as: 'div';
-		className?: string;
-	},
-	{}
->;
+};
 
 const DEFAULT_SEPARATOR = '•';
 
@@ -22,7 +17,12 @@ const filterItems = (items: ReactNode[]) => items.filter((item) => !!item && !(t
  * - Accepts strings, numbers, or JSX elements.
  * - Filters out null, undefined, false, and empty strings.
  */
-export const InlineList = ({ as, children, separator = DEFAULT_SEPARATOR, ...props }: InlineListProps) => {
+export const InlineList = <T extends ElementType = typeof Fragment>({
+	as,
+	children,
+	separator = DEFAULT_SEPARATOR,
+	...props
+}: InlineListProps<T>) => {
 	const filtered = filterItems(Children.toArray(children));
 	const Component = as ?? Fragment;
 	const componentProps = as ? props : {};
@@ -40,6 +40,7 @@ export const InlineList = ({ as, children, separator = DEFAULT_SEPARATOR, ...pro
 	);
 };
 
-const Div = (props: Omit<InlineListProps, 'as'>) => <InlineList as='div' {...props} />;
+const Div = (props: InlineListProps<'div'>) => <InlineList as='div' {...props} />;
 
 InlineList.Div = Div;
+
