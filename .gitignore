@@ -26,12 +26,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# prototyping
-/_ref
-/_proto
-/public/_proto
-/src/app/proto
-
 # Playwright
 /test-results/
 /playwright-report/
