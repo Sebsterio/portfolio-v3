@@ -1,7 +1,4 @@
-
-
-/* @layer components { */
-
+@layer components {
 /* ================================================
 		Components —- Random
 	 ================================================ */
@@ -91,4 +88,4 @@
 	@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
 }
 
-/* } */
+}

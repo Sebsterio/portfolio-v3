@@ -18,7 +18,7 @@ export const TextBlock: React.FC<TextBlockProps> = ({ children: paragraphs, clas
 
 				return (
 					<p key={index} className={cn(isPrimary ? 'body-lg text-primary' : 'body-md text-tertiary')}>
-						<ParsedText bold={'text-emphasis'}>{paragraph}</ParsedText>
+						<ParsedText bold={'text-bold'}>{paragraph}</ParsedText>
 					</p>
 				);
 			})}
