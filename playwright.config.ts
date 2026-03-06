@@ -5,16 +5,22 @@ import { defineConfig, devices } from '@playwright/test';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 export default defineConfig({
-	testDir: './e2e',
-	fullyParallel: true,
-	forbidOnly: !!process.env.CI,
+	testDir: './e2e/tests',
+	outputDir: './artifacts/e2e-results',
+	reporter: [
+		['html', { outputFolder: './artifacts/e2e-report' }], //
+		['list'],
+	],
 	retries: process.env.CI ? 2 : 0,
 	workers: process.env.CI ? 1 : undefined,
-	reporter: 'html',
+	forbidOnly: !!process.env.CI,
+	fullyParallel: true,
 	use: {
 		baseURL: 'http://localhost:3000',
 		viewport: { width: 1440, height: 900 },
 		deviceScaleFactor: 1,
+		screenshot: 'only-on-failure',
+		video: 'retain-on-failure',
 		trace: 'on-first-retry',
 	},
 	projects: [
