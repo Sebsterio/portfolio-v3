@@ -1,12 +1,22 @@
-@theme {
+/* Runtime CSS variables */
+:root {
+  --accent-blue-rgb: 59 130 246;
+  --accent-cyan-rgb: 6 182 212;
+  --chrome-silver-rgb: 240 240 240;
+  --chrome-light-rgb: 212 212 212;
+  --chrome-mid-rgb: 160 160 160;
+  --chrome-dark-rgb: 136 136 136;
+  --white-rgb: 255 255 255;
+  --black-rgb: 0 0 0;
 
+  /* --rgb-black: 13,13,13; */
+}
+
+/* Static design tokens */
+@theme {
   /* ================================================
      Fonts
-     ================================================
-     These reference the actual values defined in @layer base :root.
-     The var() fallback prevents a circular resolution if the custom
-     property is somehow missing at token-evaluation time.
-     ================================================ */
+     ================================================ *//* These reference the actual values defined in @layer base :root. The var() fallback prevents a circular resolution if the custom property is somehow missing at token-evaluation time. */
 
   --font-urbanist: var(--font-urbanist, sans-serif);
   --font-dm-sans:  var(--font-dm-sans, sans-serif);
@@ -15,14 +25,14 @@
   /* ================================================
      Colors
      ================================================ */
-
-  --color-chrome-silver: #f0f0f0;
-  --color-chrome-light:  #d4d4d4;
-  --color-chrome-mid:    #a0a0a0;
-  --color-chrome-dark:   #888888;
-  --color-accent-blue:   #3b82f6;
-  --color-accent-cyan:   #06b6d4;
-   
+     
+  --color-accent-blue:   rgb(var(--accent-blue-rgb));    /*   #3b82f6   /   59,  130, 246   */
+  --color-accent-cyan:   rgb(var(--accent-cyan-rgb));    /*   #06b6d4   /   6,   182, 212   */
+  --color-chrome-silver: rgb(var(--chrome-silver-rgb));  /*   #f0f0f0   /   240, 240, 240   */
+  --color-chrome-light:  rgb(var(--chrome-light-rgb));   /*   #d4d4d4   /   212, 212, 212   */
+  --color-chrome-mid:    rgb(var(--chrome-mid-rgb));     /*   #a0a0a0   /   160, 160, 160   */
+  --color-chrome-dark:   rgb(var(--chrome-dark-rgb));    /*   #888888   /   136, 136, 136   */
+     
 
   /* ================================================
      Background Images

@@ -1,15 +1,22 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* View Transitions */
-@import './vt-utilities.css';
-@import './vt-styles.css' layer(base);
-@import './vt-keyframes.css' layer(base);
-
 @custom-variant dark (&:is(.dark *));
 
-@import './theme.css';
-@import './keyframes.css';
-@import './base.css';
-@import './components.css';
-@import './utilities.css';
+@import './theme.css'; 
+@import './base.css'; 
+
+@import './system/gradients.css';
+@import './system/typography.css';
+@import './system/effects.css';
+@import './system/surfaces.css';
+@import './system/motion.css';
+@import './system/layout.css';
+
+@import './components.css'; 
+@import './utilities.css'; 
+@import './keyframes.css'; 
+
+@import './vt-styles.css' layer(base);
+@import './vt-keyframes.css' layer(base);
+@import './vt-utilities.css';

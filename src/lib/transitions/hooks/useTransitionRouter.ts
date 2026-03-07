@@ -23,7 +23,7 @@ export const useTransitionRouter = () => {
 
 			if (config?.scrollTo) {
 				const element = document.getElementById(config.scrollTo);
-				element && element.scrollIntoView({ behavior: 'smooth' });
+				if (element) element.scrollIntoView({ behavior: 'smooth' });
 			}
 		},
 		[baseNavigate, prefetch]

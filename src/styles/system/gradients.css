@@ -1,0 +1,22 @@
+/* Partial */
+
+.gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0; 		} 
+.gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0; 	} 
+.gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0; 			} 
+.gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0;	} 
+
+@utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	
+
+@utility gradient-gleam 	{ @apply via-transparent to-transparent;	} 
+
+/* Standalone */
+
+@utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	}
+@utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; }
+
+.gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10; }
+.gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10; }
+
+.reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; }
+.reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; }
+.reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; }

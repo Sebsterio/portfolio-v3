@@ -21,7 +21,7 @@ export const projects: Project[] = [
 		intro:
 			'Led the architecture and delivery of a production-ready cross-platform component library serving web, iOS, and Android platforms. This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster feature development.',
 		description: [
-			'Architected and delivered a production-ready cross-platform component library serving web, iOS, and Android platforms. This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster feature development.',
+			'Architected and delivered a production-ready **cross-platform component library** serving web, iOS, and Android platforms. This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster feature development.',
 			'Led the migration from legacy components and established clear patterns, comprehensive Storybook documentation, and technical guidance for organization-wide adoption. The system enabled the product teams to work independently while reducing code repetition, ensuring adherence to the design system, and decreasing time-to-market for new features.',
 		],
 		challenge:

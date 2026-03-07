@@ -18,10 +18,7 @@ const CLASSES = {
 		'text-chrome-silver/60'
 	),
 
-	value: cn(
-		'font-urbanist text-base md:text-lg font-bold',
-		'bg-linear-to-br from-accent-blue to-accent-cyan bg-clip-text text-transparent'
-	),
+	value: cn('font-urbanist text-base md:text-lg font-bold gradient-text gradient-primary'),
 };
 
 export const LabeledValueRow = ({ label, value, className }: LabeledValueRowProps) => {

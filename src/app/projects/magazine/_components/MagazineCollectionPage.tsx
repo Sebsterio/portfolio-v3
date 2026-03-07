@@ -8,9 +8,9 @@ import { MagazineSectionMulti } from './MagazineSectionMulti';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
-		<div className='deco-circle w-[140px] h-[140px] top-[10%] right-[8%]' />
-		<div className='deco-circle w-[100px] h-[100px] top-[48%] left-[3%]' />
-		<div className='deco-circle w-[120px] h-[120px] bottom-[18%] right-[15%]' />
+		<div className='deco-circle w-35 h-35 top-[10%] right-[8%]' />
+		<div className='deco-circle w-25 h-25 top-[48%] left-[3%]' />
+		<div className='deco-circle w-30 h-30 bottom-[18%] right-[15%]' />
 		<div className='deco-line top-[26%] left-0 w-[40%]' />
 		<div className='deco-line bottom-[32%] right-0 w-[35%]' />
 		<div className='deco-line top-[60%] left-[20%] w-[25%] rotate-15' />

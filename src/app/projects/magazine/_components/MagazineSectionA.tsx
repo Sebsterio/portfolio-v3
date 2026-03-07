@@ -2,6 +2,7 @@
 
 import { TechTags } from '@/components/TechTags';
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ParsedText } from '@/lib/parser/ParsedText';
 
 interface MagazineSectionAProps {
 	number: string;
@@ -53,7 +54,7 @@ export function MagazineSectionA({ number, megaTitle, title, subtitle, descripti
 
 				{description.map((paragraph, index) => (
 					<p key={index} className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
-						{paragraph}
+						<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
 					</p>
 				))}
 

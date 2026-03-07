@@ -10,6 +10,7 @@ import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { InlineList } from '@/components/InlineList';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -36,7 +37,7 @@ const NavigationButton = ({ direction, onClick }: { direction: 'prev' | 'next'; 
 				'w-12 h-12 md:w-14 md:h-14 rounded-full',
 				'bg-white/5 hover:bg-white/10',
 				'flex items-center justify-center',
-				'transition-all duration-300 hover:scale-110'
+				'transition-all duration-300 hover:scale-110',
 			)}
 		>
 			<Icon className='w-6 h-6 md:w-7 md:h-7 text-chrome-silver' />
@@ -60,7 +61,7 @@ const ProjectIndicators = ({
 				onClick={() => onNavigate(p.slug)}
 				className={cn(
 					'h-2 rounded-full transition-all duration-300',
-					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50 w-2'
+					i === currentIndex ? 'bg-accent-blue w-8' : 'bg-chrome-silver/30 hover:bg-chrome-silver/50 w-2',
 				)}
 			/>
 		))}
@@ -99,9 +100,8 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 		return () => clearTimeout(timer);
 	}, [flipped]);
 
-	// Reset height on project change
+	// Update container height when project changes (without resetting flip state)
 	useEffect(() => {
-		setFlipped(false);
 		const container = containerRef.current;
 		const front = frontRef.current;
 
@@ -141,7 +141,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 
 			<div className='flex flex-col items-center gap-8'>
 				{/* Card Container with Navigation */}
-				<div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-start w-full max-w-[1400px]'>
+				<div className='grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] gap-8 items-start w-full max-w-350'>
 					{/* Desktop Left Button */}
 					<div className='hidden lg:flex lg:items-start lg:pt-40'>
 						<NavigationButton direction='prev' onClick={goToPrev} />
@@ -176,11 +176,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										{/* Front Side */}
 										<div
 											ref={frontRef}
-											className={cn(
-												'rounded-[32px] p-8 md:p-12',
-												'bg-[rgba(13,13,13,0.8)] backdrop-blur-[60px]',
-												'border border-chrome-silver/12'
-											)}
+											className={cn('rounded-4xl p-8 md:p-12', 'surface-glass-3 backdrop-glass-3')}
 											style={{
 												backfaceVisibility: 'hidden',
 												WebkitBackfaceVisibility: 'hidden',
@@ -189,11 +185,9 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											<div className='space-y-6 md:space-y-8'>
 												{/* Header */}
 												<div className='space-y-3 md:space-y-4'>
-													<div className='flex items-center gap-4 text-sm text-accent-cyan'>
-														<span>{project.period}</span>
-														<span>•</span>
-														<span>{project.location}</span>
-													</div>
+													<InlineList.Div className='flex items-center gap-4 text-sm text-accent-cyan'>
+														{[project.period, project.location]}
+													</InlineList.Div>
 													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 													<p className='text-xl md:text-2xl text-chrome-silver/80'>
 														<span className=''>{project.company}</span>
@@ -223,9 +217,9 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										<div
 											ref={backRef}
 											className={cn(
-												'absolute inset-0 rounded-[32px] p-8 md:p-12',
+												'absolute inset-0 rounded-4xl p-8 md:p-12',
 												'bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
-												'border border-accent-blue/30'
+												'border border-accent-blue/30',
 											)}
 											style={{
 												backfaceVisibility: 'hidden',
@@ -268,9 +262,8 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														onClick={(e) => e.stopPropagation()}
 														className={cn(
 															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-															'bg-linear-to-br from-accent-blue to-accent-cyan',
-															'text-white text-sm font-semibold',
-															'hover:scale-105 transition-transform duration-300'
+															'text-white text-sm font-semibold gradient-primary',
+															'hover:scale-105 transition-transform duration-300',
 														)}
 													>
 														Visit Project →
@@ -285,12 +278,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 										[1, 2].map((offset) => (
 											<div
 												key={offset}
-												className={cn(
-													'absolute inset-0 rounded-[32px]',
-													'bg-[rgba(13,13,13,0.4)] backdrop-blur-[20px]',
-													'border border-chrome-silver/6',
-													'pointer-events-none'
-												)}
+												className={cn('absolute inset-0 rounded-4xl', 'surface-glass-1 backdrop-glass-0', 'pointer-events-none')}
 												style={{
 													transform: `translateZ(-${offset * 100}px) scale(${1 - offset * 0.1})`,
 													opacity: 1 - offset * 0.3,

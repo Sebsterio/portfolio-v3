@@ -1,10 +1,9 @@
 import { Code2, Layers, Rocket, Gauge } from 'lucide-react';
 
 export const copy = {
-	title: ['*Building Systems', 'That Scale'],
+	title: ['==Building Systems==', 'That Scale'],
 	intro: [
-		// TODO: string parsing -> `<span className='font-bold text-white'>senior front-end engineer`
-		"I'm a senior front-end engineer with a hybrid background in design, engineering, and technical leadership. I specialise in building durable product foundations — modernising legacy systems, creating cross-platform design systems, and shaping better ways for teams to build, test, and ship software.",
+		"I'm a **senior front-end engineer** with a hybrid background in design, engineering, and technical leadership. I specialise in building durable product foundations — modernising legacy systems, creating cross-platform design systems, and shaping better ways for teams to build, test, and ship software.",
 		"I'm most energized by problems that sit at the intersection of UX, architecture, and scalability: turning messy real-world constraints into clean, maintainable systems that teams can confidently evolve over time.",
 	],
 	sectionTitles: {

@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { GlassSurface } from './ui/GlassSurface';
+
+// ----------------------------------------------------------------------------
 
 type GlassCardProps = {
 	title: string;
@@ -8,75 +11,52 @@ type GlassCardProps = {
 	style?: React.CSSProperties;
 };
 
-export const GlassCard = ({ title, children, className, style }: GlassCardProps) => {
+export function GlassCard({ title, children, className, style }: GlassCardProps) {
 	return (
-		<div
-			className={cn(
-				'relative p-8 rounded-[28px] overflow-hidden',
-				'bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]',
-				'border border-chrome-silver/8',
-				'shadow-[0_8px_32px_rgba(0,0,0,0.5),0_4px_16px_rgba(59,130,246,0.08),inset_0_1px_0_rgba(240,240,240,0.12)]',
-				className
-			)}
-			{...{ style }}
-		>
-			{/* Diagonal Glare */}
-			<div
-				className='absolute inset-0 rounded-[28px] pointer-events-none'
-				style={{
-					background: `linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 20%, transparent 50%)`,
-				}}
-			/>
-
+		<GlassSurface rounded={3} className={cn('p-8', className)} style={style}>
+			<div className='overlay-full reflection-diagonal' />
 			<div className='relative z-10'>
-				<h3 className='font-urbanist text-lg font-bold text-chrome-silver mb-6'>{title}</h3>
+				<h3 className='mb-6 font-urbanist text-lg font-bold text-chrome-silver'>{title}</h3>
 				{children}
 			</div>
-		</div>
+		</GlassSurface>
 	);
-};
+}
 
 export default GlassCard;
 
-/**
- * --- // TEMP // ---
- */
+// ----------------------------------------------------------------------------
 
 type GlassCard1Props = {
 	children: React.ReactNode;
 	className?: string;
-	withAccent?: boolean; // TODO: wtf
+	withAccent?: boolean;
 	accentPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
 	style?: React.CSSProperties;
 	onClick?: () => void;
 };
 
 const accentPositions = {
-	'top-right': 'top-0 right-0 bg-linear-to-bl',
-	'top-left': 'top-0 left-0 bg-linear-to-br',
-	'bottom-right': 'bottom-0 right-0 bg-linear-to-tl',
-	'bottom-left': 'bottom-0 left-0 bg-linear-to-tr',
+	'top-right': cn('gradient-corner-tr'),
+	'top-left': cn('gradient-corner-tl'),
+	'bottom-right': cn('gradient-corner-br'),
+	'bottom-left': cn('gradient-corner-bl'),
 };
 
-export const GlassCard1 = ({ children, className, style, withAccent = false, accentPosition = 'top-right', onClick }: GlassCard1Props) => {
-	const Component = onClick ? 'button' : 'div';
-
+/**
+ * 	@deprecated use `GlassCard`
+ */
+export const GlassCard1 = ({ children, className, style, withAccent, accentPosition = 'top-right', onClick }: GlassCard1Props) => {
 	return (
-		<Component
-			onClick={onClick}
-			className={cn(
-				'relative overflow-hidden',
-				'border border-chrome-silver/8',
-				'rounded-2xl bg-[rgba(13,13,13,0.6)] backdrop-blur-2xl', // NOTE: backdrop glitches if element has vt
-				onClick && 'transition-all duration-300 hover:border-accent-blue/30',
-				className
-			)}
-			{...{ style }}
+		<GlassSurface
+			as={onClick ? 'button' : 'div'}
+			rounded={1}
+			hoverable // ={!!onClick}
+			// interactive={!!onClick}
+			{...{ className, style, onClick }}
 		>
-			{withAccent && (
-				<div className={cn('absolute w-32 h-32 from-accent-blue/10 via-transparent to-transparent', accentPositions[accentPosition])} />
-			)}
+			{withAccent && <div className={cn('overlay w-32 h-32 gradient-gleam-blue', accentPositions[accentPosition])} />}
 			{children}
-		</Component>
+		</GlassSurface>
 	);
 };

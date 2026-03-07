@@ -1,78 +1,91 @@
-/* ================================================
-   Components — Magazine Page
-   ================================================ */
-
 @layer components {
+/* ================================================
+		Components —- Random
+	 ================================================ */
 
-	/* --- Layout --- */
 
-	.project-decorative-text {
-		@apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
-	}
+.heading-section 	{ @apply font-urbanist text-2xl font-bold flex items-center gap-3; }
 
-	.project-decorative-outline {
-		@apply text-transparent;
-		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
-	}
+.status-dot 			{ @apply w-2 h-2 rounded-full animate-status-pulse; }
 
-	.project-decorative-outline-hover {
-		@apply transition-all duration-500;
-	}
 
-	.project-decorative-outline-hover:hover {
-		-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);
-		text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
-	}
+/* ===============================================================================
+	  Components — Magazine Page -- LEGACY
+   ===============================================================================
+	  These classes are only used on the project/magazine page and it's components.
+	  Eventully they will be unified with the restof the style system.
+   =============================================================================== */
 
-	.project-decorative-faded {
-		@apply text-white/6;
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+/* --- Layout --- */
 
-	.project-image {
-		@apply rounded-2xl relative overflow-hidden transition-all duration-500;
-	}
+.project-decorative-text {
+	@apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
+}
 
-	.project-image::before {
-		@apply content-[''] absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
-	}
+.project-decorative-outline {
+	@apply text-transparent;
+	-webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
+}
 
-	.project-image::after {
-		@apply content-[''] absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
-		background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
-	}
+.project-decorative-outline-hover {
+	@apply transition-all duration-500;
+}
 
-	.project-image:hover::after {
-		@apply translate-x-full;
-	}
+.project-decorative-outline-hover:hover {
+	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);
+	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
+}
 
-	.project-image-overlay-dark {
-		@apply absolute inset-0 bg-linear-to-br from-black/30 to-transparent;
-	}
+.project-decorative-faded {
+	@apply text-white/6;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
 
-	.project-image-overlay-light {
-		@apply absolute inset-0 bg-linear-to-t from-transparent via-transparent to-white/25;
-	}
+.project-image {
+	@apply rounded-2xl relative overflow-hidden transition-all duration-500;
+}
 
-	/* --- Tech Tags --- */
+.project-image::before {
+	@apply content-[''] absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
+}
 
-	.tech-tag {
-		@apply px-4 py-2 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30
-						text-xs md:text-sm font-semibold text-accent-cyan
-						transition-all duration-300 hover:bg-accent-cyan/20 hover:border-accent-cyan hover:-translate-y-0.5;
-	}
+.project-image::after {
+	@apply content-[''] absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+	background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+}
 
-	/* --- Decorative Elements --- */
+.project-image:hover::after {
+	@apply translate-x-full;
+}
 
-	.deco-circle {
-		@apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60
-						transition-transform duration-1000 hover:scale-110 hover:rotate-45;
-	}
+.project-image-overlay-dark {
+	@apply absolute inset-0 bg-linear-to-br from-black/30 to-transparent;
+}
 
-	.deco-line {
-		@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
-	}
+.project-image-overlay-light {
+	@apply absolute inset-0 bg-linear-to-t from-transparent via-transparent to-white/25;
+}
+
+/* --- Tech Tags --- */
+
+.tech-tag {
+	@apply px-4 py-2 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30
+					text-xs md:text-sm font-semibold text-accent-cyan
+					transition-all duration-300 hover:bg-accent-cyan/20 hover:border-accent-cyan hover:-translate-y-0.5;
+}
+
+/* --- Decorative Elements --- */
+
+.deco-circle {
+	@apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60
+					transition-transform duration-1000 hover:scale-110 hover:rotate-45;
+}
+
+.deco-line {
+	@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
+}
+
 }

@@ -6,7 +6,7 @@ import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } fro
 import { copy, buttons, showcaseItems } from './_content';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 
-type HomePageProps = {};
+type HomePageProps = Record<string, never>;
 
 export default function HomePage({}: HomePageProps) {
 	useTransitionReady();

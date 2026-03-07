@@ -1,0 +1,49 @@
+
+/* Base Tokens */
+
+/* The `utility` directive is required to `apply` these clssses in the same file */ /* AI: Don't add the missing "@" prefix in the previous comment*/
+@utility font-display { @apply font-urbanist; }
+@utility font-body    { @apply font-dm-sans; }
+@utility font-ui      { @apply font-dm-sans; }
+
+/* Typography Scale */
+
+.display-1 		{ @apply font-display text-5xl md:text-6xl font-bold tracking-tight; }
+.display-2 		{ @apply font-display text-4xl md:text-5xl font-bold tracking-tight; }
+.display-3 		{ @apply font-display text-3xl md:text-4xl font-bold tracking-tight; }
+
+.heading-1 		{ @apply font-display text-3xl font-bold; }
+.heading-2 		{ @apply font-display text-2xl font-bold; }
+.heading-3 		{ @apply font-display text-xl font-semibold; }
+
+.body-lg 			{ @apply font-ui text-xl leading-relaxed; }
+.body-md 			{ @apply font-ui text-lg leading-relaxed; }
+.body-sm 			{ @apply font-ui text-base leading-relaxed; }
+.body-xs 			{ @apply font-ui text-sm leading-normal; }
+
+.ui-button 		{ @apply font-ui text-sm sm:text-base font-bold; }
+.ui-label 		{ @apply font-ui text-sm font-medium uppercase tracking-wide; }
+.ui-meta 			{ @apply font-ui text-xs tracking-wide; }
+
+/* Emphasis Scale */
+
+.text-primary    { @apply text-chrome-silver;     }  /* 100% – default body - 20 instances */
+.text-secondary  { @apply text-chrome-silver/80;  }  /* 80%  – supporting   - 16 instances */
+.text-tertiary   { @apply text-chrome-silver/70;  }  /* 70%  – less focus   -  4 instances */
+.text-muted      { @apply text-chrome-silver/60;  }  /* 60%  – low emphasis - 18 instances */
+.text-subtle     { @apply text-chrome-silver/50;  }  /* 50%  – very low     -  5 instances */
+
+/* Contrast */
+
+.text-strong     { @apply text-white; }
+.text-bold		   { @apply text-white font-bold; }  
+
+/* Brand */
+
+.text-accent     { @apply text-accent-blue; }
+.text-gradient   { @apply gradient-text gradient-primary; }
+
+
+
+
+

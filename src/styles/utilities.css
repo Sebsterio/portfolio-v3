@@ -2,20 +2,98 @@
    Utilities
    ================================================ */
 
-@utility content-container {
-  @apply w-full max-w-[1400px] mx-auto;
-}
 
 
-/* ================================================
-   Quantum Grid Theme — unused, kept for reference
-   ================================================
-   Uncomment and move out of this block to enable.
 
-@utility perspective-1000 {
-  perspective: 1000px;
+/* -------------------------------- */
+/* Glass Decoration System // TODO  */
+/* -------------------------------- */
+
+/* .glass-decorated {
+  position: relative;
+  overflow: hidden;
 }
-@utility preserve-3d {
-  transform-style: preserve-3d;
+.glass-decorated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.08) 20%,
+    transparent 50%
+  );
+  z-index: 0;
 }
-   ================================================ */
+.glass-decorated::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,...");
+  opacity: 0.02;
+  z-index: 0;
+} */
+
+/* Animated Shine */
+
+/* .glass-shine {
+  position: relative;
+  overflow: hidden;
+}
+.glass-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59,130,246,0.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: all 800ms ease-out;
+}
+.glass-shine:hover::after {
+  left: 100%;
+} */
+
+/* Glass Corners */
+
+/* .glass-corners {
+  position: relative;
+}
+.glass-corners::before,
+.glass-corners::after {
+  content: '';
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+  pointer-events: none;
+  z-index: 0;
+}
+.glass-corners::before {
+  top: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom left,
+    rgba(59,130,246,0.1),
+    transparent,
+    transparent
+  );
+}
+.glass-corners::after {
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    to top right,
+    rgba(34,211,238,0.1),
+    transparent,
+    transparent
+  );
+} */
