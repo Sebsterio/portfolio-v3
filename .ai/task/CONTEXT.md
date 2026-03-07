@@ -24,15 +24,15 @@
 ## Validation observations
 
 - `pnpm lint` runs successfully.
-- `pnpm typecheck` currently fails due to script misconfiguration in `package.json` (`tsc -p --noEmit`).
+- `pnpm typecheck` currently fails due to script misconfiguration in `package.json` (`tsc -p --noEmit`). <!-- FIXED -->
 - `pnpm build` can fail in offline/sandboxed environments due Google Fonts fetch.
 
 ## Ambiguity sweep outcomes
 
-- `TimelineLayoutClient`:
+- `TimelineLayoutClient`: <!-- FIXED -->
   - User confirmed it is deprecated and will be removed.
   - It is excluded from canonical architecture documentation.
-- `src/app/projects/magazine/[slug]/` empty segment:
+- `src/app/projects/magazine/[slug]/` empty segment: <!-- FIXED -->
   - Directory exists without `page.tsx`.
   - No canonical runtime behavior is documented in permanent docs.
   - Keep as unresolved implementation artifact until explicitly specified.
@@ -46,3 +46,11 @@
 ## `.ai/notes` influence rule
 
 Files in `.ai/notes/` are supplemental background. They influence execution only when explicitly referenced by `.ai/task/*`.
+
+<!-- Added at task completion: previously identified issues now resolved. -->
+
+## Issues resolved during this task
+
+- `pnpm typecheck` script misconfiguration has been fixed.
+- `TimelineLayoutClient` has been removed.
+- obsolete `src/app/projects/magazine/[slug]/` route artifact has been removed.

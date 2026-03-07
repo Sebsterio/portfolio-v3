@@ -50,7 +50,6 @@ Deterministic implementation conventions for current codebase behavior.
 
 ## Known validation caveats
 
-- `pnpm typecheck` is currently misconfigured in `package.json`.
 - `pnpm build` may fail offline because of `next/font/google` fetches.
 
 ## Documentation conventions

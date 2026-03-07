@@ -12,7 +12,7 @@ Personal portfolio and case-study site built with Next.js App Router.
 
 - `pnpm dev` - start local development server
 - `pnpm lint` - run ESLint
-- `pnpm typecheck` - run TypeScript check; see Current caveats
+- `pnpm typecheck` - run TypeScript check
 - `pnpm test` - run Vitest tests
 - `pnpm e2e` - run Playwright visual regression tests
 - `pnpm build` - run production build
@@ -20,7 +20,6 @@ Personal portfolio and case-study site built with Next.js App Router.
 
 ## Current caveats
 
-- `pnpm typecheck` is currently misconfigured in `package.json` (`tsc -p --noEmit` has an invalid `-p` value).
 - `pnpm build` requires network access to fetch Google Fonts (`DM Sans` and `Urbanist`) via `next/font/google`.
 
 ## Repo map
