@@ -37,6 +37,13 @@ Mandatory operating procedure for coding agents in this repository.
 
 Files in `.ai/notes/` influence execution only when explicitly referenced by `.ai/task/*`.
 
+## Workflow:
+
+1. Populate `OVERVIEW.md`, `PLAN.md`, and `CONTEXT.md`.
+2. Plan first and wait for approval.
+3. Implement changes in scoped steps.
+4. Summarize results and validation.
+
 ## Truthfulness and ambiguity policy
 
 - Permanent docs must describe current reality only.
