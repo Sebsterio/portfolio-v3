@@ -1,4 +1,4 @@
-import { createVrtTest } from './utils/createVrtTest';
+import { createVrtTest } from '../utils/createVrtTest';
 
 createVrtTest('/');
 createVrtTest('/about');
