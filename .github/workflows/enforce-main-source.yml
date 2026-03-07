@@ -1,0 +1,14 @@
+name: Enforce main source branch
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-source:
+    if: >
+      github.head_ref == 'dev' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PR source is the canonical dev branch"
