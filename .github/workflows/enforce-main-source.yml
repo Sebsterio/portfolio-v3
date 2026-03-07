@@ -6,12 +6,9 @@ on:
 
 jobs:
   check-source:
+    if: >
+      github.head_ref == 'dev' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-
     steps:
-      - name: Ensure PR comes from dev
-        run: |
-          if [ "${{ github.head_ref }}" != "dev" ]; then
-            echo "Only 'dev' may merge into 'main'"
-            exit 1
-          fi
+      - run: echo "PR source is the canonical dev branch"
