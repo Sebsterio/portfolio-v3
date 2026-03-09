@@ -169,7 +169,7 @@ Manual-review files:
 - run `pnpm typecheck`
 - run `pnpm build`
 - run `pnpm e2e` using the existing local server workflow
-- if `build` fails because Google Fonts cannot be fetched offline, report that exact cause
+- if sandboxed `pnpm build` fails with `spawn EPERM` on Windows Codex, rerun unsandboxed and treat that result as authoritative
 - if `e2e` cannot run for non-refactor reasons, report that explicitly and continue
 - never update snapshots
 
