@@ -48,9 +48,11 @@ Deterministic implementation conventions for current codebase behavior.
   - `pnpm e2e`
   - `pnpm build`
 
-## Known validation caveats
+**Validation caveat:**
 
-- `pnpm build` may fail offline because of `next/font/google` fetches.
+- In Codex on Windows, sandboxed `pnpm build` may fail with `spawn EPERM`.
+- If that occurs, rerun the build with escalated/unsandboxed execution.
+- Treat the unsandboxed result as authoritative; the sandbox error is environmental.
 
 ## Documentation conventions
 
