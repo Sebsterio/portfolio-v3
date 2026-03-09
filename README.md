@@ -18,10 +18,6 @@ Personal portfolio and case-study site built with Next.js App Router.
 - `pnpm build` - run production build
 - `pnpm start` - start production server
 
-## Current caveats
-
-- `pnpm build` requires network access to fetch Google Fonts (`DM Sans` and `Urbanist`) via `next/font/google`.
-
 ## Repo map
 
 - `src/app` - App Router routes, layouts, and route-scoped modules
