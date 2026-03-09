@@ -126,5 +126,5 @@ For each future implementation batch, report:
 
 - `pnpm lint` currently passes.
 - `pnpm typecheck` currently passes.
-- `pnpm build` currently fails offline because `next/font/google` cannot fetch `DM Sans` and `Urbanist`.
+- `pnpm build` in Windows Codex may fail in sandbox with `spawn EPERM`; rerun unsandboxed and treat that result as authoritative.
 - `pnpm e2e` depends on the existing local server workflow and fails if no app is running on `http://localhost:3000`.

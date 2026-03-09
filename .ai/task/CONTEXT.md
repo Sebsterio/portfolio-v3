@@ -84,7 +84,7 @@ Baseline observed during Gate A:
 
 - `pnpm lint`: passes
 - `pnpm typecheck`: passes
-- `pnpm build`: fails offline because `next/font/google` cannot fetch `DM Sans` and `Urbanist`
+- `pnpm build`: on Windows Codex, sandboxed execution may fail with `spawn EPERM`; rerun unsandboxed and treat that result as authoritative
 - `pnpm e2e`: requires the existing local server workflow; without a server already running on `http://localhost:3000`, Playwright fails with connection refusal
 
 For later implementation gates:

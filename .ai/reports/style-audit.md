@@ -219,7 +219,7 @@ Primary files:
 
 - `pnpm lint`: passes
 - `pnpm typecheck`: passes
-- `pnpm build`: offline font fetch failure from `next/font/google`
+- `pnpm build`: use the `docs/CONVENTIONS.md` validation caveat; if sandboxed execution fails with `spawn EPERM` on Windows Codex, rerun unsandboxed and treat that result as authoritative
 - `pnpm e2e`: requires an already-running local server on `http://localhost:3000`
 
 Gate A conclusion: the repo already has a partial design system, but the most stable truth is in surfaces and a few component anchors, not in the full semantic typography/layout scaffolding currently present in CSS.
