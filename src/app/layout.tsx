@@ -7,8 +7,8 @@ import { BackgroundTransitionContainer } from '@/components/animation/Background
 import { ChromeBackground } from '@/components/background/ChromeBackground';
 import { QuantumBackground } from '@/components/background/QuantumBackground';
 
-import { dmSans, urbanist } from './_config/fonts';
 import { AppHeader } from './_components/AppHeader';
+import { dmSans, urbanist } from './fonts';
 
 import '@/styles/globals.css';
 
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 					'gap-16 md:gap-24 lg:gap-28',
 					'px-4 sm:px-6 md:px-8',
 					'pt-6 md:pt-10',
-					'pb-12 md:pb-20 lg:pb-28' // rm when adding Footer
+					'pb-12 md:pb-20 lg:pb-28', // rm when adding Footer
 				)}
 			>
 				<TransitionProvider>
