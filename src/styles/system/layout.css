@@ -1,8 +1,8 @@
 
 @utility content-container 	{  @apply w-full max-w-350 mx-auto; }
 
-.overlay					 {  @apply absolute pointer-events-none; }
-.overlay-full			 {	@apply absolute pointer-events-none inset-0; }
+@utility overlay					 	{ @apply absolute pointer-events-none; }
+@utility overlay-full			 	{	@apply absolute pointer-events-none inset-0; }
  
 .stack-sm 				 {  @apply space-y-4; }
 .stack-md 				 {  @apply space-y-6; }
