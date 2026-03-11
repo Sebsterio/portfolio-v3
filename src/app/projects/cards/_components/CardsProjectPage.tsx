@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
 import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
@@ -93,6 +92,7 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 
 	return (
 		<button
+			type='button'
 			onClick={onClick}
 			className={cn(
 				'h-12 w-12 rounded-full md:h-14 md:w-14',
@@ -119,6 +119,7 @@ function ProjectIndicators({ projects, currentIndex, onNavigate, className }: Pr
 		<div className={cn('flex items-center gap-2', className)}>
 			{projects.map((item, index) => (
 				<button
+					type='button'
 					key={item.id}
 					onClick={() => onNavigate(item.slug)}
 					className={cn(
@@ -235,22 +236,47 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	);
 }
 
+type ProjectTransitionSlotProps = {
+	projectId: Project['id'];
+	side: 'prev' | 'next';
+};
+
+function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) {
+	return (
+		<div
+			aria-hidden='true'
+			className={cn(
+				'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
+				side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
+			)}
+			style={getProjectCardViewTransitionStyle(projectId)}
+		/>
+	);
+}
+
 type FlipProjectCardProps = {
 	project: Project;
+	prevProjectId: Project['id'];
+	nextProjectId: Project['id'];
 	gradientClass: string;
 	flipped: boolean;
 	onFlip: () => void;
 };
 
-function FlipProjectCard({ project, gradientClass, flipped, onFlip }: FlipProjectCardProps) {
+function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass, flipped, onFlip }: FlipProjectCardProps) {
 	return (
-		<div className='mx-auto w-full max-w-4xl perspective-[2000px]' style={getProjectCardViewTransitionStyle(project.id)}>
-			<button type='button' onClick={onFlip} className='block w-full cursor-pointer bg-transparent p-0 text-left'>
-				<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
-					<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
-					<ProjectCardBack project={project} flipped={flipped} />
-				</div>
-			</button>
+		<div className='relative mx-auto w-full max-w-4xl overflow-x-clip perspective-[2000px]'>
+			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
+			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
+
+			<div style={getProjectCardViewTransitionStyle(project.id)}>
+				<button type='button' onClick={onFlip} className='block w-full cursor-pointer bg-transparent p-0 text-left'>
+					<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
+						<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
+						<ProjectCardBack project={project} flipped={flipped} />
+					</div>
+				</button>
+			</div>
 		</div>
 	);
 }
@@ -307,23 +333,14 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 					className={cn('w-full max-w-350', 'grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8')}
 				>
 					<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
-						<AnimatePresence mode='wait'>
-							<motion.div
-								key={project.id}
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								transition={{ duration: 0.25 }}
-								className='w-full'
-							>
-								<FlipProjectCard
-									project={project}
-									gradientClass={gradientClass}
-									flipped={flipped}
-									onFlip={() => setFlipped((value) => !value)}
-								/>
-							</motion.div>
-						</AnimatePresence>
+						<FlipProjectCard
+							project={project}
+							prevProjectId={prev.id}
+							nextProjectId={next.id}
+							gradientClass={gradientClass}
+							flipped={flipped}
+							onFlip={() => setFlipped((value) => !value)}
+						/>
 					</div>
 
 					<ProjectCardControls
