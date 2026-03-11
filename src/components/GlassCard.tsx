@@ -14,7 +14,7 @@ type GlassCardProps = {
 export function GlassCard({ title, children, className, style }: GlassCardProps) {
 	return (
 		<GlassSurface rounded={3} className={cn('p-8', className)} style={style}>
-			<div className='overlay-full reflection-diagonal' />
+			<div className='glass-anchor-reflection' />
 			<div className='relative z-10'>
 				<h3 className='mb-6 heading-3-compact text-primary'>{title}</h3>
 				{children}
@@ -55,7 +55,7 @@ export const GlassCard1 = ({ children, className, style, withAccent, accentPosit
 			// interactive={!!onClick}
 			{...{ className, style, onClick }}
 		>
-			{withAccent && <div className={cn('overlay w-32 h-32 gradient-gleam-blue', accentPositions[accentPosition])} />}
+			{withAccent && <div className={cn('glass-card-accent gradient-gleam-blue', accentPositions[accentPosition])} />}
 			{children}
 		</GlassSurface>
 	);

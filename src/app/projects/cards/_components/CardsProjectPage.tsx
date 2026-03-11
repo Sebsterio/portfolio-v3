@@ -261,8 +261,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														rel='noopener noreferrer'
 														onClick={(e) => e.stopPropagation()}
 														className={cn(
-															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-															'text-white text-sm font-semibold gradient-primary',
+															'button-primary-inline-sm',
 															'hover:scale-105 transition-transform duration-300',
 														)}
 													>
