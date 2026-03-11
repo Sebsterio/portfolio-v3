@@ -21,7 +21,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 		>
 			{/* Decorative */}
 
-			<div className={cn('overlay-full reflection-diagonal')} />
+			<div className={cn('glass-anchor-reflection')} />
 			<div className={cn('overlay-full noise-overlay')} />
 			<div className={cn('overlay top-0 left-[20%] w-[60%] h-0.5 top-edge-glow')} />
 			<div className={cn('overlay top-0 -left-full w-full h-full group-hover:left-full reflection-animated transition-all')} />
@@ -41,7 +41,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 				</div>
 				<div>
 					<h3 className='mb-2 md:mb-3 font-urbanist text-lg md:text-xl font-bold text-chrome-silver'>{title}</h3>
-					<p className='text-[13px] md:text-[14px] leading-relaxed text-chrome-silver/60'>{description}</p>
+					<p className='text-[13px] md:text-[14px] leading-relaxed text-muted'>{description}</p>
 				</div>
 			</div>
 		</GlassSurface>

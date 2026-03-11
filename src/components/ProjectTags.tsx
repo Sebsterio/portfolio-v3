@@ -10,14 +10,14 @@ type ProjectTagsProps = {
 export const ProjectTags = ({ tags, limit, size = 'md', className }: ProjectTagsProps) => {
 	const displayTags = limit ? tags.slice(0, limit) : tags;
 	const sizeClasses = {
-		sm: 'px-2 py-1 rounded-sm text-xs',
-		md: 'px-4 py-2 rounded-lg text-sm',
+		sm: 'tech-tag-static-sm',
+		md: 'tech-tag-static',
 	};
 
 	return (
 		<div className={cn('flex flex-wrap gap-2', className)}>
 			{displayTags.map((tag) => (
-				<span key={tag} className={cn(sizeClasses[size], 'bg-accent-blue/10 text-accent-cyan border border-accent-blue/20')}>
+				<span key={tag} className={cn(sizeClasses[size])}>
 					{tag}
 				</span>
 			))}

@@ -185,7 +185,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 											<div className='space-y-6 md:space-y-8'>
 												{/* Header */}
 												<div className='space-y-3 md:space-y-4'>
-													<InlineList.Div className='flex items-center gap-4 text-sm text-accent-cyan'>
+													<InlineList.Div className='cluster-md text-sm text-accent-cyan'>
 														{[project.period, project.location]}
 													</InlineList.Div>
 													<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
@@ -206,7 +206,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 
 												{/* Footer */}
 												<div className='space-y-4 pb-2'>
-													<p className='text-base md:text-xl text-chrome-silver/70 leading-relaxed'>{project.summary}</p>
+													<p className='text-base md:text-xl text-tertiary leading-relaxed'>{project.summary}</p>
 													<ProjectTags tags={project.tags} />
 													<p className='text-sm text-accent-blue animate-pulse'>Tap to flip →</p>
 												</div>
@@ -261,8 +261,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 														rel='noopener noreferrer'
 														onClick={(e) => e.stopPropagation()}
 														className={cn(
-															'inline-flex items-center gap-2 px-6 py-3 rounded-full',
-															'text-white text-sm font-semibold gradient-primary',
+															'button-primary-inline-sm',
 															'hover:scale-105 transition-transform duration-300',
 														)}
 													>

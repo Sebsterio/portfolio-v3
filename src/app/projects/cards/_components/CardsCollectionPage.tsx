@@ -52,9 +52,9 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 			<div className='relative h-full flex flex-col justify-between gap-6 text-left'>
 				<>
 					<div className='space-y-3'>
-						<div className='text-xs text-accent-cyan font-dm-sans uppercase tracking-wider'>{project.year}</div>
-						<h3 className='font-urbanist text-2xl font-bold text-chrome-silver line-clamp-2'>{project.title}</h3>
-						<p className='text-chrome-silver/70'>{project.company}</p>
+						<div className='ui-meta-accent-caps'>{project.year}</div>
+						<h3 className='heading-2 text-primary line-clamp-2'>{project.title}</h3>
+						<p className='text-tertiary'>{project.company}</p>
 					</div>
 
 					<ProjectImage
@@ -68,7 +68,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 					/>
 
 					<div className='space-y-4'>
-						<p className='text-sm text-chrome-silver/60 line-clamp-3'>{project.summary}</p>
+						<p className='text-sm text-muted line-clamp-3'>{project.summary}</p>
 						<ProjectTags tags={project.tags} limit={3} size='sm' />
 					</div>
 				</>

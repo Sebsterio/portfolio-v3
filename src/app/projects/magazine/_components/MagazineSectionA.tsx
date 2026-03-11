@@ -50,10 +50,10 @@ export function MagazineSectionA({ number, megaTitle, title, subtitle, descripti
 				<h3 className='font-urbanist text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white mb-2 tracking-tight transition-all duration-300 group-hover:text-accent-cyan'>
 					{title}
 				</h3>
-				<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subtitle}</p>
+				<p className='text-base md:text-lg text-muted mb-8'>{subtitle}</p>
 
 				{description.map((paragraph, index) => (
-					<p key={index} className='text-sm md:text-base leading-relaxed text-chrome-silver/75 mb-6'>
+					<p key={index} className='text-sm md:text-base leading-relaxed text-secondary mb-6'>
 						<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
 					</p>
 				))}

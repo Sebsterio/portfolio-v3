@@ -26,7 +26,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-10'>{subtitle}</p>
+					<p className='text-base md:text-lg text-muted mb-10'>{subtitle}</p>
 
 					{entries.map(({ title, description }, index) => (
 						<div
@@ -40,7 +40,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 									{title}
 								</h4>
 
-								<p className='text-sm md:text-base leading-relaxed text-chrome-silver/75'>{description}</p>
+								<p className='text-sm md:text-base leading-relaxed text-secondary'>{description}</p>
 							</div>
 
 							{/* Small image - shows next to text on mobile for first project only */}

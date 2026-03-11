@@ -42,13 +42,13 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+									<InlineList.Div className='cluster-sm text-sm text-subtle'>
 										{[project.location, project.role]}
 									</InlineList.Div>
 
-									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
-									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
-									<p className='text-chrome-silver/60 leading-relaxed'>{project.summary}</p>
+									<h3 className='heading-1 text-primary'>{project.title}</h3>
+									<p className='text-lg text-secondary'>{project.company}</p>
+									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
 								</div>
@@ -82,13 +82,13 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('w-full text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='flex items-center gap-3 text-sm text-chrome-silver/50'>
+									<InlineList.Div className='cluster-sm text-sm text-subtle'>
 										{[project.location, project.role]}
 									</InlineList.Div>
 
-									<h3 className='font-urbanist text-3xl font-bold text-chrome-silver'>{project.title}</h3>
-									<p className='text-lg text-chrome-silver/80'>{project.company}</p>
-									<p className='text-chrome-silver/60 leading-relaxed'>{project.summary}</p>
+									<h3 className='heading-1 text-primary'>{project.title}</h3>
+									<p className='text-lg text-secondary'>{project.company}</p>
+									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
 								</div>
@@ -124,9 +124,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								}}
 							>
 								<div className='relative space-y-3'>
-									<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>{project.title}</h3>
-									<p className='text-chrome-silver/70'>{project.company}</p>
-									<p className='text-sm text-chrome-silver/60 leading-relaxed'>{project.summary}</p>
+									<h3 className='heading-2 text-primary'>{project.title}</h3>
+									<p className='text-tertiary'>{project.company}</p>
+									<p className='text-sm text-muted leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={3} size='sm' />
 								</div>

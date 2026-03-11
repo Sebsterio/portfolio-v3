@@ -12,14 +12,14 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
-				<InlineList.Div className='flex items-center gap-4 text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
+				<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
 				<h2 className='font-urbanist text-3xl md:text-5xl font-bold text-chrome-silver leading-tight'>{project.title}</h2>
 				<p className='text-xl md:text-2xl text-chrome-silver/80'>
 					<span className=''>{project.company}</span> <span className='text-chrome-silver/40'>{' - ' + project.label}</span>
 				</p>
 			</div>
 
-			<p className='text-xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
+			<p className='text-xl text-secondary leading-relaxed'>{project.intro}</p>
 
 			<div className='grid grid-cols-3 gap-4'>
 				{[0, 1, 2].map((i) => (
@@ -38,17 +38,17 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 			</div>
 
 			<div className='space-y-3'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>The Challenge</h3>
-				<p className='text-chrome-silver/80 leading-relaxed'>{project.challenge}</p>
+				<h3 className='heading-2 text-primary'>The Challenge</h3>
+				<p className='text-secondary leading-relaxed'>{project.challenge}</p>
 			</div>
 
 			<div className='space-y-3'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>The Solution</h3>
-				<p className='text-chrome-silver/80 leading-relaxed'>{project.solution}</p>
+				<h3 className='heading-2 text-primary'>The Solution</h3>
+				<p className='text-secondary leading-relaxed'>{project.solution}</p>
 			</div>
 
 			<div className='space-y-4'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>Impact & Results</h3>
+				<h3 className='heading-2 text-primary'>Impact & Results</h3>
 				<ul className='space-y-2'>
 					{project.impact.map((item, i) => (
 						<li key={i} className='flex items-start gap-3'>
@@ -67,7 +67,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 					href={project.link}
 					target='_blank'
 					rel='noopener noreferrer'
-					className={cn('inline-flex items-center gap-2 px-8 py-4 rounded-full gradient-primary text-white font-semibold')}
+					className={cn('button-primary-inline-lg')}
 				>
 					Visit Project →
 				</a>

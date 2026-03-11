@@ -62,7 +62,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 											'group relative text-[13px] font-semibold tracking-wider uppercase',
 											isCurrent
 												? 'text-chrome-silver pointer-events-none'
-												: 'text-chrome-silver/60 hover:text-chrome-silver  transition-all duration-300'
+												: 'text-muted hover:text-chrome-silver transition-all duration-300'
 										)}
 									>
 										{item.label}
