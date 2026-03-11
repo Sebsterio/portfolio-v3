@@ -20,3 +20,13 @@
 .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; }
 .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; }
 .reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; }
+
+@utility gradient-reflection-vertical {
+	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent);
+}
+@utility gradient-reflection-vertical-strong {
+	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent);
+}
+@utility gradient-reflection-diagonal {
+	background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.15) 0%, rgb(var(--white-rgb) / 0.08) 20%, transparent 50%); 
+}
