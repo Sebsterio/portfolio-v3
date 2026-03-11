@@ -21,12 +21,12 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 		<div className='w-full space-y-8'>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'>
 				{projects.map((project) => (
-					<ProjectCard
-						key={project.id}
-						project={project}
-						onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
-						style={{ viewTransitionName: `project-card-${project.id}` }}
-					/>
+					<div key={project.id} style={{ viewTransitionName: `project-card-${project.id}` }}>
+						<ProjectCard
+							project={project}
+							onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+						/>
+					</div>
 				))}
 			</div>
 		</div>
@@ -37,7 +37,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 
 type ProjectCardProps = {
 	project: Project;
-	style: React.CSSProperties;
+	style?: React.CSSProperties;
 	onClick: () => void;
 };
 

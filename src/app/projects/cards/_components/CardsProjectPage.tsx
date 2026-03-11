@@ -80,6 +80,11 @@ function getProjectCardViewTransitionStyle(projectId: Project['id']): CSSPropert
 		viewTransitionName: `project-card-${projectId}`,
 	};
 }
+function getProjectCardInnerViewTransitionStyle(projectId: Project['id']): CSSProperties {
+	return {
+		viewTransitionName: `project-card-inner-${projectId}`,
+	};
+}
 
 type NavigationButtonProps = {
 	direction: 'prev' | 'next';
@@ -249,7 +254,7 @@ function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) 
 				'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
 				side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
 			)}
-			style={getProjectCardViewTransitionStyle(projectId)}
+			style={getProjectCardInnerViewTransitionStyle(projectId)}
 		/>
 	);
 }
@@ -270,12 +275,16 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
 			<div style={getProjectCardViewTransitionStyle(project.id)}>
-				<button type='button' onClick={onFlip} className='block w-full cursor-pointer bg-transparent p-0 text-left'>
+				<div
+					onClick={onFlip}
+					className='block w-full cursor-pointer bg-transparent p-0 text-left'
+					style={getProjectCardInnerViewTransitionStyle(project.id)}
+				>
 					<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
 						<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
 						<ProjectCardBack project={project} flipped={flipped} />
 					</div>
-				</button>
+				</div>
 			</div>
 		</div>
 	);
@@ -313,8 +322,6 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 
 	const { currentIndex, prev, next } = useMemo(() => getProjectNeighbors(project, allProjects), [project, allProjects]);
 
-	const gradientClass = getCardImageGradient(currentIndex);
-
 	const navigateToProject = ({ slug, options }: NavigationTarget) => {
 		setFlipped(false);
 		navigate(`/projects/cards/${slug}`, options);
@@ -337,7 +344,7 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 							project={project}
 							prevProjectId={prev.id}
 							nextProjectId={next.id}
-							gradientClass={gradientClass}
+							gradientClass={getCardImageGradient(currentIndex)}
 							flipped={flipped}
 							onFlip={() => setFlipped((value) => !value)}
 						/>
