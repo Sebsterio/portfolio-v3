@@ -109,7 +109,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 														href={p.link}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm gradient-primary text-white font-semibold'
+														className='button-primary-inline-sm'
 													>
 														Visit Project →
 													</a>

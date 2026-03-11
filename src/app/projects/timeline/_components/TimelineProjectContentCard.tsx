@@ -67,7 +67,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 					href={project.link}
 					target='_blank'
 					rel='noopener noreferrer'
-					className={cn('inline-flex items-center gap-2 px-8 py-4 rounded-full gradient-primary text-white font-semibold')}
+					className={cn('button-primary-inline-lg')}
 				>
 					Visit Project →
 				</a>
