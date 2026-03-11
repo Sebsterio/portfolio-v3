@@ -13,8 +13,15 @@
 
 .bg-primary-soft 		{ background: rgb(var(--accent-blue-rgb) / 0.1); 					}
 
-.reflection-animated {
-	background: linear-gradient(90deg, transparent, rgba(59,130,246,0.25), transparent);
-	transform : skewX(-20deg);
-	transition: all 800ms ease-out;
+@utility glass-glint {
+	@apply overlay-full gradient-reflection-vertical;
+	transform: translateX(-100%) skewX(-20deg);
+	will-change: transform;
+	transition-property: transform;
+	transition-timing-function: var(--tw-ease, ease-out);
+	transition-duration: var(--tw-duration, 200ms);
+	transition-delay: var(--tw-delay, 0ms);
 }
+@utility glass-glint-active {
+	transform: translateX(100%) skewX(-20deg);
+} 

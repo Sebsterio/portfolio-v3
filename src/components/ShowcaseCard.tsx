@@ -20,11 +20,10 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			])}
 		>
 			{/* Decorative */}
-
 			<div className={cn('glass-anchor-reflection')} />
 			<div className={cn('overlay-full noise-overlay')} />
 			<div className={cn('overlay top-0 left-[20%] w-[60%] h-0.5 top-edge-glow')} />
-			<div className={cn('overlay top-0 -left-full w-full h-full group-hover:left-full reflection-animated transition-all')} />
+			<div className={cn('glass-glint group-hover:glass-glint-active')} />
 
 			{/* Content */}
 

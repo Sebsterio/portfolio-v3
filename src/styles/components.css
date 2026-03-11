@@ -9,8 +9,7 @@
 .status-dot 			{ @apply w-2 h-2 rounded-full animate-status-pulse; }
 
 .glass-anchor-reflection {
-	@apply absolute inset-0 pointer-events-none;
-	background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 20%, transparent 50%);
+	@apply absolute inset-0 pointer-events-none gradient-reflection-diagonal;
 }
 
 .glass-card-accent {
@@ -58,11 +57,13 @@
 }
 
 .project-image::before {
-	@apply content-[''] absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
+	@apply absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
+	content: '';
 }
 
 .project-image::after {
-	@apply content-[''] absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+	content: '';
 	background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
 }
 
