@@ -42,7 +42,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='flex items-center gap-3 text-sm text-subtle'>
+									<InlineList.Div className='cluster-sm text-sm text-subtle'>
 										{[project.location, project.role]}
 									</InlineList.Div>
 
@@ -82,7 +82,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								className={cn('w-full text-left p-8 hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='flex items-center gap-3 text-sm text-subtle'>
+									<InlineList.Div className='cluster-sm text-sm text-subtle'>
 										{[project.location, project.role]}
 									</InlineList.Div>
 
