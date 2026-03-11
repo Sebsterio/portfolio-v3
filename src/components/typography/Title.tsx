@@ -10,23 +10,20 @@ type TitleProps = {
 };
 
 const CLASSES = {
-	base: {
-		title: cn('font-urbanist font-extrabold'),
-		line: cn('bg-clip-text text-transparent'),
-		normal: cn('bg-chrome-metallic'),
-		highlight: cn('bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]'),
-	},
 	hero: {
 		title: cn('text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]'),
-		normal: cn(''),
+		lineNormal: cn('bg-chrome-metallic'),
+		lineHighlight: cn('bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]'),
 	},
 	page: {
 		title: cn('text-[clamp(48px,6vw,80px)] leading-tight tracking-[-0.02em]'),
-		normal: cn(''),
+		lineNormal: cn('bg-chrome-metallic'),
+		lineHighlight: cn('bg-linear-to-r from-accent-blue via-sky-400 to-accent-cyan animate-gradient-shift bg-size-[200%_200%]'),
 	},
 	projects: {
 		title: cn('text-5xl md:text-6xl font-bold'),
-		normal: cn('bg-linear-to-r from-white to-accent-cyan'), // BUG: styles not picked up
+		lineNormal: cn('bg-chrome-metallic'), // cn('bg-linear-to-r from-white to-accent-cyan'),
+		lineHighlight: '',
 	},
 };
 
@@ -34,15 +31,15 @@ export const Title: React.FC<TitleProps> = ({ children: lines, variant, classNam
 	const normalizedLines = Array.isArray(lines) ? lines : [lines];
 
 	return (
-		<h1 className={cn(CLASSES.base.title, CLASSES[variant].title, className)} {...props}>
+		<h1 className={cn('font-urbanist font-extrabold', CLASSES[variant].title, className)} {...props}>
 			{normalizedLines.map((rawLine, index) => {
 				const isLastLine = index === normalizedLines.length - 1;
 				return (
 					<React.Fragment key={index}>
 						<ParsedText
-							className={CLASSES.base.line}
-							normal={cn(CLASSES.base.normal, CLASSES[variant]?.normal)}
-							highlight={CLASSES.base.highlight}
+							className={'bg-clip-text text-transparent'}
+							normal={cn(CLASSES[variant]?.lineNormal)}
+							highlight={CLASSES[variant]?.lineHighlight}
 						>
 							{rawLine}
 						</ParsedText>
