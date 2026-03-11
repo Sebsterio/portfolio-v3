@@ -14,13 +14,13 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute left-[10px] top-1/2 -translate-y-1/2' />
 
 		<div className='space-y-1'>
-			<div className='text-xs text-accent-cyan font-dm-sans'>{project.period}</div>
+			<div className='ui-meta-accent'>{project.period}</div>
 			<div
-				className={cn('font-urbanist font-semibold text-sm transition-colors', isActive ? 'text-chrome-silver' : 'text-chrome-silver/60')}
+				className={cn('font-urbanist font-semibold text-sm transition-colors', isActive ? 'text-chrome-silver' : 'text-muted')}
 			>
 				{project.title}
 			</div>
-			<div className='text-xs text-chrome-silver/50'>{project.company}</div>
+			<div className='text-xs text-subtle'>{project.company}</div>
 		</div>
 	</button>
 );

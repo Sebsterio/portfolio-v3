@@ -206,7 +206,7 @@ export const CardsProjectPage = ({ project, allProjects: projects }: CardsProjec
 
 												{/* Footer */}
 												<div className='space-y-4 pb-2'>
-													<p className='text-base md:text-xl text-chrome-silver/70 leading-relaxed'>{project.summary}</p>
+													<p className='text-base md:text-xl text-tertiary leading-relaxed'>{project.summary}</p>
 													<ProjectTags tags={project.tags} />
 													<p className='text-sm text-accent-blue animate-pulse'>Tap to flip →</p>
 												</div>

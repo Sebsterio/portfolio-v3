@@ -72,25 +72,25 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 										>
 											<div className='relative space-y-4'>
 												<div className='space-y-2'>
-													<h2 className='font-urbanist text-3xl font-bold text-chrome-silver'>{p.title}</h2>
-													<p className='text-lg text-chrome-silver/80'>{p.company}</p>
-													<div className='text-sm text-chrome-silver/60'>{p.role}</div>
+													<h2 className='heading-1 text-primary'>{p.title}</h2>
+													<p className='text-lg text-secondary'>{p.company}</p>
+													<div className='text-sm text-muted'>{p.role}</div>
 												</div>
 
-												<p className='text-chrome-silver/80 leading-relaxed'>{p.intro}</p>
+												<p className='text-secondary leading-relaxed'>{p.intro}</p>
 
 												<div className='space-y-3'>
-													<h3 className='font-urbanist text-lg font-bold text-chrome-silver'>The Challenge</h3>
-													<p className='text-sm text-chrome-silver/80 leading-relaxed'>{p.challenge}</p>
-												</div>
-
-												<div className='space-y-3'>
-													<h3 className='font-urbanist text-lg font-bold text-chrome-silver'>The Solution</h3>
-													<p className='text-sm text-chrome-silver/80 leading-relaxed'>{p.solution}</p>
+													<h3 className='heading-3-compact text-primary'>The Challenge</h3>
+													<p className='text-sm text-secondary leading-relaxed'>{p.challenge}</p>
 												</div>
 
 												<div className='space-y-3'>
-													<h3 className='font-urbanist text-lg font-bold text-chrome-silver'>Impact</h3>
+													<h3 className='heading-3-compact text-primary'>The Solution</h3>
+													<p className='text-sm text-secondary leading-relaxed'>{p.solution}</p>
+												</div>
+
+												<div className='space-y-3'>
+													<h3 className='heading-3-compact text-primary'>Impact</h3>
 													<ul className='space-y-2'>
 														{p.impact.map((item, i) => (
 															<li key={i} className='flex items-start gap-2 text-sm'>
@@ -128,9 +128,9 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 										<TimelineDot size='sm' className='absolute left-0 top-1/2 -translate-y-1/2' />
 
 										<div className='space-y-1'>
-											<div className='text-xs text-accent-cyan font-dm-sans'>{p.period}</div>
-											<div className='font-urbanist font-semibold text-sm text-chrome-silver/60'>{p.title}</div>
-											<div className='text-xs text-chrome-silver/50'>{p.company}</div>
+											<div className='ui-meta-accent'>{p.period}</div>
+											<div className='font-urbanist font-semibold text-sm text-muted'>{p.title}</div>
+											<div className='text-xs text-subtle'>{p.company}</div>
 										</div>
 									</button>
 								)}

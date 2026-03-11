@@ -15,7 +15,7 @@ const CLASSES = {
 
 	label: cn(
 		'text-[11px] md:text-sm uppercase tracking-wider', //
-		'text-chrome-silver/60'
+		'text-muted'
 	),
 
 	value: cn('font-urbanist text-base md:text-lg font-bold gradient-text gradient-primary'),

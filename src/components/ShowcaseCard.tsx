@@ -41,7 +41,7 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 				</div>
 				<div>
 					<h3 className='mb-2 md:mb-3 font-urbanist text-lg md:text-xl font-bold text-chrome-silver'>{title}</h3>
-					<p className='text-[13px] md:text-[14px] leading-relaxed text-chrome-silver/60'>{description}</p>
+					<p className='text-[13px] md:text-[14px] leading-relaxed text-muted'>{description}</p>
 				</div>
 			</div>
 		</GlassSurface>
