@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
+import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
@@ -17,6 +18,17 @@ type CardsProjectPageProps = {
 	allProjects: Project[];
 };
 
+type NavigationTarget = {
+	slug: string;
+	options?: { scroll?: false; scrollTo?: string };
+};
+
+type ProjectNeighbors = {
+	currentIndex: number;
+	prev: Project;
+	next: Project;
+};
+
 const CARD_IMAGE_GRADIENTS = [
 	'bg-gradient-bounce-main',
 	'bg-gradient-meco-main',
@@ -28,6 +40,47 @@ const CARD_IMAGE_GRADIENTS = [
 ] as const;
 
 const CARD_FLIP_DURATION_MS = 600;
+
+const CARD_WRAPPER_STYLE: CSSProperties = {
+	transformStyle: 'preserve-3d',
+};
+
+const CARD_FACE_SHARED_STYLE: CSSProperties = {
+	backfaceVisibility: 'hidden',
+	WebkitBackfaceVisibility: 'hidden',
+};
+
+function getProjectNeighbors(project: Project, allProjects: Project[]): ProjectNeighbors {
+	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
+
+	if (currentIndex < 0) {
+		throw new Error(`CardsProjectPage: project "${project.id}" not found in allProjects.`);
+	}
+
+	return {
+		currentIndex,
+		prev: allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length],
+		next: allProjects[(currentIndex + 1) % allProjects.length],
+	};
+}
+
+function getCardImageGradient(index: number): string {
+	return CARD_IMAGE_GRADIENTS[index % CARD_IMAGE_GRADIENTS.length];
+}
+
+function getProjectCardTransitionStyle(flipped: boolean): CSSProperties {
+	return {
+		...CARD_WRAPPER_STYLE,
+		transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+		transition: `transform ${CARD_FLIP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+	};
+}
+
+function getProjectCardViewTransitionStyle(projectId: Project['id']): CSSProperties {
+	return {
+		viewTransitionName: `project-card-${projectId}`,
+	};
+}
 
 type NavigationButtonProps = {
 	direction: 'prev' | 'next';
@@ -78,7 +131,12 @@ function ProjectIndicators({ projects, currentIndex, onNavigate, className }: Pr
 	);
 }
 
-function ProjectCardFront({ project, gradientClass, flipped }: { project: Project; gradientClass: string; flipped: boolean }) {
+type ProjectCardFaceProps = {
+	project: Project;
+	flipped: boolean;
+};
+
+function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFaceProps & { gradientClass: string }) {
 	return (
 		<div
 			className={cn(
@@ -87,10 +145,7 @@ function ProjectCardFront({ project, gradientClass, flipped }: { project: Projec
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
-			style={{
-				backfaceVisibility: 'hidden',
-				WebkitBackfaceVisibility: 'hidden',
-			}}
+			style={CARD_FACE_SHARED_STYLE}
 		>
 			<div className='space-y-6 md:space-y-8'>
 				<div className='space-y-3 md:space-y-4'>
@@ -116,14 +171,14 @@ function ProjectCardFront({ project, gradientClass, flipped }: { project: Projec
 				<div className='space-y-4 pb-2'>
 					<p className='text-base leading-relaxed text-tertiary md:text-xl'>{project.summary}</p>
 					<ProjectTags tags={project.tags} />
-					<p className='text-sm text-accent-blue animate-pulse'>Flip card →</p>
+					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>
 			</div>
 		</div>
 	);
 }
 
-function ProjectCardBack({ project, flipped }: { project: Project; flipped: boolean }) {
+function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
 		<div
 			className={cn(
@@ -133,8 +188,7 @@ function ProjectCardBack({ project, flipped }: { project: Project; flipped: bool
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
 			style={{
-				backfaceVisibility: 'hidden',
-				WebkitBackfaceVisibility: 'hidden',
+				...CARD_FACE_SHARED_STYLE,
 				transform: 'rotateY(180deg)',
 			}}
 		>
@@ -181,33 +235,49 @@ function ProjectCardBack({ project, flipped }: { project: Project; flipped: bool
 	);
 }
 
-function FlipProjectCard({
-	project,
-	gradientClass,
-	flipped,
-	onFlip,
-}: {
+type FlipProjectCardProps = {
 	project: Project;
 	gradientClass: string;
 	flipped: boolean;
 	onFlip: () => void;
-}) {
+};
+
+function FlipProjectCard({ project, gradientClass, flipped, onFlip }: FlipProjectCardProps) {
 	return (
-		<div className='perspective-[2000px] w-full max-w-4xl mx-auto' style={{ viewTransitionName: `project-card-${project.id}` }}>
-			<div onClick={onFlip} className='cursor-pointer'>
-				<div
-					className='grid'
-					style={{
-						transformStyle: 'preserve-3d',
-						transition: `transform ${CARD_FLIP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
-						transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-					}}
-				>
+		<div className='mx-auto w-full max-w-4xl perspective-[2000px]' style={getProjectCardViewTransitionStyle(project.id)}>
+			<button type='button' onClick={onFlip} className='block w-full cursor-pointer bg-transparent p-0 text-left'>
+				<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
 					<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
 					<ProjectCardBack project={project} flipped={flipped} />
 				</div>
-			</div>
+			</button>
 		</div>
+	);
+}
+
+type ProjectCardControlsProps = {
+	projects: Project[];
+	currentIndex: number;
+	onPrev: () => void;
+	onNext: () => void;
+	onNavigate: (slug: string) => void;
+};
+
+function ProjectCardControls({ projects, currentIndex, onPrev, onNext, onNavigate }: ProjectCardControlsProps) {
+	return (
+		<>
+			<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
+				<NavigationButton direction='prev' onClick={onPrev} />
+			</div>
+
+			<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
+				<NavigationButton direction='next' onClick={onNext} />
+			</div>
+
+			<div className='col-start-2 row-start-2 justify-self-center lg:col-start-2'>
+				<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={onNavigate} />
+			</div>
+		</>
 	);
 }
 
@@ -215,15 +285,11 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 	const { navigate } = useTransitionRouter();
 	const [flipped, setFlipped] = useState(false);
 
-	const currentIndex = useMemo(() => allProjects.findIndex((item) => item.id === project.id), [allProjects, project.id]);
+	const { currentIndex, prev, next } = useMemo(() => getProjectNeighbors(project, allProjects), [project, allProjects]);
 
-	const gradientClass =
-		CARD_IMAGE_GRADIENTS[((currentIndex % CARD_IMAGE_GRADIENTS.length) + CARD_IMAGE_GRADIENTS.length) % CARD_IMAGE_GRADIENTS.length];
+	const gradientClass = getCardImageGradient(currentIndex);
 
-	const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
-	const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
-
-	const goToProject = (slug: string, options?: { scroll?: false; scrollTo?: string }) => {
+	const navigateToProject = ({ slug, options }: NavigationTarget) => {
 		setFlipped(false);
 		navigate(`/projects/cards/${slug}`, options);
 	};
@@ -238,11 +304,7 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 
 			<div className='flex flex-col items-center gap-8'>
 				<div
-					className={cn(
-						'w-full max-w-350',
-						'grid grid-cols-[auto_minmax(0,1fr)_auto] gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8',
-						'items-center',
-					)}
+					className={cn('w-full max-w-350', 'grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8')}
 				>
 					<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
 						<AnimatePresence mode='wait'>
@@ -264,21 +326,18 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 						</AnimatePresence>
 					</div>
 
-					<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
-						<NavigationButton direction='prev' onClick={() => goToProject(prevProject.slug, { scroll: false })} />
-					</div>
-
-					<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
-						<NavigationButton direction='next' onClick={() => goToProject(nextProject.slug, { scroll: false })} />
-					</div>
-
-					<div className='col-start-2 row-start-2 justify-self-center lg:col-start-2'>
-						<ProjectIndicators
-							projects={allProjects}
-							currentIndex={currentIndex}
-							onNavigate={(slug) => goToProject(slug, { scrollTo: PROJECT_PAGE_TITLE_ID })}
-						/>
-					</div>
+					<ProjectCardControls
+						projects={allProjects}
+						currentIndex={currentIndex}
+						onPrev={() => navigateToProject({ slug: prev.slug, options: { scroll: false } })}
+						onNext={() => navigateToProject({ slug: next.slug, options: { scroll: false } })}
+						onNavigate={(slug) =>
+							navigateToProject({
+								slug,
+								options: { scrollTo: PROJECT_PAGE_TITLE_ID },
+							})
+						}
+					/>
 				</div>
 			</div>
 		</div>
