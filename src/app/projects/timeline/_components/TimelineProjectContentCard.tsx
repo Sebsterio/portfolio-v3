@@ -19,7 +19,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 				</p>
 			</div>
 
-			<p className='text-xl text-chrome-silver/80 leading-relaxed'>{project.intro}</p>
+			<p className='text-xl text-secondary leading-relaxed'>{project.intro}</p>
 
 			<div className='grid grid-cols-3 gap-4'>
 				{[0, 1, 2].map((i) => (
@@ -38,17 +38,17 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 			</div>
 
 			<div className='space-y-3'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>The Challenge</h3>
-				<p className='text-chrome-silver/80 leading-relaxed'>{project.challenge}</p>
+				<h3 className='heading-2 text-primary'>The Challenge</h3>
+				<p className='text-secondary leading-relaxed'>{project.challenge}</p>
 			</div>
 
 			<div className='space-y-3'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>The Solution</h3>
-				<p className='text-chrome-silver/80 leading-relaxed'>{project.solution}</p>
+				<h3 className='heading-2 text-primary'>The Solution</h3>
+				<p className='text-secondary leading-relaxed'>{project.solution}</p>
 			</div>
 
 			<div className='space-y-4'>
-				<h3 className='font-urbanist text-2xl font-bold text-chrome-silver'>Impact & Results</h3>
+				<h3 className='heading-2 text-primary'>Impact & Results</h3>
 				<ul className='space-y-2'>
 					{project.impact.map((item, i) => (
 						<li key={i} className='flex items-start gap-3'>

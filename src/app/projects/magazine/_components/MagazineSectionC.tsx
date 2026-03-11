@@ -24,12 +24,12 @@ export function MagazineSectionC({ number, title, subTitle, description }: Magaz
 						{title}
 					</h3>
 
-					<p className='text-base md:text-lg text-chrome-silver/60 mb-8'>{subTitle}</p>
+					<p className='text-base md:text-lg text-muted mb-8'>{subTitle}</p>
 
 					{description.map((paragraph, index) => (
 						<p
 							key={index}
-							className={`text-sm md:text-base leading-relaxed text-chrome-silver/75 ${index < description.length - 1 ? 'mb-6' : ''}`}
+							className={`text-sm md:text-base leading-relaxed text-secondary ${index < description.length - 1 ? 'mb-6' : ''}`}
 						>
 							{paragraph}
 						</p>

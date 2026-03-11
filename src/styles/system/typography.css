@@ -15,6 +15,7 @@
 .heading-1 		{ @apply font-display text-3xl font-bold; }
 .heading-2 		{ @apply font-display text-2xl font-bold; }
 .heading-3 		{ @apply font-display text-xl font-semibold; }
+.heading-3-compact { @apply font-display text-lg font-bold; }
 
 .body-lg 			{ @apply font-ui text-xl leading-relaxed; }
 .body-md 			{ @apply font-ui text-lg leading-relaxed; }
@@ -24,6 +25,8 @@
 .ui-button 		{ @apply font-ui text-sm sm:text-base font-bold; }
 .ui-label 		{ @apply font-ui text-sm font-medium uppercase tracking-wide; }
 .ui-meta 			{ @apply font-ui text-xs tracking-wide; }
+.ui-meta-accent { @apply font-ui text-xs text-accent-cyan; }
+.ui-meta-accent-caps { @apply font-ui text-xs uppercase tracking-wider text-accent-cyan; }
 
 /* Emphasis Scale */
 

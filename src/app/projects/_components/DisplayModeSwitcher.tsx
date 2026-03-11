@@ -50,7 +50,7 @@ export function DisplayModeSwitcher({ onViewChange, className }: DisplayModeSwit
 						'px-6 py-3 rounded-full font-dm-sans text-sm font-semibold transition-colors transition-duration-300',
 						currentMode === mode
 							? 'gradient-primary text-white'
-							: 'bg-white/3 text-chrome-silver/60 hover:text-chrome-silver hover:bg-white/8'
+							: 'bg-white/3 text-muted hover:text-chrome-silver hover:bg-white/8'
 					)}
 				>
 					{label}
