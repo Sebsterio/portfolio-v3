@@ -5,6 +5,7 @@ import { MagazineSectionC } from './MagazineSectionC';
 import { MagazineSectionD } from './MagazineSectionD';
 import { MagazineSectionE } from './MagazineSectionE';
 import { MagazineSectionMulti } from './MagazineSectionMulti';
+import { getProjectAnchorId } from '../../_lib';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
@@ -37,15 +38,17 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 						<MagazineSectionA
 							{...project}
 							key={id}
+							sectionId={getProjectAnchorId(id)}
 							number={getNumberProp(index)}
 							megaTitle='BOUNCE'
 							title={company}
-							subtitle={`${role} · ${label}`} //
+							subtitle={`${role} · ${label}`}
 						/>
 					) : id === 'meco' ? (
 						<MagazineSectionB
 							{...project}
 							key={id}
+							sectionId={getProjectAnchorId(id)}
 							number={getNumberProp(index)}
 							megaTitle='MECO'
 							title={company}
@@ -56,35 +59,39 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 						<MagazineSectionC
 							{...project}
 							key={id}
+							sectionId={getProjectAnchorId(id)}
 							number={getNumberProp(index)}
 							title={company}
-							subTitle={`${role} · ${label}`} //
+							subTitle={`${role} · ${label}`}
 						/>
 					) : id === 'ebit' ? (
 						<MagazineSectionD
 							{...project}
 							key={id}
+							sectionId={getProjectAnchorId(id)}
 							number={getNumberProp(index)}
 							title={company}
-							subtitle={`${role} · ${label}`} //
+							subtitle={`${role} · ${label}`}
 						/>
 					) : id === 'ao' ? (
 						<MagazineSectionE
 							{...project}
 							key={id}
+							sectionId={getProjectAnchorId(id)}
 							number={getNumberProp(index)}
 							megaTitle='AO.COM'
 							preTitle={label}
 							title={company}
 							subtitle={`${role} · ${roleDetail}`}
 						/>
-					) : null
+					) : null,
 				)}
 				<MagazineSectionMulti
 					number={`${getNumberProp(freelanceIndex)} — FREELANCE`}
 					title='Freelance Projects'
 					subtitle='Web Developer & Designer · Various Clients'
-					entries={freelanceProjects.map(({ company, description }) => ({
+					entries={freelanceProjects.map(({ id, company, description }) => ({
+						sectionId: id,
 						title: company,
 						description,
 					}))}

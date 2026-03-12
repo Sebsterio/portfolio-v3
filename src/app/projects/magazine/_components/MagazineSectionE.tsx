@@ -3,6 +3,7 @@
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionEProps {
+	sectionId: string;
 	number: string;
 	megaTitle: string;
 	preTitle: string;
@@ -11,9 +12,9 @@ interface MagazineSectionEProps {
 	description: string[];
 }
 
-export function MagazineSectionE({ number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionEProps) {
+export function MagazineSectionE({ sectionId, number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionEProps) {
 	return (
-		<section className='relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%] group'>
+		<section id={sectionId} className='relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%] group'>
 			{/* Decorative Mega Title */}
 			<h2 className='project-decorative-text text-transparent text-[clamp(8rem,22vw,18rem)] absolute -top-16 md:-top-24 right-0 lg:right-[-5%] z-10 pointer-events-none [-webkit-text-stroke:2px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
 				{megaTitle}

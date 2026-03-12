@@ -3,15 +3,17 @@
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionCProps {
+	sectionId: string;
+
 	number: string;
 	title: string;
 	subTitle: string;
 	description: string[];
 }
 
-export function MagazineSectionC({ number, title, subTitle, description }: MagazineSectionCProps) {
+export function MagazineSectionC({ sectionId, number, title, subTitle, description }: MagazineSectionCProps) {
 	return (
-		<section className='relative -mt-12 ml-0 lg:ml-[5%] group'>
+		<section id={sectionId} className='relative -mt-12 ml-0 lg:ml-[5%] group'>
 			<div className='grid lg:grid-cols-2 gap-8 md:gap-12 items-start'>
 				{/* Text Column */}
 				<div className='pt-4 md:pt-12'>

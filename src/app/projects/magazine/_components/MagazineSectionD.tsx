@@ -3,15 +3,16 @@
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionDProps {
+	sectionId: string;
 	number: string;
 	title: string;
 	subtitle: string;
 	description: string[];
 }
 
-export function MagazineSectionD({ number, title, subtitle, description }: MagazineSectionDProps) {
+export function MagazineSectionD({ sectionId, number, title, subtitle, description }: MagazineSectionDProps) {
 	return (
-		<section className='relative -mt-8 group'>
+		<section id={sectionId} className='relative -mt-8 group'>
 			{/* Decorative Number */}
 			<div className='project-decorative-text text-transparent text-[clamp(6rem,15vw,12rem)] absolute -top-12 md:-top-20 lg:-top-24 right-[2%] md:right-[5%] z-30 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)]'>
 				{number}

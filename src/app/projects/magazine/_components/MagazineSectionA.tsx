@@ -5,6 +5,7 @@ import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 import { ParsedText } from '@/lib/parser/ParsedText';
 
 interface MagazineSectionAProps {
+	sectionId: string;
 	number: string;
 	megaTitle: string;
 	title: string;
@@ -13,9 +14,9 @@ interface MagazineSectionAProps {
 	tags: string[];
 }
 
-export function MagazineSectionA({ number, megaTitle, title, subtitle, description, tags }: MagazineSectionAProps) {
+export function MagazineSectionA({ sectionId, number, megaTitle, title, subtitle, description, tags }: MagazineSectionAProps) {
 	return (
-		<section className='relative grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 xl:gap-20 items-start group'>
+		<section id={sectionId} className='relative grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 xl:gap-20 items-start group'>
 			{/* Left Column */}
 			<div className='relative'>
 				{/* Number */}
