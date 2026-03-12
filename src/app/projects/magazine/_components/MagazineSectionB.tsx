@@ -3,6 +3,7 @@
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 
 interface MagazineSectionBProps {
+	sectionId: string;
 	number: string;
 	megaTitle: string;
 	preTitle: string;
@@ -11,9 +12,9 @@ interface MagazineSectionBProps {
 	description: string[];
 }
 
-export function MagazineSectionB({ number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionBProps) {
+export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionBProps) {
 	return (
-		<section className='relative -mt-8 group'>
+		<section id={sectionId} className='relative -mt-8 group'>
 			{/* Number */}
 			<div className='text-xl md:text-2xl xl:text-3xl font-urbanist font-bold text-white/30 mb-4 relative z-20'>{number}</div>
 

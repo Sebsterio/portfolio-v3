@@ -7,6 +7,7 @@ interface MagazineSectionMultiProps {
 	title: string;
 	subtitle: string;
 	entries: Array<{
+		sectionId: string;
 		title: string;
 		description: string[];
 	}>;
@@ -28,9 +29,10 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 
 					<p className='text-base md:text-lg text-muted mb-10'>{subtitle}</p>
 
-					{entries.map(({ title, description }, index) => (
+					{entries.map(({ sectionId, title, description }, index) => (
 						<div
 							key={title}
+							id={sectionId}
 							className={`grid md:grid-cols-1 lg:grid-cols-1 gap-6 ${
 								index === 0 ? 'mb-10 pb-10 border-b border-accent-cyan/15' : ''
 							} transition-all duration-400 hover:border-accent-cyan/40 hover:pl-4`}
