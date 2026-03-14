@@ -1,0 +1,4 @@
+alias p="pnpm"
+alias d="pnpm dev"
+alias b="pnpm build"
+alias s="pnpm start"
