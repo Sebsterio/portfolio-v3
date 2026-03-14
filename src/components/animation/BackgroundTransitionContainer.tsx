@@ -3,6 +3,14 @@
 import { AnimatePresence, motion, Variants } from 'motion/react';
 import { ReactNode } from 'react';
 
+// --------------------------------------------------------------------------------------------------
+//  BackgroundTransitionContainer
+//   - Allows bg transition to be timed independently from page transtions without blocking navigation
+//
+//  Currently UNUSED
+//   -> Render this in root layout when implementing variable app background
+// --------------------------------------------------------------------------------------------------
+
 type BackgroundProviderProps = {
 	/** Background component(s) to render) */
 	children: ReactNode;
@@ -17,7 +25,7 @@ const TRANSITIONS: Variants = {
 	exit: { opacity: 0, transition: { duration: 0.4, ease: 'easeInOut' } },
 };
 
-export const BackgroundTransitionContainer = ({ children, bgKey, className }: BackgroundProviderProps) => {
+export const BackgroundTransitionContainer = ({ children, bgKey = 'default', className }: BackgroundProviderProps) => {
 	return (
 		<AnimatePresence mode='wait' initial={false}>
 			<motion.div
