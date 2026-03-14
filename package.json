@@ -4,15 +4,17 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
 		"typecheck": "tsc --noEmit",
 		"lint": "eslint .",
 		"test": "vitest",
-		"e2e": "playwright test",
-		"e2e:up": "playwright test --update-snapshots",
-		"e2e:ui": "playwright test --ui"
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"e2e": "cross-env CI=1 playwright test",
+		"e2e:up": "cross-env CI=1 playwright test --update-snapshots",
+		"e2e:dev": "cross-env CI=0 playwright test --ui",
+		"verify": "pnpm lint && pnpm typecheck && pnpm test",
+		"validate": "pnpm verify && pnpm build && pnpm e2e"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
@@ -32,6 +34,7 @@
 		"@types/react": "19.2.14",
 		"@types/react-dom": "19.2.3",
 		"@vitejs/plugin-react": "^5.1.4",
+		"cross-env": "^10.1.0",
 		"eslint": "^10.0.2",
 		"eslint-config-next": "^16.1.6",
 		"eslint-config-prettier": "^10.1.8",

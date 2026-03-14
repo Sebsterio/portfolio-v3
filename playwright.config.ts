@@ -4,24 +4,33 @@ import { defineConfig, devices } from '@playwright/test';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
+// const isDev = !!process.env.DEV;
+
+const isCI = process.env.CI != null && process.env.CI !== '0';
+
+const CI_PORT = 3004;
+const DEV_PORT = 3000;
+
 export default defineConfig({
 	testDir: './e2e/tests',
+	snapshotDir: './e2e/snapshots',
+	snapshotPathTemplate: '{snapshotDir}/{projectName}/{arg}{ext}',
 	outputDir: './artifacts/e2e-results',
 	reporter: [
-		['html', { outputFolder: './artifacts/e2e-report' }], //
+		['html', { outputFolder: './artifacts/e2e-report' /* , open: 'never' */ }], //
 		['list'],
 	],
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 1 : undefined,
-	forbidOnly: !!process.env.CI,
+	retries: isCI ? 2 : 0,
+	workers: isCI ? 1 : undefined,
+	forbidOnly: isCI,
 	fullyParallel: true,
 	use: {
-		baseURL: 'http://localhost:3000',
-		viewport: { width: 1440, height: 900 },
-		deviceScaleFactor: 1,
+		baseURL: isCI ? `http://localhost:${CI_PORT}` : `http://localhost:${DEV_PORT}`,
 		screenshot: 'only-on-failure',
 		video: 'retain-on-failure',
 		trace: 'on-first-retry',
+		viewport: { width: 1440, height: 900 },
+		deviceScaleFactor: 1,
 	},
 	projects: [
 		{ name: 'chromium', use: { ...devices['Desktop Chrome'] } },
@@ -34,9 +43,10 @@ export default defineConfig({
 		// { name: 'Google Chrome', use: { ...devices['Desktop Chrome'], channel: 'chrome' } },
 	],
 
-	// webServer: {
-	//   command: 'npm run start',
-	//   url: 'http://localhost:3000',
-	//   reuseExistingServer: !process.env.CI,
-	// },
+	webServer: {
+		command: isCI ? `next start -p ${CI_PORT}` : `next dev -p ${DEV_PORT}`,
+		url: isCI ? `http://localhost:${CI_PORT}` : `http://localhost:${DEV_PORT}`,
+		reuseExistingServer: !isCI,
+		timeout: 120_000,
+	},
 });
