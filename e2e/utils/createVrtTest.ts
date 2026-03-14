@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test';
 import { test, expect } from '@playwright/test';
-// import { safeMode } from './safeMode';
 
+type Route = `/${string}`; // Absolute paths not allowed - baseUrl varies by env
 type VrtOptions = {
 	name?: string;
 	timeout?: number;
@@ -14,7 +14,7 @@ function normalizeName(route: string) {
 	return route.replace(/\//g, '_').replace(/^_/, '');
 }
 
-export function createVrtTest(route: string, config: VrtOptions = {}) {
+export function createVrtTest(route: Route, config: VrtOptions = {}) {
 	const {
 		name: snapshotName = normalizeName(route), //
 		beforeScreenshot = async () => {},
@@ -23,12 +23,8 @@ export function createVrtTest(route: string, config: VrtOptions = {}) {
 	} = config;
 
 	test(`VRT: ${route}`, async ({ page }) => {
-		await page.goto(`http://localhost:3000${route}`, { waitUntil: 'domcontentloaded' });
-
-		// await safeMode(page);
-
+		await page.goto(route, { waitUntil: 'domcontentloaded' });
 		await beforeScreenshot(page);
-
-		await expect(page).toHaveScreenshot(`${snapshotName}.png`, { fullPage, timeout });
+		await expect(page).toHaveScreenshot(`VRT-${snapshotName}.png`, { fullPage, timeout });
 	});
 }
