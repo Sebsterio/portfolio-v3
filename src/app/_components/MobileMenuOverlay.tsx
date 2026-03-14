@@ -21,8 +21,8 @@ export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverl
 			className={cn(
 				'fixed inset-0 z-50',
 				'bg-black/80 backdrop-blur-md',
-				'transition-opacity duration-300 ease-out',
-				isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+				'transition-opacity duration-200 ease-out',
+				isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
 			)}
 			aria-hidden={!isOpen}
 		>
@@ -32,9 +32,10 @@ export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverl
 						key={item.label}
 						href={item.href}
 						onClick={onClose}
+						delay={200}
 						className={cn(
 							'text-2xl font-semibold tracking-wide uppercase transition-all duration-300 py-3 px-6',
-							getIsCurrentPage(item.href) ? 'text-accent-blue pointer-events-none' : 'text-chrome-silver hover:text-accent-blue'
+							getIsCurrentPage(item.href) ? 'text-accent-blue pointer-events-none' : 'text-chrome-silver hover:text-accent-blue',
 						)}
 					>
 						{item.label}

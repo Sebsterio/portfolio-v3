@@ -1,6 +1,6 @@
 export interface TransitionConfig {
 	skip?: boolean;
-	scroll?: boolean; // Control Next.js scroll behavior
+	scroll?: boolean; // Controls Next.js scroll behavior
 }
 
 // Providers
