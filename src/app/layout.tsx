@@ -3,7 +3,6 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
-import { BackgroundTransitionContainer } from '@/components/animation/BackgroundTransitionContainer';
 import { ChromeBackground } from '@/components/background/ChromeBackground';
 import { QuantumBackground } from '@/components/background/QuantumBackground';
 
@@ -34,10 +33,8 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 			>
 				<TransitionProvider>
 					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
-						<BackgroundTransitionContainer bgKey='default'>
-							<ChromeBackground />
-							<QuantumBackground />
-						</BackgroundTransitionContainer>
+						<ChromeBackground />
+						<QuantumBackground />
 					</div>
 
 					<header className='content-container'>
