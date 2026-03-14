@@ -49,7 +49,7 @@ export default function AboutPage({}: AboutPageProps) {
 			{/* Sidebar Column */}
 			<div className={cn('space-y-5 md:space-y-6', 'vt-right lg:vt-main')}>
 				<GlassCard title={copy.sectionTitles.quickFacts}>
-					<div className='space-y-4 md:space-y-6 my-5 md:my-6'>
+					<div className='space-y-4 md:space-y-6 md:pb-2'>
 						{quickFacts.map(({ label, value }) => (
 							<LabeledValueRow key={label} {...{ label, value }} />
 						))}
@@ -57,7 +57,7 @@ export default function AboutPage({}: AboutPageProps) {
 				</GlassCard>
 
 				<GlassCard title={copy.sectionTitles.techStack}>
-					<div className='space-y-6 md:space-y-8 my-6 md:my-8'>
+					<div className='space-y-6 md:space-y-8 pb-2 md:pb-4'>
 						{techCategories.map(({ category, techs }) => (
 							<TechCategoryGroup key={category} label={category}>
 								{techs.map((t) => (
