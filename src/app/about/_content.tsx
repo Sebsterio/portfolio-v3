@@ -22,7 +22,7 @@ export const highlights = [
 	{
 		icon: <Code2 className='text-white' size={26} />,
 		title: 'Legacy Modernization',
-		description: 'Led multiple migrations from legacy codebases to modern React/Next.js stacks',
+		description: 'Led multiple migrations from legacy codebases to modern React stacks',
 	},
 	{
 		icon: <Rocket className='text-white' size={26} />,
@@ -38,20 +38,20 @@ export const highlights = [
 
 export const techCategories = [
 	{
-		category: 'Frontend',
-		techs: ['React', 'Next.js', 'TypeScript'],
+		category: 'Frontend & UX',
+		techs: ['React', 'Next.js', 'React Native', 'Tailwind', 'SCSS', 'Accessibility', 'Core Web Vitals'],
 	},
 	{
-		category: 'Infrastructure',
-		techs: ['Node.js', 'CI/CD'],
+		category: 'Architecture',
+		techs: ['TypeScript', 'Design Systems', 'Scalability', 'PWAs', 'Micro-Frontends', 'SPA / SSR / SSG'],
 	},
 	{
-		category: 'Design & Testing',
-		techs: ['Design Systems', 'Storybook', 'Testing'],
+		category: 'Backend & Infrastructure',
+		techs: ['Node.js', 'Serverless', 'MongoDB', 'Firebase', 'GraphQL', 'Docker', 'CI/CD', 'AWS'],
 	},
 	{
-		category: 'Optimization',
-		techs: ['Performance'],
+		category: 'Testing & Tooling',
+		techs: ['TDD', 'Storybook', 'Playwright', 'Cypress', 'Nightwatch', 'BrowserStack', 'Chromatic'],
 	},
 ];
 

@@ -1,7 +1,7 @@
 import { Zap, Sparkles, Target } from 'lucide-react';
 
 export const copy = {
-	superscript: 'Available for Projects',
+	superscript: 'Available for Contracts',
 	title: ['Crafting', '==Immersive==', 'Experiences'],
 	subtitle:
 		'Merging modern web technologies and thoughtful design to deliver immersive, visually striking, and highly performant web	applications that scale.',
@@ -13,7 +13,7 @@ export const buttons = {
 		href: '/projects',
 	},
 	secondary: {
-		text: 'Start Project',
+		text: "Let's Create!",
 		href: '/contact',
 	},
 };

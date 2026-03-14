@@ -16,7 +16,7 @@ export const projects: Project[] = [
 		location: 'Lisbon, PT',
 		role: 'Software Engineer (Contract)',
 		label: 'Leading Travel Startup',
-		tags: ['Next.js', 'React Native', 'TypeScript', 'a11y', `i18n`, 'Storybook', 'Monorepo'],
+		tags: ['Next.js', 'React Native', 'TypeScript', 'Tailwind', 'Storybook', 'Design System', 'Monorepo', 'Accessibility'],
 		summary: 'Leading travel startup experiencing UI fragmentation across web and mobile products',
 		intro:
 			'Led the architecture and delivery of a production-ready cross-platform component library serving web, iOS, and Android platforms. This foundational system unified the design language across all Bounce products while reducing technical debt and enabling faster feature development.',
@@ -29,9 +29,9 @@ export const projects: Project[] = [
 		solution:
 			'I architected a monorepo-based component library using Next.js for web and React Native for mobile platforms. The system featured shared component logic with platform-specific rendering adapters, type-safe APIs using TypeScript generics, integration with translation service, comprehensive Storybook documentation, automated testing suite covering unit/integration/visual regression, and CI/CD pipeline with automated publishing.',
 		impact: [
-			'Reduced UI inconsistencies by 90% across all platforms',
+			'Reduced UI inconsistencies and bundle size across all platforms',
 			'Improved accessibility and adherence to web standards',
-			'Optimised perfomance through utilisation of CSS for interaction styles and reduced bundle size',
+			'Optimised perfomance through utilisation of CSS for interaction styles',
 			'Established clear patterns and documentation for ongoing adoption',
 		],
 		link: 'https://bounce.com',
@@ -56,7 +56,7 @@ export const projects: Project[] = [
 		location: 'Lisbon, PT',
 		role: 'Full-Stack Developer (Contract)',
 		label: 'Music Festival',
-		tags: ['React', 'Node.js', 'MongoDB', 'Stripe', 'PWA'],
+		tags: ['React', 'Node.js', 'MongoDB', 'Stripe', 'PWA', 'CMS', 'UX Design'],
 		summary: 'Music festival requiring modern digital infrastructure for operations and customer engagement',
 		intro:
 			'Developed comprehensive event management ecosystem consisting of internal back-office solution and customer-facing progressive web app. The system streamlined operations, financial tracking, and attendee experience for a major music festival.',
@@ -91,7 +91,7 @@ export const projects: Project[] = [
 		location: 'Colchester, UK',
 		role: 'Senior Front-End Developer',
 		label: 'School Management Software',
-		tags: ['React', 'Next.js', 'AngularJS', 'MSAL', 'Testing', 'AI'],
+		tags: ['React', 'Next.js', 'AngularJS', 'MSAL', 'Tailwind', 'Testing', 'AI', `Performance`],
 		summary: 'School-management software built on legacy architecture requiring modernization',
 		intro:
 			'Led comprehensive platform modernization effort for school-management SaaS, rebuilding critical features while maintaining service continuity for thousands of active users. Implemented modern authentication, comprehensive testing, and accessibility compliance.',
@@ -126,7 +126,7 @@ export const projects: Project[] = [
 		location: 'London, UK',
 		role: 'Software Developer (Contract)',
 		label: 'Blockchain Analytics Startup',
-		tags: ['Web3', 'React', 'TypeScript', 'Architecture', 'CI/CD'],
+		tags: ['Web3', 'React', 'Next.js', 'TypeScript', 'Tailwind', 'Architecture', 'Design System', 'CI/CD', `SEO`],
 		summary: 'Blockchain analytics startup building first product with no existing frontend infrastructure',
 		intro:
 			'Served as founding frontend developer, establishing entire frontend architecture, development workflow, and code standards from scratch. Built production application with complex Web3 integrations while mentoring junior developers.',
@@ -166,7 +166,7 @@ export const projects: Project[] = [
 		role: 'Front-End Developer',
 		roleDetail: 'Payments Team',
 		label: 'E-Commerce Platform',
-		tags: ['React', 'TypeScript', 'Micro Frontend', 'Payment Integration'],
+		tags: ['React', 'TypeScript', 'SCSS', 'Micro Frontend', 'Payment Integration', 'End-to-End Testing', 'Monorepo'],
 		summary: 'Major e-commerce platform with fragmented payment provider integrations',
 		intro:
 			'Architected and built centralized micro frontend for payment processing, creating unified API layer abstracted from provider specifics. Enabled multiple teams to integrate payment methods without touching core system.',
@@ -206,7 +206,7 @@ export const projects: Project[] = [
 		location: 'London, UK',
 		role: 'Web Developer & Designer (Freelance)',
 		label: '',
-		tags: ['PWA', 'React', 'Node.js', 'MongoDB', 'UX Design'],
+		tags: ['PWA', 'React', 'Node.js', 'MongoDB', 'Material UI', 'UX Design'],
 		summary: 'Vet clinics struggling with inefficient paper-based pet health reporting',
 		intro:
 			"Designed and built intelligent survey system that dynamically generates personalized questions based on pet's symptoms, characteristics, and previous reports. Created admin portal for clinics to customize surveys and search case history.",
@@ -241,7 +241,7 @@ export const projects: Project[] = [
 		location: 'London, UK',
 		role: 'Web Developer & Designer (Freelance)',
 		label: '',
-		tags: ['E-Commerce', 'React', 'Redux', 'Firebase', 'Stripe'],
+		tags: ['E-Commerce', 'React', 'Redux', 'Firebase', 'Stripe', 'Styled Components', 'UX Design'],
 		summary: 'Fashion brand requiring modern e-commerce platform with seamless mobile experience',
 		intro:
 			'Built modern PWA using React and Redux for state management. Integrated Firebase for authentication and real-time inventory, Stripe for payment processing. Implemented service workers for offline catalog browsing.',
