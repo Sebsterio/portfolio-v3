@@ -137,12 +137,15 @@
      ================================================ */
 
   --animate-gradient-shift:               gradientShift 3s ease infinite;
+  --animate-shine-sweep:                  shineSweep 0.8s ease;
+  --animate-status-pulse:                 statusPulse 2s ease-in-out infinite;
+  
+  /* Backgrounds */
+  
   --animate-liquid-move:                  liquidMove 20s ease-in-out infinite;
   --animate-orb-float:                    orbFloat 25s ease-in-out infinite;
-  --animate-status-pulse:                 statusPulse 2s ease-in-out infinite;
   --animate-quantum-grid-perspective:     gridPerspective 20s ease-in-out infinite;
   --animate-quantum-float:                quantumFloat 10s ease-in-out infinite;
   --animate-quantum-shape-float:          shapeFloat 8s ease-in-out infinite;
-  --animate-shine-sweep:                  shineSweep 0.8s ease;
 
 }

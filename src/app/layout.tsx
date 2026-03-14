@@ -3,10 +3,9 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
-import { ChromeBackground } from '@/components/background/ChromeBackground';
-import { QuantumBackground } from '@/components/background/QuantumBackground';
 
 import { AppHeader } from './_components/AppHeader';
+import { AppBackground } from './_components/AppBackground';
 import { dmSans, urbanist } from './fonts';
 
 import '@/styles/globals.css';
@@ -33,8 +32,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 			>
 				<TransitionProvider>
 					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
-						<ChromeBackground />
-						<QuantumBackground />
+						<AppBackground />
 					</div>
 
 					<header className='content-container'>
