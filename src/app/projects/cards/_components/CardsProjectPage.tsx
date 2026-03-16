@@ -11,6 +11,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { InlineList } from '@/components/InlineList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { ExternalLinkButton } from '@/components/Button';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -224,15 +225,9 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 				</div>
 
 				{project.link && (
-					<a
-						href={project.link}
-						target='_blank'
-						rel='noopener noreferrer'
-						onClick={(event) => event.stopPropagation()}
-						className={cn('button-primary-inline-sm', 'transition-transform duration-300 hover:scale-105')}
-					>
+					<ExternalLinkButton href={project.link} size='sm'>
 						Visit Project →
-					</a>
+					</ExternalLinkButton>
 				)}
 			</div>
 		</div>
