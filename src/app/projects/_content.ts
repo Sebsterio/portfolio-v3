@@ -39,7 +39,7 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/bounce/comp-sm-3.png',
 			main: '/assets/projects/bounce/marketing.webp',
-			promo: '/assets/projects/bounce/comp.png',
+			promo: ['/assets/projects/bounce/comp.png', '', ''],
 			screens: [
 				'/assets/projects/bounce/map 2.jpg',
 				'/assets/projects/bounce/mobile screen device.jpg',
@@ -80,8 +80,8 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '',
 			main: '',
-			promo: '',
-			screens: [],
+			promo: ['', '', ''],
+			screens: ['', '', ''],
 		},
 	},
 
@@ -118,7 +118,7 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '',
 			main: '/assets/projects/tt/comp-pro-1.png',
-			promo: '/assets/projects/tt/comp-pro-2.png',
+			promo: ['/assets/projects/tt/comp-pro-2.png', '', ''],
 			screens: [
 				'/assets/projects/tt/desktop-top.png',
 				'/assets/projects/tt/desktop-mid.png',
@@ -159,7 +159,7 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
 			main: '/assets/projects/ebit/comp-md.png',
-			promo: '/assets/projects/ebit/comp.png',
+			promo: ['/assets/projects/ebit/comp.png', '', ''],
 			screens: [
 				'/assets/projects/ebit/tokensite-home-page.webp',
 				'/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
@@ -201,7 +201,7 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/ao/comp-sm.png',
 			main: '/assets/projects/ao/comp-md.png',
-			promo: '/assets/projects/ao/comp.png',
+			promo: ['/assets/projects/ao/comp.png', '', ''],
 			screens: [
 				'/assets/projects/ao/after-desktop.png',
 				'/assets/projects/ao/journey-mobile.gif',
@@ -242,8 +242,8 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '',
 			main: '',
-			promo: '',
-			screens: [],
+			promo: ['', '', ''],
+			screens: ['', '', ''],
 		},
 	},
 	{
@@ -279,7 +279,7 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/narbon/shop-desktop-md.png',
 			main: '/assets/projects/narbon/comp.png',
-			promo: '/assets/projects/narbon/comp-1.png',
+			promo: ['/assets/projects/narbon/comp-1.png', '', ''],
 			screens: [
 				'/assets/projects/narbon/product-mobile-md.png',
 				'/assets/projects/narbon/checkout-desktop-md.png',

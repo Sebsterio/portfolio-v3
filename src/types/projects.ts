@@ -28,10 +28,10 @@ export type Project = {
 		main: string;
 
 		/** _Currently UNUSED_ */
-		promo: string;
+		promo: [string, string, string];
 
 		/** Timeline-detail project images  */
-		screens: string[];
+		screens: [string, string, string];
 	};
 	link?: string;
 	roleDetail?: string;
