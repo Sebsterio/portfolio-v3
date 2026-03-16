@@ -1,0 +1,77 @@
+/* ================================================
+   Decorative
+   ================================================
+
+   Large typographic treatments and geometric accents
+   used as background/atmospheric elements.
+
+   Text treatments
+   ───────────────
+   decorative-text             base: display font, black weight, uppercase, tight leading
+   decorative-outline          transparent fill + white stroke (15% opacity)
+   decorative-outline-hover    animated cyan stroke on parent hover
+   decorative-faded            gradient-clipped near-transparent fill
+
+   Geometric elements
+   ──────────────────
+   decorative-circle    absolute-positioned animated border ring
+   decorative-line      absolute-positioned horizontal accent line
+
+   Usage
+   ──────────────────────────────────────────────────────────────
+   All decorative elements are non-interactive by default.
+   Add pointer-events-none select-none on the element in JSX
+   (not baked in — sizing and positioning vary per usage).
+
+   Migration
+   ──────────────────────────────────────────────────────────────
+   project-decorative-text            →  decorative-text
+   project-decorative-outline         →  decorative-outline
+   project-decorative-outline-hover   →  decorative-outline-hover
+   project-decorative-faded           →  decorative-faded
+   deco-circle                        →  decorative-circle
+   deco-line                          →  decorative-line
+
+   ================================================ */
+
+
+/* ---- Text Treatments ---- */
+
+.decorative-text {
+  @apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
+}
+
+.decorative-outline {
+  @apply text-transparent;
+  -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.15);
+}
+
+.decorative-outline-hover {
+  @apply transition-all duration-500;
+}
+
+.decorative-outline-hover:hover {
+  -webkit-text-stroke: 2px rgb(var(--accent-cyan-rgb) / 0.3);
+  text-shadow: 0 0 60px rgb(var(--accent-cyan-rgb) / 0.3);
+}
+
+.decorative-faded {
+  @apply text-white/6;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ---- Geometric Elements ---- */
+
+.decorative-circle {
+  @apply absolute border-2 border-accent-cyan/15 rounded-full opacity-60
+         transition-transform duration-1000
+         hover:scale-110 hover:rotate-45;
+}
+
+.decorative-line {
+  @apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent;
+}

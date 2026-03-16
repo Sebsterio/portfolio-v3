@@ -1,75 +1,82 @@
-@layer components {
 /* ================================================
-		Components —- Random
-	 ================================================ */
+   Components
+   ================================================
+
+   Component-scoped classes used across multiple
+   components. Single-component classes belong in
+   that component's own file.
+
+   ================================================ */
+
+@layer components {
+
+  /* ---- Status ---- */
+
+  /*
+    Colour applied separately in JSX so the dot can
+    represent any status without per-colour variants:
+    <span class="status-dot bg-green-400" />
+  */
+  .status-dot {
+    @apply w-2 h-2 rounded-full animate-status-pulse;
+  }
 
 
-.heading-section 					{ @apply font-urbanist text-2xl font-bold flex items-center gap-3; }
+  /* ---- Glass Decoration ---- */
 
-.status-dot 							{ @apply w-2 h-2 rounded-full animate-status-pulse; }
+  /*
+    .glass-anchor-reflection — full-inset diagonal gloss overlay.
+    Depends on: overlay-full (layout.css), gradient-reflection-diagonal (gradients.css)
+  */
+  .glass-anchor-reflection { @apply overlay-full gradient-reflection-diagonal; }
 
-.glass-anchor-reflection 	{ @apply overlay-full gradient-reflection-diagonal; }
-
-.glass-card-accent 				{ @apply overlay w-32 h-32; }
-
-
-/* ===============================================================================
-	  Components — Magazine Page -- LEGACY
-   ===============================================================================
-	  These classes are only used on the project/magazine page and it's components.
-	  Eventully they will be unified with the restof the style system.
-   =============================================================================== */
-
-/* --- Layout --- */
+  /*
+    .glass-card-accent — corner accent orb anchor.
+    Sized here; gradient/colour applied in JSX.
+  */
+  .glass-card-accent { @apply overlay w-32 h-32; }
 
 
-.project-decorative-text { @apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none; }
+  /* ---- Image ---- */
 
-.project-decorative-outline {	@apply text-transparent; -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.15); }
+  .magazine-image     { @apply rounded-2xl transition-all duration-500; }
 
-.project-decorative-outline-hover {	@apply transition-all duration-500; }
-.project-decorative-outline-hover:hover {	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3); }
+  /* Static light reflection layer — applied as ::before on image wrappers */
+  .image-bg::before   {
+    @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;
+    content: '';
+  }
 
-.project-decorative-faded {
-	@apply text-white/6;
-	background: linear-gradient(180deg, rgb(var(--white-rgb) / 0.08) 0%, transparent 75%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
-}
+  /* Animated glint sweep — applied as ::after on hover targets */
+  .hover-glint::after {
+    @apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+    content: '';
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+  }
+  .hover-glint:hover::after { @apply translate-x-full; }
 
-
-/* --- Project Image --- */
-
-
-.magazine-image							{ @apply rounded-2xl transition-all duration-500; }
-
-.image-bg::before 					{ @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;	content: ''; }
-
-.hover-glint::after 				{	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;	content: ''; background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); }
-.hover-glint:hover::after 	{	@apply translate-x-full; }
-
-.image-overlay-dark 				{ @apply overlay-full bg-linear-to-br from-black/30 to-transparent; }
-.image-overlay-light 				{ @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
+  .image-overlay-dark  { @apply overlay-full bg-linear-to-br from-black/30 to-transparent;                }
+  .image-overlay-light { @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
 
 
-/* --- Tech Tags --- */
+  /* ---- Tags ---- */
+
+  /* Surface variants — background + border only */
+  .surface-tag           { @apply bg-accent-blue/10 border border-accent-blue/20; }
+  .surface-tag-highlight { @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
+  .surface-tag-highlight:hover { @apply bg-accent-cyan/20 border-accent-cyan -translate-y-0.5; }
+
+  /* Size variants — spacing + radius only */
+  .size-tag-lg { @apply px-4 py-2 rounded-lg; }
+  .size-tag-md { @apply px-3 py-1.5 rounded-lg; }
+  .size-tag-sm { @apply px-2 py-1 rounded-sm;  }
 
 
-.surface-tag 									{ @apply bg-accent-blue/10 border border-accent-blue/20; }
-.surface-tag-highlight 				{ @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
-.surface-tag-highlight:hover 	{ @apply bg-accent-cyan/20 border-accent-cyan -translate-y-0.5; }
+  /* ---- Decorative ---- */
 
-.size-tag-lg 		{ @apply px-4 py-2 rounded-lg; }
-.size-tag-md 		{ @apply px-3 py-1.5 rounded-lg; }
-.size-tag-sm 		{ @apply px-2 py-1 rounded-sm ; }
-
-
-/* --- Decorative Elements --- */
-
-
-.deco-circle { @apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60 	transition-transform duration-1000 hover:scale-110 hover:rotate-45; }
-
-.deco-line { @apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none; }
+  /*
+    Note: deco-* classes moved to system/decorative.css and renamed.
+    Migration: deco-circle → decorative-circle, deco-line → decorative-line
+  */
 
 }
