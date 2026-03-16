@@ -8,7 +8,7 @@ const CI_PORT = 3004;
 const isAI = process.env.AI === '1';
 const isCI = process.env.CI === '1';
 const isDev = process.env.DEV === '1';
-const mode: Mode = process.env.MODE ?? 'quick';
+const mode = (process.env.MODE as Mode) ?? 'quick';
 
 export default defineConfig({
 	testDir: './e2e/tests',
