@@ -36,8 +36,10 @@ export const projects: Project[] = [
 		],
 		link: 'https://bounce.com',
 		images: {
-			thumbnail: '/assets/projects/bounce/mobile marketing 3.png',
-			main: '/assets/projects/bounce/marketing 1.jpg',
+			logo: '',
+			thumbnail: '/assets/projects/bounce/comp-sm-3.png',
+			main: '/assets/projects/bounce/marketing.webp',
+			promo: '/assets/projects/bounce/comp.png',
 			screens: [
 				'/assets/projects/bounce/map 2.jpg',
 				'/assets/projects/bounce/mobile screen device.jpg',
@@ -75,8 +77,10 @@ export const projects: Project[] = [
 			'Improved attendee satisfaction through mobile-first experience',
 		],
 		images: {
+			logo: '',
 			thumbnail: '',
 			main: '',
+			promo: '',
 			screens: [],
 		},
 	},
@@ -111,9 +115,15 @@ export const projects: Project[] = [
 		],
 		link: 'https://www.tteducation.co.uk/',
 		images: {
+			logo: '',
 			thumbnail: '',
-			main: '',
-			screens: [],
+			main: '/assets/projects/tt/comp-pro-1.png',
+			promo: '/assets/projects/tt/comp-pro-2.png',
+			screens: [
+				'/assets/projects/tt/desktop-top.png',
+				'/assets/projects/tt/desktop-mid.png',
+				'/assets/projects/tt/desktop-bottom.png', //
+			],
 		},
 	},
 	{
@@ -146,8 +156,10 @@ export const projects: Project[] = [
 		],
 		link: 'https://app.tokensite.com/',
 		images: {
+			logo: '',
 			thumbnail: '/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
-			main: '/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
+			main: '/assets/projects/ebit/comp-md.png',
+			promo: '/assets/projects/ebit/comp.png',
 			screens: [
 				'/assets/projects/ebit/tokensite-home-page.webp',
 				'/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
@@ -186,8 +198,10 @@ export const projects: Project[] = [
 		],
 		link: 'https://ao.com/',
 		images: {
-			thumbnail: '/assets/projects/ao/after-mobile.png',
-			main: '/assets/projects/ao/after-desktop.png',
+			logo: '',
+			thumbnail: '/assets/projects/ao/comp-sm.png',
+			main: '/assets/projects/ao/comp-md.png',
+			promo: '/assets/projects/ao/comp.png',
 			screens: [
 				'/assets/projects/ao/after-desktop.png',
 				'/assets/projects/ao/journey-mobile.gif',
@@ -225,8 +239,10 @@ export const projects: Project[] = [
 		],
 		link: 'http://www.animalysis.com/demo',
 		images: {
+			logo: '',
 			thumbnail: '',
 			main: '',
+			promo: '',
 			screens: [],
 		},
 	},
@@ -260,8 +276,10 @@ export const projects: Project[] = [
 		],
 		link: 'https://www.shop.narbonpatricia.com',
 		images: {
+			logo: '',
 			thumbnail: '/assets/projects/narbon/shop-desktop-md.png',
-			main: '/assets/projects/narbon/shop-desktop-md.png',
+			main: '/assets/projects/narbon/comp.png',
+			promo: '/assets/projects/narbon/comp-1.png',
 			screens: [
 				'/assets/projects/narbon/product-mobile-md.png',
 				'/assets/projects/narbon/checkout-desktop-md.png',
