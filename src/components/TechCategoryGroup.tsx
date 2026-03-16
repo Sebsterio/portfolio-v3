@@ -19,7 +19,7 @@ export const TechCategoryGroup = ({ label, children, className }: TechCategoryGr
 			>
 				{label}
 			</h4>
-			<div className='flex flex-wrap gap-2 md:gap-2.5'>{children}</div>
+			{children}
 		</div>
 	);
 };

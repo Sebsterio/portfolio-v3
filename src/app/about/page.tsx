@@ -1,19 +1,10 @@
 'use client';
 
-import {
-	Title,
-	TextBlock,
-	ShowcaseCard,
-	GlassCard,
-	Section,
-	SectionHeader,
-	LabeledValueRow,
-	TechPill,
-	TechCategoryGroup,
-} from '@/components';
+import { Title, TextBlock, ShowcaseCard, GlassCard, Section, SectionHeader, LabeledValueRow, TechCategoryGroup } from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 import { cn } from '@/lib/utils';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
+import { ProjectTags } from '@/components/ProjectTags';
 
 type AboutPageProps = Record<string, never>;
 
@@ -60,9 +51,7 @@ export default function AboutPage({}: AboutPageProps) {
 					<div className='space-y-6 pb-2 md:space-y-8 md:pb-4'>
 						{techCategories.map(({ category, techs }) => (
 							<TechCategoryGroup key={category} label={category}>
-								{techs.map((t) => (
-									<TechPill key={t}>{t}</TechPill>
-								))}
+								<ProjectTags variant='muted' size='md' tags={techs} />
 							</TechCategoryGroup>
 						))}
 					</div>

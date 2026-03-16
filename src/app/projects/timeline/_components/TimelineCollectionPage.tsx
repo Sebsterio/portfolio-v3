@@ -48,7 +48,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 									<p className='text-secondary text-lg'>{project.company}</p>
 									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
-									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
+									<ProjectTags tags={project.tags} limit={4} className='pt-2' size='lg' />
 								</div>
 							</GlassCard>
 						</div>
@@ -86,7 +86,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 									<p className='text-secondary text-lg'>{project.company}</p>
 									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
-									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
+									<ProjectTags tags={project.tags} limit={4} className='pt-2' size='lg' />
 								</div>
 							</GlassCard>
 						</div>
