@@ -7,7 +7,10 @@ const CLASSES = {
 	base: cn(
 		'inline-flex items-center gap-2 rounded-full border-2',
 		'font-dm-sans font-bold',
-		'transition-[transform,colors] duration-300', //
+		'transition-all duration-200',
+		'hover:scale-102 active:scale-95 active:duration-50',
+		'focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:outline-none',
+		'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40',
 	),
 	sizes: {
 		sm: 'px-6	py-3 text-xs	md:px-8	 md:py-3 md:text-base',
@@ -20,7 +23,7 @@ const CLASSES = {
 		),
 		primary: cn(
 			'border-transparent gradient-primary text-white',
-			'glow-primary-soft hover:scale-105', //
+			'glow-primary-soft', //
 		),
 		secondary: cn(
 			'border-chrome-silver/15 bg-white/3 text-chrome-silver backdrop-blur-[10px]',
