@@ -27,12 +27,9 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 						key={i}
 						src={project.images.screens[i]}
 						alt={`Screenshot of ${project.title}`}
-						className={cn(
-							'surface-glass-2 aspect-video rounded-xl gradient-primary-soft shadow-none',
+						className={cn('surface-glass-2 aspect-video rounded-xl gradient-primary-soft shadow-none', [
 							'transition-duration-300 opacity-75 transition-opacity hover:opacity-100',
-						)}
-						fallbackClass='text-white/50 text-sm font-semibold'
-						fallbackText='Screenshot Unavailable'
+						])}
 					/>
 				))}
 			</div>

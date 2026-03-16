@@ -170,8 +170,6 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 					alt={`Screenshot of ${project.title}`}
 					sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 896px'
 					className={cn('h-64 rounded-2xl md:h-80', gradientClass)}
-					fallbackClass='text-sm font-semibold text-white/50'
-					fallbackText='Screenshot Unavailable'
 				/>
 
 				<div className='space-y-4 pb-2'>
