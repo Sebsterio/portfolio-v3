@@ -1,32 +1,150 @@
 /* Partial */
-
-.gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0; 		} 
-.gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0; 	} 
-.gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0; 			} 
-.gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0;	} 
-
-@utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	
-
-@utility gradient-gleam 	{ @apply via-transparent to-transparent;	} 
-
+/*  */
+/* .gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0; 		}  */
+/* .gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0; 	}  */
+/* .gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0; 			}  */
+/* .gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0;	}  */
+/*  */
+/* @utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	 */
+/*  */
+/* @utility gradient-gleam 	{ @apply via-transparent to-transparent;	}  */
+/*  */
 /* Standalone */
+/*  */
+/* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	} */
+/* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; } */
+/*  */
+/* .gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10; } */
+/* .gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10; } */
+/*  */
+/* .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; } */
+/* .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; } */
+/* .reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; } */
+/*  */
+/* @utility gradient-reflection-vertical { */
+/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent); */
+/* } */
+/* @utility gradient-reflection-vertical-strong { */
+/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent); */
+/* } */
+/* @utility gradient-reflection-diagonal { */
+/* 	background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.15) 0%, rgb(var(--white-rgb) / 0.08) 20%, transparent 50%);  */
+/* } */
 
-@utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	}
-@utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; }
 
-.gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10; }
-.gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10; }
+/* ================================================
+   Gradients
+   ================================================
 
-.reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; }
-.reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; }
-.reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; }
+   @utility  →  composable, modifier-safe (hover:, dark:, md:)
+   plain     →  decorative overlays, never need modifiers
 
-@utility gradient-reflection-vertical {
-	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent);
+   ── Brand ───────────────────────────────────────────────────
+   gradient-primary          blue → cyan, br direction
+   gradient-primary-soft     blue/30 → cyan/20 → purple/20, br
+
+   ── Text clipping ───────────────────────────────────────────
+   gradient-text             clips background-image to text shape
+                             combine with any gradient-* utility:
+                             class="gradient-text gradient-primary"
+
+   ── Gleam system ────────────────────────────────────────────
+   gradient-gleam            PARTIAL: sets via+to transparent only.
+                             Always combine with a from-* colour:
+                             class="gradient-gleam from-accent-blue/10"
+                             Or use a named variant below.
+
+   gradient-gleam-blue       gleam partial + from-accent-blue/10
+   gradient-gleam-cyan       gleam partial + from-accent-cyan/10
+
+   ── Corner accents ──────────────────────────────────────────
+   PARTIAL: sets gradient direction + corner position only.
+   Always add a from-* colour in JSX, e.g.:
+     class="gradient-corner-tr from-accent-blue/10"
+   Apply to an absolute-positioned child element.
+
+   gradient-corner-tr        → bl direction, top-right position
+   gradient-corner-tl        → br direction, top-left position
+   gradient-corner-br        → tl direction, bottom-right position
+   gradient-corner-bl        → tr direction, bottom-left position
+
+   ── Reflection overlays ─────────────────────────────────────
+   Apply to absolute-positioned child elements (overlay-full).
+   Plain classes — decorative overlays never need modifiers.
+
+   gradient-reflection-diagonal          135deg white gloss (glass surfaces)
+   gradient-reflection-horizontal        90deg  accent sweep, 25% opacity
+   gradient-reflection-horizontal-strong 90deg  accent sweep, 80% opacity
+   gradient-reflection-light             br     white/25 → transparent
+   gradient-reflection-dark              br     black/30 → transparent
+   gradient-reflection-top               to-t   white/25 fade at top edge
+
+   Migration
+   ─────────
+   reflection-light                    →  gradient-reflection-light
+   reflection-dark                     →  gradient-reflection-dark
+   reflection-top                      →  gradient-reflection-top
+   gradient-reflection-vertical        →  gradient-reflection-horizontal
+   gradient-reflection-vertical-strong →  gradient-reflection-horizontal-strong
+
+   ================================================ */
+
+
+/* ---- Brand ---- */
+
+@utility gradient-primary {
+  @apply bg-linear-to-br from-accent-blue to-accent-cyan;
 }
-@utility gradient-reflection-vertical-strong {
-	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent);
+
+@utility gradient-primary-soft {
+  @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20;
 }
+
+
+/* ---- Text Clipping ---- */
+
+@utility gradient-text {
+  @apply text-transparent bg-clip-text;
+}
+
+
+/* ---- Gleam System ---- */
+
+@utility gradient-gleam {
+  @apply via-transparent to-transparent;
+}
+
+.gradient-gleam-blue { @apply gradient-gleam from-accent-blue/10; }
+.gradient-gleam-cyan { @apply gradient-gleam from-accent-cyan/10; }
+
+
+/* ---- Corner Accents ---- */
+
+.gradient-corner-tr { @apply bg-linear-to-bl right-0 top-0;    }
+.gradient-corner-tl { @apply bg-linear-to-br left-0  top-0;    }
+.gradient-corner-br { @apply bg-linear-to-tl right-0 bottom-0; }
+.gradient-corner-bl { @apply bg-linear-to-tr left-0  bottom-0; }
+
+
+/* ---- Reflection Overlays ---- */
+
+@utility gradient-reflection-horizontal {
+  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent);
+}
+
+@utility gradient-reflection-horizontal-strong {
+  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent);
+}
+
 @utility gradient-reflection-diagonal {
-	background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.15) 0%, rgb(var(--white-rgb) / 0.08) 20%, transparent 50%); 
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15)  0%,
+    rgba(255, 255, 255, 0.08) 20%,
+    transparent               50%
+  );
 }
+
+.gradient-reflection-light { @apply bg-linear-to-br from-white/25 to-transparent;                 }
+.gradient-reflection-dark  { @apply bg-linear-to-br from-black/30 to-transparent;                 }
+.gradient-reflection-top   { @apply bg-linear-to-t  from-transparent via-transparent to-white/25; }

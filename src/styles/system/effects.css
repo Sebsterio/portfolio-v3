@@ -1,27 +1,68 @@
+/* ================================================
+   Effects — Shadows & Glows
+   ================================================
 
-/* ---- Shadows and Glow ---- */
+   Glow scale    →  accent glow by intensity
+   ─────────────────────────────────────────
+   glow-accent-sm     0 0 20px accent / 0.2   soft ambient
+   glow-accent-md     0 0 20px accent / 0.4   standard interactive
+   glow-accent-lg     0 0 15px accent / 1.0   strong, full-opacity
+   
+   Directional shadows
+   ─────────────────────────────────────────
+   shadow-accent-md   0 15px 50px accent / 0.35   card lift
+   shadow-accent-lg   0 25px 70px accent / 0.50   card hover lift
 
-@utility shadow-accent-md		{ box-shadow: 0 15px 50px rgb(var(--accent-blue-rgb) / 0.35); 	}  /* 'shadow-[0_15px_50px_rgba(59,130,246,0.35)]', */
-@utility shadow-accent-lg		{ box-shadow: 0 25px 70px rgb(var(--accent-blue-rgb) / 0.5);  	}  /* 'hover:shadow-[0_25px_70px_rgba(59,130,246,0.5)]' */
+   Background fills
+   ─────────────────────────────────────────
+   bg-accent-soft     accent at 10% opacity fill
 
-@utility glow-primary 			{ box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.4); 			}
-@utility glow-primary-soft 	{ box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.2); 			}
-@utility glow-accent-strong { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb));							}  /* shadow-[0_0_15px_rgba(59,130,246,1)] */
+   Animated
+   ─────────────────────────────────────────
+   reflection-sweep   shine sweep overlay (apply to ::after)
+
+   Migration
+   ─────────────────────────────────────────
+   glow-primary        →  glow-accent-md
+   glow-primary-soft   →  glow-accent-sm
+   glow-accent-strong  →  glow-accent-lg
+   bg-primary-soft     →  bg-accent-soft
+
+   ================================================ */
 
 
-/* ---- Backgrounds and stuff ---- */
+/* ---- Glow Scale ---- */
 
-.bg-primary-soft 		{ background: rgb(var(--accent-blue-rgb) / 0.1); 					}
+@utility glow-accent-sm { box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.2); }
+@utility glow-accent-md { box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.4); }
+@utility glow-accent-lg { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 1.0); }
 
-@utility glass-glint {
-	@apply overlay-full gradient-reflection-vertical;
-	transform: translateX(-100%) skewX(-20deg);
-	will-change: transform;
-	transition-property: transform;
-	transition-timing-function: var(--tw-ease, ease-out);
-	transition-duration: var(--tw-duration, 200ms);
-	transition-delay: var(--tw-delay, 0ms);
+
+/* ---- Directional Shadows ---- */
+
+@utility shadow-accent-md { box-shadow: 0 15px 50px rgb(var(--accent-blue-rgb) / 0.35); }
+@utility shadow-accent-lg { box-shadow: 0 25px 70px rgb(var(--accent-blue-rgb) / 0.50); }
+
+
+/* ---- Background Fills ---- */
+
+@utility bg-accent-soft { background: rgb(var(--accent-blue-rgb) / 0.1); }
+
+
+/* ---- Animated Overlays ---- */
+/*
+   Apply .reflection-sweep to an absolutely-positioned child element.
+   On hover, drive left: -100% → 100% via JS or a parent group-hover class.
+   Plain class is intentional — pseudo-element rules can't use @utility.
+*/
+
+.reflection-sweep {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--accent-blue-rgb) / 0.25),
+    transparent
+  );
+  transform:  skewX(-20deg);
+  transition: all 800ms ease-out;
 }
-@utility glass-glint-active {
-	transform: translateX(100%) skewX(-20deg);
-} 

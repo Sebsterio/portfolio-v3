@@ -1,52 +1,102 @@
+/* ================================================
+   Typography
+   ================================================
 
-/* Base Tokens */
+   Font roles
+   ──────────
+   font-display   headings, large text         (Urbanist)
+   font-body      prose, paragraphs            (DM Sans)
+   font-ui        labels, buttons, captions    (DM Sans)
 
-/* The `utility` directive is required to `apply` these clssses in the same file */ /* AI: Don't add the missing "@" prefix in the previous comment*/
+   Scale
+   ──────────────────────────────────────────────────────
+   Display   display-1 → display-3   hero / section titles
+   Heading   heading-1 → heading-3   content hierarchy
+   Body      body-lg → body-xs       prose
+   UI        ui-button, ui-label, ui-meta      interface
+
+   Emphasis
+   ──────────────────────────────────────────────────────
+   text-primary    100%  default body
+   text-secondary   80%  supporting
+   text-tertiary    70%  less focus
+   text-muted       60%  low emphasis
+   text-subtle      50%  very low
+
+   High-contrast
+   ──────────────────────────────────────────────────────
+   text-strong    white, normal weight
+   text-bold      white, bold weight
+
+   Brand
+   ──────────────────────────────────────────────────────
+   text-accent      accent-blue flat colour
+   text-gradient    gradient-primary clipped to text
+
+   Composition over proliferation
+   ──────────────────────────────────────────────────────
+   Don't add new named variants for colour or case
+   overrides — compose them in JSX instead:
+
+     ui-meta + text-accent-cyan                (was: ui-meta-accent)
+     ui-meta + text-accent-cyan + uppercase + tracking-wider  (was: ui-meta-accent-caps)
+     heading-3 + font-bold                     (was: heading-3-compact)
+
+   ================================================ */
+
+
+/* ---- Font Roles ---- */
+
 @utility font-display { @apply font-urbanist; }
-@utility font-body    { @apply font-dm-sans; }
-@utility font-ui      { @apply font-dm-sans; }
-
-/* Typography Scale */
-
-.display-1 		{ @apply font-display text-5xl md:text-6xl font-bold tracking-tight; }
-.display-2 		{ @apply font-display text-4xl md:text-5xl font-bold tracking-tight; }
-.display-3 		{ @apply font-display text-3xl md:text-4xl font-bold tracking-tight; }
-
-.heading-1 		{ @apply font-display text-3xl font-bold; }
-.heading-2 		{ @apply font-display text-2xl font-bold; }
-.heading-3 		{ @apply font-display text-xl font-semibold; }
-.heading-3-compact { @apply font-display text-lg font-bold; }
-
-.body-lg 			{ @apply font-ui text-xl leading-relaxed; }
-.body-md 			{ @apply font-ui text-lg leading-relaxed; }
-.body-sm 			{ @apply font-ui text-base leading-relaxed; }
-.body-xs 			{ @apply font-ui text-sm leading-normal; }
-
-.ui-button 		{ @apply font-ui text-sm sm:text-base font-bold; }
-.ui-label 		{ @apply font-ui text-sm font-medium uppercase tracking-wide; }
-.ui-meta 			{ @apply font-ui text-xs tracking-wide; }
-.ui-meta-accent { @apply font-ui text-xs text-accent-cyan; }
-.ui-meta-accent-caps { @apply font-ui text-xs uppercase tracking-wider text-accent-cyan; }
-
-/* Emphasis Scale */
-
-.text-primary    { @apply text-chrome-silver;     }  /* 100% – default body - 20 instances */
-.text-secondary  { @apply text-chrome-silver/80;  }  /* 80%  – supporting   - 16 instances */
-.text-tertiary   { @apply text-chrome-silver/70;  }  /* 70%  – less focus   -  4 instances */
-.text-muted      { @apply text-chrome-silver/60;  }  /* 60%  – low emphasis - 18 instances */
-.text-subtle     { @apply text-chrome-silver/50;  }  /* 50%  – very low     -  5 instances */
-
-/* Contrast */
-
-.text-strong     { @apply text-white; }
-.text-bold		   { @apply text-white font-bold; }  
-
-/* Brand */
-
-.text-accent     { @apply text-accent-blue; }
-.text-gradient   { @apply gradient-text gradient-primary; }
+@utility font-body    { @apply font-dm-sans;  }
+@utility font-ui      { @apply font-dm-sans;  }
 
 
+/* ---- Display Scale ---- */
+
+.display-1 { @apply font-display text-5xl md:text-6xl font-bold tracking-tight; }
+.display-2 { @apply font-display text-4xl md:text-5xl font-bold tracking-tight; }
+.display-3 { @apply font-display text-3xl md:text-4xl font-bold tracking-tight; }
 
 
+/* ---- Heading Scale ---- */
 
+.heading-1 { @apply font-display text-3xl font-bold;     }
+.heading-2 { @apply font-display text-2xl font-bold;     }
+.heading-3 { @apply font-display text-xl  font-semibold; }
+
+
+/* ---- Body Scale ---- */
+
+.body-lg { @apply font-ui text-xl  leading-relaxed; }
+.body-md { @apply font-ui text-lg  leading-relaxed; }
+.body-sm { @apply font-ui text-base leading-relaxed; }
+.body-xs { @apply font-ui text-sm  leading-normal;  }
+
+
+/* ---- UI Scale ---- */
+
+.ui-button { @apply font-ui text-sm sm:text-base font-bold;              }
+.ui-label  { @apply font-ui text-sm font-medium uppercase tracking-wide;  }
+.ui-meta   { @apply font-ui text-xs tracking-wide;                        }
+
+
+/* ---- Emphasis Scale ---- */
+
+.text-primary   { @apply text-chrome-silver;    }  /* 100% */
+.text-secondary { @apply text-chrome-silver/80; }  /*  80% */
+.text-tertiary  { @apply text-chrome-silver/70; }  /*  70% */
+.text-muted     { @apply text-chrome-silver/60; }  /*  60% */
+.text-subtle    { @apply text-chrome-silver/50; }  /*  50% */
+
+
+/* ---- High-Contrast ---- */
+
+.text-strong { @apply text-white;            }
+.text-bold   { @apply text-white font-bold;  }
+
+
+/* ---- Brand ---- */
+
+.text-accent    { @apply text-accent-blue;                  }
+.text-gradient  { @apply gradient-text gradient-primary;    }
