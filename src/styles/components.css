@@ -4,17 +4,13 @@
 	 ================================================ */
 
 
-.heading-section 	{ @apply font-urbanist text-2xl font-bold flex items-center gap-3; }
+.heading-section 					{ @apply font-urbanist text-2xl font-bold flex items-center gap-3; }
 
-.status-dot 			{ @apply w-2 h-2 rounded-full animate-status-pulse; }
+.status-dot 							{ @apply w-2 h-2 rounded-full animate-status-pulse; }
 
-.glass-anchor-reflection {
-	@apply absolute inset-0 pointer-events-none gradient-reflection-diagonal;
-}
+.glass-anchor-reflection 	{ @apply overlay-full gradient-reflection-diagonal; }
 
-.glass-card-accent {
-	@apply absolute pointer-events-none w-32 h-32;
-}
+.glass-card-accent 				{ @apply overlay w-32 h-32; }
 
 
 /* ===============================================================================
@@ -26,27 +22,17 @@
 
 /* --- Layout --- */
 
-.project-decorative-text {
-	@apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none;
-}
 
-.project-decorative-outline {
-	@apply text-transparent;
-	-webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
-}
+.project-decorative-text { @apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none; }
 
-.project-decorative-outline-hover {
-	@apply transition-all duration-500;
-}
+.project-decorative-outline {	@apply text-transparent; -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.15); }
 
-.project-decorative-outline-hover:hover {
-	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);
-	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3);
-}
+.project-decorative-outline-hover {	@apply transition-all duration-500; }
+.project-decorative-outline-hover:hover {	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3); }
 
 .project-decorative-faded {
 	@apply text-white/6;
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
+	background: linear-gradient(180deg, rgb(var(--white-rgb) / 0.08) 0%, transparent 75%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -55,21 +41,20 @@
 
 /* --- Project Image --- */
 
+
 .magazine-image							{ @apply rounded-2xl transition-all duration-500; }
 
-/* fallback bg overlay 			// TODO: remove ??? */
 .image-bg::before 					{ @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;	content: ''; }
 
-/* image glint overlay  		// TODO: unify with "glint" utility class */
 .hover-glint::after 				{	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;	content: ''; background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); }
 .hover-glint:hover::after 	{	@apply translate-x-full; }
 
-/* image static overlays 		// TODO: remove ??? */
 .image-overlay-dark 				{ @apply overlay-full bg-linear-to-br from-black/30 to-transparent; }
 .image-overlay-light 				{ @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
 
 
 /* --- Tech Tags --- */
+
 
 .surface-tag 									{ @apply bg-accent-blue/10 border border-accent-blue/20; }
 .surface-tag-highlight 				{ @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
@@ -82,24 +67,17 @@
 
 /* --- Button --- */
 
-.button-primary-inline-lg {
-	@apply inline-flex items-center gap-2 px-8 py-4 rounded-full bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold;
-}
 
-.button-primary-inline-sm {
-	@apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold;
-}
+.button-primary-inline-lg {	@apply inline-flex items-center gap-2 px-8 py-4 rounded-full bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold; }
+
+.button-primary-inline-sm {	@apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold; }
 
 
 /* --- Decorative Elements --- */
 
-.deco-circle {
-	@apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60
-					transition-transform duration-1000 hover:scale-110 hover:rotate-45;
-}
 
-.deco-line {
-	@apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none;
-}
+.deco-circle { @apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60 	transition-transform duration-1000 hover:scale-110 hover:rotate-45; }
+
+.deco-line { @apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none; }
 
 }

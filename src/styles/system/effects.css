@@ -1,12 +1,12 @@
 
 /* ---- Shadows and Glow ---- */
 
-.shadow-accent-md		{ box-shadow: 0 15px 50px rgba(59,130,246,0.35); 			 }  /* 'shadow-[0_15px_50px_rgba(59,130,246,0.35)]', */
-.shadow-accent-lg		{ box-shadow: 0 25px 70px rgba(59,130,246,0.5);  			 }  /* 'hover:shadow-[0_25px_70px_rgba(59,130,246,0.5)]' */
+.shadow-accent-md		{ box-shadow: 0 15px 50px rgb(var(--accent-blue-rgb) / 0.35); 	}  /* 'shadow-[0_15px_50px_rgba(59,130,246,0.35)]', */
+.shadow-accent-lg		{ box-shadow: 0 25px 70px rgb(var(--accent-blue-rgb) / 0.5);  	}  /* 'hover:shadow-[0_25px_70px_rgba(59,130,246,0.5)]' */
 
 .glow-primary 			{ box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.4); }
 .glow-primary-soft 	{ box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.2); }
-.glow-accent-strong { box-shadow: 0 0 15px rgba(59,130,246,1);							 }  /* shadow-[0_0_15px_rgba(59,130,246,1)] */
+.glow-accent-strong { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb));							}  /* shadow-[0_0_15px_rgba(59,130,246,1)] */
 
 
 /* ---- Backgrounds and stuff ---- */
