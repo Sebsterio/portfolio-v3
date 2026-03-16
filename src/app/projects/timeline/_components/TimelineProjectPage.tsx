@@ -10,6 +10,7 @@ import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
 import { ProjectContentCard } from './TimelineProjectContentCard';
 import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
+import { ExternalLinkButton } from '@/components';
 
 // import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 
@@ -103,11 +104,10 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 												<ProjectTags tags={p.tags} size='sm' />
 
-												{/* TODO: extract component or styles */}
 												{p.link && (
-													<a href={p.link} target='_blank' rel='noopener noreferrer' className='button-primary-inline-sm'>
+													<ExternalLinkButton href={p.link} size='sm'>
 														Visit Project →
-													</a>
+													</ExternalLinkButton>
 												)}
 											</div>
 										</GlassCard>
