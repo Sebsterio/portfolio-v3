@@ -11,7 +11,7 @@ type ProjectTagsProps = {
 const variantClasses = {
 	default: 'text-accent-cyan surface-tag',
 	muted: 'text-chrome-silver/80 surface-tag', // AboutPage only
-	highlight: 'text-accent-cyan font-semibold surface-tag-highlight surface-tag-highlight-hover transition-all duration-300', // Magazine/SectionA only
+	highlight: 'text-accent-cyan font-semibold surface-tag-highlight', // Magazine/SectionA only
 };
 
 const sizeClasses = {

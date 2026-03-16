@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ProjectImage } from '../../../../components/ProjectImage';
 
 interface MagazineSectionEProps {
 	sectionId: string;
@@ -29,16 +29,17 @@ export function MagazineSectionE({ sectionId, number, megaTitle, preTitle, title
 			<div className='relative z-20 grid items-start gap-8 pl-0 md:gap-12 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:pl-12'>
 				{/* Images Column */}
 				<div className='flex flex-col gap-8'>
-					<ProjectImage_Placeholder
+					<ProjectImage
 						gradient='bg-gradient-ao-main'
-						className='h-[200px] w-full shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(240,147,251,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[280px] lg:h-[300px]'
+						className='magazine-image h-[200px] w-full shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(240,147,251,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[280px] lg:h-[300px]'
 						overlayType='dark'
+						glintOnHover
 					/>
 
-					<ProjectImage_Placeholder
+					<ProjectImage
 						gradient='bg-gradient-ao-small'
-						className='order-3 ml-auto h-[150px] w-3/4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 md:h-[200px] lg:order-0 lg:h-[220px]'
-						overlayType='none'
+						className='magazine-image order-3 ml-auto h-[150px] w-3/4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 md:h-[200px] lg:order-0 lg:h-[220px]'
+						glintOnHover
 					/>
 				</div>
 

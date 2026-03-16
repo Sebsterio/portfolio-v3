@@ -55,39 +55,25 @@
 
 /* --- Project Image --- */
 
-.project-image {
-	@apply rounded-2xl relative overflow-hidden transition-all duration-500;
-}
+.magazine-image							{ @apply rounded-2xl transition-all duration-500; }
 
-.project-image::before {
-	@apply absolute inset-0 bg-linear-to-br from-white/25 to-transparent opacity-80;
-	content: '';
-}
+/* fallback bg overlay 			// TODO: remove ??? */
+.image-bg::before 					{ @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;	content: ''; }
 
-.project-image::after {
-	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
-	content: '';
-	background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
-}
+/* image glint overlay  		// TODO: unify with "glint" utility class */
+.hover-glint::after 				{	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;	content: ''; background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); }
+.hover-glint:hover::after 	{	@apply translate-x-full; }
 
-.project-image:hover::after {
-	@apply translate-x-full;
-}
-
-.project-image-overlay-dark {
-	@apply absolute inset-0 bg-linear-to-br from-black/30 to-transparent;
-}
-
-.project-image-overlay-light {
-	@apply absolute inset-0 bg-linear-to-t from-transparent via-transparent to-white/25;
-}
+/* image static overlays 		// TODO: remove ??? */
+.image-overlay-dark 				{ @apply overlay-full bg-linear-to-br from-black/30 to-transparent; }
+.image-overlay-light 				{ @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
 
 
 /* --- Tech Tags --- */
 
 .surface-tag 									{ @apply bg-accent-blue/10 border border-accent-blue/20; }
-.surface-tag-highlight 				{ @apply bg-accent-cyan/10 border border-accent-cyan/30; }
-.surface-tag-highlight-hover 	{ @apply hover:bg-accent-cyan/20 hover:border-accent-cyan hover:-translate-y-0.5; }
+.surface-tag-highlight 				{ @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
+.surface-tag-highlight:hover 	{ @apply bg-accent-cyan/20 border-accent-cyan -translate-y-0.5; }
 
 .size-tag-lg 		{ @apply px-4 py-2 rounded-lg; }
 .size-tag-md 		{ @apply px-3 py-1.5 rounded-lg; }

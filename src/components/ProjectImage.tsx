@@ -7,13 +7,16 @@ import { XOR } from '@/types';
 
 // ----------------------------------------------------------------------------
 
-type ImageProps = Omit<NextImageProps, 'src' | 'onError'> & {
-	src: string | undefined;
+type ImageProps = Omit<NextImageProps, 'src' | 'onError' | 'alt'> & {
+	alt?: NextImageProps['alt'];
+	src?: string;
 	className?: string;
-} & XOR<
-		{ fallback: ReactNode },
-		{ fallbackText?: string | false; fallbackClass?: string | false } //
-	>;
+} & ImageFallbackProps;
+
+type ImageFallbackProps = XOR<
+	{ fallback: ReactNode },
+	{ fallbackText?: string | false; fallbackClass?: string | false } //
+>;
 
 /**
  * Container for an Image and fallback background and text (or JSX)
@@ -21,6 +24,7 @@ type ImageProps = Omit<NextImageProps, 'src' | 'onError'> & {
  * - TODO: rename
  * */
 export const Image = ({
+	alt = '',
 	src,
 	className,
 	children,
@@ -33,9 +37,7 @@ export const Image = ({
 	return (
 		<div className={cn('relative flex items-center justify-center overflow-hidden', className)}>
 			{!!src && !imageError ? (
-				<NextImage className='object-cover' fill src={src} onError={() => setImageError(true)} {...imageProps}>
-					{children}
-				</NextImage>
+				<NextImage className='object-cover' fill src={src} alt={alt} onError={() => setImageError(true)} {...imageProps} />
 			) : (
 				fallback
 			)}
@@ -46,29 +48,35 @@ export const Image = ({
 
 // ----------------------------------------------------------------------------
 
-// TODO: include interaction styles of ProjectImage_Placeholder
-
-export const ProjectImage = ({ alt, ...props }: ImageProps) => <Image {...props} alt={alt} />;
-
-// ----------------------------------------------------------------------------
-
-// TODO: repace instances with ProjectImage
-
-type ProjectImagePlaceholderProps = {
-	gradient: string;
-	className?: string;
-	overlayType?: 'dark' | 'light' | 'none';
-	children?: React.ReactNode;
+type ProjectImageProps = ImageProps & {
+	gradient?: string; // TEMP transitional
+	overlayType?: 'dark' | 'light'; // TEMP transitional
+	glintOnHover?: boolean;
 };
 
-/**
- * @deprecated use `ProjectImage`
- */
-export function ProjectImage_Placeholder({ gradient, className, overlayType = 'light', children }: ProjectImagePlaceholderProps) {
+export const ProjectImage = ({
+	alt,
+	children,
+	className,
+	gradient: gradientClassName,
+	overlayType,
+	fallback,
+	fallbackClass = fallback ? undefined : 'text-white/50 text-sm font-semibold',
+	fallbackText = fallback ? undefined : 'Screenshot Unavailable',
+	glintOnHover,
+	...props
+}: ProjectImageProps) => {
 	return (
-		<div className={cn('project-image', gradient, className)}>
-			{overlayType !== 'none' && <div className={overlayType === 'dark' ? 'project-image-overlay-dark' : 'project-image-overlay-light'} />}
+		<Image
+			{...props}
+			alt={alt}
+			className={cn('image-bg', glintOnHover && 'hover-glint', gradientClassName, className)}
+			fallbackClass={fallbackClass}
+			fallbackText={fallbackText}
+		>
 			{children}
-		</div>
+			{overlayType === 'dark' && <div className='image-overlay-dark' />}
+			{overlayType === 'light' && <div className='image-overlay-light' />}
+		</Image>
 	);
-}
+};

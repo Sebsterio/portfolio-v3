@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ProjectImage } from '../../../../components/ProjectImage';
 
 interface MagazineSectionDProps {
 	sectionId: string;
@@ -19,10 +19,11 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 			</div>
 
 			{/* Large Image */}
-			<ProjectImage_Placeholder
+			<ProjectImage
 				gradient='bg-gradient-ebit-main'
-				className='mb-8 h-[250px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(106,17,203,0.2)] hover:scale-[1.01] md:h-[320px] lg:mb-8 lg:h-[380px]'
+				className='magazine-image mb-8 h-[250px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(106,17,203,0.2)] hover:scale-[1.01] md:h-[320px] lg:mb-8 lg:h-[380px]'
 				overlayType='light'
+				glintOnHover
 			/>
 
 			{/* Content Grid */}
@@ -46,10 +47,10 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 				</div>
 
 				{/* Small Image */}
-				<ProjectImage_Placeholder
+				<ProjectImage
 					gradient='bg-gradient-ebit-small'
-					className='h-[200px] w-[70%] w-full -translate-y-12 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:scale-[1.02] md:h-[250px] lg:mt-0 lg:h-[350px] lg:w-full lg:-translate-x-12 lg:translate-y-8 lg:hover:-translate-x-14 lg:hover:translate-y-6'
-					overlayType='none'
+					className='magazine-image h-[200px] w-[70%] w-full -translate-y-12 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:scale-[1.02] md:h-[250px] lg:mt-0 lg:h-[350px] lg:w-full lg:-translate-x-12 lg:translate-y-8 lg:hover:-translate-x-14 lg:hover:translate-y-6'
+					glintOnHover
 				/>
 			</div>
 		</section>

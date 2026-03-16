@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ProjectImage } from '../../../../components/ProjectImage';
 
 interface MagazineSectionMultiProps {
 	number: string;
@@ -48,10 +48,10 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 							{/* Small image - shows next to text on mobile for first project only */}
 							{index === 0 && (
 								<div className='md:hidden'>
-									<ProjectImage_Placeholder
+									<ProjectImage
 										gradient='bg-gradient-freelance-small'
-										className='h-[150px] w-full border-4 border-white/90 md:border-6'
-										overlayType='none'
+										className='magazine-image h-[150px] w-full border-4 border-white/90 md:border-6'
+										glintOnHover
 									/>
 								</div>
 							)}
@@ -62,18 +62,20 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 				{/* Images Column */}
 				<div className='relative'>
 					{/* Main Image */}
-					<ProjectImage_Placeholder
+					<ProjectImage
 						gradient='bg-gradient-freelance-main'
-						className='h-[300px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] hover:scale-[1.02] hover:rotate-1 md:h-[400px] lg:h-[500px]'
+						className='magazine-image h-[300px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] hover:scale-[1.02] hover:rotate-1 md:h-[400px] lg:h-[500px]'
+						overlayType='light'
+						glintOnHover
 					>
-						<div className='absolute inset-0 bg-linear-to-t from-transparent via-transparent to-black/30' />
-					</ProjectImage_Placeholder>
+						<div className='overlay-full bg-linear-to-t from-transparent via-transparent to-black/30' />
+					</ProjectImage>
 
 					{/* Small Polaroid Image - desktop only */}
-					<ProjectImage_Placeholder
+					<ProjectImage
 						gradient='bg-gradient-freelance-small'
-						className='absolute bottom-[-15%] left-[-8%] hidden h-[180px] w-[45%] rotate-[8deg] border-8 border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hover:scale-105 hover:rotate-[5deg] lg:block xl:h-[220px]'
-						overlayType='none'
+						className='magazine-image absolute bottom-[-15%] left-[-8%] hidden h-[180px] w-[45%] rotate-[8deg] border-8 border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hover:scale-105 hover:rotate-[5deg] lg:flex xl:h-[220px]'
+						glintOnHover
 					/>
 				</div>
 			</div>

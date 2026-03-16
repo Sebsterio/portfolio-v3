@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ProjectImage } from '../../../../components/ProjectImage';
 
 interface MagazineSectionCProps {
 	sectionId: string;
@@ -40,9 +40,11 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 
 				{/* Image Column */}
 				<div className='pt-4 md:pt-8 lg:mr-0 xl:mr-12'>
-					<ProjectImage_Placeholder
+					<ProjectImage
 						gradient='bg-gradient-tt'
-						className='h-[250px] w-full shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_50px_rgba(79,172,254,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[320px] lg:h-[380px]'
+						className='magazine-image h-[250px] w-full shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_50px_rgba(79,172,254,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[320px] lg:h-[380px]'
+						overlayType='light'
+						glintOnHover
 					/>
 				</div>
 			</div>

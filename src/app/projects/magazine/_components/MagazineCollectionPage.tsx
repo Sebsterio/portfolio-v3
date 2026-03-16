@@ -33,7 +33,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-32'>
-				{projects.map(({ id, company, role, roleDetail, label, location, ...project }, index) =>
+				{projects.map(({ id, company, role, roleDetail, label, location, images, ...project }, index) =>
 					id === 'bounce' ? (
 						<MagazineSectionA
 							{...project}
@@ -43,6 +43,8 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 							megaTitle='BOUNCE'
 							title={company}
 							subtitle={`${role} · ${label}`}
+							imageMain={images.promo[0]}
+							imageAside={images.promo[1]}
 						/>
 					) : id === 'meco' ? (
 						<MagazineSectionB

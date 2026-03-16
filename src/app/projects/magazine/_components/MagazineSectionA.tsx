@@ -1,8 +1,9 @@
 'use client';
 
-import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
+import { ProjectImage } from '../../../../components/ProjectImage';
 import { ParsedText } from '@/lib/parser/ParsedText';
 import { ProjectTags } from '@/components/ProjectTags';
+import { cn } from '@/lib/utils';
 
 interface MagazineSectionAProps {
 	sectionId: string;
@@ -12,9 +13,21 @@ interface MagazineSectionAProps {
 	subtitle: string;
 	description: string[];
 	tags: string[];
+	imageMain: string;
+	imageAside: string;
 }
 
-export function MagazineSectionA({ sectionId, number, megaTitle, title, subtitle, description, tags }: MagazineSectionAProps) {
+export function MagazineSectionA({
+	sectionId,
+	number,
+	megaTitle,
+	title,
+	subtitle,
+	description,
+	tags,
+	imageMain,
+	imageAside,
+}: MagazineSectionAProps) {
 	return (
 		<section id={sectionId} className='group relative grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 xl:gap-20'>
 			{/* Left Column */}
@@ -31,18 +44,31 @@ export function MagazineSectionA({ sectionId, number, megaTitle, title, subtitle
 
 				{/* Images */}
 				<div className='relative z-20'>
-					<ProjectImage_Placeholder
+					<ProjectImage
+						src={imageMain}
 						gradient='bg-gradient-bounce-main'
-						className='h-[300px] w-full shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_60px_rgba(102,126,234,0.2)] hover:-translate-y-1 hover:scale-[1.02] md:h-[350px] lg:h-[450px]'
+						className={cn('magazine-image', [
+							'h-[300px] w-full md:h-[350px] lg:h-[450px]',
+							'shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_60px_rgba(102,126,234,0.2)]',
+							'hover:-translate-y-1 hover:scale-[1.02]',
+						])}
+						overlayType='light'
+						glintOnHover
 					/>
 
-					<ProjectImage_Placeholder
+					<ProjectImage
+						src={imageAside}
 						gradient='bg-gradient-bounce-small'
-						className='order-3 mt-8 ml-0 h-[150px] w-3/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 md:h-[180px] md:w-3/5 lg:order-0 lg:ml-[25%] lg:h-[200px] lg:w-3/5'
-						overlayType='none'
+						className={cn('magazine-image', [
+							'order-3 mt-8 ml-0 h-[150px] w-3/5',
+							'md:h-[180px] md:w-3/5',
+							'lg:order-0 lg:ml-[25%] lg:h-[200px] lg:w-3/5',
+							'shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2',
+						])}
+						glintOnHover
 					>
 						<div className='absolute top-0 right-0 h-full w-1/2 bg-linear-to-l from-white/20 to-transparent' />
-					</ProjectImage_Placeholder>
+					</ProjectImage>
 				</div>
 			</div>
 

@@ -63,8 +63,6 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 						className={cn('h-full w-full rounded-lg gradient-primary-soft', [
 							'transition-duration-300 opacity-75 transition-opacity group-hover:opacity-100',
 						])}
-						fallbackClass='text-white/50 text-sm font-semibold'
-						fallbackText='Screenshot Unavailable'
 					/>
 
 					<div className='space-y-4'>
