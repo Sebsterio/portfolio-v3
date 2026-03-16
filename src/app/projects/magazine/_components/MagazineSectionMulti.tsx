@@ -10,6 +10,7 @@ interface MagazineSectionMultiProps {
 		sectionId: string;
 		title: string;
 		description: string[];
+		image: string;
 	}>;
 }
 
@@ -35,13 +36,10 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 							id={sectionId}
 							className={`grid gap-6 md:grid-cols-1 lg:grid-cols-1 ${
 								index === 0 ? 'mb-10 border-b border-accent-cyan/15 pb-10' : ''
-							} transition-all duration-400 hover:border-accent-cyan/40 hover:pl-4`}
+							} transition-transform duration-400 hover:translate-x-4 hover:border-accent-cyan/40`}
 						>
 							<div>
-								<h4 className='mb-3 font-urbanist text-2xl font-bold text-accent-cyan transition-transform duration-300 hover:translate-x-1 md:text-3xl'>
-									{title}
-								</h4>
-
+								<h4 className='mb-3 font-urbanist text-2xl font-bold text-accent-cyan md:text-3xl'>{title}</h4>
 								<p className='text-secondary text-sm leading-relaxed md:text-base'>{description}</p>
 							</div>
 
@@ -63,6 +61,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 				<div className='relative'>
 					{/* Main Image */}
 					<ProjectImage
+						src={entries[0].image}
 						gradient='bg-gradient-freelance-main'
 						className='magazine-image h-[300px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] hover:scale-[1.02] hover:rotate-1 md:h-[400px] lg:h-[500px]'
 						overlayType='light'
@@ -73,6 +72,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 
 					{/* Small Polaroid Image - desktop only */}
 					<ProjectImage
+						src={entries[1].image}
 						gradient='bg-gradient-freelance-small'
 						className='magazine-image absolute bottom-[-15%] left-[-8%] hidden h-[180px] w-[45%] rotate-[8deg] border-8 border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] hover:scale-105 hover:rotate-[5deg] lg:flex xl:h-[220px]'
 						glintOnHover

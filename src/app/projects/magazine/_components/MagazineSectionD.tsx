@@ -8,9 +8,11 @@ interface MagazineSectionDProps {
 	title: string;
 	subtitle: string;
 	description: string[];
+	imageMain: string;
+	imageAside: string;
 }
 
-export function MagazineSectionD({ sectionId, number, title, subtitle, description }: MagazineSectionDProps) {
+export function MagazineSectionD({ sectionId, number, title, subtitle, description, imageMain, imageAside }: MagazineSectionDProps) {
 	return (
 		<section id={sectionId} className='group relative -mt-8'>
 			{/* Decorative Number */}
@@ -20,6 +22,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 
 			{/* Large Image */}
 			<ProjectImage
+				src={imageMain}
 				gradient='bg-gradient-ebit-main'
 				className='magazine-image mb-8 h-[250px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(106,17,203,0.2)] hover:scale-[1.01] md:h-[320px] lg:mb-8 lg:h-[380px]'
 				overlayType='light'
@@ -48,6 +51,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 
 				{/* Small Image */}
 				<ProjectImage
+					src={imageAside}
 					gradient='bg-gradient-ebit-small'
 					className='magazine-image h-[200px] w-[70%] w-full -translate-y-12 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:scale-[1.02] md:h-[250px] lg:mt-0 lg:h-[350px] lg:w-full lg:-translate-x-12 lg:translate-y-8 lg:hover:-translate-x-14 lg:hover:translate-y-6'
 					glintOnHover

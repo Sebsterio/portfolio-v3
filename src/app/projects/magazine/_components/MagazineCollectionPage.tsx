@@ -65,6 +65,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 							number={getNumberProp(index)}
 							title={company}
 							subTitle={`${role} · ${label}`}
+							imageMain={images.promo[0]}
 						/>
 					) : id === 'ebit' ? (
 						<MagazineSectionD
@@ -74,6 +75,8 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 							number={getNumberProp(index)}
 							title={company}
 							subtitle={`${role} · ${label}`}
+							imageMain={images.promo[0]}
+							imageAside={images.promo[1]}
 						/>
 					) : id === 'ao' ? (
 						<MagazineSectionE
@@ -85,6 +88,8 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 							preTitle={label}
 							title={company}
 							subtitle={`${role} · ${roleDetail}`}
+							imageMain={images.promo[0]}
+							imageAside={images.promo[1]}
 						/>
 					) : null,
 				)}
@@ -92,10 +97,11 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 					number={`${getNumberProp(freelanceIndex)} — FREELANCE`}
 					title='Freelance Projects'
 					subtitle='Web Developer & Designer · Various Clients'
-					entries={freelanceProjects.map(({ id, company, description }) => ({
+					entries={freelanceProjects.map(({ id, company, description, images }) => ({
 						sectionId: id,
 						title: company,
 						description,
+						image: images.promo[0],
 					}))}
 				/>
 			</div>
