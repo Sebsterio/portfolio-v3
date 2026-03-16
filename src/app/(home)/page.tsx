@@ -25,10 +25,10 @@ export default function HomePage({}: HomePageProps) {
 					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
 					<div className='flex flex-wrap gap-5'>
-						<Button href={buttons.primary.href} variant='primary'>
+						<Button href={buttons.primary.href} variant='cta' size='lg'>
 							{buttons.primary.text}
 						</Button>
-						<Button href={buttons.secondary.href} variant='secondary'>
+						<Button href={buttons.secondary.href} variant='secondary' size='lg'>
 							{buttons.secondary.text}
 						</Button>
 					</div>

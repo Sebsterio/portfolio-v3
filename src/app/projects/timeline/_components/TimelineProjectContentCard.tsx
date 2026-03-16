@@ -4,6 +4,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { GlassSurface } from '@/components/ui/GlassSurface';
 import { InlineList } from '@/components/InlineList';
+import { ExternalLinkButton } from '@/components/Button';
 
 export const ProjectContentCard = ({ project, className }: { project: Project; className?: string }) => (
 	<GlassSurface className={cn('p-8 md:p-12', className)} rounded={1}>
@@ -58,11 +59,10 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 
 			<ProjectTags size='lg' tags={project.tags} />
 
-			{/* TODO: extract component or styles */}
 			{project.link && (
-				<a href={project.link} target='_blank' rel='noopener noreferrer' className={cn('button-primary-inline-lg')}>
+				<ExternalLinkButton href={project.link} size='sm'>
 					Visit Project →
-				</a>
+				</ExternalLinkButton>
 			)}
 		</div>
 	</GlassSurface>

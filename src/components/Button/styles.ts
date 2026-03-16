@@ -1,17 +1,33 @@
 import { cn } from '@/lib/utils';
-import { ButtonVariant } from './types';
 
-export const CLASSES = {
-	common: cn('rounded-full border-2 px-6 py-3 sm:px-8 sm:py-4 md:px-12 md:py-5', [
-		'interactive-lift font-dm-sans text-[14px] font-bold sm:text-[15px]',
-	]),
-	primary: cn('shadow-accent-md hover:shadow-accent-lg border-transparent gradient-primary text-white'),
-	secondary: cn(
-		'border-chrome-silver/15 bg-white/3 text-chrome-silver backdrop-blur-[10px]',
-		'hover:border-chrome-silver/40 hover:bg-white/8',
+export type ButtonVariant = 'cta' | 'primary' | 'secondary';
+export type ButtonSize = 'sm' | 'lg';
+
+const CLASSES = {
+	base: cn(
+		'inline-flex items-center gap-2 rounded-full border-2',
+		'font-dm-sans font-bold',
+		'transition-[transform,colors] duration-300', //
 	),
-};
+	sizes: {
+		sm: 'px-6	py-3 text-xs	md:px-8	 md:py-3 md:text-base',
+		lg: 'px-8	py-4 text-sm	md:px-12 md:py-4 md:text-lg',
+	},
+	variants: {
+		cta: cn(
+			'border-transparent gradient-primary text-white',
+			'shadow-accent-md hover:shadow-accent-lg', //
+		),
+		primary: cn(
+			'border-transparent gradient-primary text-white',
+			'glow-primary-soft hover:scale-105', //
+		),
+		secondary: cn(
+			'border-chrome-silver/15 bg-white/3 text-chrome-silver backdrop-blur-[10px]',
+			'hover:border-chrome-silver/40 hover:bg-white/8',
+		),
+	},
+} as const;
 
-export const getButtonClasses = (variant: ButtonVariant, className?: string) => {
-	return cn(CLASSES.common, CLASSES[variant], className);
-};
+export const getButtonClasses = (variant: ButtonVariant = 'primary', size: ButtonSize = 'sm', className?: string) =>
+	cn(CLASSES.base, CLASSES.sizes[size], CLASSES.variants[variant], className);

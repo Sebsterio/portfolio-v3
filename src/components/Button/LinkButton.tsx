@@ -2,19 +2,20 @@
 
 import { forwardRef } from 'react';
 import { TransitionLink } from '@/lib/transitions/components/TransitionLink';
-import type { ButtonVariant } from './types';
-import { getButtonClasses } from './styles';
+import { getButtonClasses, ButtonVariant, ButtonSize } from './styles';
 
 type LinkButtonProps = {
 	variant?: ButtonVariant;
+	size?: ButtonSize;
 	className?: string;
 	children: React.ReactNode;
 } & React.ComponentProps<typeof TransitionLink>;
 
-export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({ variant = 'primary', className, ...props }, ref) => {
-	return <TransitionLink ref={ref} className={getButtonClasses(variant, className)} {...props} />;
-});
-
+export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
+	({ variant = 'primary', size = 'sm', className, ...props }, ref) => (
+		<TransitionLink ref={ref} className={getButtonClasses(variant, size, className)} {...props} />
+	),
+);
 LinkButton.displayName = 'LinkButton';
 
 export default LinkButton;
