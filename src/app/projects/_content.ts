@@ -38,9 +38,9 @@ export const projects: Project[] = [
 		images: {
 			logo: '',
 			thumbnail: '/assets/projects/bounce/comp-sm-3.png',
-			main: '/assets/projects/bounce/marketing 1.jpg',
+			main: '/assets/projects/bounce/comp-md.png',
 			promo: [
-				'/assets/projects/bounce/comp.png',
+				'/assets/projects/bounce/comp-1.png',
 				'/assets/projects/bounce/marketing.webp',
 				'', //
 			],
