@@ -4,14 +4,14 @@ import { ProjectImage } from '../../../../components/ProjectImage';
 
 interface MagazineSectionCProps {
 	sectionId: string;
-
 	number: string;
 	title: string;
 	subTitle: string;
 	description: string[];
+	imageMain: string;
 }
 
-export function MagazineSectionC({ sectionId, number, title, subTitle, description }: MagazineSectionCProps) {
+export function MagazineSectionC({ sectionId, number, title, subTitle, description, imageMain }: MagazineSectionCProps) {
 	return (
 		<section id={sectionId} className='group relative -mt-12 ml-0 lg:ml-[5%]'>
 			<div className='grid items-start gap-8 md:gap-12 lg:grid-cols-2'>
@@ -41,6 +41,7 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 				{/* Image Column */}
 				<div className='pt-4 md:pt-8 lg:mr-0 xl:mr-12'>
 					<ProjectImage
+						src={imageMain}
 						gradient='bg-gradient-tt'
 						className='magazine-image h-[250px] w-full shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_50px_rgba(79,172,254,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[320px] lg:h-[380px]'
 						overlayType='light'

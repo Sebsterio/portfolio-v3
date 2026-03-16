@@ -38,8 +38,12 @@ export const projects: Project[] = [
 		images: {
 			logo: '',
 			thumbnail: '/assets/projects/bounce/comp-sm-3.png',
-			main: '/assets/projects/bounce/marketing.webp',
-			promo: ['/assets/projects/bounce/comp.png', '', ''],
+			main: '/assets/projects/bounce/marketing 1.jpg',
+			promo: [
+				'/assets/projects/bounce/comp.png',
+				'/assets/projects/bounce/marketing.webp',
+				'', //
+			],
 			screens: [
 				'/assets/projects/bounce/map 2.jpg',
 				'/assets/projects/bounce/mobile screen device.jpg',
@@ -159,7 +163,11 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
 			main: '/assets/projects/ebit/comp-md.png',
-			promo: ['/assets/projects/ebit/comp.png', '', ''],
+			promo: [
+				'/assets/projects/ebit/comp.png',
+				'/assets/projects/ebit/comp.png',
+				'', //
+			],
 			screens: [
 				'/assets/projects/ebit/tokensite-home-page.webp',
 				'/assets/projects/ebit/tokensite-portfolio-spotlight.webp',
@@ -201,7 +209,11 @@ export const projects: Project[] = [
 			logo: '',
 			thumbnail: '/assets/projects/ao/comp-sm.png',
 			main: '/assets/projects/ao/comp-md.png',
-			promo: ['/assets/projects/ao/comp.png', '', ''],
+			promo: [
+				'/assets/projects/ao/comp.png',
+				'/assets/projects/ao/comp-sm.png',
+				'', //
+			],
 			screens: [
 				'/assets/projects/ao/after-desktop.png',
 				'/assets/projects/ao/journey-mobile.gif',

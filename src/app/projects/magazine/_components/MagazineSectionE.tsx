@@ -10,9 +10,21 @@ interface MagazineSectionEProps {
 	title: string;
 	subtitle: string;
 	description: string[];
+	imageMain: string;
+	imageAside: string;
 }
 
-export function MagazineSectionE({ sectionId, number, megaTitle, preTitle, title, subtitle, description }: MagazineSectionEProps) {
+export function MagazineSectionE({
+	sectionId,
+	number,
+	megaTitle,
+	preTitle,
+	title,
+	subtitle,
+	description,
+	imageMain,
+	imageAside,
+}: MagazineSectionEProps) {
 	return (
 		<section id={sectionId} className='group relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%]'>
 			{/* Decorative Mega Title */}
@@ -30,6 +42,7 @@ export function MagazineSectionE({ sectionId, number, megaTitle, preTitle, title
 				{/* Images Column */}
 				<div className='flex flex-col gap-8'>
 					<ProjectImage
+						src={imageMain}
 						gradient='bg-gradient-ao-main'
 						className='magazine-image h-[200px] w-full shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(240,147,251,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[280px] lg:h-[300px]'
 						overlayType='dark'
@@ -37,6 +50,7 @@ export function MagazineSectionE({ sectionId, number, megaTitle, preTitle, title
 					/>
 
 					<ProjectImage
+						src={imageAside}
 						gradient='bg-gradient-ao-small'
 						className='magazine-image order-3 ml-auto h-[150px] w-3/4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 md:h-[200px] lg:order-0 lg:h-[220px]'
 						glintOnHover
