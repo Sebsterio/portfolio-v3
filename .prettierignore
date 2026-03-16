@@ -1,1 +1,7 @@
+# assets
+public/**/*.svg
+public/**/*.png
+public/**/*.jpg
+
+# --- TEMP --- #
 **/*.css

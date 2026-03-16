@@ -6,8 +6,6 @@
 # next.js
 /.next/
 /out/
-
-# production
 /build
 
 # debug
@@ -25,6 +23,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# system
+.DS_Store
+Thumbs.db
 
 # Playwright
 /blob-report/
