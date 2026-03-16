@@ -149,3 +149,50 @@
   --animate-quantum-shape-float:          shapeFloat 8s ease-in-out infinite;
 
 }
+
+/* ================================================
+	 Keyframes
+	 ================================================ */
+
+@keyframes shineSweep {
+	from { transform: translateX(-100%); }
+	to   { transform: translateX(100%); }
+}
+
+@keyframes gradientShift {
+	0%, 100% { background-position: 0% 50%; }
+	50%      { background-position: 100% 50%; }
+}
+
+@keyframes liquidMove {
+	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+	50%      { transform: translate(20px, -20px) scale(1.05); opacity: 1; }
+}
+
+@keyframes orbFloat {
+	0%, 100% { transform: translate(0, 0) scale(1); }
+	33%      { transform: translate(40px, -40px) scale(1.1); }
+	66%      { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+@keyframes statusPulse {
+	0%, 100% { transform: scale(1); opacity: 1; }
+	50%      { transform: scale(1.5); opacity: 0.5; }
+}
+
+@keyframes gridPerspective {
+	0%, 100% { transform: rotateX(60deg) scale(2) translateZ(0); opacity: 0.3; }
+	50%      { transform: rotateX(60deg) scale(2) translateZ(100px); opacity: 0.5; }
+}
+
+@keyframes quantumFloat {
+	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+	25%      { transform: translate(100px, -100px) scale(1.5); opacity: 0.8; }
+	50%      { transform: translate(-50px, -200px) scale(0.8); opacity: 0.5; }
+	75%      { transform: translate(-100px, -100px) scale(1.2); opacity: 0.6; }
+}
+
+@keyframes shapeFloat {
+	0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+	50%      { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+}
