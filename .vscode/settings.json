@@ -1,19 +1,19 @@
 {
-	"typescript.tsdk": "node_modules\\typescript\\lib",
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
-	"tailwindCSS.experimental.classRegex": [
-		["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-		["cn\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-	],
-	"terminal.integrated.defaultProfile.windows": "Git Bash",
-	"terminal.integrated.profiles.windows": {
-		"Git Bash": {
-			"source": "Git Bash",
-			"icon": "terminal-git-bash",
-			"path": "C:\\Program Files\\Git\\bin\\bash.exe",
-			"args": ["--rcfile", "${workspaceFolder}/scripts/bashrc.sh", "-i"]
-		}
-	}
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.profiles.windows": {
+    "Git Bash": {
+      "source": "Git Bash",
+      "icon": "terminal-git-bash",
+      "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+      "args": ["--rcfile", "${workspaceFolder}/scripts/bashrc.sh", "-i"]
+    }
+  }
 }
