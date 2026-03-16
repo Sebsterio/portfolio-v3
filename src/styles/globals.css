@@ -10,8 +10,9 @@
 @import './system/typography.css';
 @import './system/effects.css';
 @import './system/surfaces.css';
-@import './system/motion.css';
+@import './system/decorative.css';
 @import './system/layout.css';
+@import './system/motion.css';
 
 @import './components.css'; 
 @import './utilities.css'; 
