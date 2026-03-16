@@ -1,7 +1,7 @@
 export function QuantumGridBg() {
 	return (
 		<div
-			className='absolute inset-0 opacity-20 animate-quantum-grid-perspective'
+			className='absolute inset-0 animate-quantum-grid-perspective opacity-20'
 			style={{
 				backgroundImage: `
             linear-gradient(rgba(160, 160, 160, 0.08) 1px, transparent 1px),

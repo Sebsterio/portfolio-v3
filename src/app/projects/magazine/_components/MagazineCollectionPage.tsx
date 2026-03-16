@@ -9,11 +9,11 @@ import { getProjectAnchorId } from '../../_lib';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
-		<div className='deco-circle w-35 h-35 top-[10%] right-[8%]' />
-		<div className='deco-circle w-25 h-25 top-[48%] left-[3%]' />
-		<div className='deco-circle w-30 h-30 bottom-[18%] right-[15%]' />
+		<div className='deco-circle top-[10%] right-[8%] h-35 w-35' />
+		<div className='deco-circle top-[48%] left-[3%] h-25 w-25' />
+		<div className='deco-circle right-[15%] bottom-[18%] h-30 w-30' />
 		<div className='deco-line top-[26%] left-0 w-[40%]' />
-		<div className='deco-line bottom-[32%] right-0 w-[35%]' />
+		<div className='deco-line right-0 bottom-[32%] w-[35%]' />
 		<div className='deco-line top-[60%] left-[20%] w-[25%] rotate-15' />
 	</>
 );
@@ -29,7 +29,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 	const freelanceProjects = projects.filter((p) => p.freelance);
 
 	return (
-		<div className='vt-m-page relative pt-20'>
+		<div className='relative pt-20 vt-m-page'>
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-32'>

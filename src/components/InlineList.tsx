@@ -43,4 +43,3 @@ export const InlineList = <T extends ElementType = typeof Fragment>({
 const Div = (props: InlineListProps<'div'>) => <InlineList as='div' {...props} />;
 
 InlineList.Div = Div;
-

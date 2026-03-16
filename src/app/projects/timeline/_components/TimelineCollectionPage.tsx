@@ -19,7 +19,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	return (
 		<div className='w-full space-y-8'>
 			{/* Desktop Wide (horizontal dates) */}
-			<div className='vt-t-list hidden xl:block relative w-full'>
+			<div className='relative hidden w-full vt-t-list xl:block'>
 				<TimelineLine position='right' />
 
 				<div className='space-y-12'>
@@ -27,27 +27,25 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative flex items-start gap-8'>
 							{/* Dot and Date */}
 							<div className='relative'>
-								<div className='w-32 shrink-0 flex items-start justify-end pt-8'>
-									<div className='text-sm font-semibold whitespace-nowrap pr-4'>
+								<div className='flex w-32 shrink-0 items-start justify-end pt-8'>
+									<div className='pr-4 text-sm font-semibold whitespace-nowrap'>
 										<span className='text-accent-cyan'>{project.period}</span>
 									</div>
 								</div>
-								<TimelineDot active className='z-10 absolute top-8 -right-px translate-x-1/2' />
+								<TimelineDot active className='absolute top-8 -right-px z-10 translate-x-1/2' />
 							</div>
 
 							{/* Card */}
 							<GlassCard
 								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
-								className={cn('flex-1 text-left p-8 hover:translate-x-2')}
+								className={cn('flex-1 p-8 text-left hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='cluster-sm text-sm text-subtle'>
-										{[project.location, project.role]}
-									</InlineList.Div>
+									<InlineList.Div className='cluster-sm text-subtle text-sm'>{[project.location, project.role]}</InlineList.Div>
 
 									<h3 className='heading-1 text-primary'>{project.title}</h3>
-									<p className='text-lg text-secondary'>{project.company}</p>
+									<p className='text-secondary text-lg'>{project.company}</p>
 									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
@@ -59,7 +57,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow (rotated dates) */}
-			<div className='vt-t-list hidden md:block xl:hidden relative w-full'>
+			<div className='relative hidden w-full vt-t-list md:block xl:hidden'>
 				<TimelineLine className='left-8' />
 
 				<div className='space-y-12'>
@@ -67,27 +65,25 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative flex gap-8'>
 							{/* Dot and Date (Rotated) */}
 							<div className='relative w-8 self-stretch'>
-								<div className='absolute left-2 top-1/2 -translate-y-1/2'>
+								<div className='absolute top-1/2 left-2 -translate-y-1/2'>
 									<div className='origin-center -translate-x-1/2 -rotate-90 text-sm font-semibold tracking-wider whitespace-nowrap'>
 										<span className='text-accent-cyan'>{project.period}</span>
 									</div>
 								</div>
-								<TimelineDot active className='z-10 absolute top-8 right-[-3px] translate-x-1/2' />
+								<TimelineDot active className='absolute top-8 right-[-3px] z-10 translate-x-1/2' />
 							</div>
 
 							{/* Card */}
 							<GlassCard
 								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
-								className={cn('w-full text-left p-8 hover:translate-x-2')}
+								className={cn('w-full p-8 text-left hover:translate-x-2')}
 							>
 								<div className='relative space-y-4'>
-									<InlineList.Div className='cluster-sm text-sm text-subtle'>
-										{[project.location, project.role]}
-									</InlineList.Div>
+									<InlineList.Div className='cluster-sm text-subtle text-sm'>{[project.location, project.role]}</InlineList.Div>
 
 									<h3 className='heading-1 text-primary'>{project.title}</h3>
-									<p className='text-lg text-secondary'>{project.company}</p>
+									<p className='text-secondary text-lg'>{project.company}</p>
 									<p className='text-muted leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={4} className='pt-2' />
@@ -99,16 +95,16 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Mobile */}
-			<div className={cn('md:hidden relative')}>
+			<div className={cn('relative md:hidden')}>
 				<TimelineLine position='left' />
 
 				<div className='space-y-6'>
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							{/* Dot and Date */}
-							<div className='flex items-center gap-3 mb-3'>
+							<div className='mb-3 flex items-center gap-3'>
 								<TimelineDot active />
-								<div className='text-xs font-semibold translate-y-px'>
+								<div className='translate-y-px text-xs font-semibold'>
 									<span className='text-accent-cyan'>{project.period}</span>
 								</div>
 							</div>
@@ -118,7 +114,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								onClick={() => navigate(`/projects/timeline/${project.slug}`, { scroll: false })}
 								withAccent
 								accentPosition='top-right'
-								className={cn('w-full text-left p-6')}
+								className={cn('w-full p-6 text-left')}
 								style={{
 									viewTransitionName: `project-card-${project.id}`,
 								}}
@@ -126,7 +122,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 								<div className='relative space-y-3'>
 									<h3 className='heading-2 text-primary'>{project.title}</h3>
 									<p className='text-tertiary'>{project.company}</p>
-									<p className='text-sm text-muted leading-relaxed'>{project.summary}</p>
+									<p className='text-muted text-sm leading-relaxed'>{project.summary}</p>
 
 									<ProjectTags tags={project.tags} limit={3} size='sm' />
 								</div>

@@ -29,17 +29,17 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 				<nav
 					className={cn(
 						'relative z-50 rounded-full',
-						'-mx-2 sm:mx-0 -mt-2 sm:mt-0',
-						'px-6 md:px-10 py-3 md:py-5 ',
-						'flex justify-between items-center',
+						'-mx-2 -mt-2 sm:mx-0 sm:mt-0',
+						'px-6 py-3 md:px-10 md:py-5',
+						'flex items-center justify-between',
 						'surface-glass-2 backdrop-glass-1 shadow-glass-0',
 						'transition-opacity duration-300',
 						isMenuOpen && 'opacity-0.2 pointer-events-none',
-						className
+						className,
 					)}
 				>
 					{/* Logo */}
-					<Link href='/' className='font-urbanist text-xl md:text-2xl font-extrabold tracking-tight'>
+					<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight md:text-2xl'>
 						<span
 							className='bg-clip-text text-transparent'
 							style={{
@@ -51,7 +51,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 					</Link>
 
 					{/* Desktop Navigation */}
-					<ul className='hidden md:flex gap-12 list-none'>
+					<ul className='hidden list-none gap-12 md:flex'>
 						{navItems.map((item) => {
 							const isCurrent = getIsCurrentPage(item.href);
 							return (
@@ -61,14 +61,14 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 										className={cn(
 											'group relative text-[13px] font-semibold tracking-wider uppercase',
 											isCurrent
-												? 'text-chrome-silver pointer-events-none'
-												: 'text-muted hover:text-chrome-silver transition-all duration-300'
+												? 'pointer-events-none text-chrome-silver'
+												: 'text-muted transition-all duration-300 hover:text-chrome-silver',
 										)}
 									>
 										{item.label}
 										{!isCurrent && (
 											<span
-												className='absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-[2px] transition-all duration-300 group-hover:w-full'
+												className='absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full'
 												style={{
 													background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
 													boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
@@ -83,7 +83,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 				</nav>
 
 				{/* Hamburger (always visible, above overlay) */}
-				<div className='absolute right-3 top-1/2 -translate-y-1/2 z-70 md:hidden overflow-visible'>
+				<div className='absolute top-1/2 right-3 z-70 -translate-y-1/2 overflow-visible md:hidden'>
 					<HamburgerButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen((v) => !v)} />
 				</div>
 			</div>

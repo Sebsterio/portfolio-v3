@@ -18,7 +18,7 @@ export const useTransitionRouter = () => {
 			await baseNavigate(href, {
 				...config,
 				skip: config?.instant,
-				scroll: config?.scrollTo ? false : config?.scroll ?? DEFAULT_IS_SCROLL, // Our `scrollTo` overrides Next.js `scroll`
+				scroll: config?.scrollTo ? false : (config?.scroll ?? DEFAULT_IS_SCROLL), // Our `scrollTo` overrides Next.js `scroll`
 			});
 
 			if (config?.scrollTo) {
@@ -26,7 +26,7 @@ export const useTransitionRouter = () => {
 				if (element) element.scrollIntoView({ behavior: 'smooth' });
 			}
 		},
-		[baseNavigate, prefetch]
+		[baseNavigate, prefetch],
 	);
 
 	return { navigate, back, forward, replace, prefetch, state };

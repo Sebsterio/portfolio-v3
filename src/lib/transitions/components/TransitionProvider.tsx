@@ -84,7 +84,7 @@ const useTransition = (setIsTransitioning: (value: boolean) => void) => {
 			await executeTransition(action, navigationComplete, config?.skip);
 			setIsTransitioning(false);
 		},
-		[setIsTransitioning]
+		[setIsTransitioning],
 	);
 
 	return { transition, signalReady };
@@ -111,7 +111,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 			devWarn(`[Navigation] Blocked: Already on ${href}`);
 			return Promise.resolve();
 		},
-		[transition]
+		[transition],
 	);
 
 	const methods = useMemo(
@@ -128,7 +128,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 
 			prefetch: (href: string) => router.prefetch(href),
 		}),
-		[router, navigate, transition]
+		[router, navigate, transition],
 	);
 
 	return (

@@ -23,12 +23,12 @@ export default function AboutPage({}: AboutPageProps) {
 	return (
 		<div
 			className={cn(
-				'w-full grid grid-cols-1 lg:grid-cols-[1fr_400px]',
+				'grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]',
 				'gap-10 md:gap-12 lg:gap-16', //
 			)}
 		>
 			{/* Main Content Column */}
-			<div className='vt-left space-y-10 md:space-y-12'>
+			<div className='space-y-10 vt-left md:space-y-12'>
 				<Title variant='page' className='mb-4 md:mb-6'>
 					{copy.title}
 				</Title>
@@ -57,7 +57,7 @@ export default function AboutPage({}: AboutPageProps) {
 				</GlassCard>
 
 				<GlassCard title={copy.sectionTitles.techStack}>
-					<div className='space-y-6 md:space-y-8 pb-2 md:pb-4'>
+					<div className='space-y-6 pb-2 md:space-y-8 md:pb-4'>
 						{techCategories.map(({ category, techs }) => (
 							<TechCategoryGroup key={category} label={category}>
 								{techs.map((t) => (

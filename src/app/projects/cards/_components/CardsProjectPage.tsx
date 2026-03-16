@@ -157,7 +157,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				<div className='space-y-3 md:space-y-4'>
 					<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
 
-					<h2 className='font-urbanist text-3xl font-bold leading-tight text-chrome-silver md:text-5xl'>{project.title}</h2>
+					<h2 className='font-urbanist text-3xl leading-tight font-bold text-chrome-silver md:text-5xl'>{project.title}</h2>
 
 					<p className='text-xl text-chrome-silver/80 md:text-2xl'>
 						<span>{project.company}</span>
@@ -175,7 +175,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				/>
 
 				<div className='space-y-4 pb-2'>
-					<p className='text-base leading-relaxed text-tertiary md:text-xl'>{project.summary}</p>
+					<p className='text-tertiary text-base leading-relaxed md:text-xl'>{project.summary}</p>
 					<ProjectTags tags={project.tags} />
 					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>

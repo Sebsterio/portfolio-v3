@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 			<body
 				className={cn(
 					[urbanist.variable, dmSans.variable, 'antialiased'],
-					'relative min-h-screen flex flex-col',
+					'relative flex min-h-screen flex-col',
 					'gap-16 md:gap-24 lg:gap-28',
 					'px-4 sm:px-6 md:px-8',
 					'pt-6 md:pt-10',
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 				)}
 			>
 				<TransitionProvider>
-					<div className='fixed inset-0 pointer-events-none overflow-hidden'>
+					<div className='pointer-events-none fixed inset-0 overflow-hidden'>
 						<AppBackground />
 					</div>
 
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 						<AppHeader logo='PORTFOLIO' navItems={navItems} />
 					</header>
 
-					<main className='relative flex-1 content-container sm:px-5 md:px-7 flex flex-col'>
+					<main className='relative content-container flex flex-1 flex-col sm:px-5 md:px-7'>
 						<>{children}</>
 					</main>
 				</TransitionProvider>

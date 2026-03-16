@@ -8,17 +8,17 @@ type LabeledValueRowProps = {
 
 const CLASSES = {
 	row: cn(
-		'flex justify-between items-center',
+		'flex items-center justify-between',
 		'py-3 md:py-4',
-		'border-b border-chrome-light/10 last:border-b-0' //
+		'border-b border-chrome-light/10 last:border-b-0', //
 	),
 
 	label: cn(
-		'text-[11px] md:text-sm uppercase tracking-wider', //
-		'text-muted'
+		'text-[11px] tracking-wider uppercase md:text-sm', //
+		'text-muted',
 	),
 
-	value: cn('font-urbanist text-base md:text-lg font-bold gradient-text gradient-primary'),
+	value: cn('gradient-primary gradient-text font-urbanist text-base font-bold md:text-lg'),
 };
 
 export const LabeledValueRow = ({ label, value, className }: LabeledValueRowProps) => {

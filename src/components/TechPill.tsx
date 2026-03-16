@@ -7,16 +7,7 @@ type TechPillProps = {
 };
 
 export const TechPill = ({ children, className }: TechPillProps) => {
-	return (
-		<span
-			className={cn(
-				'tech-tag-muted',
-				className
-			)}
-		>
-			{children}
-		</span>
-	);
+	return <span className={cn('tech-tag-muted', className)}>{children}</span>;
 };
 
 export default TechPill;

@@ -32,8 +32,8 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</BackLink>
 
 			{/* Desktop */}
-			<div className='hidden lg:grid lg:grid-cols-[320px_1fr] gap-8 w-full'>
-				<aside className='vt-t-list relative'>
+			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
+				<aside className='relative vt-t-list'>
 					<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
 
 					<div className='space-y-3'>
@@ -49,7 +49,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</div>
 
 			{/* Mobile */}
-			<div className={cn('lg:hidden relative')}>
+			<div className={cn('relative lg:hidden')}>
 				<TimelineLine position='left' />
 
 				<div className='space-y-3'>
@@ -62,31 +62,31 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 									<div className={cn('space-y-4')}>
 										<div className='flex items-center gap-3'>
 											<TimelineDot active />
-											<div className='text-xs text-accent-cyan font-semibold'>{p.period}</div>
+											<div className='text-xs font-semibold text-accent-cyan'>{p.period}</div>
 										</div>
 
 										<GlassCard
 											withAccent
-											className='p-6 space-y-6 border-accent-blue/30'
+											className='space-y-6 border-accent-blue/30 p-6'
 											style={{ viewTransitionName: `project-card-${p.id}` }}
 										>
 											<div className='relative space-y-4'>
 												<div className='space-y-2'>
 													<h2 className='heading-1 text-primary'>{p.title}</h2>
-													<p className='text-lg text-secondary'>{p.company}</p>
-													<div className='text-sm text-muted'>{p.role}</div>
+													<p className='text-secondary text-lg'>{p.company}</p>
+													<div className='text-muted text-sm'>{p.role}</div>
 												</div>
 
 												<p className='text-secondary leading-relaxed'>{p.intro}</p>
 
 												<div className='space-y-3'>
 													<h3 className='heading-3-compact text-primary'>The Challenge</h3>
-													<p className='text-sm text-secondary leading-relaxed'>{p.challenge}</p>
+													<p className='text-secondary text-sm leading-relaxed'>{p.challenge}</p>
 												</div>
 
 												<div className='space-y-3'>
 													<h3 className='heading-3-compact text-primary'>The Solution</h3>
-													<p className='text-sm text-secondary leading-relaxed'>{p.solution}</p>
+													<p className='text-secondary text-sm leading-relaxed'>{p.solution}</p>
 												</div>
 
 												<div className='space-y-3'>
@@ -94,7 +94,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 													<ul className='space-y-2'>
 														{p.impact.map((item, i) => (
 															<li key={i} className='flex items-start gap-2 text-sm'>
-																<span className='text-accent-cyan mt-1'>→</span>
+																<span className='mt-1 text-accent-cyan'>→</span>
 																<span className='text-chrome-silver/80'>{item}</span>
 															</li>
 														))}
@@ -105,12 +105,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 												{/* TODO: extract component or styles */}
 												{p.link && (
-													<a
-														href={p.link}
-														target='_blank'
-														rel='noopener noreferrer'
-														className='button-primary-inline-sm'
-													>
+													<a href={p.link} target='_blank' rel='noopener noreferrer' className='button-primary-inline-sm'>
 														Visit Project →
 													</a>
 												)}
@@ -121,16 +116,16 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 									<button
 										onClick={() => handleProjectClick(p)}
 										className={cn(
-											'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300 hover:bg-white/3 border border-transparent',
+											'relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-white/3',
 										)}
 										style={{ viewTransitionName: `project-card-${p.id}` }}
 									>
-										<TimelineDot size='sm' className='absolute left-0 top-1/2 -translate-y-1/2' />
+										<TimelineDot size='sm' className='absolute top-1/2 left-0 -translate-y-1/2' />
 
 										<div className='space-y-1'>
 											<div className='ui-meta-accent'>{p.period}</div>
-											<div className='font-urbanist font-semibold text-sm text-muted'>{p.title}</div>
-											<div className='text-xs text-subtle'>{p.company}</div>
+											<div className='text-muted font-urbanist text-sm font-semibold'>{p.title}</div>
+											<div className='text-subtle text-xs'>{p.company}</div>
 										</div>
 									</button>
 								)}

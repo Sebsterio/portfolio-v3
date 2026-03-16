@@ -7,7 +7,7 @@ export function PaerticlesBg() {
 				<div
 					key={i}
 					className={cn(
-						'absolute w-[3px] h-[3px] rounded-full opacity-0 animate-quantum-float',
+						'absolute h-[3px] w-[3px] animate-quantum-float rounded-full opacity-0',
 						i % 3 === 0 ? 'bg-accent-cyan' : 'bg-chrome-mid',
 					)}
 					style={{
