@@ -1,8 +1,8 @@
 'use client';
 
-import { TechTags } from '@/components/TechTags';
 import { ProjectImage_Placeholder } from '../../../../components/ProjectImage';
 import { ParsedText } from '@/lib/parser/ParsedText';
+import { ProjectTags } from '@/components/ProjectTags';
 
 interface MagazineSectionAProps {
 	sectionId: string;
@@ -59,7 +59,7 @@ export function MagazineSectionA({ sectionId, number, megaTitle, title, subtitle
 					</p>
 				))}
 
-				<TechTags tags={tags} />
+				<ProjectTags className='mt-6 md:mt-8' variant='highlight' size='lg' tags={tags} />
 			</div>
 		</section>
 	);

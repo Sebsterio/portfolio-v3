@@ -176,7 +176,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 
 				<div className='space-y-4 pb-2'>
 					<p className='text-tertiary text-base leading-relaxed md:text-xl'>{project.summary}</p>
-					<ProjectTags tags={project.tags} />
+					<ProjectTags size='lg' tags={project.tags} />
 					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>
 			</div>

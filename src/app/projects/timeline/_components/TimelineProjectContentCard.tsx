@@ -59,7 +59,7 @@ export const ProjectContentCard = ({ project, className }: { project: Project; c
 				</ul>
 			</div>
 
-			<ProjectTags tags={project.tags} />
+			<ProjectTags size='lg' tags={project.tags} />
 
 			{/* TODO: extract component or styles */}
 			{project.link && (
