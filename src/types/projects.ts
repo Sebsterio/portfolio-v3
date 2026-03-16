@@ -18,8 +18,19 @@ export type Project = {
 	impact: string[];
 	label: string;
 	images: {
+		/** _Currently UNUSED_ */ // TODO: Timeline-list project image
+		logo: string;
+
+		/** _Currently UNUSED_ */
 		thumbnail: string;
+
+		/** Card-detail and Card-list project image */
 		main: string;
+
+		/** _Currently UNUSED_ */
+		promo: string;
+
+		/** Timeline-detail project images  */
 		screens: string[];
 	};
 	link?: string;
