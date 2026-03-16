@@ -15,7 +15,7 @@ const parseSegment = (
 	segment: string,
 	type: Exclude<MarkdownType, 'normal'>,
 	regex: RegExp,
-	overrides?: MarkdownOverrides
+	overrides?: MarkdownOverrides,
 ): ReactNode[] => {
 	const parts = segment.split(regex);
 
@@ -34,7 +34,7 @@ export const parseString = (text: string, overrides?: MarkdownOverrides): ReactN
 	const parsed = PATTERNS.reduce<ReactNode[]>( // Parse markdown types
 		(elements, { type, regex }) =>
 			elements.flatMap((segment) => (typeof segment === 'string' ? parseSegment(segment, type, regex, overrides) : segment)),
-		[text]
+		[text],
 	);
 
 	return parsed.map((node, index) => (typeof node === 'string' ? wrap(node, 'normal', overrides, `normal-${index}-${node}`) : node)); // Wrap remaining raw strings as "normal"

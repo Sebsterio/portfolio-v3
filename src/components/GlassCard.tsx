@@ -16,7 +16,7 @@ export function GlassCard({ title, children, className, style }: GlassCardProps)
 		<GlassSurface rounded={3} className={cn('p-8', className)} style={style}>
 			<div className='glass-anchor-reflection' />
 			<div className='relative z-10'>
-				<h3 className='mb-6 heading-3-compact text-primary'>{title}</h3>
+				<h3 className='heading-3-compact text-primary mb-6'>{title}</h3>
 				{children}
 			</div>
 		</GlassSurface>

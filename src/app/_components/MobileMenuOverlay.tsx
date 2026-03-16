@@ -22,11 +22,11 @@ export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverl
 				'fixed inset-0 z-50',
 				'bg-black/80 backdrop-blur-md',
 				'transition-opacity duration-200 ease-out',
-				isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
+				isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
 			)}
 			aria-hidden={!isOpen}
 		>
-			<div className='flex flex-col items-center justify-center h-full gap-8'>
+			<div className='flex h-full flex-col items-center justify-center gap-8'>
 				{navItems.map((item) => (
 					<Link
 						key={item.label}
@@ -34,8 +34,8 @@ export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverl
 						onClick={onClose}
 						delay={200}
 						className={cn(
-							'text-2xl font-semibold tracking-wide uppercase transition-all duration-300 py-3 px-6',
-							getIsCurrentPage(item.href) ? 'text-accent-blue pointer-events-none' : 'text-chrome-silver hover:text-accent-blue',
+							'px-6 py-3 text-2xl font-semibold tracking-wide uppercase transition-all duration-300',
+							getIsCurrentPage(item.href) ? 'pointer-events-none text-accent-blue' : 'text-chrome-silver hover:text-accent-blue',
 						)}
 					>
 						{item.label}

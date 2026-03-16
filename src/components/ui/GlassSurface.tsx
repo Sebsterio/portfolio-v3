@@ -26,7 +26,7 @@ export function GlassSurface(props: GlassSurfaceProps) {
 			className={cn(
 				['relative overflow-hidden', roundedMap[rounded]],
 				'surface-glass-2 backdrop-glass-2 shadow-glass-0', // NOTE: backdrop glitches if element has vt
-				hoverable && 'transition-colors transition-duration-300 hover:border-accent-blue/30',
+				hoverable && 'transition-duration-300 transition-colors hover:border-accent-blue/30',
 				interactive && 'cursor-pointer',
 				className,
 			)}

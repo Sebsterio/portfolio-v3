@@ -22,10 +22,10 @@ export const TimelineDot = ({ active = false, size = 'lg', className }: Timeline
 	return (
 		<div
 			className={cn(
-				'rounded-full transition-all transition-duration-300',
+				'transition-duration-300 rounded-full transition-all',
 				sizeClasses[size],
 				stateClasses[active ? 'active' : 'default'],
-				className
+				className,
 			)}
 		/>
 	);

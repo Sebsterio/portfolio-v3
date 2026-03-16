@@ -12,12 +12,12 @@ export default function HomePage({}: HomePageProps) {
 	useTransitionReady();
 
 	return (
-		<div className={cn('w-full grid items-center gap-14 md:gap-20 grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]')}>
+		<div className={cn('grid w-full grid-cols-1 items-center gap-14 md:gap-20 lg:grid-cols-[1.2fr_0.8fr]')}>
 			{/* Left Column - Hero Content */}
 			<div className=''>
-				<StatusBadge className='vt-top mb-7 md:mb-9'>{copy.superscript}</StatusBadge>
+				<StatusBadge className='mb-7 vt-top md:mb-9'>{copy.superscript}</StatusBadge>
 
-				<div className='vt-left space-y-8 md:space-y-12'>
+				<div className='space-y-8 vt-left md:space-y-12'>
 					<Title variant='hero' className='mb-8'>
 						{copy.title}
 					</Title>

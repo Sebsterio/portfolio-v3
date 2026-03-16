@@ -31,7 +31,7 @@ export const Image = ({
 }: ImageProps) => {
 	const [imageError, setImageError] = useState(false);
 	return (
-		<div className={cn('relative overflow-hidden flex items-center justify-center', className)}>
+		<div className={cn('relative flex items-center justify-center overflow-hidden', className)}>
 			{!!src && !imageError ? (
 				<NextImage className='object-cover' fill src={src} onError={() => setImageError(true)} {...imageProps}>
 					{children}

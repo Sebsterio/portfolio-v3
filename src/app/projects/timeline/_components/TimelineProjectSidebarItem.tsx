@@ -6,21 +6,19 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 	<button
 		onClick={onClick}
 		className={cn(
-			'relative w-full text-left p-4 pl-10 rounded-xl transition-all duration-300',
-			isActive ? 'bg-accent-blue/10 border border-accent-blue/30' : 'hover:bg-white/3 border border-transparent'
+			'relative w-full rounded-xl p-4 pl-10 text-left transition-all duration-300',
+			isActive ? 'border border-accent-blue/30 bg-accent-blue/10' : 'border border-transparent hover:bg-white/3',
 		)}
 		// style={{ viewTransitionName: `project-card-${project.id}` }}
 	>
-		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute left-[10px] top-1/2 -translate-y-1/2' />
+		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute top-1/2 left-[10px] -translate-y-1/2' />
 
 		<div className='space-y-1'>
 			<div className='ui-meta-accent'>{project.period}</div>
-			<div
-				className={cn('font-urbanist font-semibold text-sm transition-colors', isActive ? 'text-chrome-silver' : 'text-muted')}
-			>
+			<div className={cn('font-urbanist text-sm font-semibold transition-colors', isActive ? 'text-chrome-silver' : 'text-muted')}>
 				{project.title}
 			</div>
-			<div className='text-xs text-subtle'>{project.company}</div>
+			<div className='text-subtle text-xs'>{project.company}</div>
 		</div>
 	</button>
 );

@@ -47,10 +47,8 @@ export function DisplayModeSwitcher({ onViewChange, className }: DisplayModeSwit
 					href={buildTargetPath(pathname, mode)}
 					onClick={(e) => handleClick(e, mode)}
 					className={cn(
-						'px-6 py-3 rounded-full font-dm-sans text-sm font-semibold transition-colors transition-duration-300',
-						currentMode === mode
-							? 'gradient-primary text-white'
-							: 'bg-white/3 text-muted hover:text-chrome-silver hover:bg-white/8'
+						'transition-duration-300 rounded-full px-6 py-3 font-dm-sans text-sm font-semibold transition-colors',
+						currentMode === mode ? 'gradient-primary text-white' : 'text-muted bg-white/3 hover:bg-white/8 hover:text-chrome-silver',
 					)}
 				>
 					{label}

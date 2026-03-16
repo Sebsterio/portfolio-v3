@@ -9,7 +9,7 @@ export function UnderConstructionPage() {
 	useTransitionReady();
 
 	return (
-		<div className='grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-12'>
+		<div className='grid grid-cols-1 gap-12 lg:grid-cols-[1fr_300px]'>
 			<div className='space-y-10 vt-left'>
 				<Title variant='page' className='mb-6'>
 					{copy.title}
@@ -21,7 +21,7 @@ export function UnderConstructionPage() {
 
 			<div className={cn('vt-right lg:vt-main', 'mt-8')}>
 				<GlassCard title={copy.cardTitle}>
-					<div className='space-y-6 my-6'>
+					<div className='my-6 space-y-6'>
 						{copy.cardRows.map(({ label, value }) => (
 							<LabeledValueRow key={label} {...{ label, value }} />
 						))}

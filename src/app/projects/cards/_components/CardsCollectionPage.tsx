@@ -19,7 +19,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 
 	return (
 		<div className='w-full space-y-8'>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto'>
+			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
 					<div key={project.id} style={{ viewTransitionName: `project-card-${project.id}` }}>
 						<ProjectCard
@@ -44,12 +44,12 @@ type ProjectCardProps = {
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
 		<GlassSurface
-			className={cn('group h-105 p-8', 'hover:scale-[102%] -hover:translate-y-2', 'active:scale-[98%]')}
+			className={cn('group h-105 p-8', '-hover:translate-y-2 hover:scale-[102%]', 'active:scale-[98%]')}
 			rounded={3}
 			hoverable
 			{...{ style, onClick }}
 		>
-			<div className='relative h-full flex flex-col justify-between gap-6 text-left'>
+			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
 				<>
 					<div className='space-y-3'>
 						<div className='ui-meta-accent-caps'>{project.year}</div>
@@ -61,22 +61,22 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 						src={project.images.main}
 						alt={`Screenshot of ${project.title}`}
 						className={cn('h-full w-full rounded-lg gradient-primary-soft', [
-							'opacity-75 group-hover:opacity-100 transition-opacity transition-duration-300',
+							'transition-duration-300 opacity-75 transition-opacity group-hover:opacity-100',
 						])}
 						fallbackClass='text-white/50 text-sm font-semibold'
 						fallbackText='Screenshot Unavailable'
 					/>
 
 					<div className='space-y-4'>
-						<p className='text-sm text-muted line-clamp-3'>{project.summary}</p>
+						<p className='text-muted line-clamp-3 text-sm'>{project.summary}</p>
 						<ProjectTags tags={project.tags} limit={3} size='sm' />
 					</div>
 				</>
 			</div>
 
 			<ArrowIndicator
-				className={cn('absolute bottom-8 right-8', [
-					'group-hover:translate-x-2 group-hover:bg-accent-blue/20 transition-all transition-duration-300',
+				className={cn('absolute right-8 bottom-8', [
+					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
 		</GlassSurface>
@@ -85,8 +85,8 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 
 const ArrowIndicator = ({ className }: { className: string }) => (
 	<div
-		className={cn('w-12 h-12 rounded-full flex items-center justify-center transition-all transition-duration-300', [
-			['text-xl text-accent-cyan bg-accent-blue/10 border border-accent-blue/30', className],
+		className={cn('transition-duration-300 flex h-12 w-12 items-center justify-center rounded-full transition-all', [
+			['border border-accent-blue/30 bg-accent-blue/10 text-xl text-accent-cyan', className],
 		])}
 	>
 		→

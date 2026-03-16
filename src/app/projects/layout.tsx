@@ -11,8 +11,8 @@ type ProjectsLayoutProps = {
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 	return (
 		<div className='w-full space-y-16'>
-			<div className='vt-p-header space-y-8 flex flex-col items-center'>
-				<div className='text-center space-y-4' id={PROJECT_PAGE_TITLE_ID}>
+			<div className='flex flex-col items-center space-y-8 vt-p-header'>
+				<div className='space-y-4 text-center' id={PROJECT_PAGE_TITLE_ID}>
 					<Title variant='projects'>{header.title}</Title>
 					<TextBlock>{header.subtitle}</TextBlock>
 				</div>
