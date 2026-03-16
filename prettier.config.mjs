@@ -5,15 +5,15 @@ const prettierConfig = {
 	tabWidth: 2,
 	singleQuote: true,
 	jsxSingleQuote: true,
-	endOfLine: "auto",
+	endOfLine: 'auto',
 
-	plugins: ["prettier-plugin-tailwindcss"],
-	tailwindStylesheet: "./src/styles/globals.css",
-	tailwindFunctions: ["clsx", "twMerge", "cn"],
+	plugins: ['prettier-plugin-tailwindcss'],
+	tailwindStylesheet: './src/styles/globals.css',
+	tailwindFunctions: ['clsx', 'twMerge', 'cn'],
 
 	overrides: [
 		{
-			files: ["*.json", "*.jsonc"],
+			files: ['*.json', '*.jsonc'],
 			options: {
 				printWidth: 120,
 				useTabs: false,
