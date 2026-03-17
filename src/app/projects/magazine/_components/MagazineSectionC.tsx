@@ -18,7 +18,7 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 				{/* Text Column */}
 				<div className='pt-4 md:pt-12'>
 					{/* Number */}
-					<div className='project-decorative-text project-decorative-outline -mb-4 text-[clamp(4rem,10vw,8rem)] leading-[0.8] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.5)] group-hover:[text-shadow:0_0_50px_rgba(0,217,255,0.3)]'>
+					<div className='decorative-text decorative-outline -mb-4 text-[clamp(4rem,10vw,8rem)] leading-[0.8] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.5)] group-hover:[text-shadow:0_0_50px_rgba(0,217,255,0.3)]'>
 						{number}
 					</div>
 
