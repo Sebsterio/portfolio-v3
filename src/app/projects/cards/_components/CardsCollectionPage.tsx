@@ -43,16 +43,11 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
-		<GlassSurface
-			className={cn('group h-105 p-8', '-hover:translate-y-2 hover:scale-[102%]', 'active:scale-[98%]')}
-			rounded={3}
-			hoverable
-			{...{ style, onClick }}
-		>
+		<GlassSurface className={cn('group h-105 p-8')} rounded={3} hoverable hovered='elevated' {...{ style, onClick }}>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
 				<>
 					<div className='space-y-3'>
-						<div className='ui-meta-accent-caps'>{project.year}</div>
+						<div className='ui-meta tracking-wider text-accent-cyan uppercase'>{project.year}</div>
 						<h3 className='heading-2 text-primary line-clamp-2'>{project.title}</h3>
 						<p className='text-tertiary'>{project.company}</p>
 					</div>

@@ -147,8 +147,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 	return (
 		<div
 			className={cn(
-				'col-start-1 row-start-1 rounded-4xl p-8 md:p-12',
-				'glass-surface-3 glass-backdrop-3',
+				'col-start-1 row-start-1 p-8 md:p-12 glass-raised',  // MIGRATION: glass-backdrop-3 -> glass-backdrop-2
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
@@ -187,8 +186,8 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
 		<div
 			className={cn(
-				'col-start-1 row-start-1 rounded-4xl p-8 md:p-12',
-				'border border-accent-blue/30 bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
+				'col-start-1 row-start-1  p-8 md:p-12',
+				'glass-raised border border-accent-blue/30 ', // MIGRATION: glass-backdrop-3 -> glass-backdrop-2
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}

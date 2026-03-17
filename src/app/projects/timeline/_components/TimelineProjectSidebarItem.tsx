@@ -14,7 +14,7 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute top-1/2 left-[10px] -translate-y-1/2' />
 
 		<div className='space-y-1'>
-			<div className='ui-meta-accent'>{project.period}</div>
+			<div className='ui-meta text-accent-cyan'>{project.period}</div>
 			<div className={cn('font-urbanist text-sm font-semibold transition-colors', isActive ? 'text-chrome-silver' : 'text-muted')}>
 				{project.title}
 			</div>
