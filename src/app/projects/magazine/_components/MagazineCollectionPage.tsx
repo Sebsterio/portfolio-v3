@@ -9,12 +9,12 @@ import { getProjectAnchorId } from '../../_lib';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
-		<div className='deco-circle top-[10%] right-[8%] h-35 w-35' />
-		<div className='deco-circle top-[48%] left-[3%] h-25 w-25' />
-		<div className='deco-circle right-[15%] bottom-[18%] h-30 w-30' />
-		<div className='deco-line top-[26%] left-0 w-[40%]' />
-		<div className='deco-line right-0 bottom-[32%] w-[35%]' />
-		<div className='deco-line top-[60%] left-[20%] w-[25%] rotate-15' />
+		<div className='decorative-circle top-[10%] right-[8%] h-35 w-35' />
+		<div className='decorative-circle top-[48%] left-[3%] h-25 w-25' />
+		<div className='decorative-circle right-[15%] bottom-[18%] h-30 w-30' />
+		<div className='decorative-line top-[26%] left-0 w-[40%]' />
+		<div className='decorative-line right-0 bottom-[32%] w-[35%]' />
+		<div className='decorative-line top-[60%] left-[20%] w-[25%] rotate-15' />
 	</>
 );
 
