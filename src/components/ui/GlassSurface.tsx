@@ -12,9 +12,9 @@ type GlassSurfaceProps = {
 };
 
 const roundedMap = {
-	[1]: cn('rounded-glass-1'),
-	[2]: cn('rounded-glass-2'),
-	[3]: cn('rounded-glass-3'),
+	[1]: cn('glass-radius-1'),
+	[2]: cn('glass-radius-2'),
+	[3]: cn('glass-radius-3'),
 };
 
 export function GlassSurface(props: GlassSurfaceProps) {
@@ -25,7 +25,7 @@ export function GlassSurface(props: GlassSurfaceProps) {
 		<Component
 			className={cn(
 				['relative overflow-hidden', roundedMap[rounded]],
-				'surface-glass-2 backdrop-glass-2 shadow-glass-0', // NOTE: backdrop glitches if element has vt
+				'glass-surface-2 glass-backdrop-2 glass-shadow-0', // NOTE: backdrop glitches if element has vt
 				hoverable && 'transition-duration-300 transition-colors hover:border-accent-blue/30',
 				interactive && 'cursor-pointer',
 				className,

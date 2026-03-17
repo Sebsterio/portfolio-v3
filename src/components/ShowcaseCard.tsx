@@ -15,14 +15,14 @@ export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, d
 			rounded={2}
 			className={cn('group p-6 sm:p-8 md:p-10', [
 				'transition-duration-600 transition-ease-[cubic-bezier(0.34,1.56,0.64,1)] transition-all',
-				'shadow-glass-1 hover:shadow-glass-2 hover:-translate-y-1.5 hover:scale-[1.01] md:hover:-translate-y-2.5',
+				'glass-shadow-1 hover:glass-shadow-2 hover:-translate-y-1.5 hover:scale-[1.01] md:hover:-translate-y-2.5',
 				className,
 			])}
 		>
 			{/* Decorative */}
-			<div className={cn('glass-anchor-reflection')} />
-			<div className={cn('noise-overlay overlay-full')} />
-			<div className={cn('top-edge-glow overlay top-0 left-[20%] h-0.5 w-[60%]')} />
+			<div className={cn('overlay-full gradient-reflection-diagonal')} />
+			<div className={cn('glass-noise overlay-full')} />
+			<div className={cn('glass-edge-glow overlay top-0 left-[20%] h-0.5 w-[60%]')} />
 			<div className={cn('glass-glint group-hover:glass-glint-active')} />
 
 			{/* Content */}
