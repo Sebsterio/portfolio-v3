@@ -66,5 +66,5 @@
 
 /* ---- Overlay Helpers ---- */
 
-.overlay      { @apply absolute pointer-events-none;        }
-.overlay-full { @apply absolute pointer-events-none inset-0; }
+@utility overlay      { @apply absolute pointer-events-none;        }
+@utility overlay-full { @apply absolute pointer-events-none inset-0; }

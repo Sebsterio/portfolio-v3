@@ -1,13 +1,13 @@
 /* ================================================
-   Effects — Shadows & Glows
+   Effects — Shadows, Glows & Animated Overlays
    ================================================
 
-   Glow scale    →  accent glow by intensity
+   Glow scale
    ─────────────────────────────────────────
    glow-accent-sm     0 0 20px accent / 0.2   soft ambient
    glow-accent-md     0 0 20px accent / 0.4   standard interactive
    glow-accent-lg     0 0 15px accent / 1.0   strong, full-opacity
-   
+
    Directional shadows
    ─────────────────────────────────────────
    shadow-accent-md   0 15px 50px accent / 0.35   card lift
@@ -17,9 +17,17 @@
    ─────────────────────────────────────────
    bg-accent-soft     accent at 10% opacity fill
 
-   Animated
+   Glint sweep
    ─────────────────────────────────────────
-   reflection-sweep   shine sweep overlay (apply to ::after)
+   glass-glint          resting state — parked off-screen left
+   glass-glint-active   active state  — swept off-screen right
+
+   Usage:
+     <div className="glass-glint group-hover:glass-glint-active" />
+
+   The element must be overlay-full on its parent.
+   Transition is built in — no extra transition class needed.
+   Uses gradient-reflection-horizontal from gradients.css.
 
    Migration
    ─────────────────────────────────────────
@@ -49,20 +57,18 @@
 @utility bg-accent-soft { background: rgb(var(--accent-blue-rgb) / 0.1); }
 
 
-/* ---- Animated Overlays ---- */
-/*
-   Apply .reflection-sweep to an absolutely-positioned child element.
-   On hover, drive left: -100% → 100% via JS or a parent group-hover class.
-   Plain class is intentional — pseudo-element rules can't use @utility.
-*/
+/* ---- Glint Sweep ---- */
 
-.reflection-sweep {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(var(--accent-blue-rgb) / 0.25),
-    transparent
-  );
-  transform:  skewX(-20deg);
-  transition: all 800ms ease-out;
+@utility glass-glint {
+  @apply overlay-full gradient-reflection-horizontal;
+  transform: translateX(-100%) skewX(-20deg);
+  will-change: transform;
+  transition-property: transform;
+  transition-timing-function: var(--tw-ease, ease-out);
+  transition-duration: var(--tw-duration, 200ms);
+  transition-delay: var(--tw-delay, 0ms);
+}
+
+@utility glass-glint-active {
+  transform: translateX(100%) skewX(-20deg);
 }
