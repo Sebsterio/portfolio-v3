@@ -148,7 +148,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 		<div
 			className={cn(
 				'col-start-1 row-start-1 rounded-4xl p-8 md:p-12',
-				'surface-glass-3 backdrop-glass-3',
+				'glass-surface-3 glass-backdrop-3',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}

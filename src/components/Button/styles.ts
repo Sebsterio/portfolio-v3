@@ -23,7 +23,7 @@ const CLASSES = {
 		),
 		primary: cn(
 			'border-transparent gradient-primary text-white',
-			'glow-primary-soft', //
+			'glow-accent-sm', //
 		),
 		secondary: cn(
 			'border-chrome-silver/15 bg-white/3 text-chrome-silver backdrop-blur-[10px]',
