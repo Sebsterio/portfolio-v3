@@ -2,116 +2,100 @@
    Surfaces — Glass System
    ================================================
 
-   Composed tiers  →  everyday use (90% of cases)
-   Atomic classes  →  surgical overrides only
+   @utility   →  glass-surface-N, glass-shadow-N
+               must be utilities to support modifiers
+               e.g. hover:glass-shadow-2, dark:glass-surface-3
 
-   Composed tiers
-   ──────────────
-   glass-subtle    chips, tags, inline badges
-   glass-default   cards, panels, content sections
-   glass-raised    modals, popovers, elevated surfaces
+   plain class →  glass-radius-N, decorative overlays
+               these never need modifier variants
 
-   Atomic classes
-   ──────────────
-   glass-surface-*    background + border          (1–3)
-   glass-shadow-*     box-shadow layers            (0–2)
-   glass-backdrop-*   backdrop-filter stack        (0–3)
-   glass-radius-*     border-radius                (1–3)
+   Levels
+   ──────────────────────────────────────────
+   1   subtle     chips, tags, pills, small badges
+   2   default    cards, panels, content sections
+   3   strong     modals, drawers, popovers
+
+   Shadow levels
+   ──────────────────────────────────────────
+   0   flat       no ambient lift — tight inset edge only
+   1   raised     contact + ambient + subtle accent haze
+   2   elevated   contact + deep ambient + strong accent glow
+
+   Surface design
+   ──────────────────────────────────────────
+   Each level bundles background + backdrop + border.
+   Border is split into longhand properties (not the
+   `border` shorthand) so that border-color can be
+   overridden by a Tailwind utility class at call-site.
 
    Decorative overlays
-   ───────────────────
-   glass-reflection   diagonal gloss sheen
-   glass-edge-glow    top-edge accent streak
-   glass-noise        subtle noise texture
+   ──────────────────────────────────────────
+   Applied to absolutely-positioned children (overlay-full).
+   Rendered before content in DOM so they sit behind it
+   naturally — no z-index required on content.
 
-   Migration
-   ─────────
-   surface-glass-N      →  glass-surface-N
-   shadow-glass-N       →  glass-shadow-N
-   backdrop-glass-N     →  glass-backdrop-N
-   rounded-glass-N      →  glass-radius-N
-   reflection-diagonal  →  glass-reflection
-   top-edge-glow        →  glass-edge-glow
-   noise-overlay        →  glass-noise
+   glass-reflection   135deg gloss sheen (top-left catch light)
+   glass-edge-glow    top-edge accent streak
+   glass-noise        subtle grain texture
 
    ================================================ */
 
 
-/* ---- Composed Tiers ---- */
+/* ---- Surface ---- */
 
-@utility glass-subtle {
-  @apply rounded-2xl backdrop-blur-[20px];
-  background: rgba(13, 13, 13, 0.4);
-  border: 1px solid rgb(var(--chrome-silver-rgb) / 0.06);
-  box-shadow:
-    0 8px  32px rgba(0, 0, 0, 0.50),
-    0 4px  16px rgb(var(--accent-blue-rgb) / 0.10),
-    inset 0  1px 0 rgba(240, 240, 240, 0.10);
+@utility glass-surface-1 {
+  background:    rgba(10, 10, 14, 0.35);
+  border-width:  1px;
+  border-style:  solid;
+  border-color:  rgb(var(--white-rgb) / 0.06);
+  backdrop-filter: blur(14px);
 }
 
-@utility glass-default {
-  @apply rounded-3xl md:rounded-4xl backdrop-blur-[30px] backdrop-brightness-[1.2];
-  background: rgba(13, 13, 13, 0.6);
-  border: 1px solid rgb(var(--chrome-silver-rgb) / 0.08);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.50),
-    0  4px 16px rgb(var(--accent-blue-rgb) / 0.08),
-    inset 0  1px 0 rgba(240, 240, 240, 0.12),
-    inset 0 -1px 0 rgba(240, 240, 240, 0.05);
+@utility glass-surface-2 {
+  background:    rgba(10, 10, 14, 0.68);
+  border-width:  1px;
+  border-style:  solid;
+  border-color:  rgb(var(--white-rgb) / 0.08);
+  backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
 }
 
-@utility glass-raised {
-  @apply rounded-3xl md:rounded-4xl backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15];
-  background: rgba(13, 13, 13, 0.8);
-  border: 1px solid rgb(var(--chrome-silver-rgb) / 0.12);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.60),
-    0  8px 40px rgb(var(--accent-blue-rgb) / 0.30),
-    inset 0 1px 0 rgba(240, 240, 240, 0.20);
+@utility glass-surface-3 {
+  background:    rgba(8, 8, 12, 0.86);
+  border-width:  1px;
+  border-style:  solid;
+  border-color:  rgb(var(--white-rgb) / 0.10);
+  backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
 }
 
 
-/* ---- Atomic — Surface (background + border) ---- */
+/* ---- Shadow ---- */
 
-.glass-surface-1 { @apply bg-[rgba(13,13,13,0.4)] border border-chrome-silver/6;  }
-.glass-surface-2 { @apply bg-[rgba(13,13,13,0.6)] border border-chrome-silver/8;  }
-.glass-surface-3 { @apply bg-[rgba(13,13,13,0.8)] border border-chrome-silver/12; }
-
-
-/* ---- Atomic — Shadow ---- */
-
-.glass-shadow-0 {
+@utility glass-shadow-0 {
   box-shadow:
-    0  8px 32px rgba(0, 0, 0, 0.50),
-    0  4px 16px rgb(var(--accent-blue-rgb) / 0.10),
-    inset 0  1px 0 rgba(240, 240, 240, 0.10);
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.09),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.03);
 }
 
-.glass-shadow-1 {
+@utility glass-shadow-1 {
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.50),
-    0  4px 16px rgb(var(--accent-blue-rgb) / 0.08),
-    inset 0  1px 0 rgba(240, 240, 240, 0.12),
-    inset 0 -1px 0 rgba(240, 240, 240, 0.05);
+    0  1px  3px  rgba(0, 0, 0, 0.40),
+    0 12px 40px  rgba(0, 0, 0, 0.40),
+    0  4px 16px  rgb(var(--accent-blue-rgb) / 0.07),
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.12),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.04);
 }
 
-.glass-shadow-2 {
+@utility glass-shadow-2 {
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.60),
-    0  8px 40px rgb(var(--accent-blue-rgb) / 0.30),
-    inset 0 1px 0 rgba(240, 240, 240, 0.20);
+    0  2px  6px  rgba(0, 0, 0, 0.50),
+    0 24px 64px  rgba(0, 0, 0, 0.50),
+    0  8px 32px  rgb(var(--accent-blue-rgb) / 0.20),
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.18),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.06);
 }
 
 
-/* ---- Atomic — Backdrop ---- */
-
-.glass-backdrop-0 { @apply backdrop-blur-[20px]; }
-.glass-backdrop-1 { @apply backdrop-blur-[30px] backdrop-brightness-[1.2]; }
-.glass-backdrop-2 { @apply backdrop-blur-2xl backdrop-saturate-180 backdrop-brightness-[1.15]; }
-.glass-backdrop-3 { @apply backdrop-blur-[60px]; }
-
-
-/* ---- Atomic — Radius ---- */
+/* ---- Radius ---- */
 
 .glass-radius-1 { @apply rounded-2xl; }
 .glass-radius-2 { @apply rounded-3xl md:rounded-4xl; }
@@ -120,17 +104,16 @@
 
 /* ---- Decorative Overlays ---- */
 /*
-   Always applied to absolute-positioned child elements
-   (pointer-events-none, inset-0 set on the element itself).
-   Plain classes are intentional — these never need modifiers.
+  Applied to overlay-full children rendered BEFORE content.
+  DOM order ensures they sit behind content without z-index.
 */
 
 .glass-reflection {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15)  0%,
-    rgba(255, 255, 255, 0.08) 20%,
-    transparent               50%
+    rgba(255, 255, 255, 0.16)  0%,
+    rgba(255, 255, 255, 0.07) 24%,
+    transparent               52%
   );
 }
 
@@ -138,14 +121,14 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(var(--accent-blue-rgb) / 0.8),
+    rgb(var(--accent-blue-rgb) / 0.75),
     transparent
   );
   filter:  blur(2px);
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 .glass-noise {
-  opacity: 0.02;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
 }
