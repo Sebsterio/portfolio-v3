@@ -5,7 +5,7 @@ import { type CardVariant, CARD_VARIANT_MAP } from '@/components/ui/cardVariants
 
 export type { CardVariant };
 
-export type CardContainerProps = {
+export type CardProps = {
 	children: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
@@ -34,7 +34,7 @@ export type CardContainerProps = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 /**
- * CardContainer — React primitive for card-scale glass containers.
+ * Card — React primitive for card-scale glass containers.
  *
  * Responsibilities:
  *   - DOM structure: decorative overlays (reflection, noise), optional glint
@@ -46,16 +46,16 @@ export type CardContainerProps = {
  *   - Radius (glass-radius-N)             ← via className
  *   - Padding / layout                    ← via className or consuming component
  *
- * For large/primary content panels, use PanelContainer instead.
+ * For large/primary content panels, use Panel instead.
  */
-export function CardContainer({
+export function Card({
 	children,
 	className,
 	style,
 	onClick,
 	variant,
 	glint = false,
-}: CardContainerProps) {
+}: CardProps) {
 	const resolvedVariant = variant ?? (onClick ? 'raised' : 'static');
 
 	return (

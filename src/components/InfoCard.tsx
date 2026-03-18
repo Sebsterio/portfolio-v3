@@ -1,9 +1,9 @@
 import { cn } from '@/lib/utils';
-import { CardContainer, type CardContainerProps } from '@/components/ui/CardContainer';
+import { Card, type CardProps } from '@/components/ui/Card';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type GlassCardProps = {
+export type InfoCardProps = {
 	children: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
@@ -19,12 +19,12 @@ export type GlassCardProps = {
 	rounded?: 1 | 2 | 3;
 
 	/**
-	 * Interaction pattern. See CardContainer for full docs.
+	 * Interaction pattern. See Card for full docs.
 	 * Auto-resolves to 'raised' when onClick is provided.
 	 */
-	variant?: CardContainerProps['variant'];
+	variant?: CardProps['variant'];
 
-	/** Glint sweep on hover. Forwarded to CardContainer. */
+	/** Glint sweep on hover. Forwarded to Card. */
 	glint?: boolean;
 };
 
@@ -39,16 +39,16 @@ const RADIUS_MAP: Record<1 | 2 | 3, string> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 /**
- * GlassCard — standard glass content card.
+ * InfoCard — standard glass content card.
  *
  * Provides card layout defaults (surface-2, elevation-1, padding, radius)
  * and the optional title heading pattern. All glass material and interaction
- * logic is delegated to CardContainer.
+ * logic is delegated to Card.
  *
  * For large/primary content panels (timeline detail, flip cards),
- * use PanelContainer directly.
+ * use Panel directly.
  */
-export function GlassCard({
+export function InfoCard({
 	children,
 	className,
 	style,
@@ -57,9 +57,9 @@ export function GlassCard({
 	rounded = 2,
 	variant,
 	glint = false,
-}: GlassCardProps) {
+}: InfoCardProps) {
 	return (
-		<CardContainer
+		<Card
 			variant={variant}
 			glint={glint}
 			onClick={onClick}
@@ -73,8 +73,8 @@ export function GlassCard({
 		>
 			{title && <h3 className='heading-3 text-primary mb-6 font-bold'>{title}</h3>}
 			{children}
-		</CardContainer>
+		</Card>
 	);
 }
 
-export default GlassCard;
+export default InfoCard;

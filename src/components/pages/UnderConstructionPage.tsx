@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
-import { Title, TextBlock, LabeledValueRow, GlassCard } from '@/components';
+import { Title, TextBlock, LabeledValueRow, InfoCard } from '@/components';
 import { copy } from './_content';
 
 export function UnderConstructionPage() {
@@ -20,13 +20,13 @@ export function UnderConstructionPage() {
 			</div>
 
 			<div className={cn('vt-right lg:vt-main', 'mt-8')}>
-				<GlassCard title={copy.cardTitle}>
+				<InfoCard title={copy.cardTitle}>
 					<div className='my-6 space-y-6'>
 						{copy.cardRows.map(({ label, value }) => (
 							<LabeledValueRow key={label} {...{ label, value }} />
 						))}
 					</div>
-				</GlassCard>
+				</InfoCard>
 			</div>
 		</div>
 	);

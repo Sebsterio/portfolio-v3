@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { CardContainer } from '@/components/ui/CardContainer';
+import { Card } from '@/components/ui/Card';
 
 interface ShowcaseCardProps {
 	icon: React.ReactNode;
@@ -12,18 +12,18 @@ interface ShowcaseCardProps {
  * ShowcaseCard — feature highlight card with glint and spring elevation.
  *
  * Used on home and about pages as a dwell target (users read, not scan).
- * Uses a fuller spring overshoot + slower duration than GlassCard's
+ * Uses a fuller spring overshoot + slower duration than InfoCard's
  * 'lifted' variant — the extra theatrics communicate deliberate weight.
  *
- * Uses CardContainer directly (not GlassCard) because layout, spacing,
- * and hover timing are specific enough that GlassCard adds no value.
+ * Uses Card directly (not InfoCard) because layout, spacing,
+ * and hover timing are specific enough that InfoCard adds no value.
  *
  * glass-edge-glow is explicit here — its width and x-position are
  * custom (70% wide, centred) and belong to this component's design.
  */
 export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, description, className }) => {
 	return (
-		<CardContainer
+		<Card
 			glint
 			variant='lifted'
 			className={cn(
@@ -47,7 +47,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 					<p className='text-muted mt-1.5 text-[13px] leading-relaxed md:text-sm'>{description}</p>
 				</div>
 			</div>
-		</CardContainer>
+		</Card>
 	);
 };
 
