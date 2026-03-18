@@ -177,8 +177,8 @@
 */
 .glass-panel-accents {
   background:
-    radial-gradient(ellipse 50% 50% at 100% 0%,   rgb(var(--accent-blue-rgb) / 0.10), transparent),
-    radial-gradient(ellipse 50% 50% at 0%   100%, rgb(var(--accent-cyan-rgb) / 0.10), transparent);
+    radial-gradient(ellipse 50% 50% at 100% 0%,   rgb(var(--accent-blue-rgb) / 0.5), transparent),
+    radial-gradient(ellipse 50% 50% at 0%   100%, rgb(var(--accent-cyan-rgb) / 0.5), transparent);
 }
 
 .glass-noise {
