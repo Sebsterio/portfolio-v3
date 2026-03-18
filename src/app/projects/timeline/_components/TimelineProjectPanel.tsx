@@ -2,12 +2,12 @@ import { cn } from '@/lib/utils';
 import { Project } from '@/types';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
-import { PanelContainer } from '@/components/ui/PanelContainer';
+import { Panel } from '@/components/ui/Panel';
 import { InlineList } from '@/components/InlineList';
 import { ExternalLinkButton } from '@/components/Button';
 
 export const TimelineProjectPanel = ({ project, className }: { project: Project; className?: string }) => (
-	<PanelContainer className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 p-8 md:p-12', className)}>
+	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 p-8 md:p-12', className)}>
 		<div className='relative space-y-8'>
 			<div className='space-y-3 md:space-y-4'>
 				<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
@@ -62,5 +62,5 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 				</ExternalLinkButton>
 			)}
 		</div>
-	</PanelContainer>
+	</Panel>
 );

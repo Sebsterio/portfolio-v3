@@ -1,7 +1,7 @@
 export * from './typography';
 
 export * from './Button';
-export * from './GlassCard';
+export * from './InfoCard';
 export * from './LabeledValueRow';
 export * from './Section';
 export * from './SectionHeader';
