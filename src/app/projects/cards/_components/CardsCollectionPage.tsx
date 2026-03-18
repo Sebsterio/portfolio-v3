@@ -18,7 +18,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	return (
-		<div className='w-full space-y-8'>
+		<div className='stack-lg w-full'>
 			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
 					<div key={project.id} style={{ viewTransitionName: `project-card-${project.id}` }}>

@@ -11,6 +11,7 @@ import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { InlineList } from '@/components/InlineList';
+import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ExternalLinkButton } from '@/components/Button';
 
@@ -149,7 +150,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 		<Panel
 			className={cn(
 				'glass-surface-2 glass-elevation-1 glass-radius-2',
-				'col-start-1 row-start-1 p-8 md:p-12',
+				'col-start-1 row-start-1 panel-padding',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
@@ -189,7 +190,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 		<Panel
 			className={cn(
 				'glass-surface-2 glass-elevation-1 glass-radius-2',
-				'col-start-1 row-start-1 p-8 md:p-12',
+				'col-start-1 row-start-1 panel-padding',
 				'border-accent-blue/30',
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
@@ -215,14 +216,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 
 					<div>
 						<h4 className='mb-2 font-urbanist text-lg font-bold text-accent-cyan md:text-xl'>Impact</h4>
-						<ul className='space-y-2'>
-							{project.impact.map((item) => (
-								<li key={item} className='flex items-start gap-3'>
-									<span className='mt-1 text-accent-cyan'>→</span>
-									<span className='text-sm text-chrome-silver/90 md:text-base'>{item}</span>
-								</li>
-							))}
-						</ul>
+						<ImpactList items={project.impact} />
 					</div>
 				</div>
 

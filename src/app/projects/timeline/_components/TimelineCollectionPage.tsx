@@ -17,7 +17,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	const go = (project: Project) => navigate(`/projects/timeline/${project.slug}`, { scroll: false });
 
 	return (
-		<div className='w-full space-y-8'>
+		<div className='stack-lg w-full'>
 			{/* Desktop Wide ─────────────────────────────────────── */}
 			<div className='relative hidden w-full vt-t-list xl:block'>
 				<TimelineLine position='right' />
@@ -51,7 +51,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			{/* Mobile ─────────────────────────────────────────────── */}
 			<div className='relative md:hidden'>
 				<TimelineLine position='left' />
-				<div className='space-y-6'>
+				<div className='stack-md'>
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />

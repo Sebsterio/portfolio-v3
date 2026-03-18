@@ -10,6 +10,7 @@ import { TimelineDot } from '@/components/TimelineDot';
 import { TimelineProjectPanel } from './TimelineProjectPanel';
 import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
+import { ImpactList } from '@/components/ImpactList';
 
 // import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 
@@ -86,14 +87,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 
 				<div className='space-y-3'>
 					<h3 className='heading-3 text-primary font-bold'>Impact</h3>
-					<ul className='space-y-2'>
-						{p.impact.map((item, i) => (
-							<li key={i} className='flex items-start gap-2 text-sm'>
-								<span className='mt-0.5 shrink-0 text-accent-cyan'>→</span>
-								<span className='text-chrome-silver/80'>{item}</span>
-							</li>
-						))}
-					</ul>
+					<ImpactList items={p.impact} size='sm' />
 				</div>
 
 				<ProjectTags tags={p.tags} size='sm' />
