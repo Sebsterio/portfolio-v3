@@ -19,7 +19,7 @@ export default function AboutPage({}: AboutPageProps) {
 			)}
 		>
 			{/* Main Content Column */}
-			<div className='space-y-10 vt-left md:space-y-12'>
+			<div className='stack-2xl vt-left'>
 				<Title variant='page' className='mb-4 md:mb-6'>
 					{copy.title}
 				</Title>

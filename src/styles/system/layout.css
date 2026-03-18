@@ -14,15 +14,21 @@
 
    Stack (vertical rhythm)
    ───────────────────────
+   stack-xs        space-y-3
    stack-sm        space-y-4
    stack-md        space-y-6
    stack-lg        space-y-8
    stack-xl        space-y-12 md:space-y-16   (was: stack-section)
+   stack-2xl       space-y-10 md:space-y-12  — page-column primary rhythm
 
    Cluster (horizontal groups)
    ───────────────────────────
    cluster-sm      flex items-center gap-3
    cluster-md      flex items-center gap-4
+
+   Padding
+   ───────
+   panel-padding   p-8 md:p-12 — full-detail Panel views
 
    Overlay helpers
    ───────────────
@@ -45,23 +51,35 @@
 
 /* ---- Content Containers ---- */
 
-.container-sm { @apply max-w-2xl mx-auto; }
-.container-md { @apply max-w-4xl mx-auto; }
-.container-lg { @apply max-w-6xl mx-auto; }
+@utility container-sm { @apply max-w-2xl mx-auto; }
+@utility container-md { @apply max-w-4xl mx-auto; }
+@utility container-lg { @apply max-w-6xl mx-auto; }
+
+
+/* ---- Padding ---- */
+
+/**
+ * panel-padding — responsive inner padding for full-detail panel views.
+ * Base: p-8 (32px). Expanded: p-12 (48px) at md breakpoint.
+ * Used by Panel-based components that render full project detail content.
+ */
+@utility panel-padding { @apply p-8 md:p-12; }
 
 
 /* ---- Stack ---- */
 
-.stack-sm { @apply space-y-4;              }
-.stack-md { @apply space-y-6;              }
-.stack-lg { @apply space-y-8;              }
-.stack-xl { @apply space-y-12 md:space-y-16; }
+@utility stack-xs  { @apply space-y-3;               }
+@utility stack-sm  { @apply space-y-4;               }
+@utility stack-md  { @apply space-y-6;               }
+@utility stack-lg  { @apply space-y-8;               }
+@utility stack-xl  { @apply space-y-12 md:space-y-16; }
+@utility stack-2xl { @apply space-y-10 md:space-y-12; }
 
 
 /* ---- Cluster ---- */
 
-.cluster-sm { @apply flex items-center gap-3; }
-.cluster-md { @apply flex items-center gap-4; }
+@utility cluster-sm { @apply flex items-center gap-3; }
+@utility cluster-md { @apply flex items-center gap-4; }
 
 
 /* ---- Overlay Helpers ---- */
