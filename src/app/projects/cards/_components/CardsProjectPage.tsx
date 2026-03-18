@@ -6,6 +6,7 @@ import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
+import { PanelContainer } from '@/components/ui/PanelContainer';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
@@ -145,9 +146,10 @@ type ProjectCardFaceProps = {
 
 function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFaceProps & { gradientClass: string }) {
 	return (
-		<div
+		<PanelContainer
 			className={cn(
-				'col-start-1 row-start-1 p-8 md:p-12 glass-raised',  // MIGRATION: glass-backdrop-3 -> glass-backdrop-2
+				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'col-start-1 row-start-1 p-8 md:p-12',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
@@ -178,16 +180,17 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>
 			</div>
-		</div>
+		</PanelContainer>
 	);
 }
 
 function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
-		<div
+		<PanelContainer
 			className={cn(
-				'col-start-1 row-start-1  p-8 md:p-12',
-				'glass-raised border border-accent-blue/30 ', // MIGRATION: glass-backdrop-3 -> glass-backdrop-2
+				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'col-start-1 row-start-1 p-8 md:p-12',
+				'border-accent-blue/30',
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
@@ -229,7 +232,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 					</ExternalLinkButton>
 				)}
 			</div>
-		</div>
+		</PanelContainer>
 	);
 }
 
