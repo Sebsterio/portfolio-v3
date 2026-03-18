@@ -17,7 +17,7 @@ export default function HomePage({}: HomePageProps) {
 			<div className=''>
 				<StatusBadge className='mb-7 vt-top md:mb-9'>{copy.superscript}</StatusBadge>
 
-				<div className='space-y-8 vt-left md:space-y-12'>
+			<div className='stack-2xl vt-left'>
 					<Title variant='hero' className='mb-8'>
 						{copy.title}
 					</Title>

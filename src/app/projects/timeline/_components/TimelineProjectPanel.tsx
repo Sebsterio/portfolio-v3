@@ -4,11 +4,12 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
 import { InlineList } from '@/components/InlineList';
+import { ImpactList } from '@/components/ImpactList';
 import { ExternalLinkButton } from '@/components/Button';
 
 export const TimelineProjectPanel = ({ project, className }: { project: Project; className?: string }) => (
-	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 p-8 md:p-12', className)}>
-		<div className='relative space-y-8'>
+	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 panel-padding', className)}>
+		<div className='relative stack-lg'>
 			<div className='space-y-3 md:space-y-4'>
 				<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
 				<h2 className='font-urbanist text-3xl leading-tight font-bold text-chrome-silver md:text-5xl'>{project.title}</h2>
@@ -44,14 +45,7 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 
 			<div className='space-y-4'>
 				<h3 className='heading-2 text-primary'>Impact & Results</h3>
-				<ul className='space-y-2'>
-					{project.impact.map((item, i) => (
-						<li key={i} className='flex items-start gap-3'>
-							<span className='mt-1 text-accent-cyan'>→</span>
-							<span className='text-chrome-silver/80'>{item}</span>
-						</li>
-					))}
-				</ul>
+				<ImpactList items={project.impact} />
 			</div>
 
 			<ProjectTags size='lg' tags={project.tags} />
