@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
-import { GlassSurface } from '@/components/ui/GlassSurface';
+import { CardContainer } from '@/components/ui/CardContainer';
 
 // ----------------------------------------------------------------------------
 
@@ -43,7 +43,11 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
-		<GlassSurface className={cn('group h-105 p-8')} rounded={3} hoverable hovered='elevated' {...{ style, onClick }}>
+		<CardContainer
+			variant='lifted'
+			className={cn('glass-surface-2 glass-elevation-1 glass-radius-3 group h-105 p-8')}
+			{...{ style, onClick }}
+		>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
 				<>
 					<div className='space-y-3'>
@@ -72,7 +76,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
-		</GlassSurface>
+		</CardContainer>
 	);
 };
 
