@@ -1,34 +1,39 @@
-import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { GlassSurface, type GlassSurfaceProps } from '@/components/ui/GlassSurface';
+import { CardContainer, type CardContainerProps } from '@/components/ui/CardContainer';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type AccentPosition = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
-
-type GlassCardProps = {
-	children: ReactNode;
+export type GlassCardProps = {
+	children: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
+	onClick?: () => void;
+
 	/** Optional heading rendered above children. */
 	title?: string;
-	/** Border-radius level passed to GlassSurface. Default: 2 */
-	rounded?: GlassSurfaceProps['rounded'];
-	/** Renders a corner gradient accent orb. Default: false */
-	accent?: boolean;
-	accentPosition?: AccentPosition;
-	/** Hover highlight. Defaults to true when onClick is provided. */
-	hoverable?: boolean;
-	onClick?: () => void;
+
+	/**
+	 * Border-radius level. Default: 2
+	 * 1 = rounded-2xl  2 = rounded-3xl/4xl  3 = rounded-[28px]
+	 */
+	rounded?: 1 | 2 | 3;
+
+	/**
+	 * Interaction pattern. See CardContainer for full docs.
+	 * Auto-resolves to 'raised' when onClick is provided.
+	 */
+	variant?: CardContainerProps['variant'];
+
+	/** Glint sweep on hover. Forwarded to CardContainer. */
+	glint?: boolean;
 };
 
 // ─── Maps ─────────────────────────────────────────────────────────────────────
 
-const accentMap: Record<AccentPosition, string> = {
-	'top-right': 'gradient-corner-tr gradient-gleam-blue',
-	'top-left': 'gradient-corner-tl gradient-gleam-blue',
-	'bottom-right': 'gradient-corner-br gradient-gleam-cyan',
-	'bottom-left': 'gradient-corner-bl gradient-gleam-cyan',
+const RADIUS_MAP: Record<1 | 2 | 3, string> = {
+	1: 'glass-radius-1',
+	2: 'glass-radius-2',
+	3: 'glass-radius-3',
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -36,40 +41,39 @@ const accentMap: Record<AccentPosition, string> = {
 /**
  * GlassCard — standard glass content card.
  *
- * Wraps GlassSurface. Provides the `title` heading pattern,
- * optional corner accent, and click/hover support.
+ * Provides card layout defaults (surface-2, elevation-1, padding, radius)
+ * and the optional title heading pattern. All glass material and interaction
+ * logic is delegated to CardContainer.
  *
- * Supersedes the deprecated GlassCard1. Migration:
- *   withAccent      → accent
- *   accentPosition  → accentPosition   (identical)
- *   onClick         → onClick          (identical)
- *   rounded         → rounded          (was hardcoded 1 → now default 2)
+ * For large/primary content panels (timeline detail, flip cards),
+ * use PanelContainer directly.
  */
 export function GlassCard({
 	children,
 	className,
 	style,
+	onClick,
 	title,
 	rounded = 2,
-	accent = false,
-	accentPosition = 'top-right',
-	hoverable,
-	onClick,
+	variant,
+	glint = false,
 }: GlassCardProps) {
 	return (
-		<GlassSurface
-			rounded={rounded}
-			hoverable={hoverable ?? !!onClick}
+		<CardContainer
+			variant={variant}
+			glint={glint}
 			onClick={onClick}
-			className={cn('p-8 duration-200', className)}
+			className={cn(
+				'glass-surface-2 glass-elevation-1',
+				RADIUS_MAP[rounded],
+				'p-8',
+				className,
+			)}
 			style={style}
 		>
-			{accent && <div className={cn('overlay h-40 w-40', accentMap[accentPosition])} aria-hidden />}
-
 			{title && <h3 className='heading-3 text-primary mb-6 font-bold'>{title}</h3>}
-
 			{children}
-		</GlassSurface>
+		</CardContainer>
 	);
 }
 

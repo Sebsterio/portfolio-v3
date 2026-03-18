@@ -2,41 +2,59 @@
    Surfaces — Glass System
    ================================================
 
-   @utility   →  glass-surface-N, glass-shadow-N
+   @utility   →  glass-surface-N, glass-elevation-N
                must be utilities to support modifiers
-               e.g. hover:glass-shadow-2, dark:glass-surface-3
+               e.g. hover:glass-elevation-2, dark:glass-surface-3
 
    plain class →  glass-radius-N, decorative overlays
                these never need modifier variants
 
-   Levels
-   ──────────────────────────────────────────
+   ── Surface levels ──────────────────────────────
    1   subtle     chips, tags, pills, small badges
    2   default    cards, panels, content sections
    3   strong     modals, drawers, popovers
 
-   Shadow levels
-   ──────────────────────────────────────────
-   0   flat       no ambient lift — tight inset edge only
+   Each surface utility owns three responsibilities:
+     - Structural:  position: relative, overflow: hidden
+     - Material:    background + backdrop-filter + border
+     - Curvature:   --glass-curvature (inset shadow)
+                    box-shadow: var(--glass-curvature)
+
+   Border uses longhand properties so border-color can
+   be overridden by a Tailwind utility at call-site
+   without touching border-width or border-style.
+
+   ── Elevation levels ────────────────────────────
    1   raised     contact + ambient + subtle accent haze
-   2   elevated   contact + deep ambient + strong accent glow
+   2   elevated   deep ambient + strong accent glow
 
-   Surface design
-   ──────────────────────────────────────────
-   Each level bundles background + backdrop + border.
-   Border is split into longhand properties (not the
-   `border` shorthand) so that border-color can be
-   overridden by a Tailwind utility class at call-site.
+   Elevation utilities compose with surface curvature:
+     box-shadow: var(--glass-elevation), var(--glass-curvature)
 
-   Decorative overlays
-   ──────────────────────────────────────────
-   Applied to absolutely-positioned children (overlay-full).
-   Rendered before content in DOM so they sit behind it
-   naturally — no z-index required on content.
+   --glass-curvature is defined on the element by the
+   surface utility, so both axes resolve correctly when
+   surface + elevation classes appear on the same element.
 
-   glass-reflection   135deg gloss sheen (top-left catch light)
+   A flat surface (no elevation) simply uses the
+   curvature-only box-shadow set by glass-surface-N.
+
+   ── Radius levels ───────────────────────────────
+   1   rounded-2xl
+   2   rounded-3xl / md:rounded-4xl
+   3   rounded-[28px]
+
+   ── Decorative overlays ─────────────────────────
+   Applied to overlay-full children rendered BEFORE
+   content in DOM — natural stacking, no z-index.
+
+   glass-reflection   135deg gloss sheen
    glass-edge-glow    top-edge accent streak
-   glass-noise        subtle grain texture
+   glass-noise        grain texture
+
+   ── Migration ───────────────────────────────────
+   glass-shadow-0     →  (removed; flat = surface only, no elevation class)
+   glass-shadow-1     →  glass-elevation-1
+   glass-shadow-2     →  glass-elevation-2
 
    ================================================ */
 
@@ -44,54 +62,78 @@
 /* ---- Surface ---- */
 
 @utility glass-surface-1 {
-  background:    rgba(10, 10, 14, 0.35);
-  border-width:  1px;
-  border-style:  solid;
-  border-color:  rgb(var(--white-rgb) / 0.06);
+  /* Structural */
+  position: relative;
+  overflow: hidden;
+  /* Material */
+  background:      rgb(var(--glass-surface-rgb) / 0.35);
   backdrop-filter: blur(14px);
+  border-width:    1px;
+  border-style:    solid;
+  border-color:    rgb(var(--white-rgb) / 0.06);
+  /* Curvature — inset edge depth, used by elevation utilities */
+  --glass-curvature:
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.09),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.03);
+  box-shadow: var(--glass-curvature);
 }
 
 @utility glass-surface-2 {
-  background:    rgba(10, 10, 14, 0.68);
-  border-width:  1px;
-  border-style:  solid;
-  border-color:  rgb(var(--white-rgb) / 0.08);
+  /* Structural */
+  position: relative;
+  overflow: hidden;
+  /* Material */
+  background:      rgb(var(--glass-surface-rgb) / 0.68);
   backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
+  border-width:    1px;
+  border-style:    solid;
+  border-color:    rgb(var(--white-rgb) / 0.08);
+  /* Curvature */
+  --glass-curvature:
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.12),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.04);
+  box-shadow: var(--glass-curvature);
 }
 
 @utility glass-surface-3 {
-  background:    rgba(8, 8, 12, 0.86);
-  border-width:  1px;
-  border-style:  solid;
-  border-color:  rgb(var(--white-rgb) / 0.10);
+  /* Structural */
+  position: relative;
+  overflow: hidden;
+  /* Material */
+  background:      rgb(var(--glass-surface-rgb) / 0.86);
   backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
+  border-width:    1px;
+  border-style:    solid;
+  border-color:    rgb(var(--white-rgb) / 0.10);
+  /* Curvature */
+  --glass-curvature:
+    inset 0  1px 0 rgb(var(--white-rgb) / 0.15),
+    inset 0 -1px 0 rgb(var(--white-rgb) / 0.05);
+  box-shadow: var(--glass-curvature);
 }
 
 
-/* ---- Shadow ---- */
+/* ---- Elevation ---- */
+/*
+  Composes outset shadow layers with the surface's --glass-curvature.
+  Requires a glass-surface-N class on the same element so that
+  --glass-curvature is in scope.
+*/
 
-@utility glass-shadow-0 {
-  box-shadow:
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.09),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.03);
+@utility glass-elevation-1 {
+  --glass-elevation:
+    0  1px  3px  rgb(var(--black-rgb) / 0.40),
+    0 12px 40px  rgb(var(--black-rgb) / 0.40),
+    0  4px 16px  rgb(var(--accent-blue-rgb) / 0.07);
+  box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
-@utility glass-shadow-1 {
-  box-shadow:
-    0  1px  3px  rgba(0, 0, 0, 0.40),
-    0 12px 40px  rgba(0, 0, 0, 0.40),
-    0  4px 16px  rgb(var(--accent-blue-rgb) / 0.07),
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.12),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.04);
-}
-
-@utility glass-shadow-2 {
-  box-shadow:
-    0  2px  6px  rgba(0, 0, 0, 0.50),
-    0 24px 64px  rgba(0, 0, 0, 0.50),
-    0  8px 32px  rgb(var(--accent-blue-rgb) / 0.20),
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.18),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.06);
+@utility glass-elevation-2 {
+  --glass-elevation:
+    0  2px  6px  rgb(var(--black-rgb) / 0.50),
+    0 24px 64px  rgb(var(--black-rgb) / 0.50),
+    0  8px 32px  rgb(var(--accent-blue-rgb) / 0.20);
+  box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
 
@@ -104,7 +146,7 @@
 
 /* ---- Decorative Overlays ---- */
 /*
-  Applied to overlay-full children rendered BEFORE content.
+  Applied to overlay-full children rendered BEFORE content in DOM.
   DOM order ensures they sit behind content without z-index.
 */
 

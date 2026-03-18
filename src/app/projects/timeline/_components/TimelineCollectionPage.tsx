@@ -1,15 +1,12 @@
 'use client';
 
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
-import { GlassCard } from '@/components/GlassCard';
+import { TimelineCard } from './TimelineCard';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
-
-// GlassCard1 fully removed — all instances replaced with GlassCard.
-// `withAccent` → `accent`, rounded defaults to 2.
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
@@ -28,9 +25,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative flex items-start gap-8'>
 							<TimelineDateWide period={project.period} />
-							<GlassCard accent onClick={() => go(project)} className='flex-1 p-8 text-left hover:translate-x-2'>
+							<TimelineCard onClick={() => go(project)} className='flex-1'>
 								<TimelineCardContent project={project} limit={4} size='lg' />
-							</GlassCard>
+							</TimelineCard>
 						</div>
 					))}
 				</div>
@@ -43,9 +40,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative flex gap-8'>
 							<TimelineDateNarrow period={project.period} />
-							<GlassCard accent onClick={() => go(project)} className='w-full p-8 text-left hover:translate-x-2'>
+							<TimelineCard onClick={() => go(project)} className='w-full'>
 								<TimelineCardContent project={project} limit={4} size='lg' />
-							</GlassCard>
+							</TimelineCard>
 						</div>
 					))}
 				</div>
@@ -58,11 +55,9 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<GlassCard
-								accent
-								accentPosition='top-right'
+							<TimelineCard
 								onClick={() => go(project)}
-								className='w-full p-6 text-left'
+								className='w-full p-6'
 								style={{ viewTransitionName: `project-card-${project.id}` }}
 							>
 								<div className='relative space-y-3'>
@@ -71,7 +66,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 									<p className='text-muted text-sm leading-relaxed'>{project.summary}</p>
 									<ProjectTags tags={project.tags} limit={3} size='sm' />
 								</div>
-							</GlassCard>
+							</TimelineCard>
 						</div>
 					))}
 				</div>
