@@ -3,17 +3,15 @@
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
-import { GlassCard } from '@/components/GlassCard';
+import { PanelContainer } from '@/components/ui/PanelContainer';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
-import { ProjectContentCard } from './TimelineProjectContentCard';
+import { TimelineProjectPanel } from './TimelineProjectPanel';
 import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
 
 // import { PROJECT_PAGE_TITLE_ID } from '../../_config';
-
-// GlassCard1 fully removed — all instances replaced with GlassCard.
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -42,7 +40,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 				</aside>
 
 				<main className='vt-t-detail'>
-					<ProjectContentCard project={project} />
+					<TimelineProjectPanel project={project} />
 				</main>
 			</div>
 
@@ -73,7 +71,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-xs font-semibold text-accent-cyan'>{p.period}</span>
 		</div>
 
-		<GlassCard accent className='space-y-6 border-accent-blue/30 p-6' style={{ viewTransitionName: `project-card-${p.id}` }}>
+		<PanelContainer className='glass-surface-1 glass-elevation-1 glass-radius-2 space-y-6 border-accent-blue/30 p-6' style={{ viewTransitionName: `project-card-${p.id}` }}>
 			<div className='relative space-y-4'>
 				<div className='space-y-1.5'>
 					<h2 className='heading-1 text-primary'>{p.title}</h2>
@@ -106,7 +104,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 					</ExternalLinkButton>
 				)}
 			</div>
-		</GlassCard>
+		</PanelContainer>
 	</div>
 );
 
