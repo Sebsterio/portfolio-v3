@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
-import { CardContainer } from '@/components/ui/CardContainer';
+import { Card } from '@/components/ui/Card';
 
 // ----------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
-		<CardContainer
+		<Card
 			variant='lifted'
 			className={cn('glass-surface-2 glass-elevation-1 glass-radius-3 group h-105 p-8')}
 			{...{ style, onClick }}
@@ -76,7 +76,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
-		</CardContainer>
+		</Card>
 	);
 };
 

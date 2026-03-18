@@ -3,7 +3,7 @@
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { BackLink } from '@/components/BackLink';
-import { PanelContainer } from '@/components/ui/PanelContainer';
+import { Panel } from '@/components/ui/Panel';
 import { ProjectTags } from '@/components/ProjectTags';
 import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
@@ -71,7 +71,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-xs font-semibold text-accent-cyan'>{p.period}</span>
 		</div>
 
-		<PanelContainer className='glass-surface-1 glass-elevation-1 glass-radius-2 space-y-6 border-accent-blue/30 p-6' style={{ viewTransitionName: `project-card-${p.id}` }}>
+		<Panel className='glass-surface-1 glass-elevation-1 glass-radius-2 space-y-6 border-accent-blue/30 p-6' style={{ viewTransitionName: `project-card-${p.id}` }}>
 			<div className='relative space-y-4'>
 				<div className='space-y-1.5'>
 					<h2 className='heading-1 text-primary'>{p.title}</h2>
@@ -104,7 +104,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 					</ExternalLinkButton>
 				)}
 			</div>
-		</PanelContainer>
+		</Panel>
 	</div>
 );
 

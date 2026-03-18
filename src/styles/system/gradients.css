@@ -1,21 +1,11 @@
 /* Partial */
 /*  */
-/* .gradient-corner-tr 		{ @apply bg-linear-to-bl right-0 top-0; 		}  */
-/* .gradient-corner-bl			{ @apply bg-linear-to-tr left-0 bottom-0; 	}  */
-/* .gradient-corner-tl			{ @apply bg-linear-to-br left-0 top-0; 			}  */
-/* .gradient-corner-br			{ @apply bg-linear-to-tl right-0 bottom-0;	}  */
-/*  */
 /* @utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	 */
-/*  */
-/* @utility gradient-gleam 	{ @apply via-transparent to-transparent;	}  */
 /*  */
 /* Standalone */
 /*  */
 /* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	} */
 /* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; } */
-/*  */
-/* .gradient-gleam-blue	{ @apply gradient-gleam from-accent-blue/10; } */
-/* .gradient-gleam-cyan	{ @apply gradient-gleam from-accent-cyan/10; } */
 /*  */
 /* .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; } */
 /* .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; } */
@@ -47,26 +37,6 @@
    gradient-text             clips background-image to text shape
                              combine with any gradient-* utility:
                              class="gradient-text gradient-primary"
-
-   ── Gleam system ────────────────────────────────────────────
-   gradient-gleam            PARTIAL: sets via+to transparent only.
-                             Always combine with a from-* colour:
-                             class="gradient-gleam from-accent-blue/10"
-                             Or use a named variant below.
-
-   gradient-gleam-blue       gleam partial + from-accent-blue/10
-   gradient-gleam-cyan       gleam partial + from-accent-cyan/10
-
-   ── Corner accents ──────────────────────────────────────────
-   PARTIAL: sets gradient direction + corner position only.
-   Always add a from-* colour in JSX, e.g.:
-     class="gradient-corner-tr from-accent-blue/10"
-   Apply to an absolute-positioned child element.
-
-   gradient-corner-tr        → bl direction, top-right position
-   gradient-corner-tl        → br direction, top-left position
-   gradient-corner-br        → tl direction, bottom-right position
-   gradient-corner-bl        → tr direction, bottom-left position
 
    ── Reflection overlays ─────────────────────────────────────
    Apply to absolute-positioned child elements (overlay-full).
@@ -106,24 +76,6 @@
 @utility gradient-text {
   @apply text-transparent bg-clip-text;
 }
-
-
-/* ---- Gleam System ---- */
-
-@utility gradient-gleam {
-  @apply via-transparent to-transparent;
-}
-
-.gradient-gleam-blue { @apply gradient-gleam from-accent-blue/10; }
-.gradient-gleam-cyan { @apply gradient-gleam from-accent-cyan/10; }
-
-
-/* ---- Corner Accents ---- */
-
-.gradient-corner-tr { @apply bg-linear-to-bl right-0 top-0;    }
-.gradient-corner-tl { @apply bg-linear-to-br left-0  top-0;    }
-.gradient-corner-br { @apply bg-linear-to-tl right-0 bottom-0; }
-.gradient-corner-bl { @apply bg-linear-to-tr left-0  bottom-0; }
 
 
 /* ---- Reflection Overlays ---- */

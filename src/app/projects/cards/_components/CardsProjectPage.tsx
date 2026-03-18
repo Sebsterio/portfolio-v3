@@ -6,7 +6,7 @@ import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
-import { PanelContainer } from '@/components/ui/PanelContainer';
+import { Panel } from '@/components/ui/Panel';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
@@ -146,7 +146,7 @@ type ProjectCardFaceProps = {
 
 function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFaceProps & { gradientClass: string }) {
 	return (
-		<PanelContainer
+		<Panel
 			className={cn(
 				'glass-surface-2 glass-elevation-1 glass-radius-2',
 				'col-start-1 row-start-1 p-8 md:p-12',
@@ -180,13 +180,13 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>
 			</div>
-		</PanelContainer>
+		</Panel>
 	);
 }
 
 function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
-		<PanelContainer
+		<Panel
 			className={cn(
 				'glass-surface-2 glass-elevation-1 glass-radius-2',
 				'col-start-1 row-start-1 p-8 md:p-12',
@@ -232,7 +232,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 					</ExternalLinkButton>
 				)}
 			</div>
-		</PanelContainer>
+		</Panel>
 	);
 }
 
