@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type PanelContainerProps = {
+export type PanelProps = {
 	children: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
@@ -12,21 +12,18 @@ export type PanelContainerProps = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 /**
- * PanelContainer — React primitive for large/primary glass content panels.
+ * Panel — React primitive for large/primary glass content panels.
  *
- * Distinct from CardContainer in two ways:
- *   1. Decorative layer: noise grain only (no reflection, no glint).
+ * Distinct from Card in two ways:
+ *   1. Decorative layer: noise + dual accent only (no reflection, no glint).
  *      Large panels don't benefit from the diagonal catch-light that reads
  *      well on compact cards — at panel scale it becomes distracting.
- *   2. Static dual accent: fixed top-right blue + bottom-left cyan orbs,
- *      sized proportionally (w-2/5 aspect-square) so they scale with the
- *      panel rather than being fixed pixel dimensions.
+ *   2. Dual accent: single overlay (glass-panel-accents) with radial gradients
+ *      at top-right (blue) and bottom-left (cyan). Proportional and soft —
+ *      scales naturally with the panel without fixed pixel sizes.
  *
  * No variant/interaction styles — panels either have no hover treatment
  * or the consuming component applies its own transform (e.g. TimelineCard).
- *
- * Responsibilities:
- *   - DOM structure: noise overlay, dual accent orbs
  *
  * Does NOT own:
  *   - Surface level (glass-surface-N)     ← via className
@@ -35,7 +32,7 @@ export type PanelContainerProps = {
  *   - Padding / layout                    ← via className or consuming component
  *   - Hover / interaction styles          ← consuming component's responsibility
  */
-export function PanelContainer({ children, className, style, onClick }: PanelContainerProps) {
+export function Panel({ children, className, style, onClick }: PanelProps) {
 	return (
 		<div
 			className={cn(onClick && 'cursor-pointer', className)}
@@ -45,9 +42,8 @@ export function PanelContainer({ children, className, style, onClick }: PanelCon
 			{/* Grain texture — rendered first, sits behind content via DOM order */}
 			<div className='overlay-full glass-noise' aria-hidden />
 
-			{/* Static dual accent — proportional size, always top-right + bottom-left */}
-			<div className='gradient-corner-tr gradient-gleam-blue overlay aspect-square w-2/5' aria-hidden />
-			<div className='gradient-corner-bl gradient-gleam-cyan overlay aspect-square w-2/5' aria-hidden />
+			{/* Dual corner accent — single overlay with two radial gradients */}
+			<div className='overlay-full glass-panel-accents' aria-hidden />
 
 			{children}
 		</div>
