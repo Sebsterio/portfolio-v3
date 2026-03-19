@@ -28,7 +28,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 			variant='lifted'
 			className={cn(
 				'glass-surface-2 glass-elevation-1 glass-radius-2',
-				'p-6 sm:p-8 md:p-10',
+				'padding-card-lg',
 				// Override lifted timing: fuller spring + slower duration for dwell behaviour.
 				// GlassCard lifted uses duration-300 + overshoot 1.2 (scan targets).
 				// ShowcaseCard uses duration-500 + overshoot 1.56 (dwell targets).

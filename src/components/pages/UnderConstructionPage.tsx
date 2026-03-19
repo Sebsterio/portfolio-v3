@@ -10,7 +10,7 @@ export function UnderConstructionPage() {
 
 	return (
 		<div className='grid grid-cols-1 gap-12 lg:grid-cols-[1fr_300px]'>
-			<div className='space-y-10 vt-left'>
+			<div className='stack-2xl vt-left'>
 				<Title variant='page' className='mb-6'>
 					{copy.title}
 				</Title>

@@ -45,7 +45,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
 		<Card
 			variant='lifted'
-			className={cn('glass-surface-2 glass-elevation-1 glass-radius-3 group h-105 p-8')}
+			className={cn('glass-surface-2 glass-elevation-1 glass-radius-3 group h-105 padding-card')}
 			{...{ style, onClick }}
 		>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>

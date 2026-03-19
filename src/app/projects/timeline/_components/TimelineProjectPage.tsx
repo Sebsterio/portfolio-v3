@@ -11,6 +11,7 @@ import { TimelineProjectPanel } from './TimelineProjectPanel';
 import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
 import { ImpactList } from '@/components/ImpactList';
+import { CaseStudySection } from '@/components/CaseStudySection';
 
 // import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 
@@ -82,8 +83,8 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 
 				<p className='text-secondary leading-relaxed'>{p.intro}</p>
 
-				<ImpactSection label='The Challenge' content={p.challenge} />
-				<ImpactSection label='The Solution' content={p.solution} />
+				<CaseStudySection label='The Challenge' content={p.challenge} size='sm' />
+				<CaseStudySection label='The Solution' content={p.solution} size='sm' />
 
 				<div className='space-y-3'>
 					<h3 className='heading-3 text-primary font-bold'>Impact</h3>
@@ -115,11 +116,4 @@ const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClic
 			<div className='text-subtle text-xs'>{p.company}</div>
 		</div>
 	</button>
-);
-
-const ImpactSection = ({ label, content }: { label: string; content: string }) => (
-	<div className='space-y-2'>
-		<h3 className='heading-3 text-primary font-bold'>{label}</h3>
-		<p className='text-secondary text-sm leading-relaxed'>{content}</p>
-	</div>
 );

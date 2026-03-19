@@ -1,40 +1,34 @@
-# Task: Centralise Internal Layout Styles — COMPLETE
+# Task: Full Layout System — Phases 1–4 — COMPLETE
 
-## Steps completed
+## All steps completed
 
-| Step | Description                                      | Status |
-| ---- | ------------------------------------------------ | ------ |
-| 1    | Convert stack/container/cluster to `@utility`    | ✅ Done |
-| 2    | Add `stack-xs` and `stack-2xl` to scale          | ✅ Done |
-| 3    | Align page column spacing (Home + About)         | ✅ Done |
-| 4    | Extract `ImpactList` shared component            | ✅ Done |
-| 5    | Adopt stack utilities across section-level stacks | ✅ Done |
+### Phase 1 — layout.css rewritten
+- Full token vocabulary: stack-2xs through stack-2xl, cluster-xs/sm/md/lg,
+  padding-card / padding-card-lg / padding-panel, all as @utility
+- panel-padding removed (renamed to padding-panel)
+- Comment header documents all tokens with semantic descriptions
 
-## Files changed
+### Phase 2 — Component padding defaults
+- InfoCard:                p-8           → padding-card
+- ShowcaseCard:            p-6 sm:p-8 md:p-10  → padding-card-lg
+- TimelineCard:            p-8           → padding-card
+- ProjectCard:             p-8           → padding-card
+- TimelineProjectPanel:    panel-padding → padding-panel
+- ProjectCardFront/Back:   panel-padding → padding-panel
 
-### layout.css
-- All stack/container/cluster utilities converted from plain classes to `@utility`
-- `stack-xs` (space-y-3) and `stack-2xl` (space-y-10 md:space-y-12) added
-- Comment header updated
+### Phase 3 — New components
+- CaseStudySection created (src/components/CaseStudySection.tsx)
+  size='md' — heading-2, body text (TimelineProjectPanel)
+  size='sm' — heading-3 bold, body-sm (ExpandedMobileCard)
+- Section reworked: optional title prop renders SectionHeader internally,
+  stack-lg spacing between header and content
+- Both exported from src/components/index.ts
+- TimelineProjectPanel: inline heading+body pairs → CaseStudySection
+- TimelineProjectPage: ImpactSection local component removed, replaced with CaseStudySection size='sm'
 
-### Pages
-- `app/(home)/page.tsx` — `space-y-8 md:space-y-12` → `stack-2xl`
-- `app/about/page.tsx` — `space-y-10 md:space-y-12` → `stack-2xl`
-
-### New component
-- `src/components/ImpactList.tsx` — created (size='sm'|'md')
-- `src/components/index.ts` — ImpactList exported
-
-### ImpactList consumers
-- `timeline/_components/TimelineProjectPanel.tsx` — inline ul replaced
-- `cards/_components/CardsProjectPage.tsx` — inline ul replaced (ProjectCardBack)
-- `timeline/_components/TimelineProjectPage.tsx` — inline ul replaced (ExpandedMobileCard, size='sm')
-
-### Stack utility adoptions
-- `app/projects/layout.tsx` — space-y-16/8/4 → stack-xl/lg/sm
-- `timeline/_components/TimelineProjectPanel.tsx` — space-y-8 → stack-lg
-- `timeline/_components/TimelineCollectionPage.tsx` — space-y-8 → stack-lg (outer), space-y-6 → stack-md (mobile)
-- `cards/_components/CardsCollectionPage.tsx` — space-y-8 → stack-lg
+### Phase 4 — Page migration
+- about/page.tsx: Section + SectionHeader inline pattern → Section title= API; SectionHeader import removed
+- UnderConstructionPage.tsx: space-y-10 → stack-2xl
 
 ## Validation
 pnpm lint — exit code 0 ✅
