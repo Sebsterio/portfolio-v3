@@ -17,7 +17,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	const go = (project: Project) => navigate(`/projects/timeline/${project.slug}`, { scroll: false });
 
 	return (
-		<div className='stack-lg w-full'>
+		<div className='w-full stack-lg'>
 			{/* Desktop Wide ─────────────────────────────────────── */}
 			<div className='relative hidden w-full vt-t-list xl:block'>
 				<TimelineLine position='right' />
@@ -55,11 +55,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<TimelineCard
-								onClick={() => go(project)}
-								className='w-full p-6'
-								style={{ viewTransitionName: `project-card-${project.id}` }}
-							>
+							<TimelineCard onClick={() => go(project)} className='w-full p-6' style={{ viewTransitionName: `project-card-${project.id}` }}>
 								<div className='relative space-y-3'>
 									<h3 className='heading-2 text-primary'>{project.title}</h3>
 									<p className='text-tertiary'>{project.company}</p>
@@ -101,13 +97,13 @@ const TimelineDateNarrow = ({ period }: { period: string }) => (
 const TimelineDateMobile = ({ period }: { period: string }) => (
 	<div className='mb-3 flex items-center gap-3'>
 		<TimelineDot active />
-		<span className='translate-y-px text-xs font-semibold text-accent-cyan'>{period}</span>
+		<span className='translate-y-px text-sm font-semibold text-accent-cyan'>{period}</span>
 	</div>
 );
 
 const TimelineCardContent = ({ project, limit, size }: { project: Project; limit: number; size: 'sm' | 'lg' }) => (
 	<div className='relative space-y-4'>
-		<InlineList.Div className='cluster-sm text-subtle text-sm'>{[project.location, project.role]}</InlineList.Div>
+		<InlineList.Div className='text-subtle cluster-sm text-sm'>{[project.location, project.role]}</InlineList.Div>
 		<h3 className='heading-1 text-primary'>{project.title}</h3>
 		<p className='text-secondary text-lg'>{project.company}</p>
 		<p className='text-muted leading-relaxed'>{project.summary}</p>

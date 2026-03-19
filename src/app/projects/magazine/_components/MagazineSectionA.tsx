@@ -79,11 +79,13 @@ export function MagazineSectionA({
 				</h3>
 				<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
 
-				{description.map((paragraph, index) => (
-					<p key={index} className='text-secondary mb-6 text-sm leading-relaxed md:text-base'>
-						<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
-					</p>
-				))}
+				<div className='space-y-6'>
+					{description.map((paragraph, index) => (
+						<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+							<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
+						</p>
+					))}
+				</div>
 
 				<ProjectTags className='mt-6 md:mt-8' variant='highlight' size='lg' tags={tags} />
 			</div>

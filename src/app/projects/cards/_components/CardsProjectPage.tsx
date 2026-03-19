@@ -149,7 +149,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 	return (
 		<Panel
 			className={cn(
-				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
@@ -189,7 +189,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
 		<Panel
 			className={cn(
-				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'border-accent-blue/30',
 				'transition-opacity duration-300',
