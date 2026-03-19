@@ -4,7 +4,7 @@
 
    Page container
    ──────────────
-   content-container   full-width page wrapper, max-w-350   (unchanged)
+   content-container   full-width page wrapper, max-w-350
 
    Content containers
    ──────────────────
@@ -14,29 +14,37 @@
 
    Stack (vertical rhythm)
    ───────────────────────
-   stack-xs        space-y-3
-   stack-sm        space-y-4
-   stack-md        space-y-6
-   stack-lg        space-y-8
-   stack-xl        space-y-12 md:space-y-16   (was: stack-section)
-   stack-2xl       space-y-10 md:space-y-12  — page-column primary rhythm
+   Uses space-y. flex/gap migration is a next-stage concern.
+
+   stack-2xs       space-y-1   — sub-text groupings (period / company / role)
+   stack-xs        space-y-3   — tight content groups (label + value)
+   stack-sm        space-y-4   — standard card body sections
+   stack-md        space-y-6   — section-level spacing within a panel
+   stack-lg        space-y-8   — major blocks between content sections
+   stack-xl        space-y-12 md:space-y-16   — top-level page sections
+   stack-2xl       space-y-10 md:space-y-12   — page-column primary rhythm
 
    Cluster (horizontal groups)
    ───────────────────────────
+   cluster-xs      flex items-center gap-2
    cluster-sm      flex items-center gap-3
    cluster-md      flex items-center gap-4
+   cluster-lg      flex items-center gap-6
 
-   Padding
-   ───────
-   panel-padding   p-8 md:p-12 — full-detail Panel views
+   Padding (responsive, context-named)
+   ────────────────────────────────────
+   padding-card     p-8               — standard cards (InfoCard, TimelineCard, ProjectCard)
+   padding-card-lg  p-6 sm:p-8 md:p-10 — showcase / dwell cards
+   padding-panel    p-8 md:p-12       — full-detail Panel views
 
    Overlay helpers
    ───────────────
    overlay         absolute + pointer-events-none
    overlay-full    absolute + pointer-events-none + inset-0
 
-   Migration
-   ─────────
+   Migration notes
+   ───────────────
+   panel-padding      →  padding-panel
    stack-section      →  stack-xl
    container-section  →  container-md
    container-wide     →  container-lg
@@ -56,18 +64,9 @@
 @utility container-lg { @apply max-w-6xl mx-auto; }
 
 
-/* ---- Padding ---- */
-
-/**
- * panel-padding — responsive inner padding for full-detail panel views.
- * Base: p-8 (32px). Expanded: p-12 (48px) at md breakpoint.
- * Used by Panel-based components that render full project detail content.
- */
-@utility panel-padding { @apply p-8 md:p-12; }
-
-
 /* ---- Stack ---- */
 
+@utility stack-2xs { @apply space-y-1;               }
 @utility stack-xs  { @apply space-y-3;               }
 @utility stack-sm  { @apply space-y-4;               }
 @utility stack-md  { @apply space-y-6;               }
@@ -78,11 +77,20 @@
 
 /* ---- Cluster ---- */
 
+@utility cluster-xs { @apply flex items-center gap-2; }
 @utility cluster-sm { @apply flex items-center gap-3; }
 @utility cluster-md { @apply flex items-center gap-4; }
+@utility cluster-lg { @apply flex items-center gap-6; }
+
+
+/* ---- Padding ---- */
+
+@utility padding-card    { @apply p-8;               }
+@utility padding-card-lg { @apply p-6 sm:p-8 md:p-10; }
+@utility padding-panel   { @apply p-8 md:p-12;        }
 
 
 /* ---- Overlay Helpers ---- */
 
-@utility overlay      { @apply absolute pointer-events-none;        }
+@utility overlay      { @apply absolute pointer-events-none;         }
 @utility overlay-full { @apply absolute pointer-events-none inset-0; }

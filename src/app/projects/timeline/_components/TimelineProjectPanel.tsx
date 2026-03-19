@@ -5,10 +5,11 @@ import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
 import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
+import { CaseStudySection } from '@/components/CaseStudySection';
 import { ExternalLinkButton } from '@/components/Button';
 
 export const TimelineProjectPanel = ({ project, className }: { project: Project; className?: string }) => (
-	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 panel-padding', className)}>
+	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 padding-panel', className)}>
 		<div className='relative stack-lg'>
 			<div className='space-y-3 md:space-y-4'>
 				<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
@@ -33,15 +34,9 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 				))}
 			</div>
 
-			<div className='space-y-3'>
-				<h3 className='heading-2 text-primary'>The Challenge</h3>
-				<p className='text-secondary leading-relaxed'>{project.challenge}</p>
-			</div>
+			<CaseStudySection label='The Challenge' content={project.challenge} />
 
-			<div className='space-y-3'>
-				<h3 className='heading-2 text-primary'>The Solution</h3>
-				<p className='text-secondary leading-relaxed'>{project.solution}</p>
-			</div>
+			<CaseStudySection label='The Solution' content={project.solution} />
 
 			<div className='space-y-4'>
 				<h3 className='heading-2 text-primary'>Impact & Results</h3>

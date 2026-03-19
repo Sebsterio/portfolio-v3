@@ -1,6 +1,7 @@
 export * from './typography';
 
 export * from './Button';
+export * from './CaseStudySection';
 export * from './ImpactList';
 export * from './InfoCard';
 export * from './LabeledValueRow';

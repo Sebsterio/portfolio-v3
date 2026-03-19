@@ -1,6 +1,6 @@
 'use client';
 
-import { Title, TextBlock, ShowcaseCard, InfoCard, Section, SectionHeader, LabeledValueRow, TechCategoryGroup } from '@/components';
+import { Title, TextBlock, ShowcaseCard, InfoCard, Section, LabeledValueRow, TechCategoryGroup } from '@/components';
 import { copy, highlights, quickFacts, techCategories } from './_content';
 import { cn } from '@/lib/utils';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
@@ -26,8 +26,7 @@ export default function AboutPage({}: AboutPageProps) {
 
 				<TextBlock highlightFirstParagraph>{copy.intro}</TextBlock>
 
-				<Section /* className='vt-bottom' - GLITCH: page flash */>
-					<SectionHeader title={copy.sectionTitles.highlights} className='mb-8' />
+				<Section title={copy.sectionTitles.highlights} /* className='vt-bottom' - GLITCH: page flash */>
 
 					<div className={cn('grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2', 'gap-4 md:gap-6')}>
 						{highlights.map((h, i) => (

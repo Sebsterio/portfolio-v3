@@ -66,7 +66,7 @@ export function InfoCard({
 			className={cn(
 				'glass-surface-2 glass-elevation-1',
 				RADIUS_MAP[rounded],
-				'p-8',
+				'padding-card',
 				className,
 			)}
 			style={style}
