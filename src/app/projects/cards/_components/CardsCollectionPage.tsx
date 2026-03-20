@@ -6,7 +6,8 @@ import { cn } from '@/lib/utils';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
-import { Card } from '@/components/ui/Card';
+import { Panel } from '@/components/ui/Panel';
+import { ArrowIndicator } from '@/components/ArrowIndicator';
 
 // ----------------------------------------------------------------------------
 
@@ -18,8 +19,8 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	return (
-		<div className='stack-lg w-full'>
-			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'>
+		<div className='w-full stack-lg'>
+			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
 					<div key={project.id} style={{ viewTransitionName: `project-card-${project.id}` }}>
 						<ProjectCard
@@ -43,9 +44,12 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
-		<Card
-			variant='lifted'
-			className={cn('glass-surface-2 glass-elevation-1 glass-radius-3 group h-105 padding-card')}
+		<Panel
+			edgeGlow
+			className={cn(
+				'glass-radius-3 group glass-surface-2 h-105 padding-card glass-elevation-1',
+				'transition-all hover:scale-105 hover:glass-elevation-2',
+			)}
 			{...{ style, onClick }}
 		>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
@@ -72,20 +76,12 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 			</div>
 
 			<ArrowIndicator
+				aria-label={`View ${project.title}`}
 				className={cn('absolute right-8 bottom-8', [
-					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
+					'group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
-		</Card>
+		</Panel>
 	);
 };
 
-const ArrowIndicator = ({ className }: { className: string }) => (
-	<div
-		className={cn('transition-duration-300 flex h-12 w-12 items-center justify-center rounded-full transition-all', [
-			['border border-accent-blue/30 bg-accent-blue/10 text-xl text-accent-cyan', className],
-		])}
-	>
-		→
-	</div>
-);

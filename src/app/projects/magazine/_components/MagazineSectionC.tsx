@@ -28,14 +28,13 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 
 					<p className='text-muted mb-8 text-base md:text-lg'>{subTitle}</p>
 
-					{description.map((paragraph, index) => (
-						<p
-							key={index}
-							className={`text-secondary text-sm leading-relaxed md:text-base ${index < description.length - 1 ? 'mb-6' : ''}`}
-						>
-							{paragraph}
-						</p>
-					))}
+					<div className='space-y-6'>
+						{description.map((paragraph, index) => (
+							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+								{paragraph}
+							</p>
+						))}
+					</div>
 				</div>
 
 				{/* Image Column */}

@@ -24,10 +24,11 @@ interface ShowcaseCardProps {
 export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, description, className }) => {
 	return (
 		<Card
-			glint
 			variant='lifted'
+			glint
+			edgeGlow
 			className={cn(
-				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'padding-card-lg',
 				// Override lifted timing: fuller spring + slower duration for dwell behaviour.
 				// GlassCard lifted uses duration-300 + overshoot 1.2 (scan targets).
@@ -36,13 +37,10 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 				className,
 			)}
 		>
-			{/* Custom-positioned edge glow — narrower than full-width */}
-			<div className='glass-edge-glow overlay top-0 left-[15%] h-px w-[70%]' aria-hidden />
-
 			<div className='flex gap-5 sm:gap-6'>
+				{/* NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page */}
 				<IconBadge>{icon}</IconBadge>
 				<div className='min-w-0'>
-					{/* NOTE: margin on this element or its sibling causes a VT flash on nav */}
 					<h3 className='font-display text-base font-bold text-chrome-silver sm:text-lg md:text-xl'>{title}</h3>
 					<p className='text-muted mt-1.5 text-[13px] leading-relaxed md:text-sm'>{description}</p>
 				</div>

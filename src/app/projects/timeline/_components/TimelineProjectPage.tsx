@@ -70,11 +70,14 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 	<div className='space-y-4'>
 		<div className='flex items-center gap-3'>
 			<TimelineDot active />
-			<span className='text-xs font-semibold text-accent-cyan'>{p.period}</span>
+			<span className='text-sm font-semibold text-accent-cyan'>{p.period}</span>
 		</div>
 
-		<Panel className='glass-surface-1 glass-elevation-1 glass-radius-2 space-y-6 border-accent-blue/30 p-6' style={{ viewTransitionName: `project-card-${p.id}` }}>
-			<div className='relative space-y-4'>
+		<Panel
+			className='glass-radius-2 glass-surface-1 space-y-6 border-accent-blue/30 p-6 glass-elevation-1'
+			style={{ viewTransitionName: `project-card-${p.id}` }}
+		>
+			<div className='relative space-y-5'>
 				<div className='space-y-1.5'>
 					<h2 className='heading-1 text-primary'>{p.title}</h2>
 					<p className='text-secondary text-lg'>{p.company}</p>
@@ -86,7 +89,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 				<CaseStudySection label='The Challenge' content={p.challenge} size='sm' />
 				<CaseStudySection label='The Solution' content={p.solution} size='sm' />
 
-				<div className='space-y-3'>
+				<div className='space-y-3 pt-1'>
 					<h3 className='heading-3 text-primary font-bold'>Impact</h3>
 					<ImpactList items={p.impact} size='sm' />
 				</div>

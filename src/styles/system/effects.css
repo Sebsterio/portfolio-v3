@@ -17,6 +17,12 @@
    ─────────────────────────────────────────
    bg-accent-soft     accent at 10% opacity fill
 
+   Focus rings
+   ─────────────────────────────────────────
+   focus-ring   focus-visible ring on interactive elements (buttons, links).
+                Cards get focus feedback via this utility on the ArrowIndicator
+                button inside them — the container itself is never a focus target.
+
    Glint sweep
    ─────────────────────────────────────────
    glass-glint          resting state — parked off-screen left
@@ -55,6 +61,19 @@
 /* ---- Background Fills ---- */
 
 @utility bg-accent-soft { background: rgb(var(--accent-blue-rgb) / 0.1); }
+
+
+/* ---- Focus Ring ---- */
+
+/**
+ * Applied to interactive elements (buttons, links) — activates on keyboard
+ * navigation only (focus-visible). Cards surface focus feedback through
+ * the ArrowIndicator button inside them; the container is not a focus target.
+ */
+
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+}
 
 
 /* ---- Glint Sweep ---- */

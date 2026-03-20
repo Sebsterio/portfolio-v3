@@ -23,7 +23,8 @@ Routes are implemented under `src/app`.
     |-- timeline/[slug]/page.tsx
     |-- cards/page.tsx
     |-- cards/[slug]/page.tsx
-    `-- magazine/page.tsx
+    |-- magazine/page.tsx
+    `-- magazine/[slug]/page.tsx  -> redirects to /projects/magazine#project-{id}
 ```
 
 ## Boundaries
@@ -36,7 +37,8 @@ Routes are implemented under `src/app`.
 
 - Project data is defined in `src/app/projects/_content.ts`.
 - Data access is through `getProjects()` and `getProject(slug)` in `src/app/projects/_lib.ts`.
-- Detail pages generate static params from project slugs.
+- Timeline and cards detail pages generate static params from project slugs.
+- Magazine slug routes generate static params from project slugs, then redirect to anchored sections in the magazine page.
 
 ## Navigation and transitions
 
@@ -62,6 +64,7 @@ Tailwind is used in CSS-first mode with static class detection.
 
 - Visual regression tests: `e2e/tests/vrt.spec.ts`.
 - Unit test config: `vitest.config.mts` (`src/**/*.test.{ts,tsx}`).
+- Current matching unit tests are minimal and currently limited to `src/temp/TestComponent.test.tsx`.
 - Lint config: `eslint.config.mjs`.
 
 ## Invariants

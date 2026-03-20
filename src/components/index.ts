@@ -1,5 +1,6 @@
 export * from './typography';
 
+export * from './ArrowIndicator';
 export * from './Button';
 export * from './CaseStudySection';
 export * from './ImpactList';

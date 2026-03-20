@@ -1,13 +1,4 @@
-import { cn } from '@/lib/utils';
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-export type PanelProps = {
-	children: React.ReactNode;
-	className?: string;
-	style?: React.CSSProperties;
-	onClick?: () => void;
-};
+import { Glass, GlassProps } from './Glass';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -32,20 +23,10 @@ export type PanelProps = {
  *   - Padding / layout                    ← via className or consuming component
  *   - Hover / interaction styles          ← consuming component's responsibility
  */
-export function Panel({ children, className, style, onClick }: PanelProps) {
+export function Panel({ children, ...props }: GlassProps) {
 	return (
-		<div
-			className={cn(onClick && 'cursor-pointer', className)}
-			style={style}
-			onClick={onClick}
-		>
-			{/* Grain texture — rendered first, sits behind content via DOM order */}
-			<div className='overlay-full glass-noise' aria-hidden />
-
-			{/* Dual corner accent — single overlay with two radial gradients */}
-			<div className='overlay-full glass-panel-accents' aria-hidden />
-
+		<Glass texture accents {...props}>
 			{children}
-		</div>
+		</Glass>
 	);
 }

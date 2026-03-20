@@ -32,7 +32,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 		<div className='relative pt-20 vt-m-page'>
 			<MagazineCollectionPageDecorations />
 
-			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-32'>
+			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-36'>
 				{projects.map(({ id, company, role, roleDetail, label, location, images, ...project }, index) =>
 					id === 'bounce' ? (
 						<MagazineSectionA

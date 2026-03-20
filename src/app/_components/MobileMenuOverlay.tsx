@@ -11,19 +11,18 @@ type MobileMenuOverlayProps = {
 	isOpen: boolean;
 	navItems: NavItem[];
 	onClose: () => void;
+	className?: string;
 };
 
-export const MobileMenuOverlay = ({ isOpen, navItems, onClose }: MobileMenuOverlayProps) => {
+export const MobileMenuOverlay = ({ isOpen, navItems, className, onClose }: MobileMenuOverlayProps) => {
 	const getIsCurrentPage = useGetIsCurrentPage();
 
 	return (
 		<div
-			className={cn(
-				'fixed inset-0 z-50',
-				'bg-black/80 backdrop-blur-md',
-				'transition-opacity duration-200 ease-out',
+			className={cn('bg-black/80 backdrop-blur-md transition-opacity duration-200 ease-out', [
 				isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
-			)}
+				className,
+			])}
 			aria-hidden={!isOpen}
 		>
 			<div className='flex h-full flex-col items-center justify-center gap-8'>

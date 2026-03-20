@@ -6,6 +6,7 @@ import { useGetIsCurrentPage } from '@/lib/transitions/components/TransitionProv
 import { TransitionLink as Link } from '@/lib/transitions/components/TransitionLink';
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
+import { Glass } from '@/components/ui/Glass';
 
 type NavItem = {
 	label: string;
@@ -23,73 +24,67 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
-		<>
-			<div className='relative'>
-				{/* Main Nav */}
-				<nav
-					className={cn(
-						'relative z-50 rounded-full',
-						'-mx-2 -mt-2 sm:mx-0 sm:mt-0',
-						'px-6 py-3 md:px-10 md:py-5',
-						'flex items-center justify-between',
-						'glass-default', // MIGRATION: glass-shadow-0 -> glass-shadow-1
-						'transition-opacity duration-300',
-						isMenuOpen && 'opacity-0.2 pointer-events-none',
-						className,
-					)}
-				>
-					{/* Logo */}
-					<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight md:text-2xl'>
-						<span
-							className='bg-clip-text text-transparent'
-							style={{
-								backgroundImage: 'linear-gradient(135deg, #f0f0f0 20%, #3b82f6 80%)',
-							}}
-						>
-							{logo}
-						</span>
-					</Link>
+		<nav className='relative'>
+			{/* Main Nav */}
+			<Glass
+				edgeGlow
+				className={cn('z-50 rounded-full', [
+					'glass-surface-1 glass-elevation-1',
+					'flex items-center justify-between transition-opacity duration-300',
+					[isMenuOpen && 'opacity-0.2 pointer-events-none', className],
+				])}
+			>
+				{/* Logo */}
+				<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight md:text-2xl'>
+					<span
+						className='bg-clip-text text-transparent'
+						style={{
+							backgroundImage: 'linear-gradient(135deg, #f0f0f0 20%, #3b82f6 80%)',
+						}}
+					>
+						{logo}
+					</span>
+				</Link>
 
-					{/* Desktop Navigation */}
-					<ul className='hidden list-none gap-12 md:flex'>
-						{navItems.map((item) => {
-							const isCurrent = getIsCurrentPage(item.href);
-							return (
-								<li key={item.label}>
-									<Link
-										href={item.href}
-										className={cn(
-											'group relative text-[13px] font-semibold tracking-wider uppercase',
-											isCurrent
-												? 'pointer-events-none text-chrome-silver'
-												: 'text-muted transition-all duration-300 hover:text-chrome-silver',
-										)}
-									>
-										{item.label}
-										{!isCurrent && (
-											<span
-												className='absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full'
-												style={{
-													background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
-													boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
-												}}
-											/>
-										)}
-									</Link>
-								</li>
-							);
-						})}
-					</ul>
-				</nav>
+				{/* Desktop Navigation */}
+				<ul className='hidden list-none gap-12 md:flex'>
+					{navItems.map((item) => {
+						const isCurrent = getIsCurrentPage(item.href);
+						return (
+							<li key={item.label}>
+								<Link
+									href={item.href}
+									className={cn(
+										'group relative text-[13px] font-semibold tracking-wider uppercase',
+										isCurrent
+											? 'pointer-events-none text-chrome-silver'
+											: 'text-muted transition-all duration-300 hover:text-chrome-silver',
+									)}
+								>
+									{item.label}
+									{!isCurrent && (
+										<span
+											className='absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full'
+											style={{
+												background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
+												boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
+											}}
+										/>
+									)}
+								</Link>
+							</li>
+						);
+					})}
+				</ul>
+			</Glass>
 
-				{/* Hamburger (always visible, above overlay) */}
-				<div className='absolute top-1/2 right-3 z-70 -translate-y-1/2 overflow-visible md:hidden'>
-					<HamburgerButton isOpen={isMenuOpen} onClick={() => setIsMenuOpen((v) => !v)} />
-				</div>
-			</div>
+			<HamburgerButton
+				className='absolute top-1/2 right-3 z-70 -translate-y-1/2 md:hidden' // always visible (above overlay)
+				isOpen={isMenuOpen}
+				onClick={() => setIsMenuOpen((v) => !v)}
+			/>
 
-			{/* Mobile Overlay */}
-			<MobileMenuOverlay isOpen={isMenuOpen} navItems={navItems} onClose={() => setIsMenuOpen(false)} />
-		</>
+			<MobileMenuOverlay className='overlay-page z-50' isOpen={isMenuOpen} navItems={navItems} onClose={() => setIsMenuOpen(false)} />
+		</nav>
 	);
 };
