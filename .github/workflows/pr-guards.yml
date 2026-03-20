@@ -15,10 +15,18 @@ jobs:
     if: github.base_ref == 'main'
     runs-on: ubuntu-latest
     steps:
-      - name: Allow only dev -> main
+      - name: Allow only this repo's dev -> main
         run: |
           if [ "${{ github.head_ref }}" != "dev" ]; then
-            echo "PRs into main must come from dev. Got: ${{ github.head_ref }}"
+            echo "PRs into main must come from dev"
+            echo "Got branch: ${{ github.head_ref }}"
+            exit 1
+          fi
+
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "PRs into main must come from the canonical dev branch in this repository"
+            echo "Got repo: ${{ github.event.pull_request.head.repo.full_name }}"
+            echo "Expected: ${{ github.repository }}"
             exit 1
           fi
 
