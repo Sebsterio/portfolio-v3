@@ -6,6 +6,7 @@ import { useGetIsCurrentPage } from '@/lib/transitions/components/TransitionProv
 import { TransitionLink as Link } from '@/lib/transitions/components/TransitionLink';
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
+import { Glass } from '@/components/ui/Glass';
 
 type NavItem = {
 	label: string;
@@ -23,9 +24,10 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
-		<div className='relative'>
+		<nav className='relative'>
 			{/* Main Nav */}
-			<nav
+			<Glass
+				edgeGlow
 				className={cn('z-50 rounded-full', [
 					'glass-surface-1 glass-elevation-1',
 					'flex items-center justify-between transition-opacity duration-300',
@@ -74,7 +76,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 						);
 					})}
 				</ul>
-			</nav>
+			</Glass>
 
 			<HamburgerButton
 				className='absolute top-1/2 right-3 z-70 -translate-y-1/2 md:hidden' // always visible (above overlay)
@@ -83,6 +85,6 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 			/>
 
 			<MobileMenuOverlay className='overlay-page z-50' isOpen={isMenuOpen} navItems={navItems} onClose={() => setIsMenuOpen(false)} />
-		</div>
+		</nav>
 	);
 };

@@ -34,7 +34,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 					</div>
 
 					<header className='content-container'>
-						<AppHeader logo='PORTFOLIO' navItems={navItems} className='px-6 py-4 lg:px-8 lg:py-5' />
+						<AppHeader logo='PORTFOLIO' navItems={navItems} className='px-6 py-4 lg:px-8 lg:py-5 lg:pr-9' />
 					</header>
 
 					<main className='relative content-container flex flex-1 flex-col px-2 md:px-4 lg:px-8'>
