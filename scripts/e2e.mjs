@@ -40,11 +40,11 @@ const main = () => {
 		const result = runPlaywright(pwArgs, env, commandLog);
 
 		if (result.error) throw result.error;
-		if (result.status) process.exit(result.status);
+		process.exit(result.status);
 	} catch (error) {
 		console.error(error instanceof Error ? error.message : String(error));
+		process.exit(1);
 	}
-	process.exit(1);
 };
 
 main();
