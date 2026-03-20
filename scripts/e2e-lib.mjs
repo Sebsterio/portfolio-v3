@@ -7,14 +7,15 @@
 const createFlagMap = (entries) => new Map(entries.flatMap(({ flags, value }) => flags.map((flag) => [flag, value])));
 
 const modeFlags = createFlagMap([
-	{ flags: ['--quick', '-Q'], value: 'quick' },
 	{ flags: ['--full', '-F'], value: 'full' },
-	{ flags: ['--responsive', '-R'], value: 'responsive' },
+	{ flags: ['--basic', '-B'], value: 'basic' },
 	{ flags: ['--mobile', '-M'], value: 'mobile' },
 	{ flags: ['--vendors', '-V'], value: 'vendors' },
+	{ flags: ['--responsive', '-R'], value: 'responsive' },
 ]);
 
 const envFlags = createFlagMap([
+	{ flags: ['--quick', '-Q'], value: ['QUICK', '1'] },
 	{ flags: ['--dev', '-D'], value: ['DEV', '1'] },
 	{ flags: ['--ci'], value: ['CI', '1'] },
 	{ flags: ['--ai'], value: ['AI', '1'] },

@@ -10,7 +10,7 @@
 import { spawnSync } from 'node:child_process';
 import { parseE2EArgs } from './e2e-lib.mjs';
 
-const EXECUTED_ENV_KEYS = ['MODE', 'DEV', 'CI', 'AI'];
+const EXECUTED_ENV_KEYS = ['MODE', 'QUICK', 'DEV', 'CI', 'AI'];
 
 const quoteArg = (value) => {
 	if (!value) return '""';
