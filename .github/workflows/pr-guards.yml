@@ -1,0 +1,50 @@
+# `main` - accepts PRs only from the branch `dev`
+# `dev`  - accepts PRs only from approved branch patterns
+
+name: pr-guards
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  guard-main-source:
+    name: guard-main-source
+    if: github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow only this repo's dev -> main
+        run: |
+          if [ "${{ github.head_ref }}" != "dev" ]; then
+            echo "PRs into main must come from dev"
+            echo "Got branch: ${{ github.head_ref }}"
+            exit 1
+          fi
+
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "PRs into main must come from the canonical dev branch in this repository"
+            echo "Got repo: ${{ github.event.pull_request.head.repo.full_name }}"
+            echo "Expected: ${{ github.repository }}"
+            exit 1
+          fi
+
+  guard-dev-source:
+    name: guard-dev-source
+    if: github.base_ref == 'dev'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow only approved branch types -> dev
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          case "$BRANCH" in
+            feature/*|task/*|fix/*|hotfix/*|chore/*|refactor/*)
+              echo "Allowed source branch: $BRANCH"
+              ;;
+            *)
+              echo "PRs into dev must come from feature/*, task/*, fix/*, hotfix/*, chore/*, or refactor/*"
+              echo "Got: $BRANCH"
+              exit 1
+              ;;
+          esac
