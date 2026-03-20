@@ -27,7 +27,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative flex items-start gap-8'>
 							<TimelineDateWide period={project.period} />
 							<TimelineCard onClick={() => go(project)} className='flex-1'>
-								<TimelineCardContent project={project} limit={4} size='lg' />
+								<TimelineCardContent project={project} limit={4} />
 							</TimelineCard>
 						</div>
 					))}
@@ -42,7 +42,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative flex gap-8'>
 							<TimelineDateNarrow period={project.period} />
 							<TimelineCard onClick={() => go(project)} className='w-full'>
-								<TimelineCardContent project={project} limit={4} size='lg' />
+								<TimelineCardContent project={project} limit={4} />
 							</TimelineCard>
 						</div>
 					))}
@@ -57,16 +57,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
 							<TimelineCard onClick={() => go(project)} className='mr-2 p-6' style={{ viewTransitionName: `project-card-${project.id}` }}>
-								<div className='relative space-y-3'>
-									<h3 className='heading-2 text-primary'>{project.title}</h3>
-									<p className='text-tertiary'>{project.company}</p>
-									<p className='text-muted text-sm leading-relaxed'>{project.summary}</p>
-									<ProjectTags tags={project.tags} limit={3} size='sm' />
-									<ArrowIndicator
-										aria-label={`View ${project.title}`}
-										className='absolute right-0 bottom-0'
-									/>
-								</div>
+								<TimelineCardContent project={project} limit={4} />
 							</TimelineCard>
 						</div>
 					))}
@@ -106,13 +97,13 @@ const TimelineDateMobile = ({ period }: { period: string }) => (
 	</div>
 );
 
-const TimelineCardContent = ({ project, limit, size }: { project: Project; limit: number; size: 'sm' | 'lg' }) => (
-	<div className='relative space-y-4'>
-		<InlineList.Div className='text-subtle cluster-sm text-sm'>{[project.location, project.role]}</InlineList.Div>
-		<h3 className='heading-1 text-primary'>{project.title}</h3>
-		<p className='text-secondary text-lg'>{project.company}</p>
-		<p className='text-muted leading-relaxed'>{project.summary}</p>
-		<ProjectTags tags={project.tags} limit={limit} className='pt-2' size={size} />
+const TimelineCardContent = ({ project, limit = 4 }: { project: Project; limit?: number }) => (
+	<div className='relative space-y-3 md:space-y-4'>
+		<InlineList.Div className='cluster-sm hidden text-sm md:flex text-subtle'>{[project.location, project.role]}</InlineList.Div>
+		<h3 className='heading-2 text-primary md:heading-1'>{project.title}</h3>
+		<p className='text-tertiary md:text-secondary md:text-lg'>{project.company}</p>
+		<p className='text-muted text-sm leading-relaxed md:text-base'>{project.summary}</p>
+		<ProjectTags tags={project.tags} limit={limit} className='pt-2' size='lg' />
 		<ArrowIndicator
 			aria-label={`View ${project.title}`}
 			className='absolute right-0 bottom-0 group-hover:translate-x-1'
