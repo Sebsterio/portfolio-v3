@@ -56,11 +56,66 @@
 
 @utility shadow-accent-md { box-shadow: 0 15px 50px rgb(var(--accent-blue-rgb) / 0.35); }
 @utility shadow-accent-lg { box-shadow: 0 25px 70px rgb(var(--accent-blue-rgb) / 0.50); }
+@utility shadow-brand-underline { box-shadow: 0 0 10px rgb(var(--accent-blue-rgb) / 0.5); }
+@utility shadow-image-md { box-shadow: 0 20px 50px rgb(var(--black-rgb) / 0.50); }
+@utility shadow-image-md-strong { box-shadow: 0 20px 50px rgb(var(--black-rgb) / 0.60); }
+@utility shadow-image-lg { box-shadow: 0 25px 60px rgb(var(--black-rgb) / 0.60); }
+@utility shadow-image-xl { box-shadow: 0 30px 70px rgb(var(--black-rgb) / 0.60); }
+@utility shadow-image-2xl { box-shadow: 0 30px 80px rgb(var(--black-rgb) / 0.70); }
+@utility shadow-showcase-badge { box-shadow: 0 8px 24px rgb(var(--accent-blue-rgb) / 0.35), 0 0 16px rgb(var(--accent-blue-rgb) / 0.15); }
+@utility shadow-showcase-badge-hover { box-shadow: 0 10px 32px rgb(var(--accent-blue-rgb) / 0.55), 0 0 24px rgb(var(--accent-blue-rgb) / 0.35); }
+@utility shadow-dot-active { box-shadow: 0 0 12px rgb(var(--accent-blue-rgb) / 0.8); }
+@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px rgb(var(--chrome-dark-rgb) / 0.8); }
+@utility shadow-status-dot { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 1); }
+@utility shadow-particle-accent { box-shadow: 0 0 8px rgb(var(--accent-cyan-rgb) / 0.4); }
+@utility shadow-particle-chrome { box-shadow: 0 0 6px rgb(var(--chrome-mid-rgb) / 0.25); }
+@utility shadow-atmosphere-blue { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 0.3); }
+@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px rgb(var(--accent-cyan-rgb) / 0.3); }
 
 
 /* ---- Background Fills ---- */
 
 @utility bg-accent-soft { background: rgb(var(--accent-blue-rgb) / 0.1); }
+@utility bg-surface-glass-sm { background: rgb(var(--white-rgb) / 0.03); }
+@utility bg-surface-glass-md { background: rgb(var(--white-rgb) / 0.05); }
+@utility bg-surface-glass-lg { background: rgb(var(--white-rgb) / 0.08); }
+@utility bg-surface-glass-xl { background: rgb(var(--white-rgb) / 0.10); }
+
+.shadow-editorial-bounce {
+  box-shadow:
+    0 30px 70px rgb(var(--black-rgb) / 0.6),
+    0 0 60px rgb(var(--shadow-bounce-rgb) / 0.2);
+}
+
+.shadow-editorial-meco {
+  box-shadow:
+    0 25px 60px rgb(var(--black-rgb) / 0.6),
+    0 0 50px rgb(var(--shadow-meco-rgb) / 0.2);
+}
+
+.shadow-editorial-tt {
+  box-shadow:
+    0 30px 70px rgb(var(--black-rgb) / 0.6),
+    0 0 50px rgb(var(--shadow-tt-rgb) / 0.2);
+}
+
+.shadow-editorial-ebit {
+  box-shadow:
+    0 30px 80px rgb(var(--black-rgb) / 0.7),
+    0 0 60px rgb(var(--shadow-ebit-rgb) / 0.2);
+}
+
+.shadow-editorial-ao {
+  box-shadow:
+    0 25px 60px rgb(var(--black-rgb) / 0.6),
+    0 0 50px rgb(var(--shadow-ao-rgb) / 0.2);
+}
+
+.shadow-editorial-freelance {
+  box-shadow:
+    0 30px 80px rgb(var(--black-rgb) / 0.7),
+    0 0 60px rgb(var(--shadow-freelance-rgb) / 0.2);
+}
 
 
 /* ---- Focus Ring ---- */

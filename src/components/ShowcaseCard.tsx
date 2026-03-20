@@ -57,8 +57,8 @@ const IconBadge = ({ children }: { children: React.ReactNode }) => (
 			'flex shrink-0 items-center justify-center rounded-xl',
 			'h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14',
 			'gradient-primary',
-			'shadow-[0_8px_24px_rgb(var(--accent-blue-rgb)/0.35),0_0_16px_rgb(var(--accent-blue-rgb)/0.15)]',
-			'group-hover:shadow-[0_10px_32px_rgb(var(--accent-blue-rgb)/0.55),0_0_24px_rgb(var(--accent-blue-rgb)/0.35)]',
+			'shadow-showcase-badge',
+			'group-hover:shadow-showcase-badge-hover',
 			'transition-[transform,box-shadow] duration-500 group-hover:scale-110',
 		)}
 	>

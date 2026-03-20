@@ -48,20 +48,20 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 				<div className='-order-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:order-0'>
 					<ProjectImage
 						gradient='bg-gradient-meco-main'
-						className='magazine-image h-[200px] shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(250,112,154,0.2)] hover:scale-[1.02] md:col-span-2 md:h-[280px] lg:h-[300px]'
+						className='shadow-editorial-meco magazine-image h-[200px] hover:scale-[1.02] md:col-span-2 md:h-[280px] lg:h-[300px]'
 						overlayType='dark'
 						glintOnHover
 					/>
 
 					<ProjectImage
 						gradient='bg-gradient-meco-2'
-						className='magazine-image h-[150px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
+						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 
 					<ProjectImage
 						gradient='bg-gradient-meco-3'
-						className='magazine-image h-[150px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
+						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 				</div>

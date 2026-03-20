@@ -7,7 +7,7 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 		onClick={onClick}
 		className={cn(
 			'relative w-full rounded-xl p-4 pl-10 text-left transition-all duration-300',
-			isActive ? 'border border-accent-blue/30 bg-accent-blue/10' : 'border border-transparent hover:bg-white/3',
+			isActive ? 'border border-accent-blue/30 bg-accent-blue/10' : 'border border-transparent hover:bg-surface-glass-sm',
 		)}
 		// style={{ viewTransitionName: `project-card-${project.id}` }}
 	>

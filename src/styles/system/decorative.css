@@ -46,6 +46,16 @@
   -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.15);
 }
 
+.decorative-outline-faint {
+  @apply text-transparent;
+  -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.08);
+}
+
+.decorative-outline-soft {
+  @apply text-transparent;
+  -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.10);
+}
+
 .decorative-outline-hover {
   @apply transition-all duration-500;
 }
@@ -55,12 +65,42 @@
   text-shadow: 0 0 60px rgb(var(--accent-cyan-rgb) / 0.3);
 }
 
+.decorative-outline-editorial-hover {
+  @apply transition-all duration-500;
+}
+
+.decorative-outline-editorial-hover:hover {
+  -webkit-text-stroke: 2px rgb(var(--editorial-cyan-rgb) / 0.3);
+  text-shadow: 0 0 60px rgb(var(--editorial-cyan-rgb) / 0.3);
+}
+
+.decorative-outline-editorial-strong-hover {
+  @apply transition-all duration-500;
+}
+
+.decorative-outline-editorial-strong-hover:hover {
+  -webkit-text-stroke: 2px rgb(var(--editorial-cyan-rgb) / 0.5);
+  text-shadow: 0 0 50px rgb(var(--editorial-cyan-rgb) / 0.3);
+}
+
+.decorative-outline-editorial-soft-hover {
+  @apply transition-all duration-500;
+}
+
+.decorative-outline-editorial-soft-hover:hover {
+  -webkit-text-stroke: 2px rgb(var(--editorial-cyan-rgb) / 0.2);
+}
+
 .decorative-faded {
   @apply text-white/6;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, transparent 75%);
+  background: linear-gradient(180deg, rgb(var(--white-rgb) / 0.08) 0%, transparent 75%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-glow-editorial {
+  text-shadow: 0 0 40px rgb(var(--editorial-cyan-rgb) / 0.5);
 }
 
 

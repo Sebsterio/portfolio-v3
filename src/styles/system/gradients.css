@@ -67,7 +67,44 @@
 }
 
 @utility gradient-primary-soft {
-  @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20;
+  @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-accent-purple/20;
+}
+
+@utility gradient-title-highlight {
+  @apply bg-linear-to-r from-accent-blue via-accent-sky to-accent-cyan;
+}
+
+@utility gradient-brand-logo {
+  background-image: linear-gradient(135deg, rgb(var(--chrome-silver-rgb)) 20%, rgb(var(--accent-blue-rgb)) 80%);
+}
+
+@utility gradient-brand-underline {
+  background: linear-gradient(90deg, rgb(var(--accent-blue-rgb)), rgb(var(--accent-cyan-rgb)));
+}
+
+@utility gradient-number-highlight {
+  @apply bg-linear-to-br from-accent-cyan to-white;
+}
+
+@utility gradient-atmosphere-chrome {
+  background:
+    radial-gradient(ellipse at 25% 35%, rgb(var(--accent-blue-rgb) / 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, rgb(var(--accent-cyan-rgb) / 0.1) 0%, transparent 50%);
+}
+
+@utility gradient-atmosphere-metallic-orb {
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgb(var(--chrome-silver-rgb) / 0.2),
+    rgb(var(--chrome-mid-rgb) / 0.1) 40%,
+    transparent 70%
+  );
+}
+
+@utility gradient-atmosphere-grid {
+  background-image:
+    linear-gradient(rgb(var(--chrome-mid-rgb) / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--chrome-mid-rgb) / 0.08) 1px, transparent 1px);
 }
 
 
@@ -91,9 +128,9 @@
 @utility gradient-reflection-diagonal {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15)  0%,
-    rgba(255, 255, 255, 0.08) 20%,
-    transparent               50%
+    rgb(var(--white-rgb) / 0.15)  0%,
+    rgb(var(--white-rgb) / 0.08) 20%,
+    transparent                   50%
   );
 }
 

@@ -38,7 +38,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 							src={entry0.image}
 							gradient='bg-gradient-freelance-main'
 							className={cn('magazine-image aspect-[16/9] w-full md:aspect-square lg:h-[360px] lg:w-[360px]', [
-								'border-4 border-white/90 shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(255,236,210,0.2)] md:border-6 lg:border-0',
+								'border-4 border-white/90 shadow-editorial-freelance md:border-6 lg:border-0',
 								'hover:scale-[1.02] hover:rotate-1',
 							])}
 							overlayType='light'
@@ -53,7 +53,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 							src={entry1.image}
 							gradient='bg-gradient-freelance-small'
 							className={cn('magazine-image aspect-[16/9] w-full md:aspect-square lg:w-[180px]', [
-								'border-4 border-white/90 lg:border-8 lg:shadow-[0_20px_50px_rgba(0,0,0,0.6)]',
+								'border-4 border-white/90 lg:border-8 lg:shadow-image-md-strong',
 								'hover:scale-105 lg:rotate-[8deg] lg:hover:rotate-[5deg]',
 							])}
 							glintOnHover

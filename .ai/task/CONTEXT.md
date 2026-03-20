@@ -1,0 +1,22 @@
+# Context
+
+- Canonical baseline is `dev` at commit `595b394`.
+- Current branch `color-system` only removed `.ai/task/*` relative to `dev`; repo code/config matches the canonical styling surface.
+- Existing color ownership already lives primarily in:
+  - `src/styles/theme.css`
+  - `src/styles/system/gradients.css`
+  - `src/styles/system/effects.css`
+  - `src/styles/system/decorative.css`
+  - `src/styles/system/surfaces.css`
+  - `src/styles/components.css`
+- Main drift areas discovered during audit:
+  - inline gradients/shadows in `AppHeader`
+  - default-palette bypasses in shared buttons/overlays
+  - background component inline RGBA values
+  - `Title`, `StatusBadge`, `TimelineDot`, and `ShowcaseCard` arbitrary color values
+  - editorial magazine strokes/glows and repeated image shadow treatments
+- Approved assumptions:
+  - preserve the brighter editorial cyan as a distinct token
+  - map `TimelineDot` inactive state to `chrome-dark`
+  - keep `HamburgerIcon` SVG filter literals unchanged
+  - do not touch inactive `BubblesBG/*`

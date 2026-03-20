@@ -105,7 +105,7 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 			className={cn(
 				'h-12 w-12 rounded-full md:h-14 md:w-14',
 				'flex items-center justify-center',
-				'bg-white/5 hover:bg-white/10',
+				'bg-surface-glass-md hover:bg-surface-glass-xl',
 				'transition-transform duration-300 hover:scale-110',
 				className,
 			)}

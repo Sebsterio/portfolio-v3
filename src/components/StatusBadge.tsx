@@ -18,7 +18,7 @@ export function StatusBadge({ children, className }: StatusBadgeProps) {
 			<div
 				className={cn(
 					'h-1.5 w-1.5 animate-status-pulse rounded-full',
-					'bg-accent-blue shadow-[0_0_15px_rgba(59,130,246,1)]', //
+					'bg-accent-blue shadow-status-dot',
 				)}
 			/>
 			<span

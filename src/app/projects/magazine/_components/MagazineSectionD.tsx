@@ -16,7 +16,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 	return (
 		<section id={sectionId} className='group relative -mt-8'>
 			{/* Decorative Number */}
-			<div className='decorative-text absolute -top-12 right-[2%] z-30 text-[clamp(6rem,15vw,12rem)] text-transparent transition-all duration-500 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)] md:-top-20 md:right-[5%] lg:-top-24'>
+			<div className='decorative-text decorative-outline-faint decorative-outline-editorial-soft-hover absolute -top-12 right-[2%] z-30 text-[clamp(6rem,15vw,12rem)] md:-top-20 md:right-[5%] lg:-top-24'>
 				{number}
 			</div>
 
@@ -24,7 +24,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 			<ProjectImage
 				src={imageMain}
 				gradient='bg-gradient-ebit-main'
-				className='magazine-image mb-8 h-[250px] w-full shadow-[0_30px_80px_rgba(0,0,0,0.7),0_0_60px_rgba(106,17,203,0.2)] hover:scale-[1.01] md:h-[320px] lg:mb-8 lg:h-[380px]'
+				className='shadow-editorial-ebit magazine-image mb-8 h-[250px] w-full hover:scale-[1.01] md:h-[320px] lg:mb-8 lg:h-[380px]'
 				overlayType='light'
 				glintOnHover
 			/>
@@ -52,7 +52,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 				<ProjectImage
 					src={imageAside}
 					gradient='bg-gradient-ebit-small'
-					className='magazine-image h-[200px] w-[70%] w-full -translate-y-12 shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-500 hover:scale-[1.02] md:h-[250px] lg:mt-0 lg:h-[350px] lg:w-full lg:-translate-x-12 lg:translate-y-8 lg:hover:-translate-x-14 lg:hover:translate-y-6'
+					className='shadow-image-lg magazine-image h-[200px] w-[70%] w-full -translate-y-12 transition-all duration-500 hover:scale-[1.02] md:h-[250px] lg:mt-0 lg:h-[350px] lg:w-full lg:-translate-x-12 lg:translate-y-8 lg:hover:-translate-x-14 lg:hover:translate-y-6'
 					glintOnHover
 				/>
 			</div>

@@ -2,12 +2,21 @@
 :root {
   --accent-blue-rgb: 59 130 246;
   --accent-cyan-rgb: 6 182 212;
+  --accent-sky-rgb: 56 189 248;
+  --accent-purple-rgb: 168 85 247;
+  --editorial-cyan-rgb: 0 217 255;
   --chrome-silver-rgb: 240 240 240;
   --chrome-light-rgb: 212 212 212;
   --chrome-mid-rgb: 160 160 160;
   --chrome-dark-rgb: 136 136 136;
   --white-rgb: 255 255 255;
   --black-rgb: 0 0 0;
+  --shadow-bounce-rgb: 102 126 234;
+  --shadow-meco-rgb: 250 112 154;
+  --shadow-tt-rgb: 79 172 254;
+  --shadow-ebit-rgb: 106 17 203;
+  --shadow-ao-rgb: 240 147 251;
+  --shadow-freelance-rgb: 255 236 210;
 
   /* Glass surface base colour — override per theme for dark/light mode */
   --glass-surface-rgb: 10 10 14;
@@ -31,10 +40,15 @@
      
   --color-accent-blue:   rgb(var(--accent-blue-rgb));    /*   #3b82f6   /   59,  130, 246   */
   --color-accent-cyan:   rgb(var(--accent-cyan-rgb));    /*   #06b6d4   /   6,   182, 212   */
+  --color-accent-sky:    rgb(var(--accent-sky-rgb));     /*   #38bdf8   /   56,  189, 248   */
+  --color-accent-purple: rgb(var(--accent-purple-rgb));  /*   #a855f7   /   168, 85,  247   */
+  --color-editorial-cyan: rgb(var(--editorial-cyan-rgb));/*   #00d9ff   /   0,   217, 255   */
   --color-chrome-silver: rgb(var(--chrome-silver-rgb));  /*   #f0f0f0   /   240, 240, 240   */
   --color-chrome-light:  rgb(var(--chrome-light-rgb));   /*   #d4d4d4   /   212, 212, 212   */
   --color-chrome-mid:    rgb(var(--chrome-mid-rgb));     /*   #a0a0a0   /   160, 160, 160   */
   --color-chrome-dark:   rgb(var(--chrome-dark-rgb));    /*   #888888   /   136, 136, 136   */
+  --color-white:         rgb(var(--white-rgb));
+  --color-black:         rgb(var(--black-rgb));
      
 
   /* ================================================
