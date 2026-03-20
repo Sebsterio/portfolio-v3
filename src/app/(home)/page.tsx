@@ -12,23 +12,21 @@ export default function HomePage({}: HomePageProps) {
 	useTransitionReady();
 
 	return (
-		<div className={cn('grid w-full grid-cols-1 items-center gap-14 md:gap-20 lg:grid-cols-[1.2fr_0.8fr]')}>
+		<div className={cn('grid w-full grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
 			{/* Left Column - Hero Content */}
-			<div className=''>
+			<div className='pt-4 md:pt-6'>
 				<StatusBadge className='mb-7 vt-top md:mb-9'>{copy.superscript}</StatusBadge>
 
-				<div className='space-y-8 vt-left md:space-y-12'>
-					<Title variant='hero' className='mb-8'>
-						{copy.title}
-					</Title>
+				<div className='stack-2xl vt-left'>
+					<Title variant='hero'>{copy.title}</Title>
 
 					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
 					<div className='flex flex-wrap gap-5'>
-						<Button href={buttons.primary.href} variant='primary'>
+						<Button href={buttons.primary.href} variant='cta' size='lg'>
 							{buttons.primary.text}
 						</Button>
-						<Button href={buttons.secondary.href} variant='secondary'>
+						<Button href={buttons.secondary.href} variant='secondary' size='lg'>
 							{buttons.secondary.text}
 						</Button>
 					</div>

@@ -9,6 +9,9 @@
   --white-rgb: 255 255 255;
   --black-rgb: 0 0 0;
 
+  /* Glass surface base colour — override per theme for dark/light mode */
+  --glass-surface-rgb: 10 10 14;
+
   /* --rgb-black: 13,13,13; */
 }
 

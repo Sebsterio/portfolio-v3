@@ -6,11 +6,14 @@ import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
+import { Panel } from '@/components/ui/Panel';
 import { BackLink } from '@/components/BackLink';
 import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { InlineList } from '@/components/InlineList';
+import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { ExternalLinkButton } from '@/components/Button';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -144,10 +147,10 @@ type ProjectCardFaceProps = {
 
 function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFaceProps & { gradientClass: string }) {
 	return (
-		<div
+		<Panel
 			className={cn(
-				'col-start-1 row-start-1 rounded-4xl p-8 md:p-12',
-				'surface-glass-3 backdrop-glass-3',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'col-start-1 row-start-1 padding-panel',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
@@ -178,16 +181,17 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
 				</div>
 			</div>
-		</div>
+		</Panel>
 	);
 }
 
 function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
-		<div
+		<Panel
 			className={cn(
-				'col-start-1 row-start-1 rounded-4xl p-8 md:p-12',
-				'border border-accent-blue/30 bg-[rgba(13,13,13,0.95)] backdrop-blur-[60px]',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'col-start-1 row-start-1 padding-panel',
+				'border-accent-blue/30',
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
@@ -212,30 +216,17 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 
 					<div>
 						<h4 className='mb-2 font-urbanist text-lg font-bold text-accent-cyan md:text-xl'>Impact</h4>
-						<ul className='space-y-2'>
-							{project.impact.map((item) => (
-								<li key={item} className='flex items-start gap-3'>
-									<span className='mt-1 text-accent-cyan'>→</span>
-									<span className='text-sm text-chrome-silver/90 md:text-base'>{item}</span>
-								</li>
-							))}
-						</ul>
+						<ImpactList items={project.impact} />
 					</div>
 				</div>
 
 				{project.link && (
-					<a
-						href={project.link}
-						target='_blank'
-						rel='noopener noreferrer'
-						onClick={(event) => event.stopPropagation()}
-						className={cn('button-primary-inline-sm', 'transition-transform duration-300 hover:scale-105')}
-					>
+					<ExternalLinkButton href={project.link} size='sm'>
 						Visit Project →
-					</a>
+					</ExternalLinkButton>
 				)}
 			</div>
-		</div>
+		</Panel>
 	);
 }
 

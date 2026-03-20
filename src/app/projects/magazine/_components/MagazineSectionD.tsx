@@ -16,7 +16,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 	return (
 		<section id={sectionId} className='group relative -mt-8'>
 			{/* Decorative Number */}
-			<div className='project-decorative-text absolute -top-12 right-[2%] z-30 text-[clamp(6rem,15vw,12rem)] text-transparent transition-all duration-500 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)] md:-top-20 md:right-[5%] lg:-top-24'>
+			<div className='decorative-text absolute -top-12 right-[2%] z-30 text-[clamp(6rem,15vw,12rem)] text-transparent transition-all duration-500 [-webkit-text-stroke:2px_rgba(255,255,255,0.08)] group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.2)] md:-top-20 md:right-[5%] lg:-top-24'>
 				{number}
 			</div>
 
@@ -39,14 +39,13 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 
 					<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
 
-					{description.map((paragraph, index) => (
-						<p
-							key={index}
-							className={`text-secondary text-sm leading-relaxed md:text-base ${index < description.length - 1 ? 'mb-6' : ''}`}
-						>
-							{paragraph}
-						</p>
-					))}
+					<div className='space-y-6'>
+						{description.map((paragraph, index) => (
+							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+								{paragraph}
+							</p>
+						))}
+					</div>
 				</div>
 
 				{/* Small Image */}

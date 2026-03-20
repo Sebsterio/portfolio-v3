@@ -24,6 +24,7 @@ Deterministic implementation conventions for current codebase behavior.
 - Use `useTransitionRouter` for imperative navigation.
 - Keep transition readiness signaling through `PageTransition` and `useTransitionReady`.
 - Do not replace transition-aware navigation with plain `next/link` or `useRouter` in transition flows.
+- External URLs and static file links are outside transition flows.
 
 ## Styling conventions
 
@@ -44,19 +45,20 @@ Deterministic implementation conventions for current codebase behavior.
 - Code/config changes: run the smallest relevant checks.
 - Common checks:
   - `pnpm lint`
+  - `pnpm typecheck`
   - `pnpm test`
   - `pnpm e2e`
   - `pnpm build`
 
 **Validation caveat:**
 
-- In Codex on Windows, sandboxed `pnpm build` may fail with `spawn EPERM`.
-- If that occurs, rerun the build with escalated/unsandboxed execution.
-- Treat the unsandboxed result as authoritative; the sandbox error is environmental.
+- `pnpm build` does not replace `pnpm typecheck`.
+- `next.config.mjs` sets `typescript.ignoreBuildErrors: true`, so the Next build can pass while the repo is still TypeScript-invalid.
 
 ## Documentation conventions
 
-- Permanent truth lives in `README.md`, `AGENTS.md`, and `docs/*`.
+- Authoritative permanent docs are the files explicitly listed in `AGENTS.md`.
+- `docs/*` is not authoritative by default.
 - `.ai/*` is temporary workspace material and never source of truth.
 - `.ai/notes/*` only influences execution when explicitly referenced by `.ai/task/*`.
 - Avoid duplication across permanent docs by keeping one owner per concern.

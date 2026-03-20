@@ -38,7 +38,7 @@ export function MagazineSectionA({
 				</div>
 
 				{/* Decorative Title */}
-				<h2 className='project-decorative-text project-decorative-outline project-decorative-outline-hover absolute -top-4 -left-2 z-10 text-[clamp(4rem,13vw,13rem)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.3)] group-hover:[text-shadow:0_0_60px_rgba(0,217,255,0.3)] lg:-top-4 lg:-left-8'>
+				<h2 className='decorative-text decorative-outline decorative-outline-hover absolute -top-4 -left-2 z-10 text-[clamp(4rem,13vw,13rem)] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.3)] group-hover:[text-shadow:0_0_60px_rgba(0,217,255,0.3)] lg:-top-4 lg:-left-8'>
 					{megaTitle}
 				</h2>
 
@@ -79,11 +79,13 @@ export function MagazineSectionA({
 				</h3>
 				<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
 
-				{description.map((paragraph, index) => (
-					<p key={index} className='text-secondary mb-6 text-sm leading-relaxed md:text-base'>
-						<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
-					</p>
-				))}
+				<div className='space-y-6'>
+					{description.map((paragraph, index) => (
+						<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+							<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
+						</p>
+					))}
+				</div>
 
 				<ProjectTags className='mt-6 md:mt-8' variant='highlight' size='lg' tags={tags} />
 			</div>

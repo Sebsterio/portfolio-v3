@@ -8,6 +8,21 @@ export async function disableAnimations(page: Page) {
       *::after {
         animation: none !important;
         transition: none !important;
+        caret-color: transparent !important;
+      }
+    `,
+	});
+}
+
+export async function disableFilters(page: Page) {
+	await page.addStyleTag({
+		content: `
+      *,
+      *::before,
+      *::after {
+        filter: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
       }
     `,
 	});
@@ -15,16 +30,9 @@ export async function disableAnimations(page: Page) {
 
 export async function stabilizeStyles(page: Page) {
 	await disableAnimations(page);
+	await disableFilters(page);
 	await page.addStyleTag({
 		content: `
-      *,
-      *::before,
-      *::after {
-        caret-color: transparent !important;
-        filter: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
       html {
         scroll-behavior: auto !important;
         overflow-y: scroll !important;
@@ -49,8 +57,17 @@ export async function disableIntersectionObserver(page: Page) {
 	});
 }
 
+export const loadLazyContent = (page: Page) =>
+	page.evaluate(async () => {
+		while (window.scrollY + window.innerHeight < document.body.scrollHeight) {
+			window.scrollBy(0, 500);
+			await new Promise((r) => setTimeout(r, 50));
+		}
+		window.scrollTo(0, 0);
+	});
+
 export async function waitForImages(page: Page) {
-	return page.waitForFunction(() => Array.from(document.images).every((img) => img.complete));
+	return await page.waitForFunction(async () => Array.from(document.images).every((img) => img.complete));
 }
 
 export async function waitForStableLayout(page: Page, timeout = 3000) {
@@ -73,6 +90,7 @@ export async function safeMode(page: Page) {
 	await disableIntersectionObserver(page);
 	await page.locator('body').waitFor();
 	await stabilizeStyles(page);
+	await loadLazyContent(page);
 	await waitForImages(page);
 	await waitForStableLayout(page);
 }

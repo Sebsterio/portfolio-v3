@@ -19,7 +19,7 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 			<div className='relative z-20 mb-4 font-urbanist text-xl font-bold text-white/30 md:text-2xl xl:text-3xl'>{number}</div>
 
 			{/* Decorative Background Text */}
-			<div className='project-decorative-text project-decorative-faded absolute -top-8 -left-4 z-10 w-full text-[clamp(6rem,20vw,20rem)] transition-all duration-500 group-hover:text-white/10 md:-top-16 md:-left-8 lg:w-auto'>
+			<div className='decorative-text decorative-faded absolute -top-8 -left-4 z-10 w-full text-[clamp(6rem,20vw,20rem)] transition-all duration-500 group-hover:text-white/10 md:-top-16 md:-left-8 lg:w-auto'>
 				{megaTitle}
 			</div>
 
@@ -35,14 +35,13 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 
 					<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
 
-					{description.map((paragraph, index) => (
-						<p
-							key={index}
-							className={`text-secondary text-sm leading-relaxed md:text-base ${index < description.length - 1 ? 'mb-6' : ''}`}
-						>
-							{paragraph}
-						</p>
-					))}
+					<div className='space-y-6'>
+						{description.map((paragraph, index) => (
+							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+								{paragraph}
+							</p>
+						))}
+					</div>
 				</div>
 
 				{/* Images Column */}

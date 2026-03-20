@@ -1,48 +1,67 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
-import { GlassSurface } from './ui/GlassSurface';
+import { Card } from '@/components/ui/Card';
 
-interface ChromeShowcaseCardProps {
+interface ShowcaseCardProps {
 	icon: React.ReactNode;
 	title: string;
 	description: string;
 	className?: string;
 }
 
-export const ShowcaseCard: React.FC<ChromeShowcaseCardProps> = ({ icon, title, description, className }) => {
+/**
+ * ShowcaseCard — feature highlight card with glint and spring elevation.
+ *
+ * Used on home and about pages as a dwell target (users read, not scan).
+ * Uses a fuller spring overshoot + slower duration than InfoCard's
+ * 'lifted' variant — the extra theatrics communicate deliberate weight.
+ *
+ * Uses Card directly (not InfoCard) because layout, spacing,
+ * and hover timing are specific enough that InfoCard adds no value.
+ *
+ * glass-edge-glow is explicit here — its width and x-position are
+ * custom (70% wide, centred) and belong to this component's design.
+ */
+export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, description, className }) => {
 	return (
-		<GlassSurface
-			rounded={2}
-			className={cn('group p-6 sm:p-8 md:p-10', [
-				'transition-duration-600 transition-ease-[cubic-bezier(0.34,1.56,0.64,1)] transition-all',
-				'shadow-glass-1 hover:shadow-glass-2 hover:-translate-y-1.5 hover:scale-[1.01] md:hover:-translate-y-2.5',
+		<Card
+			variant='lifted'
+			glint
+			edgeGlow
+			className={cn(
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'padding-card-lg',
+				// Override lifted timing: fuller spring + slower duration for dwell behaviour.
+				// GlassCard lifted uses duration-300 + overshoot 1.2 (scan targets).
+				// ShowcaseCard uses duration-500 + overshoot 1.56 (dwell targets).
+				'[transition-duration:500ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]',
 				className,
-			])}
+			)}
 		>
-			{/* Decorative */}
-			<div className={cn('glass-anchor-reflection')} />
-			<div className={cn('noise-overlay overlay-full')} />
-			<div className={cn('top-edge-glow overlay top-0 left-[20%] h-0.5 w-[60%]')} />
-			<div className={cn('glass-glint group-hover:glass-glint-active')} />
-
-			{/* Content */}
-
-			<div className='relative z-10 flex gap-6'>
-				<div // NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page
-					className={cn('flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl md:h-14 md:w-14', [
-						'gradient-primary',
-						'shadow-[0_10px_30px_rgba(59,130,246,0.4),0_0_20px_rgba(59,130,246,0.2)]',
-						'group-hover:shadow-[0_12px_40px_rgba(59,130,246,0.6),0_0_30px_rgba(59,130,246,0.4)]',
-						'transition-duration-500 transition-all group-hover:scale-110',
-					])}
-				>
-					<div className='text-[26px]'>{icon}</div>
-				</div>
-				<div>
-					<h3 className='mb-2 font-urbanist text-lg font-bold text-chrome-silver md:mb-3 md:text-xl'>{title}</h3>
-					<p className='text-muted text-[13px] leading-relaxed md:text-[14px]'>{description}</p>
+			<div className='flex gap-5 sm:gap-6'>
+				{/* NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page */}
+				<IconBadge>{icon}</IconBadge>
+				<div className='min-w-0'>
+					<h3 className='font-display text-base font-bold text-chrome-silver sm:text-lg md:text-xl'>{title}</h3>
+					<p className='text-muted mt-1.5 text-[13px] leading-relaxed md:text-sm'>{description}</p>
 				</div>
 			</div>
-		</GlassSurface>
+		</Card>
 	);
 };
+
+// ─── Icon Badge ───────────────────────────────────────────────────────────────
+
+const IconBadge = ({ children }: { children: React.ReactNode }) => (
+	<div
+		className={cn(
+			'flex shrink-0 items-center justify-center rounded-xl',
+			'h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14',
+			'gradient-primary',
+			'shadow-[0_8px_24px_rgb(var(--accent-blue-rgb)/0.35),0_0_16px_rgb(var(--accent-blue-rgb)/0.15)]',
+			'group-hover:shadow-[0_10px_32px_rgb(var(--accent-blue-rgb)/0.55),0_0_24px_rgb(var(--accent-blue-rgb)/0.35)]',
+			'transition-[transform,box-shadow] duration-500 group-hover:scale-110',
+		)}
+	>
+		<span className='text-2xl leading-none'>{children}</span>
+	</div>
+);

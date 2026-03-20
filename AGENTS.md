@@ -20,6 +20,8 @@ Mandatory operating procedure for coding agents in this repository.
 
 ## Documentation ownership
 
+- Authoritative permanent docs are only the files and directories listed below.
+- Any other permanent-looking markdown file is non-authoritative unless this section is updated to include it.
 - `README.md`: concise human entrypoint (setup, commands, maps, caveats).
 - `AGENTS.md`: agent procedure only.
 - `docs/PROJECT_BRIEF.md`: current intended experience of implemented surfaces.
@@ -49,6 +51,7 @@ Files in `.ai/notes/` influence execution only when explicitly referenced by `.a
 - Permanent docs must describe current reality only.
 - Use status labels (`implemented`, `placeholder`, `partial`, `deprecated`, `planned`) only when omission would mislead.
 - Do not document placeholders, dead code, or temporary implementations as permanent architecture truth.
+- Do not keep future-state notes, design explorations, or tool-environment instructions in permanent docs.
 - If an inconsistency may be an intentional requirement, future spec, or durable constraint, stop and ask before classifying it.
 
 ## Validation policy

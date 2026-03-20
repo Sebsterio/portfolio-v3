@@ -1,83 +1,157 @@
-@layer components {
 /* ================================================
-		Components —- Random
-	 ================================================ */
+   Components
+   ================================================
+
+   Component-scoped classes used across multiple
+   components. Single-component classes belong in
+   that component's own file.
+
+   ================================================ */
+
+@layer components {
+
+  /* ---- Status ---- */
+
+  /*
+    Colour applied separately in JSX so the dot can
+    represent any status without per-colour variants:
+    <span class="status-dot bg-green-400" />
+  */
+  .status-dot {
+    @apply w-2 h-2 rounded-full animate-status-pulse;
+  }
 
 
-.heading-section 					{ @apply font-urbanist text-2xl font-bold flex items-center gap-3; }
+  /* ---- Glass Decoration ---- */
 
-.status-dot 							{ @apply w-2 h-2 rounded-full animate-status-pulse; }
+  /*
+    .glass-anchor-reflection — full-inset diagonal gloss overlay.
+    Depends on: overlay-full (layout.css), gradient-reflection-diagonal (gradients.css)
+  */
+  .glass-anchor-reflection { @apply overlay-full gradient-reflection-diagonal; }
 
-.glass-anchor-reflection 	{ @apply overlay-full gradient-reflection-diagonal; }
-
-.glass-card-accent 				{ @apply overlay w-32 h-32; }
-
-
-/* ===============================================================================
-	  Components — Magazine Page -- LEGACY
-   ===============================================================================
-	  These classes are only used on the project/magazine page and it's components.
-	  Eventully they will be unified with the restof the style system.
-   =============================================================================== */
-
-/* --- Layout --- */
+  /*
+    .glass-card-accent — corner accent orb anchor.
+    Sized here; gradient/colour applied in JSX.
+  */
+  .glass-card-accent { @apply overlay w-32 h-32; }
 
 
-.project-decorative-text { @apply font-urbanist font-black uppercase leading-[0.8] pointer-events-none select-none; }
+  /* ---- Image ---- */
 
-.project-decorative-outline {	@apply text-transparent; -webkit-text-stroke: 2px rgb(var(--white-rgb) / 0.15); }
+  .magazine-image     { @apply rounded-2xl transition-all duration-500; }
 
-.project-decorative-outline-hover {	@apply transition-all duration-500; }
-.project-decorative-outline-hover:hover {	-webkit-text-stroke: 2px rgba(0, 217, 255, 0.3);	text-shadow: 0 0 60px rgba(0, 217, 255, 0.3); }
+  /* Static light reflection layer — applied as ::before on image wrappers */
+  .image-bg::before   {
+    @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;
+    content: '';
+  }
 
-.project-decorative-faded {
-	@apply text-white/6;
-	background: linear-gradient(180deg, rgb(var(--white-rgb) / 0.08) 0%, transparent 75%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+  /* Animated glint sweep — applied as ::after on hover targets */
+  .hover-glint::after {
+    @apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
+    content: '';
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+  }
+  .hover-glint:hover::after { @apply translate-x-full; }
+
+  .image-overlay-dark  { @apply overlay-full bg-linear-to-br from-black/30 to-transparent;                }
+  .image-overlay-light { @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
+
+
+  /* ---- Tags ---- */
+
+  /* Surface variants — background + border only */
+  .surface-tag           { @apply bg-accent-blue/10 border border-accent-blue/20; }
+  .surface-tag-highlight { @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
+  .surface-tag-highlight:hover { @apply bg-accent-cyan/20 border-accent-cyan -translate-y-0.5; }
+
+  /* Size variants — spacing + radius only */
+  .size-tag-lg { @apply px-4 py-2 rounded-lg; }
+  .size-tag-md { @apply px-3 py-1.5 rounded-lg; }
+  .size-tag-sm { @apply px-2 py-1 rounded-sm;  }
+
 }
 
 
-/* --- Project Image --- */
+/* ================================================
+   Magazine Multi Section — Grid Layout System
+   ================================================
 
+   Named-area grid that drives the three-breakpoint
+   layout of MagazineSectionMulti. All placement
+   logic lives here; the component just declares
+   which cell each element belongs to.
 
-.magazine-image							{ @apply rounded-2xl transition-all duration-500; }
+   Grid map
+   ────────
+   base (1 col)          md (3 equal cols)                  lg (0.9fr 1.1fr)
+   ──────────────────    ─────────────────────────────────  ─────────────────────────
+   "e0-text"             "e0-text  e0-text  e0-img"         "e0-text  e0-img"
+   "e0-img"              "divider  divider  divider"         "divider  e0-img"
+   "divider"             "e1-img   e1-text  e1-text"         "e1-text  e1-img"
+   "e1-text"
+   "e1-img"
 
-.image-bg::before 					{ @apply overlay-full bg-linear-to-br from-white/25 to-transparent opacity-80;	content: ''; }
+   e0-img repeating in rows 1–2 of the lg template is what spans it across those rows.
+   ================================================ */
 
-.hover-glint::after 				{	@apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;	content: ''; background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%); }
-.hover-glint:hover::after 	{	@apply translate-x-full; }
+@layer components {
+  .mmg-grid {
+    @apply grid grid-cols-1 items-start gap-6;
+    grid-template-areas:
+      "e0-text"
+      "e0-img"
+      "divider"
+      "e1-text"
+      "e1-img";
 
-.image-overlay-dark 				{ @apply overlay-full bg-linear-to-br from-black/30 to-transparent; }
-.image-overlay-light 				{ @apply overlay-full bg-linear-to-t from-transparent via-transparent to-white/25; }
+    @media (width >= theme(--breakpoint-md)) {
+      @apply grid-cols-3 items-center gap-8;
+      grid-template-areas:
+        "e0-text  e0-text  e0-img"
+        "divider  divider  divider"
+        "e1-img   e1-text  e1-text";
+    }
 
+    @media (width >= theme(--breakpoint-lg)) {
+      @apply mx-0 items-start gap-x-20 gap-y-4;
+      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-areas:
+        "e0-text  images"
+        "divider  images"
+        "e1-text  images";
+    }
+  }
 
-/* --- Tech Tags --- */
+  /* Transparent to the grid at base/md so children claim their own named areas.
+     Becomes a real positioned cell at lg, owning the entire right column. */
+  .mmg-images {
+    display: contents;
 
+    @media (width >= theme(--breakpoint-lg)) {
+      display: flex;
+      align-items: center;
+      position: relative;
+      grid-area: images;
+      justify-self: start;
+    }
+  }
 
-.surface-tag 									{ @apply bg-accent-blue/10 border border-accent-blue/20; }
-.surface-tag-highlight 				{ @apply bg-accent-cyan/10 border border-accent-cyan/30 transition-all duration-300; }
-.surface-tag-highlight:hover 	{ @apply bg-accent-cyan/20 border-accent-cyan -translate-y-0.5; }
+  /* At lg, e1-img is absolutely placed from the bottom-left of the images cell */
+  @media (width >= theme(--breakpoint-lg)) {
+    .mmg-images .mmg-e1-img {
+      position: absolute;
+      bottom: -10%;
+      left: -8%;
+      width: 45%;
+      z-index: 10;
+    }
+  }
 
-.size-tag-lg 		{ @apply px-4 py-2 rounded-lg; }
-.size-tag-md 		{ @apply px-3 py-1.5 rounded-lg; }
-.size-tag-sm 		{ @apply px-2 py-1 rounded-sm ; }
-
-
-/* --- Button --- */
-
-
-.button-primary-inline-lg {	@apply inline-flex items-center gap-2 px-8 py-4 rounded-full bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold; }
-
-.button-primary-inline-sm {	@apply inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm bg-linear-to-br from-accent-blue to-accent-cyan text-white font-semibold; }
-
-
-/* --- Decorative Elements --- */
-
-
-.deco-circle { @apply absolute border-2 border-accent-cyan/15 rounded-full pointer-events-none opacity-60 	transition-transform duration-1000 hover:scale-110 hover:rotate-45; }
-
-.deco-line { @apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent pointer-events-none; }
-
+  .mmg-e0-text { grid-area: e0-text; }
+  .mmg-e0-img  { grid-area: e0-img;  }
+  .mmg-divider { grid-area: divider; }
+  .mmg-e1-text { grid-area: e1-text; }
+  .mmg-e1-img  { grid-area: e1-img;  }
 }
