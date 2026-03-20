@@ -56,12 +56,13 @@ Run Playwright via a wrapper:
 pnpm e2e [flags] [playwright args]  # Example: `pnpm e2e --full --dev --ui`
 ```
 
-| Behavior                | Flags                                        | Result               |
-| ----------------------- | -------------------------------------------- | -------------------- |
-| Update snapshots        | `--update`, `-U`                             | `--update-snapshots` |
-| Use dev server          | `--dev`, `-D`                                | `DEV=1`              |
-| Select preset projects  | `--[mode]`, `-[M]` (e.g. `--mobile`, `-M`)   | `MODE=[mode]`        |
-| Select specific project | `--project [project]`, `--project=[project]` | arg passed through   |
-| Pass-through arguments  | `--ui`, unknown args                         | arg passed through   |
+| Behavior               | Flags                                        | Result               |
+| ---------------------- | -------------------------------------------- | -------------------- |
+| Update snapshots       | `--update`, `-U`                             | `--update-snapshots` |
+| Use dev server         | `--dev`, `-D`                                | `DEV=1`              |
+| Disable artifacts      | `--quick`, `-Q`                              | `QUICK=1`            |
+| Select preset projects | `--[mode]`, `-[M]` (e.g. `--mobile`, `-M`)   | `MODE=[mode]`        |
+| Select single project  | `--project [project]`, `--project=[project]` | passed through       |
+| Playwright arguments   | `--ui`, unknown args                         | passed through       |
 
-**Modes:** `quick` · `responsive` · `mobile` · `vendors` · `full`
+**Modes:** `basic` · `responsive` · `mobile` · `vendors` · `full`

@@ -4,19 +4,15 @@ import { parseE2EArgs } from './e2e-lib.mjs';
 
 test('returns unchanged env and no playwright args for empty input', () => {
 	const baseEnv = { PATH: '/usr/bin' };
-
 	const result = parseE2EArgs([], baseEnv);
 
-	assert.deepEqual(result, {
-		env: { PATH: '/usr/bin' },
-		pwArgs: [],
-	});
+	assert.deepEqual(result, { env: { PATH: '/usr/bin' }, pwArgs: [] });
 });
 
 test('sets MODE from long mode flag', () => {
-	const result = parseE2EArgs(['--quick'], {});
+	const result = parseE2EArgs(['--basic'], {});
 
-	assert.equal(result.env.MODE, 'quick');
+	assert.equal(result.env.MODE, 'basic');
 	assert.deepEqual(result.pwArgs, []);
 });
 
@@ -28,14 +24,20 @@ test('sets MODE from short mode alias', () => {
 });
 
 test('allows repeating the same mode flag', () => {
-	const result = parseE2EArgs(['--quick', '-Q'], {});
+	const result = parseE2EArgs(['--basic', '-B'], {});
 
-	assert.equal(result.env.MODE, 'quick');
+	assert.equal(result.env.MODE, 'basic');
 	assert.deepEqual(result.pwArgs, []);
 });
 
 test('throws on conflicting mode flags', () => {
-	assert.throws(() => parseE2EArgs(['--quick', '--full'], {}), /Conflicting mode flags: "quick" and "full"/);
+	assert.throws(() => parseE2EArgs(['--basic', '--full'], {}), /Conflicting mode flags: "basic" and "full"/);
+});
+
+test('sets QUICK env flag', () => {
+	const result = parseE2EArgs(['--quick'], {});
+
+	assert.equal(result.env.QUICK, '1');
 });
 
 test('sets DEV env flag', () => {
@@ -87,16 +89,9 @@ test('passes through unknown args unchanged', () => {
 });
 
 test('supports combining env flags, mode flag, and playwright args', () => {
-	const result = parseE2EArgs(['--dev', '--ci', '--quick', '--ui', '--grep', '@smoke'], {});
+	const result = parseE2EArgs(['--dev', '--ci', '--basic', '--ui', '--grep', '@smoke'], {});
 
-	assert.deepEqual(result, {
-		env: {
-			DEV: '1',
-			CI: '1',
-			MODE: 'quick',
-		},
-		pwArgs: ['--ui', '--grep', '@smoke'],
-	});
+	assert.deepEqual(result, { env: { DEV: '1', CI: '1', MODE: 'basic' }, pwArgs: ['--ui', '--grep', '@smoke'] });
 });
 
 test('allows --project=value when no mode is selected', () => {
@@ -116,7 +111,7 @@ test('throws when --project is missing its value', () => {
 });
 
 test('throws when mode flag is combined with --project=value', () => {
-	assert.throws(() => parseE2EArgs(['--quick', '--project=chromium'], {}), /Cannot combine --project \(chromium\) with mode "quick"/);
+	assert.throws(() => parseE2EArgs(['--basic', '--project=chromium'], {}), /Cannot combine --project \(chromium\) with mode "basic"/);
 });
 
 test('throws when mode flag is combined with --project value form', () => {
@@ -133,9 +128,5 @@ test('throws when --project comes first and mode comes later', () => {
 test('preserves existing env vars', () => {
 	const result = parseE2EArgs(['--ai'], { PATH: '/usr/bin', HOME: '/tmp/me' });
 
-	assert.deepEqual(result.env, {
-		PATH: '/usr/bin',
-		HOME: '/tmp/me',
-		AI: '1',
-	});
+	assert.deepEqual(result.env, { PATH: '/usr/bin', HOME: '/tmp/me', AI: '1' });
 });
