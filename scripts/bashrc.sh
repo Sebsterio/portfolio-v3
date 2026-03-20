@@ -1,5 +1,6 @@
 alias p="pnpm"
 alias d="pnpm dev"
+alias e="pnpm e2e --quick"
 alias bs="pnpm build && pnpm start"
 alias be="pnpm build && pnpm e2e --quick"
 alias eu="pnpm e2e --update"
