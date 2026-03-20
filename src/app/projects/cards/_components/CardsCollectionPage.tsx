@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
-import { Card } from '@/components/ui/Card';
+import { Panel } from '@/components/ui/Panel';
 
 // ----------------------------------------------------------------------------
 
@@ -43,9 +43,12 @@ type ProjectCardProps = {
 
 const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 	return (
-		<Card
-			variant='lifted'
-			className={cn('glass-radius-3 group glass-surface-2 h-105 padding-card glass-elevation-1')}
+		<Panel
+			edgeGlow
+			className={cn(
+				'glass-radius-3 group glass-surface-2 h-105 padding-card glass-elevation-1',
+				'transition-all hover:scale-105 hover:glass-elevation-2',
+			)}
 			{...{ style, onClick }}
 		>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
@@ -76,7 +79,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
-		</Card>
+		</Panel>
 	);
 };
 

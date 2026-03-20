@@ -1,13 +1,4 @@
-import { Glass } from './Glass';
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-export type PanelProps = {
-	children: React.ReactNode;
-	className?: string;
-	style?: React.CSSProperties;
-	onClick?: () => void;
-};
+import { Glass, GlassProps } from './Glass';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -32,7 +23,7 @@ export type PanelProps = {
  *   - Padding / layout                    ← via className or consuming component
  *   - Hover / interaction styles          ← consuming component's responsibility
  */
-export function Panel({ children, ...props }: PanelProps) {
+export function Panel({ children, ...props }: GlassProps) {
 	return (
 		<Glass texture accents {...props}>
 			{children}
