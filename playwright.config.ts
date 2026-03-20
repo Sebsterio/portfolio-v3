@@ -13,14 +13,16 @@ const CI_PORT = 3004;
 
 const VIEWPORTS = {
 	sm: { width: 360, height: 680 },
-	md: { width: 820, height: 1112 },
-	lg: { width: 1440, height: 900 },
+	md: { width: 768, height: 1000 },
+	lg: { width: 1024, height: 720 },
+	xl: { width: 1280, height: 900 },
 } as const;
 
 const PROJECTS: Project[] = [
 	{ name: 'chromium-sm', use: { ...devices['Desktop Chrome'], viewport: VIEWPORTS.sm, deviceScaleFactor: 1 } },
 	{ name: 'chromium-md', use: { ...devices['Desktop Chrome'], viewport: VIEWPORTS.md, deviceScaleFactor: 1 } },
 	{ name: 'chromium-lg', use: { ...devices['Desktop Chrome'], viewport: VIEWPORTS.lg, deviceScaleFactor: 1 } },
+	{ name: 'chromium-xl', use: { ...devices['Desktop Chrome'], viewport: VIEWPORTS.xl, deviceScaleFactor: 1 } },
 	{ name: 'firefox-lg', use: { ...devices['Desktop Firefox'], viewport: VIEWPORTS.lg } },
 	{ name: 'webkit-lg', use: { ...devices['Desktop Safari'], viewport: VIEWPORTS.lg } },
 	{ name: 'safari-sm', use: { ...devices['iPhone 12'], viewport: VIEWPORTS.sm } },
@@ -47,11 +49,11 @@ const config: PlaywrightTestConfig = {
 		screenshot: !isQuick ? 'only-on-failure' : 'off',
 	},
 	projects: {
-		full: getProjects('chromium-sm', 'chromium-md', 'chromium-lg', 'firefox-lg', 'webkit-lg', 'safari-sm'),
-		basic: getProjects('chromium-lg'),
+		full: getProjects('chromium-sm', 'chromium-md', 'chromium-lg', 'chromium-xl', 'firefox-lg', 'webkit-lg', 'safari-sm'),
+		basic: getProjects('chromium-xl'),
 		mobile: getProjects('chromium-sm', 'safari-sm'),
 		vendors: getProjects('chromium-lg', 'firefox-lg', 'webkit-lg', 'safari-sm'),
-		responsive: getProjects('chromium-sm', 'chromium-md', 'chromium-lg'),
+		responsive: getProjects('chromium-sm', 'chromium-md', 'chromium-lg', 'chromium-xl'),
 	}[mode],
 
 	webServer: {
