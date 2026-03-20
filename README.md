@@ -45,3 +45,23 @@ Personal portfolio and case-study site built with Next.js App Router.
 
 - Plan first, wait for approval, then implement.
 - Code on the `dev` branch is canonical.
+
+---
+
+## E2E
+
+Run Playwright via a wrapper:
+
+```bash
+pnpm e2e [flags] [playwright args]  # Example: `pnpm e2e --full --dev --ui`
+```
+
+| Behavior                | Flags                                        | Result               |
+| ----------------------- | -------------------------------------------- | -------------------- |
+| Update snapshots        | `--update`, `-U`                             | `--update-snapshots` |
+| Use dev server          | `--dev`, `-D`                                | `DEV=1`              |
+| Select preset projects  | `--[mode]`, `-[M]` (e.g. `--mobile`, `-M`)   | `MODE=[mode]`        |
+| Select specific project | `--project [project]`, `--project=[project]` | arg passed through   |
+| Pass-through arguments  | `--ui`, unknown args                         | arg passed through   |
+
+**Modes:** `quick` · `responsive` · `mobile` · `vendors` · `full`
