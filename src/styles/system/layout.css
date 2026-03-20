@@ -85,12 +85,13 @@
 
 /* ---- Padding ---- */
 
-@utility padding-card    { @apply p-8;               }
+@utility padding-card    { @apply p-8;                }
 @utility padding-card-lg { @apply p-6 sm:p-8 md:p-10; }
 @utility padding-panel   { @apply p-8 md:p-12;        }
 
 
 /* ---- Overlay Helpers ---- */
 
-@utility overlay      { @apply absolute pointer-events-none;         }
-@utility overlay-full { @apply absolute pointer-events-none inset-0; }
+@utility overlay      { @apply pointer-events-none absolute;         }
+@utility overlay-full { @apply pointer-events-none absolute inset-0; }
+@utility overlay-page { @apply pointer-events-none fixed inset-0; 	 }

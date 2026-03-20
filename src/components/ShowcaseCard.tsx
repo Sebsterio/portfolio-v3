@@ -27,7 +27,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 			glint
 			variant='lifted'
 			className={cn(
-				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'padding-card-lg',
 				// Override lifted timing: fuller spring + slower duration for dwell behaviour.
 				// GlassCard lifted uses duration-300 + overshoot 1.2 (scan targets).
@@ -37,7 +37,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 			)}
 		>
 			{/* Custom-positioned edge glow — narrower than full-width */}
-			<div className='glass-edge-glow overlay top-0 left-[15%] h-px w-[70%]' aria-hidden />
+			<div className='glass-edge-glow overlay top-0 left-[15%] h-[2px] w-[70%]' aria-hidden />
 
 			<div className='flex gap-5 sm:gap-6'>
 				<IconBadge>{icon}</IconBadge>
