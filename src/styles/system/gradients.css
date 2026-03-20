@@ -12,13 +12,13 @@
 /* .reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; } */
 /*  */
 /* @utility gradient-reflection-vertical { */
-/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent); */
+/* 	background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 25%, transparent), transparent); */
 /* } */
 /* @utility gradient-reflection-vertical-strong { */
-/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent); */
+/* 	background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 80%, transparent), transparent); */
 /* } */
 /* @utility gradient-reflection-diagonal { */
-/* 	background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.15) 0%, rgb(var(--white-rgb) / 0.08) 20%, transparent 50%);  */
+/* 	background: linear-gradient(135deg, color-mix(in srgb, white 15%, transparent) 0%, color-mix(in srgb, white 8%, transparent) 20%, transparent 50%);  */
 /* } */
 
 
@@ -28,6 +28,10 @@
 
    @utility  →  composable, modifier-safe (hover:, dark:, md:)
    plain     →  decorative overlays, never need modifiers
+
+   Alpha expressions use color-mix(in srgb, <token> <N>%, transparent)
+   throughout this file. This is semantically equivalent to the legacy
+   rgb(var(--*-rgb) / alpha) pattern and requires no *-rgb channel vars.
 
    ── Brand ───────────────────────────────────────────────────
    gradient-primary          blue → cyan, br direction
@@ -75,11 +79,11 @@
 }
 
 @utility gradient-brand-logo {
-  background-image: linear-gradient(135deg, rgb(var(--chrome-silver-rgb)) 20%, rgb(var(--accent-blue-rgb)) 80%);
+  background-image: linear-gradient(135deg, var(--color-chrome-silver) 20%, var(--color-accent-blue) 80%);
 }
 
 @utility gradient-brand-underline {
-  background: linear-gradient(90deg, rgb(var(--accent-blue-rgb)), rgb(var(--accent-cyan-rgb)));
+  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-cyan));
 }
 
 @utility gradient-number-highlight {
@@ -88,23 +92,23 @@
 
 @utility gradient-atmosphere-chrome {
   background:
-    radial-gradient(ellipse at 25% 35%, rgb(var(--accent-blue-rgb) / 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 65%, rgb(var(--accent-cyan-rgb) / 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 25% 35%, color-mix(in srgb, var(--color-accent-blue) 15%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, color-mix(in srgb, var(--color-accent-cyan)  10%, transparent) 0%, transparent 50%);
 }
 
 @utility gradient-atmosphere-metallic-orb {
   background: radial-gradient(
     circle at 30% 30%,
-    rgb(var(--chrome-silver-rgb) / 0.2),
-    rgb(var(--chrome-mid-rgb) / 0.1) 40%,
+    color-mix(in srgb, var(--color-chrome-silver) 20%, transparent),
+    color-mix(in srgb, var(--color-chrome-mid)    10%, transparent) 40%,
     transparent 70%
   );
 }
 
 @utility gradient-atmosphere-grid {
   background-image:
-    linear-gradient(rgb(var(--chrome-mid-rgb) / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--chrome-mid-rgb) / 0.08) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-chrome-mid) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-chrome-mid) 8%, transparent) 1px, transparent 1px);
 }
 
 
@@ -118,19 +122,19 @@
 /* ---- Reflection Overlays ---- */
 
 @utility gradient-reflection-horizontal {
-  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 25%, transparent), transparent);
 }
 
 @utility gradient-reflection-horizontal-strong {
-  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 80%, transparent), transparent);
 }
 
 @utility gradient-reflection-diagonal {
   background: linear-gradient(
     135deg,
-    rgb(var(--white-rgb) / 0.15)  0%,
-    rgb(var(--white-rgb) / 0.08) 20%,
-    transparent                   50%
+    color-mix(in srgb, white 15%, transparent)  0%,
+    color-mix(in srgb, white  8%, transparent) 20%,
+    transparent                                50%
   );
 }
 

@@ -4,14 +4,14 @@
 
    Glow scale
    ─────────────────────────────────────────
-   glow-accent-sm     0 0 20px accent / 0.2   soft ambient
-   glow-accent-md     0 0 20px accent / 0.4   standard interactive
-   glow-accent-lg     0 0 15px accent / 1.0   strong, full-opacity
+   glow-accent-sm     soft ambient glow
+   glow-accent-md     standard interactive glow
+   glow-accent-lg     strong, full-opacity glow
 
    Directional shadows
    ─────────────────────────────────────────
-   shadow-accent-md   0 15px 50px accent / 0.35   card lift
-   shadow-accent-lg   0 25px 70px accent / 0.50   card hover lift
+   shadow-accent-md   card lift
+   shadow-accent-lg   card hover lift
 
    Background fills
    ─────────────────────────────────────────
@@ -47,74 +47,90 @@
 
 /* ---- Glow Scale ---- */
 
-@utility glow-accent-sm { box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.2); }
-@utility glow-accent-md { box-shadow: 0 0 20px rgb(var(--accent-blue-rgb) / 0.4); }
-@utility glow-accent-lg { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 1.0); }
+@utility glow-accent-sm { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-blue) 20%, transparent); }
+@utility glow-accent-md { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-blue) 40%, transparent); }
+@utility glow-accent-lg { box-shadow: 0 0 15px var(--color-accent-blue); }
 
 
 /* ---- Directional Shadows ---- */
 
-@utility shadow-accent-md { box-shadow: 0 15px 50px rgb(var(--accent-blue-rgb) / 0.35); }
-@utility shadow-accent-lg { box-shadow: 0 25px 70px rgb(var(--accent-blue-rgb) / 0.50); }
-@utility shadow-brand-underline { box-shadow: 0 0 10px rgb(var(--accent-blue-rgb) / 0.5); }
-@utility shadow-image-md { box-shadow: 0 20px 50px rgb(var(--black-rgb) / 0.50); }
-@utility shadow-image-md-strong { box-shadow: 0 20px 50px rgb(var(--black-rgb) / 0.60); }
-@utility shadow-image-lg { box-shadow: 0 25px 60px rgb(var(--black-rgb) / 0.60); }
-@utility shadow-image-xl { box-shadow: 0 30px 70px rgb(var(--black-rgb) / 0.60); }
-@utility shadow-image-2xl { box-shadow: 0 30px 80px rgb(var(--black-rgb) / 0.70); }
-@utility shadow-showcase-badge { box-shadow: 0 8px 24px rgb(var(--accent-blue-rgb) / 0.35), 0 0 16px rgb(var(--accent-blue-rgb) / 0.15); }
-@utility shadow-showcase-badge-hover { box-shadow: 0 10px 32px rgb(var(--accent-blue-rgb) / 0.55), 0 0 24px rgb(var(--accent-blue-rgb) / 0.35); }
-@utility shadow-dot-active { box-shadow: 0 0 12px rgb(var(--accent-blue-rgb) / 0.8); }
-@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px rgb(var(--chrome-dark-rgb) / 0.8); }
-@utility shadow-status-dot { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 1); }
-@utility shadow-particle-accent { box-shadow: 0 0 8px rgb(var(--accent-cyan-rgb) / 0.4); }
-@utility shadow-particle-chrome { box-shadow: 0 0 6px rgb(var(--chrome-mid-rgb) / 0.25); }
-@utility shadow-atmosphere-blue { box-shadow: 0 0 15px rgb(var(--accent-blue-rgb) / 0.3); }
-@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px rgb(var(--accent-cyan-rgb) / 0.3); }
+@utility shadow-accent-md { box-shadow: 0 15px 50px color-mix(in srgb, var(--color-accent-blue) 35%, transparent); }
+@utility shadow-accent-lg { box-shadow: 0 25px 70px color-mix(in srgb, var(--color-accent-blue) 50%, transparent); }
+@utility shadow-brand-underline { box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-blue) 50%, transparent); }
+@utility shadow-image-md         { box-shadow: 0 20px 50px color-mix(in srgb, black 50%, transparent); }
+@utility shadow-image-md-strong  { box-shadow: 0 20px 50px color-mix(in srgb, black 60%, transparent); }
+@utility shadow-image-lg         { box-shadow: 0 25px 60px color-mix(in srgb, black 60%, transparent); }
+@utility shadow-image-xl         { box-shadow: 0 30px 70px color-mix(in srgb, black 60%, transparent); }
+@utility shadow-image-2xl        { box-shadow: 0 30px 80px color-mix(in srgb, black 70%, transparent); }
+@utility shadow-showcase-badge {
+  box-shadow:
+    0  8px 24px color-mix(in srgb, var(--color-accent-blue) 35%, transparent),
+    0  0  16px color-mix(in srgb, var(--color-accent-blue) 15%, transparent);
+}
+@utility shadow-showcase-badge-hover {
+  box-shadow:
+    0 10px 32px color-mix(in srgb, var(--color-accent-blue) 55%, transparent),
+    0  0  24px color-mix(in srgb, var(--color-accent-blue) 35%, transparent);
+}
+@utility shadow-dot-active   { box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-blue) 80%, transparent); }
+@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-chrome-dark) 80%, transparent); }
+@utility shadow-status-dot   { box-shadow: 0 0 15px var(--color-accent-blue); }
+@utility shadow-particle-accent { box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
+@utility shadow-particle-chrome { box-shadow: 0 0 6px color-mix(in srgb, var(--color-chrome-mid) 25%, transparent); }
+@utility shadow-atmosphere-blue { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-blue) 30%, transparent); }
+@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-cyan) 30%, transparent); }
 
 
 /* ---- Background Fills ---- */
 
-@utility bg-accent-soft { background: rgb(var(--accent-blue-rgb) / 0.1); }
-@utility bg-surface-glass-sm { background: rgb(var(--white-rgb) / 0.03); }
-@utility bg-surface-glass-md { background: rgb(var(--white-rgb) / 0.05); }
-@utility bg-surface-glass-lg { background: rgb(var(--white-rgb) / 0.08); }
-@utility bg-surface-glass-xl { background: rgb(var(--white-rgb) / 0.10); }
+@utility bg-accent-soft        { background: color-mix(in srgb, var(--color-accent-blue)  10%, transparent); }
+@utility bg-surface-glass-sm   { background: color-mix(in srgb, white  3%, transparent); }
+@utility bg-surface-glass-md   { background: color-mix(in srgb, white  5%, transparent); }
+@utility bg-surface-glass-lg   { background: color-mix(in srgb, white  8%, transparent); }
+@utility bg-surface-glass-xl   { background: color-mix(in srgb, white 10%, transparent); }
+
+
+/* ---- Per-project editorial shadows ---- */
+/*
+  Each class pairs a deep black lift shadow with a project-brand-coloured haze.
+  Brand colours are defined as --color-project-* in :root (theme.css),
+  making them overridable per-theme without touching this file.
+*/
 
 .shadow-editorial-bounce {
   box-shadow:
-    0 30px 70px rgb(var(--black-rgb) / 0.6),
-    0 0 60px rgb(var(--shadow-bounce-rgb) / 0.2);
+    0 30px 70px color-mix(in srgb, black 60%, transparent),
+    0  0  60px color-mix(in srgb, var(--color-project-bounce) 20%, transparent);
 }
 
 .shadow-editorial-meco {
   box-shadow:
-    0 25px 60px rgb(var(--black-rgb) / 0.6),
-    0 0 50px rgb(var(--shadow-meco-rgb) / 0.2);
+    0 25px 60px color-mix(in srgb, black 60%, transparent),
+    0  0  50px color-mix(in srgb, var(--color-project-meco) 20%, transparent);
 }
 
 .shadow-editorial-tt {
   box-shadow:
-    0 30px 70px rgb(var(--black-rgb) / 0.6),
-    0 0 50px rgb(var(--shadow-tt-rgb) / 0.2);
+    0 30px 70px color-mix(in srgb, black 60%, transparent),
+    0  0  50px color-mix(in srgb, var(--color-project-tt) 20%, transparent);
 }
 
 .shadow-editorial-ebit {
   box-shadow:
-    0 30px 80px rgb(var(--black-rgb) / 0.7),
-    0 0 60px rgb(var(--shadow-ebit-rgb) / 0.2);
+    0 30px 80px color-mix(in srgb, black 70%, transparent),
+    0  0  60px color-mix(in srgb, var(--color-project-ebit) 20%, transparent);
 }
 
 .shadow-editorial-ao {
   box-shadow:
-    0 25px 60px rgb(var(--black-rgb) / 0.6),
-    0 0 50px rgb(var(--shadow-ao-rgb) / 0.2);
+    0 25px 60px color-mix(in srgb, black 60%, transparent),
+    0  0  50px color-mix(in srgb, var(--color-project-ao) 20%, transparent);
 }
 
 .shadow-editorial-freelance {
   box-shadow:
-    0 30px 80px rgb(var(--black-rgb) / 0.7),
-    0 0 60px rgb(var(--shadow-freelance-rgb) / 0.2);
+    0 30px 80px color-mix(in srgb, black 70%, transparent),
+    0  0  60px color-mix(in srgb, var(--color-project-freelance) 20%, transparent);
 }
 
 

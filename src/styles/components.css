@@ -51,7 +51,7 @@
   .hover-glint::after {
     @apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] -translate-x-full transition-transform duration-700;
     content: '';
-    background: linear-gradient(45deg, transparent 40%, rgb(var(--white-rgb) / 0.1) 50%, transparent 60%);
+    background: linear-gradient(45deg, transparent 40%, color-mix(in srgb, white 10%, transparent) 50%, transparent 60%);
   }
   .hover-glint:hover::after { @apply translate-x-full; }
 
