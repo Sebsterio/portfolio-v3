@@ -71,12 +71,87 @@
   .size-tag-md { @apply px-3 py-1.5 rounded-lg; }
   .size-tag-sm { @apply px-2 py-1 rounded-sm;  }
 
+}
 
-  /* ---- Decorative ---- */
 
-  /*
-    Note: deco-* classes moved to system/decorative.css and renamed.
-    Migration: deco-circle → decorative-circle, deco-line → decorative-line
-  */
+/* ================================================
+   Magazine Multi Section — Grid Layout System
+   ================================================
 
+   Named-area grid that drives the three-breakpoint
+   layout of MagazineSectionMulti. All placement
+   logic lives here; the component just declares
+   which cell each element belongs to.
+
+   Grid map
+   ────────
+   base (1 col)          md (3 equal cols)                  lg (0.9fr 1.1fr)
+   ──────────────────    ─────────────────────────────────  ─────────────────────────
+   "e0-text"             "e0-text  e0-text  e0-img"         "e0-text  e0-img"
+   "e0-img"              "divider  divider  divider"         "divider  e0-img"
+   "divider"             "e1-img   e1-text  e1-text"         "e1-text  e1-img"
+   "e1-text"
+   "e1-img"
+
+   e0-img repeating in rows 1–2 of the lg template is what spans it across those rows.
+   ================================================ */
+
+@layer components {
+  .mmg-grid {
+    @apply grid grid-cols-1 items-start gap-6;
+    grid-template-areas:
+      "e0-text"
+      "e0-img"
+      "divider"
+      "e1-text"
+      "e1-img";
+
+    @media (width >= theme(--breakpoint-md)) {
+      @apply grid-cols-3 items-center gap-8;
+      grid-template-areas:
+        "e0-text  e0-text  e0-img"
+        "divider  divider  divider"
+        "e1-img   e1-text  e1-text";
+    }
+
+    @media (width >= theme(--breakpoint-lg)) {
+      @apply mx-0 items-start gap-x-20 gap-y-4;
+      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-areas:
+        "e0-text  images"
+        "divider  images"
+        "e1-text  images";
+    }
+  }
+
+  /* Transparent to the grid at base/md so children claim their own named areas.
+     Becomes a real positioned cell at lg, owning the entire right column. */
+  .mmg-images {
+    display: contents;
+
+    @media (width >= theme(--breakpoint-lg)) {
+      display: flex;
+      align-items: center;
+      position: relative;
+      grid-area: images;
+      justify-self: start;
+    }
+  }
+
+  /* At lg, e1-img is absolutely placed from the bottom-left of the images cell */
+  @media (width >= theme(--breakpoint-lg)) {
+    .mmg-images .mmg-e1-img {
+      position: absolute;
+      bottom: -10%;
+      left: -8%;
+      width: 45%;
+      z-index: 10;
+    }
+  }
+
+  .mmg-e0-text { grid-area: e0-text; }
+  .mmg-e0-img  { grid-area: e0-img;  }
+  .mmg-divider { grid-area: divider; }
+  .mmg-e1-text { grid-area: e1-text; }
+  .mmg-e1-img  { grid-area: e1-img;  }
 }
