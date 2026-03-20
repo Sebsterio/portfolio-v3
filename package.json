@@ -14,10 +14,9 @@
     "build": "next build",
     "start": "next start",
     "dev": "next dev",
-    "dev:ui": "cross-env DEV=1 MODE=quick playwright test --ui",
-    "e2e": "cross-env DEV=0 MODE=quick playwright test",
-    "e2e:full": "cross-env DEV=0 MODE=full playwright test",
-    "e2e:update": "cross-env DEV=0 MODE=full playwright test --update-snapshots",
+    "e2e": "node scripts/e2e.mjs",
+    "e2e:dev": "node scripts/e2e.mjs --dev --ui",
+    "test:e2e": "node --test scripts/e2e.test.mjs",
     "validate": "pnpm verify && pnpm build && pnpm e2e"
   },
   "dependencies": {
