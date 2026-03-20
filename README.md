@@ -41,10 +41,10 @@ Personal portfolio and case-study site built with Next.js App Router.
 - `.ai/scratch/` - disposable rough work
 - `.ai/reports/` - temporary audits and review outputs
 
-## Agent workflow
+## Caveats
 
-- Plan first, wait for approval, then implement.
-- Code on the `dev` branch is canonical.
+- Run `pnpm typecheck` explicitly when TypeScript correctness matters.
+- `pnpm build` does not enforce TypeScript correctness because Next build ignores TS build errors in this repo.
 
 ---
 
