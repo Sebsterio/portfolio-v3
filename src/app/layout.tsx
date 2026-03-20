@@ -25,8 +25,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 					[urbanist.variable, dmSans.variable, 'antialiased'],
 					'relative flex min-h-screen flex-col',
 					'gap-16 md:gap-24 lg:gap-28',
-					'px-4 sm:px-6 md:px-8',
-					'pt-6 md:pt-10',
+					'px-2 pt-4 lg:pt-6',
 					'pb-12 md:pb-20 lg:pb-28', // rm when adding Footer
 				)}
 			>
@@ -39,7 +38,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 						<AppHeader logo='PORTFOLIO' navItems={navItems} />
 					</header>
 
-					<main className='relative content-container flex flex-1 flex-col sm:px-5 md:px-7'>
+					<main className='relative content-container flex flex-1 flex-col px-2 md:px-4 lg:px-8'>
 						<>{children}</>
 					</main>
 				</TransitionProvider>

@@ -29,8 +29,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 				<nav
 					className={cn(
 						'relative z-50 rounded-full',
-						'-mx-2 -mt-2 sm:mx-0 sm:mt-0',
-						'px-6 py-3 md:px-10 md:py-5',
+						'px-6 py-4 lg:px-8 lg:py-5',
 						'flex items-center justify-between',
 						'glass-elevation-3 glass-surface-2 rounded-full',
 						'transition-opacity duration-300',
