@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { type CardVariant, CARD_VARIANT_MAP } from '@/components/ui/cardVariants';
+import { Glass } from './Glass';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -10,7 +11,6 @@ export type CardProps = {
 	className?: string;
 	style?: React.CSSProperties;
 	onClick?: () => void;
-
 	/**
 	 * Interaction + animation pattern applied to the container.
 	 *
@@ -22,13 +22,13 @@ export type CardProps = {
 	 * Override explicitly to opt out: variant="static"
 	 */
 	variant?: CardVariant;
-
 	/**
 	 * Renders the glint sweep overlay on hover.
 	 * Automatically adds `group` to the container element.
 	 * Default: false
 	 */
 	glint?: boolean;
+	edgeGlow?: boolean;
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -48,34 +48,12 @@ export type CardProps = {
  *
  * For large/primary content panels, use Panel instead.
  */
-export function Card({
-	children,
-	className,
-	style,
-	onClick,
-	variant,
-	glint = false,
-}: CardProps) {
-	const resolvedVariant = variant ?? (onClick ? 'raised' : 'static');
+export function Card({ children, className, variant, ...props }: CardProps) {
+	const resolvedVariant = variant ?? (props.onClick ? 'raised' : 'static');
 
 	return (
-		<div
-			className={cn(
-				glint && 'group',
-				onClick && 'cursor-pointer',
-				CARD_VARIANT_MAP[resolvedVariant],
-				className,
-			)}
-			style={style}
-			onClick={onClick}
-		>
-			{/* Decorative overlays — rendered first so they sit behind content via DOM order */}
-			<div className='overlay-full glass-reflection' aria-hidden />
-			<div className='overlay-full glass-noise'      aria-hidden />
-
-			{glint && <div className='overlay-full glass-glint group-hover:glass-glint-active' aria-hidden />}
-
+		<Glass className={cn(CARD_VARIANT_MAP[resolvedVariant], className)} texture reflection {...props}>
 			{children}
-		</div>
+		</Glass>
 	);
 }
