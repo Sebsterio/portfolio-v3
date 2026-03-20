@@ -7,6 +7,7 @@ import { TimelineLine } from '@/components/TimelineLine';
 import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
+import { ArrowIndicator } from '@/components/ArrowIndicator';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
@@ -61,6 +62,10 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 									<p className='text-tertiary'>{project.company}</p>
 									<p className='text-muted text-sm leading-relaxed'>{project.summary}</p>
 									<ProjectTags tags={project.tags} limit={3} size='sm' />
+									<ArrowIndicator
+										aria-label={`View ${project.title}`}
+										className='absolute right-0 bottom-0'
+									/>
 								</div>
 							</TimelineCard>
 						</div>
@@ -108,5 +113,9 @@ const TimelineCardContent = ({ project, limit, size }: { project: Project; limit
 		<p className='text-secondary text-lg'>{project.company}</p>
 		<p className='text-muted leading-relaxed'>{project.summary}</p>
 		<ProjectTags tags={project.tags} limit={limit} className='pt-2' size={size} />
+		<ArrowIndicator
+			aria-label={`View ${project.title}`}
+			className='absolute right-0 bottom-0 group-hover:translate-x-1'
+		/>
 	</div>
 );

@@ -9,7 +9,7 @@ const CLASSES = {
 		'font-dm-sans font-bold',
 		'transition-all duration-200',
 		'hover:scale-102 active:scale-95 active:duration-50',
-		'focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:outline-none',
+		'focus-ring',
 		'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40',
 	),
 	sizes: {

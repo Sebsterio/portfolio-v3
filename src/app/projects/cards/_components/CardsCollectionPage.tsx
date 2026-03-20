@@ -7,6 +7,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
+import { ArrowIndicator } from '@/components/ArrowIndicator';
 
 // ----------------------------------------------------------------------------
 
@@ -75,20 +76,12 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 			</div>
 
 			<ArrowIndicator
+				aria-label={`View ${project.title}`}
 				className={cn('absolute right-8 bottom-8', [
-					'transition-duration-300 transition-all group-hover:translate-x-2 group-hover:bg-accent-blue/20',
+					'group-hover:translate-x-2 group-hover:bg-accent-blue/20',
 				])}
 			/>
 		</Panel>
 	);
 };
 
-const ArrowIndicator = ({ className }: { className: string }) => (
-	<div
-		className={cn('transition-duration-300 flex h-12 w-12 items-center justify-center rounded-full transition-all', [
-			['border border-accent-blue/30 bg-accent-blue/10 text-xl text-accent-cyan', className],
-		])}
-	>
-		→
-	</div>
-);
