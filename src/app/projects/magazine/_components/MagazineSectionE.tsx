@@ -59,9 +59,9 @@ export function MagazineSectionE({
 
 				{/* Text Column */}
 				<div className='order-2 pt-8 lg:order-0 lg:pt-20'>
-					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-accent-cyan uppercase md:text-sm'>{preTitle}</p>
+					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-label uppercase md:text-sm'>{preTitle}</p>
 
-					<h3 className='mb-4 font-urbanist text-4xl leading-[0.85] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[5rem]'>
+					<h3 className='mb-4 font-urbanist text-4xl leading-[0.85] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[5rem]'>
 						{title}
 					</h3>
 

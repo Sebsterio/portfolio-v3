@@ -33,7 +33,7 @@ export function MagazineSectionA({
 			{/* Left Column */}
 			<div className='relative'>
 				{/* Number */}
-				<div className='text-glow-editorial mb-4 text-right font-urbanist text-3xl font-black text-accent-cyan md:text-4xl lg:text-left xl:text-5xl'>
+				<div className='text-glow-editorial mb-4 text-right font-urbanist text-3xl font-black text-label md:text-4xl lg:text-left xl:text-5xl'>
 					{number}
 				</div>
 
@@ -74,7 +74,7 @@ export function MagazineSectionA({
 
 			{/* Right Column - Content */}
 			<div className='order-2 pt-4 lg:order-0 lg:pt-16'>
-				<h3 className='mb-2 font-urbanist text-4xl font-extrabold tracking-tight text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-[3.5rem]'>
+				<h3 className='mb-2 font-urbanist text-4xl font-extrabold tracking-tight text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-[3.5rem]'>
 					{title}
 				</h3>
 				<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
@@ -82,7 +82,7 @@ export function MagazineSectionA({
 				<div className='space-y-6'>
 					{description.map((paragraph, index) => (
 						<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
-							<ParsedText bold='text-accent-cyan font-semibold'>{paragraph}</ParsedText>
+							<ParsedText bold='text-label font-semibold'>{paragraph}</ParsedText>
 						</p>
 					))}
 				</div>

@@ -27,9 +27,9 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 			<div className='relative z-20 mr-0 ml-0 grid max-w-[1400px] items-center gap-8 md:gap-12 lg:ml-auto lg:grid-cols-[0.8fr_1.2fr] lg:gap-16'>
 				{/* Text Column */}
 				<div className='py-4 md:py-8'>
-					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-accent-cyan uppercase md:text-sm'>{preTitle}</p>
+					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-label uppercase md:text-sm'>{preTitle}</p>
 
-					<h3 className='mb-3 font-urbanist text-4xl leading-[0.95] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[4rem]'>
+					<h3 className='mb-3 font-urbanist text-4xl leading-[0.95] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[4rem]'>
 						{title}
 					</h3>
 

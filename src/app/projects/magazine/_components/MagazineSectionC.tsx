@@ -22,7 +22,7 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 						{number}
 					</div>
 
-					<h3 className='mb-4 font-urbanist text-4xl leading-[0.9] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[4.5rem]'>
+					<h3 className='mb-4 font-urbanist text-4xl leading-[0.9] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[4.5rem]'>
 						{title}
 					</h3>
 

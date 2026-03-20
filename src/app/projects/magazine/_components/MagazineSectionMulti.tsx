@@ -19,8 +19,8 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 	return (
 		<section className='group relative -mt-8 xl:ml-12'>
 			<div className='space-y-4'>
-				<div className='font-urbanist text-lg font-black tracking-wider text-accent-cyan/60 md:text-xl'>{number}</div>
-				<h3 className='font-urbanist text-4xl leading-[0.85] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[5.5rem]'>
+				<div className='font-urbanist text-lg font-black tracking-wider text-label/60 md:text-xl'>{number}</div>
+				<h3 className='font-urbanist text-4xl leading-[0.85] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[5.5rem]'>
 					{title}
 				</h3>
 				<p className='text-muted mb-10 text-base md:text-lg'>{subtitle}</p>
@@ -28,7 +28,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 
 			<div className='mmg-grid mx-5 sm:mx-10 md:mx-16 lg:mr-0 xl:ml-20'>
 				<div id={entry0.sectionId} className={cn('mmg-e0-text', 'space-y-3 transition-transform duration-400 hover:translate-x-4')}>
-					<h4 className={cn('font-urbanist text-2xl font-bold text-accent-cyan', 'md:text-3xl')}>{entry0.title}</h4>
+					<h4 className={cn('font-urbanist text-2xl font-bold text-label', 'md:text-3xl')}>{entry0.title}</h4>
 					<p className='text-secondary text-sm leading-relaxed md:text-base'>{entry0.description}</p>
 				</div>
 
@@ -64,7 +64,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 				<div className='mmg-divider border-b border-accent-cyan/15' />
 
 				<div id={entry1.sectionId} className={cn('mmg-e1-text', 'space-y-3 transition-transform duration-400 hover:translate-x-4')}>
-					<h4 className={cn('font-urbanist text-2xl font-bold text-accent-cyan', 'md:text-3xl')}>{entry1.title}</h4>
+					<h4 className={cn('font-urbanist text-2xl font-bold text-label', 'md:text-3xl')}>{entry1.title}</h4>
 					<p className='text-secondary text-sm leading-relaxed md:text-base'>{entry1.description}</p>
 				</div>
 			</div>

@@ -41,7 +41,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 				{/* NOTE: setting "mb-6 "here or "mt-6" on next sibling resulted in a flash of old-page on nav to home-page */}
 				<IconBadge>{icon}</IconBadge>
 				<div className='min-w-0'>
-					<h3 className='font-display text-base font-bold text-chrome-silver sm:text-lg md:text-xl'>{title}</h3>
+					<h3 className='font-display text-base font-bold text-primary sm:text-lg md:text-xl'>{title}</h3>
 					<p className='text-muted mt-1.5 text-[13px] leading-relaxed md:text-sm'>{description}</p>
 				</div>
 			</div>

@@ -26,8 +26,8 @@ export function ImpactList({ items, size = 'md', className }: ImpactListProps) {
 		<ul className={cn('space-y-2', className)}>
 			{items.map((item, i) => (
 				<li key={i} className={cn('flex items-start', size === 'sm' ? 'gap-2 text-sm' : 'gap-3')}>
-					<span className={cn('shrink-0 text-accent-cyan', size === 'sm' ? 'mt-0.5' : 'mt-1')}>→</span>
-					<span className={cn('text-chrome-silver/80', size === 'md' && 'md:text-base')}>{item}</span>
+					<span className={cn('shrink-0 text-label', size === 'sm' ? 'mt-0.5' : 'mt-1')}>→</span>
+					<span className={cn('text-secondary', size === 'md' && 'md:text-base')}>{item}</span>
 				</li>
 			))}
 		</ul>

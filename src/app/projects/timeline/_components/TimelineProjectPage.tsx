@@ -70,11 +70,11 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 	<div className='space-y-4'>
 		<div className='flex items-center gap-3'>
 			<TimelineDot active />
-			<span className='text-sm font-semibold text-accent-cyan'>{p.period}</span>
+			<span className='text-sm font-semibold text-label'>{p.period}</span>
 		</div>
 
 		<Panel
-			className='glass-radius-2 glass-surface-1 space-y-6 border-accent-blue/30 p-6 glass-elevation-1'
+			className='glass-radius-2 glass-surface-1 space-y-6 border-accent/30 p-6 glass-elevation-1'
 			style={{ viewTransitionName: `project-card-${p.id}` }}
 		>
 			<div className='relative space-y-5'>
@@ -114,7 +114,7 @@ const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClic
 	>
 		<TimelineDot size='sm' className='absolute top-1/2 left-0 -translate-y-1/2' />
 		<div className='space-y-1'>
-			<div className='ui-meta text-accent-cyan'>{p.period}</div>
+			<div className='ui-meta text-label'>{p.period}</div>
 			<div className='text-muted font-display text-sm font-semibold'>{p.title}</div>
 			<div className='text-subtle text-xs'>{p.company}</div>
 		</div>

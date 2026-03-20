@@ -34,7 +34,7 @@ export const MobileMenuOverlay = ({ isOpen, navItems, className, onClose }: Mobi
 						delay={200}
 						className={cn(
 							'px-6 py-3 text-2xl font-semibold tracking-wide uppercase transition-all duration-300',
-							getIsCurrentPage(item.href) ? 'pointer-events-none text-accent-blue' : 'text-chrome-silver hover:text-accent-blue',
+							getIsCurrentPage(item.href) ? 'pointer-events-none text-accent' : 'text-primary hover:text-accent',
 						)}
 					>
 						{item.label}

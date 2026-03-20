@@ -110,7 +110,7 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 				className,
 			)}
 		>
-			<Icon className='h-6 w-6 text-chrome-silver md:h-7 md:w-7' />
+			<Icon className='h-6 w-6 text-primary md:h-7 md:w-7' />
 		</button>
 	);
 }
@@ -132,7 +132,7 @@ function ProjectIndicators({ projects, currentIndex, onNavigate, className }: Pr
 					onClick={() => onNavigate(item.slug)}
 					className={cn(
 						'h-2 rounded-full transition-all duration-300',
-						index === currentIndex ? 'w-8 bg-accent-blue' : 'w-2 bg-chrome-silver/30 hover:bg-chrome-silver/50',
+						index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-chrome-silver/30 hover:bg-chrome-silver/50',
 					)}
 				/>
 			))}
@@ -158,13 +158,13 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 		>
 			<div className='space-y-6 md:space-y-8'>
 				<div className='space-y-3 md:space-y-4'>
-					<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
+					<InlineList.Div className='cluster-md text-sm text-label'>{[project.period, project.location]}</InlineList.Div>
 
-					<h2 className='font-urbanist text-3xl leading-tight font-bold text-chrome-silver md:text-5xl'>{project.title}</h2>
+					<h2 className='font-urbanist text-3xl leading-tight font-bold text-primary md:text-5xl'>{project.title}</h2>
 
-					<p className='text-xl text-chrome-silver/80 md:text-2xl'>
+					<p className='text-xl text-secondary md:text-2xl'>
 						<span>{project.company}</span>
-						<span className='text-chrome-silver/40'>{' - ' + project.label}</span>
+						<span className='text-muted'>{' - ' + project.label}</span>
 					</p>
 				</div>
 
@@ -178,7 +178,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				<div className='space-y-4 pb-2'>
 					<p className='text-tertiary text-base leading-relaxed md:text-xl'>{project.summary}</p>
 					<ProjectTags size='lg' tags={project.tags} />
-					<p className='animate-pulse text-sm text-accent-blue'>Flip card →</p>
+					<p className='animate-pulse text-sm text-accent'>Flip card →</p>
 				</div>
 			</div>
 		</Panel>
@@ -191,7 +191,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 			className={cn(
 				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
-				'border-accent-blue/30',
+				'border-accent/30',
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
@@ -201,21 +201,21 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 			}}
 		>
 			<div className='space-y-6 pb-2'>
-				<h3 className='font-urbanist text-2xl font-bold text-accent-blue md:text-3xl'>Case Study</h3>
+				<h3 className='font-urbanist text-2xl font-bold text-accent md:text-3xl'>Case Study</h3>
 
 				<div className='space-y-6'>
 					<div>
-						<h4 className='mb-2 font-urbanist text-lg font-bold text-accent-cyan md:text-xl'>The Challenge</h4>
-						<p className='text-sm leading-relaxed text-chrome-silver/80 md:text-base'>{project.challenge}</p>
+						<h4 className='mb-2 font-urbanist text-lg font-bold text-label md:text-xl'>The Challenge</h4>
+						<p className='text-sm leading-relaxed text-secondary md:text-base'>{project.challenge}</p>
 					</div>
 
 					<div>
-						<h4 className='mb-2 font-urbanist text-lg font-bold text-accent-cyan md:text-xl'>The Solution</h4>
-						<p className='text-sm leading-relaxed text-chrome-silver/80 md:text-base'>{project.solution}</p>
+						<h4 className='mb-2 font-urbanist text-lg font-bold text-label md:text-xl'>The Solution</h4>
+						<p className='text-sm leading-relaxed text-secondary md:text-base'>{project.solution}</p>
 					</div>
 
 					<div>
-						<h4 className='mb-2 font-urbanist text-lg font-bold text-accent-cyan md:text-xl'>Impact</h4>
+						<h4 className='mb-2 font-urbanist text-lg font-bold text-label md:text-xl'>Impact</h4>
 						<ImpactList items={project.impact} />
 					</div>
 				</div>

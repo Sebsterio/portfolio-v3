@@ -50,6 +50,10 @@
      Colors
      ================================================ */
 
+  /* ---- Semantic brand token ---- */
+  /* Decoupled from the palette — remap here without touching components. */
+  --color-accent: oklch(0.623 0.188 259.8);  /*  brand/interactive blue — matches accent-blue today  */
+
   /* ---- Accent scale ---- */
   /* accent-cyan-bright is the vivid large-type variant used      */
   /* in decorative-outline-editorial-* classes in decorative.css. */

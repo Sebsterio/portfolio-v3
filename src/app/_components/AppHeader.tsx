@@ -50,8 +50,8 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 									className={cn(
 										'group relative text-[13px] font-semibold tracking-wider uppercase',
 										isCurrent
-											? 'pointer-events-none text-chrome-silver'
-											: 'text-muted transition-all duration-300 hover:text-chrome-silver',
+											? 'pointer-events-none text-primary'
+											: 'text-muted transition-all duration-300 hover:text-primary',
 									)}
 								>
 									{item.label}

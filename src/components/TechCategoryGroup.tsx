@@ -13,7 +13,7 @@ export const TechCategoryGroup = ({ label, children, className }: TechCategoryGr
 			<h4
 				className={cn(
 					'text-[11px] tracking-[1.5px] md:text-xs md:tracking-wider',
-					'font-semibold text-accent-blue uppercase',
+					'font-semibold text-accent uppercase',
 					'mb-2 md:mb-3',
 				)}
 			>
