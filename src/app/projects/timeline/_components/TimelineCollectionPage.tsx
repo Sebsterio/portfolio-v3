@@ -19,7 +19,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	return (
 		<div className='w-full stack-lg'>
 			{/* Desktop Wide ─────────────────────────────────────── */}
-			<div className='relative hidden w-full vt-t-list xl:block'>
+			<div className='relative mr-32 ml-8 hidden vt-t-list xl:block'>
 				<TimelineLine position='right' />
 				<div className='space-y-12'>
 					{projects.map((project) => (
@@ -34,7 +34,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow ────────────────────────────────────── */}
-			<div className='relative hidden w-full vt-t-list md:block xl:hidden'>
+			<div className='relative mr-8 hidden vt-t-list md:block xl:hidden'>
 				<TimelineLine className='left-8' />
 				<div className='space-y-12'>
 					{projects.map((project) => (
@@ -55,7 +55,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<TimelineCard onClick={() => go(project)} className='w-full p-6' style={{ viewTransitionName: `project-card-${project.id}` }}>
+							<TimelineCard onClick={() => go(project)} className='mr-2 p-6' style={{ viewTransitionName: `project-card-${project.id}` }}>
 								<div className='relative space-y-3'>
 									<h3 className='heading-2 text-primary'>{project.title}</h3>
 									<p className='text-tertiary'>{project.company}</p>

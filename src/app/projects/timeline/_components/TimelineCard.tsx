@@ -22,9 +22,9 @@ export function TimelineCard({ children, className, style, onClick }: TimelineCa
 		<Panel
 			onClick={onClick}
 			className={cn(
-				'glass-surface-2 glass-elevation-1 glass-radius-2',
+				'glass-radius-2 glass-surface-2 glass-elevation-1',
 				'padding-card text-left',
-				onClick && 'transition-transform duration-200 ease-out hover:translate-x-2',
+				onClick && 'transition-transform duration-200 ease-out hover:translate-x-4',
 				className,
 			)}
 			style={style}
