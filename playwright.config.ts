@@ -37,6 +37,7 @@ const config: PlaywrightTestConfig = {
 		['html', { outputFolder: './artifacts/e2e-report', open: isAI || isCI ? 'never' : 'on-failure' }], //
 		['list'],
 	],
+	timeout: 30_000,
 	retries: isCI ? 2 : 0,
 	workers: isCI ? 1 : undefined,
 	forbidOnly: isCI,
@@ -50,7 +51,7 @@ const config: PlaywrightTestConfig = {
 	},
 	projects: {
 		full: getProjects('chromium-sm', 'chromium-md', 'chromium-lg', 'chromium-xl', 'firefox-lg', 'webkit-lg', 'safari-sm'),
-		basic: getProjects('chromium-xl'),
+		basic: getProjects('chromium-lg'),
 		mobile: getProjects('chromium-sm', 'safari-sm'),
 		vendors: getProjects('chromium-lg', 'firefox-lg', 'webkit-lg', 'safari-sm'),
 		responsive: getProjects('chromium-sm', 'chromium-md', 'chromium-lg', 'chromium-xl'),
