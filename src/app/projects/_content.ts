@@ -252,10 +252,10 @@ export const projects: Project[] = [
 		link: 'http://www.animalysis.com/demo',
 		images: {
 			logo: '',
-			thumbnail: '',
-			main: '',
-			promo: ['', '', ''],
-			screens: ['', '', ''],
+			thumbnail: '/assets/projects/anim/animalysis.jpg',
+			main: '/assets/projects/anim/animalysis.jpg',
+			promo: ['/assets/projects/anim/animalysis.jpg', '', ''],
+			screens: ['/assets/projects/anim/animalysis.jpg', '', ''],
 		},
 	},
 	{
