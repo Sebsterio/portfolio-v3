@@ -55,6 +55,7 @@ type ProjectImageProps = ImageProps & {
 };
 
 export const ProjectImage = ({
+	src,
 	alt,
 	children,
 	className,
@@ -66,17 +67,26 @@ export const ProjectImage = ({
 	glintOnHover,
 	...props
 }: ProjectImageProps) => {
+	const isTransparent = src?.includes('-alpha-');
 	return (
 		<Image
 			{...props}
+			src={src}
 			alt={alt}
-			className={cn('image-bg', glintOnHover && 'hover-glint', gradientClassName, className)}
-			fallbackClass={fallbackClass}
-			fallbackText={fallbackText}
+			className={cn(
+				!isTransparent && 'image-bg',
+				!isTransparent && glintOnHover && 'hover-glint',
+				className, //
+			)}
+			fallback={
+				<div className={cn('image-bg overlay-full flex items-center justify-center overflow-hidden', gradientClassName)}>
+					<span className={cn('z-10 text-sm font-semibold text-white/40', fallbackClass)}>{fallbackText}</span>
+				</div>
+			}
 		>
 			{children}
-			{overlayType === 'dark' && <div className='image-overlay-dark' />}
-			{overlayType === 'light' && <div className='image-overlay-light' />}
+			{!isTransparent && overlayType === 'dark' && <div className='image-overlay-dark' />}
+			{!isTransparent && overlayType === 'light' && <div className='image-overlay-light' />}
 		</Image>
 	);
 };
