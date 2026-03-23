@@ -36,17 +36,7 @@ export type CardProps = {
 /**
  * Card — React primitive for card-scale glass containers.
  *
- * Responsibilities:
- *   - DOM structure: decorative overlays (reflection, noise), optional glint
- *   - Interaction: hover variant classes (elevation, border, translate)
- *
- * Does NOT own:
- *   - Surface level (glass-surface-N)     ← via className
- *   - Elevation level (glass-elevation-N) ← via className
- *   - Radius (glass-radius-N)             ← via className
- *   - Padding / layout                    ← via className or consuming component
- *
- * For large/primary content panels, use Panel instead.
+ * *For large/primary content panels, use Panel instead.*
  */
 export function Card({ children, className, variant, ...props }: CardProps) {
 	const resolvedVariant = variant ?? (props.onClick ? 'raised' : 'static');

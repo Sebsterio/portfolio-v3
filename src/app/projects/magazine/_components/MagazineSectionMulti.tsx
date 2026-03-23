@@ -61,7 +61,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 					</div>
 				</div>
 
-				<div className='mmg-divider border-b border-accent-cyan/15' />
+				<div className='mmg-divider border-b border-accent-2/15' />
 
 				<div id={entry1.sectionId} className={cn('mmg-e1-text', 'space-y-3 transition-transform duration-400 hover:translate-x-4')}>
 					<h4 className={cn('font-urbanist text-2xl font-bold text-label', 'md:text-3xl')}>{entry1.title}</h4>

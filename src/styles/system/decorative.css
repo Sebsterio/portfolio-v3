@@ -9,7 +9,7 @@
    ───────────────
    decorative-text             base: display font, black weight, uppercase, tight leading
    decorative-outline          transparent fill + white stroke (15% opacity)
-   decorative-outline-hover    animated accent-cyan stroke on parent hover
+   decorative-outline-hover    accent-2 stroke — activates on parent .group hover
    decorative-faded            gradient-clipped near-transparent fill
 
    Geometric elements
@@ -61,7 +61,7 @@
   @apply transition-all duration-500;
 }
 
-.decorative-outline-hover:hover {
+.group:hover .decorative-outline-hover {
   -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-2) 30%, transparent);
   text-shadow: 0 0 60px color-mix(in srgb, var(--color-accent-2) 30%, transparent);
 }
@@ -70,7 +70,7 @@
   @apply transition-all duration-500;
 }
 
-.decorative-outline-editorial-hover:hover {
+.group:hover .decorative-outline-editorial-hover {
   -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
   text-shadow: 0 0 60px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
 }
@@ -79,7 +79,7 @@
   @apply transition-all duration-500;
 }
 
-.decorative-outline-editorial-strong-hover:hover {
+.group:hover .decorative-outline-editorial-strong-hover {
   -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 50%, transparent);
   text-shadow: 0 0 50px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
 }
@@ -88,7 +88,7 @@
   @apply transition-all duration-500;
 }
 
-.decorative-outline-editorial-soft-hover:hover {
+.group:hover .decorative-outline-editorial-soft-hover {
   -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 20%, transparent);
 }
 

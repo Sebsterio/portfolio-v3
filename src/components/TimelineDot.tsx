@@ -14,7 +14,7 @@ const sizeClasses = {
 
 const stateClasses = {
 	active: 'bg-accent shadow-dot-active',
-	default: 'bg-chrome-dark shadow-dot-inactive',  // chrome-dark is intentional: specific inactive state colour
+	default: 'bg-neutral-4 shadow-dot-inactive',
 };
 
 export const TimelineDot = ({ active = false, size = 'lg', className }: TimelineDotProps) => {

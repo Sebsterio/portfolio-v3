@@ -15,7 +15,7 @@ export const HamburgerButton = ({ isOpen, onClick, className }: HamburgerIconPro
 			aria-expanded={isOpen}
 			className={cn('rounded-lg p-3', [
 				'hover:scale-110',
-				'focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent-blue/60',
+				'focus:outline-hidden focus-visible:ring-2 focus-visible:ring-accent/60',
 				className,
 			])}
 		>

@@ -76,9 +76,9 @@
 @utility shadow-dot-inactive { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-neutral-4) 80%, transparent); }
 @utility shadow-status-dot   { box-shadow: 0 0 15px var(--color-accent-1); }
 @utility shadow-particle-accent { box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-2) 40%, transparent); }
-@utility shadow-particle-chrome { box-shadow: 0 0 6px color-mix(in srgb, var(--color-neutral-3) 25%, transparent); }
-@utility shadow-atmosphere-blue { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-1) 30%, transparent); }
-@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-2) 30%, transparent); }
+@utility shadow-particle-neutral { box-shadow: 0 0 6px color-mix(in srgb, var(--color-neutral-3) 25%, transparent); }
+@utility shadow-atmosphere-1 { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-1) 30%, transparent); }
+@utility shadow-atmosphere-2 { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-2) 30%, transparent); }
 
 
 /* ---- Background Fills ---- */

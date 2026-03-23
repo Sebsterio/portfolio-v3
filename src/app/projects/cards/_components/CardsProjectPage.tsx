@@ -132,7 +132,7 @@ function ProjectIndicators({ projects, currentIndex, onNavigate, className }: Pr
 					onClick={() => onNavigate(item.slug)}
 					className={cn(
 						'h-2 rounded-full transition-all duration-300',
-						index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-chrome-silver/30 hover:bg-chrome-silver/50',
+						index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40',
 					)}
 				/>
 			))}

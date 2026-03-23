@@ -32,7 +32,7 @@ export function MagazineSectionD({ sectionId, number, title, subtitle, descripti
 			{/* Content Grid */}
 			<div className='relative grid items-start gap-8 md:gap-12 lg:grid-cols-[1fr_400px] lg:gap-16'>
 				{/* Text Column */}
-				<div className='lg:backdrop-blur-0 relative z-20 -mt-24 rounded-2xl border border-accent-cyan/20 bg-black/80 p-8 py-4 backdrop-blur-md md:py-8 lg:mt-0 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0'>
+				<div className='lg:backdrop-blur-0 relative z-20 -mt-24 rounded-2xl border border-accent-2/20 bg-black/80 p-8 py-4 backdrop-blur-md md:py-8 lg:mt-0 lg:rounded-none lg:border-0 lg:bg-transparent lg:p-0'>
 					<h3 className='mb-2 font-urbanist text-4xl leading-[0.95] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[5rem]'>
 						{title}
 					</h3>
