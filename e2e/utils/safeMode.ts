@@ -64,6 +64,7 @@ export const loadLazyContent = (page: Page) =>
 			await new Promise((r) => setTimeout(r, 50));
 		}
 		window.scrollTo(0, 0);
+		await new Promise((r) => setTimeout(r, 100));
 	});
 
 export async function waitForImages(page: Page) {
