@@ -2,66 +2,42 @@
    Surfaces — Glass System
    ================================================
 
-   @utility   →  glass-surface-N, glass-elevation-N
-               must be utilities to support modifiers
-               e.g. hover:glass-elevation-2, dark:glass-surface-3
-
-   plain class →  glass-radius-N, decorative overlays
-               these never need modifier variants
-
-   ── Surface levels ──────────────────────────────
-   1   subtle     chips, tags, pills, small badges
+   Surface utilities  (glass-surface-N)
+   ─────────────────────────────────────
+   1   subtle     chips, tags, pills
    2   default    cards, panels, content sections
    3   strong     modals, drawers, popovers
 
-   Each surface utility owns three responsibilities:
-     - Structural:  position: relative, overflow: hidden
-     - Material:    background + backdrop-filter + border
-     - Curvature:   --glass-curvature (inset shadow)
-                    box-shadow: var(--glass-curvature)
+   Each surface utility sets:
+     background + backdrop-filter + border  (material)
+     --glass-curvature                      (inset edge depth)
+   Border uses longhand so border-color can be overridden at call-site.
 
-   Border uses longhand properties so border-color can
-   be overridden by a Tailwind utility at call-site
-   without touching border-width or border-style.
+   Elevation utilities  (glass-elevation-N)
+   ─────────────────────────────────────────
+   Compose outset shadows with the surface's --glass-curvature.
+   Require a glass-surface-N on the same element.
+   1   raised      contact + ambient + faint accent haze
+   2   elevated    deep ambient + strong accent glow
 
-   ── Elevation levels ────────────────────────────
-   1   raised     contact + ambient + subtle accent haze
-   2   elevated   deep ambient + strong accent glow
-
-   Elevation utilities compose with surface curvature:
-     box-shadow: var(--glass-elevation), var(--glass-curvature)
-
-   --glass-curvature is defined on the element by the
-   surface utility, so both axes resolve correctly when
-   surface + elevation classes appear on the same element.
-
-   A flat surface (no elevation) simply uses the
-   curvature-only box-shadow set by glass-surface-N.
-
-   ── Radius levels ───────────────────────────────
+   Radius classes  (glass-radius-N)
+   ──────────────────────────────────
    1   rounded-2xl
    2   rounded-3xl / md:rounded-4xl
    3   rounded-[28px]
 
-   ── Decorative overlays ─────────────────────────
-   Applied to overlay-full children rendered BEFORE
-   content in DOM — natural stacking, no z-index.
+   Decorative overlay classes
+   ──────────────────────────
+   Apply to overlay-full children rendered BEFORE content (DOM order = z-order).
+   glass-reflection    135deg gloss sheen
+   glass-edge-glow     top-edge accent streak
+   glass-panel-accents dual corner accent blobs
+   glass-noise         grain texture
 
-   glass-reflection   135deg gloss sheen
-   glass-edge-glow    top-edge accent streak
-   glass-noise        grain texture
-
-   ── Theme override point ─────────────────────────
-   --theme-surface is defined in :root (theme.css) as
-   a runtime-overridable variable. Redefine it in a
-   theme selector (e.g. .light, [data-theme="light"])
-   to change the card/panel material colour without
-   touching this file.
-
-   ── Migration ───────────────────────────────────
-   glass-shadow-0     →  (removed; flat = surface only, no elevation class)
-   glass-shadow-1     →  glass-elevation-1
-   glass-shadow-2     →  glass-elevation-2
+   Theme override
+   ──────────────
+   --theme-surface in :root controls the card/panel material colour.
+   Redefine it in a theme selector to change all surfaces without touching this file.
 
    ================================================ */
 

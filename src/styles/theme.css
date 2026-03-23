@@ -13,29 +13,29 @@
 
 :root {
   /* ---- Accent hues ---- */
-  --theme-accent-1:       oklch(0.623 0.188 259.8);  /* blue  */
-  --theme-accent-2:       oklch(0.715 0.126 215.2);  /* cyan  */
-  --theme-accent-2-vivid: oklch(0.816 0.145 216.5);  /* vivid cyan — large-type decorative only */
+  --theme-accent-1:       oklch(0.623 0.188 259.8);  /*  #3b82f6   59, 130, 246  */
+  --theme-accent-2:       oklch(0.715 0.126 215.2);  /*  #04b6d4    4, 182, 212  */
+  --theme-accent-2-vivid: oklch(0.816 0.145 216.5);  /*  #04d9ff    4, 217, 255  — decorative.css only, no Tailwind utility */
 
   /* ---- Neutral scale ---- */
-  --theme-neutral-1: oklch(0.955 0 0);  /* ~#f0f0f0 */
-  --theme-neutral-2: oklch(0.870 0 0);  /* ~#d4d4d4 */
-  --theme-neutral-3: oklch(0.706 0 0);  /* ~#a0a0a0 */
-  --theme-neutral-4: oklch(0.627 0 0);  /* ~#888888 */
+  --theme-neutral-1: oklch(0.955 0 0);               /*  #f0f0f0  240, 240, 240  */
+  --theme-neutral-2: oklch(0.870 0 0);               /*  #d4d4d4  212, 212, 212  */
+  --theme-neutral-3: oklch(0.706 0 0);               /*  #a0a0a0  160, 160, 160  */
+  --theme-neutral-4: oklch(0.627 0 0);               /*  #888888  136, 136, 136  */
 
   /* ---- Surface ---- */
   /* Glass card/panel base material — override per theme */
-  --theme-surface: oklch(0.147 0.009 285.3);  /* ~#0a0a0e */
+  --theme-surface: oklch(0.147 0.009 285.3);         /*  #0a0a0e   10,  10,  14  */
 
   /* ---- Project brand colours ---- */
   /* Per-project identity colours for editorial shadow glows.  */
   /* Named by project, not by role — branding is intentional.  */
-  --color-project-bounce:    oklch(0.627 0.164 271.5);
-  --color-project-meco:      oklch(0.722 0.173   3.3);
-  --color-project-tt:        oklch(0.724 0.149 248.1);
-  --color-project-ebit:      oklch(0.459 0.242 295.6);
-  --color-project-ao:        oklch(0.795 0.172 323.2);
-  --color-project-freelance: oklch(0.952 0.040  75.8);
+  --color-project-bounce:    oklch(0.627 0.164 271.5);  /*  #667eea  102, 126, 234  */
+  --color-project-meco:      oklch(0.722 0.173   3.3);  /*  #fa709a  250, 112, 154  */
+  --color-project-tt:        oklch(0.724 0.149 248.1);  /*  #4facfe   79, 172, 254  */
+  --color-project-ebit:      oklch(0.459 0.242 295.6);  /*  #6a11cb  106,  17, 203  */
+  --color-project-ao:        oklch(0.795 0.172 323.2);  /*  #f093fb  240, 147, 251  */
+  --color-project-freelance: oklch(0.952 0.040  75.8);  /*  #ffecd2  255, 236, 210  */
 }
 
 

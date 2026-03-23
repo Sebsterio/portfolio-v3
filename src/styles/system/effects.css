@@ -3,44 +3,45 @@
    ================================================
 
    Glow scale
-   ─────────────────────────────────────────
-   glow-accent-sm     soft ambient glow
-   glow-accent-md     standard interactive glow
-   glow-accent-lg     strong, full-opacity glow
+   ──────────────────────────────────────────
+   glow-accent-sm/md/lg   accent-1 ambient → interactive → full
 
    Directional shadows
-   ─────────────────────────────────────────
-   shadow-accent-md   card lift
-   shadow-accent-lg   card hover lift
+   ──────────────────────────────────────────
+   shadow-accent-md/lg    card lift / hover lift
+   shadow-image-*         black depth shadows for images
+   shadow-showcase-badge  badge lift + glow (normal / hover)
+   shadow-dot-active/inactive   timeline dot states
+   shadow-status-dot      pulsing status indicator glow
+   shadow-particle-accent/neutral   background particle glows
+   shadow-atmosphere-1/2  background shape ambient glows
+   shadow-editorial-*     per-project image lift + brand haze
 
    Background fills
-   ─────────────────────────────────────────
-   bg-accent-soft     accent at 10% opacity fill
+   ──────────────────────────────────────────
+   bg-accent-soft         accent-1 at 10%
+   bg-surface-glass-sm/md/lg/xl   white fill 3–10%
 
-   Focus rings
-   ─────────────────────────────────────────
-   focus-ring   focus-visible ring on interactive elements (buttons, links).
-                Cards get focus feedback via this utility on the ArrowIndicator
-                button inside them — the container itself is never a focus target.
+   Focus ring
+   ──────────────────────────────────────────
+   focus-ring   keyboard focus ring (focus-visible only).
+                Cards surface focus via ArrowIndicator — never put focus-ring on a card container.
 
    Glint sweep
-   ─────────────────────────────────────────
-   glass-glint          resting state — parked off-screen left
-   glass-glint-active   active state  — swept off-screen right
-
-   Usage:
-     <div className="glass-glint group-hover:glass-glint-active" />
-
-   The element must be overlay-full on its parent.
-   Transition is built in — no extra transition class needed.
-   Uses gradient-reflection-horizontal from gradients.css.
+   ──────────────────────────────────────────
+   glass-glint / glass-glint-active   parked left / swept right
+   Usage: <div className="glass-glint group-hover:glass-glint-active" />
+   Requires overlay-full on parent. Transition is built in.
 
    Migration
-   ─────────────────────────────────────────
-   glow-primary        →  glow-accent-md
-   glow-primary-soft   →  glow-accent-sm
-   glow-accent-strong  →  glow-accent-lg
-   bg-primary-soft     →  bg-accent-soft
+   ──────────────────────────────────────────
+   glow-primary            →  glow-accent-md
+   glow-primary-soft       →  glow-accent-sm
+   glow-accent-strong      →  glow-accent-lg
+   bg-primary-soft         →  bg-accent-soft
+   shadow-particle-chrome  →  shadow-particle-neutral
+   shadow-atmosphere-blue  →  shadow-atmosphere-1
+   shadow-atmosphere-cyan  →  shadow-atmosphere-2
 
    ================================================ */
 

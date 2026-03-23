@@ -7,31 +7,38 @@
 
    Text treatments
    ───────────────
-   decorative-text             base: display font, black weight, uppercase, tight leading
-   decorative-outline          transparent fill + white stroke (15% opacity)
-   decorative-outline-hover    accent-2 stroke — activates on parent .group hover
-   decorative-faded            gradient-clipped near-transparent fill
+   decorative-text                        display font, black, uppercase, tight leading
+   decorative-outline                     transparent fill + white stroke 15%
+   decorative-outline-faint               white stroke 8%
+   decorative-outline-soft                white stroke 10%
+   decorative-outline-hover               accent-2 stroke — activates on parent .group hover
+   decorative-outline-editorial-hover     accent-2-vivid stroke on .group hover
+   decorative-outline-editorial-strong-hover   stronger vivid stroke on .group hover
+   decorative-outline-editorial-soft-hover     soft vivid stroke on .group hover
+   decorative-faded                       gradient-clipped near-transparent fill
+   text-glow-editorial                    accent-2-vivid text glow
 
    Geometric elements
    ──────────────────
-   decorative-circle    absolute-positioned animated border ring
-   decorative-line      absolute-positioned horizontal accent line
+   decorative-circle   absolute animated border ring
+   decorative-line     absolute horizontal accent line
 
    Usage
-   ──────────────────────────────────────────────────────────────
-   All decorative elements are non-interactive by default.
-   Add pointer-events-none select-none on the element in JSX
-   (not baked in — sizing and positioning vary per usage).
+   ─────
+   All decorative elements have pointer-events-none select-none (baked into decorative-text).
+   Hover classes require a .group ancestor — they respond to .group:hover, not self-hover,
+   because decorative-text sets pointer-events-none.
 
    Migration
-   ──────────────────────────────────────────────────────────────
-   project-decorative-text            →  decorative-text
-   project-decorative-outline         →  decorative-outline
-   project-decorative-outline-hover   →  decorative-outline-hover
-   project-decorative-faded           →  decorative-faded
-   deco-circle                        →  decorative-circle
-   deco-line                          →  decorative-line
-   decorative-outline-editorial-*     →  uses --color-accent-cyan-bright (was --editorial-cyan-rgb)
+   ─────────
+   project-decorative-text          →  decorative-text
+   project-decorative-outline       →  decorative-outline
+   project-decorative-outline-hover →  decorative-outline-hover
+   project-decorative-faded         →  decorative-faded
+   deco-circle                      →  decorative-circle
+   deco-line                        →  decorative-line
+   --editorial-cyan-rgb             →  --theme-accent-2-vivid
+   --color-accent-cyan-bright       →  --theme-accent-2-vivid
 
    ================================================ */
 

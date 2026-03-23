@@ -35,42 +35,49 @@ Deterministic implementation conventions for current codebase behavior.
 
 ## Color conventions
 
-The color system has two layers. Use the semantic layer by default; drop to the palette only when
-there is no semantic equivalent and the use is genuinely role-free.
+### Token architecture
 
-**Semantic layer (prefer these)**
+Three layers. One-way dependency: components → `@theme` → `:root`.
 
-| Class | Role | Avoid replacing with |
+```
+:root   --theme-*       oklch values, per-theme overridable
+@theme  --color-*       var() aliases → :root, generates Tailwind utilities
+CSS/TSX                 reference @theme tokens only
+```
+
+**To create a new theme:** redefine these `:root` variables in a selector (e.g. `[data-theme="warm"]`):
+`--theme-accent-1`, `--theme-accent-2`, `--theme-neutral-1/2/3/4`, `--theme-surface`.
+Nothing else changes.
+
+---
+
+### Semantic utilities — always prefer these in components
+
+Defined as `@utility` in `typography.css` so modifier variants work (`hover:`, `group-hover:`, `dark:`).
+
+| Utility | Role | Raw equivalent (do not use) |
 |---|---|---|
-| `text-primary` | Default body text (100%) | `text-chrome-silver` |
-| `text-secondary` | Supporting text (80%) | `text-chrome-silver/80` |
-| `text-tertiary` | Less-prominent text (70%) | `text-chrome-silver/70` |
-| `text-muted` | Low-emphasis text (60%) | `text-chrome-silver/60` |
-| `text-subtle` | Very low emphasis (50%) | `text-chrome-silver/50` |
-| `text-strong` | High-contrast white | `text-white` |
-| `text-accent` | Brand / interactive color | `text-accent-blue` |
-| `text-label` | Content-annotation cyan: dates, periods, locations, section subheadings, arrow glyphs | `text-accent-cyan` |
+| `text-primary` | Default body text | `text-neutral-1` |
+| `text-secondary` | Supporting text 80% | `text-neutral-1/80` |
+| `text-tertiary` | 70% | `text-neutral-1/70` |
+| `text-muted` | Low emphasis 60% | `text-neutral-1/60` |
+| `text-subtle` | Very low 50% | `text-neutral-1/50` |
+| `text-strong` | White, normal weight | `text-white` |
+| `text-bold` | White, bold | `text-white font-bold` |
+| `text-accent` | Brand / interactive | `text-accent-1` |
+| `text-label` | Content annotation — dates, periods, locations, subheadings, arrow glyphs | `text-accent-2` |
 
-`bg-accent` and `border-accent` are generated automatically from the `--color-accent` token
-and should be used in place of `bg-accent-blue` / `border-accent-blue` for interactive chrome
-(active states, selection borders, status indicators).
+`bg-accent` and `border-accent` are Tailwind-generated from `--color-accent` and should be used
+for interactive chrome (active states, selection borders, status indicators).
 
-All semantic utilities are defined as `@utility` in `typography.css`, so modifier variants
-(`hover:text-primary`, `group-hover:text-label`, `dark:text-muted`, etc.) work correctly.
+---
 
-**When raw palette is appropriate**
+### When to use raw palette tokens
 
-- Background / atmosphere decorative components (`FloatingShapesBg`, `PaerticlesBg`) — palette use is intentional; these elements have no semantic role.
-- `border-accent-cyan` in editorial layout sections — specific design decision, not a semantic border.
-- `bg-chrome-dark` on `TimelineDot` inactive state — a deliberate specific color, not a neutral text tone.
-- Any case where the color is the *subject* of the design decision rather than standing in for a role.
+- Background / atmosphere decorative components — no semantic role, palette use is intentional
+- `border-accent-2` in editorial layout borders — specific design decision
+- Any case where the color *is* the design decision, not a role substitution
 
-**Remapping the brand color**
-
-To shift the brand/interactive color globally, update `--color-accent` in `theme.css`. Components
-using `text-accent`, `bg-accent`, and `border-accent` will respond automatically. Components using
-raw `accent-blue` palette tokens will not — this asymmetry is by design and documents which uses
-are role-based vs palette-specific.
 
 ## React and component conventions
 

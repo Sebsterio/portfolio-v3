@@ -1,63 +1,42 @@
-/* Partial */
-/*  */
-/* @utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	 */
-/*  */
-/* Standalone */
-/*  */
-/* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-1 to-accent-2;	} */
-/* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-1/30 to-accent-2/20; } */
-/*  */
-/* .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; } */
-/* .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; } */
-/* .reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; } */
-/*  */
-/* @utility gradient-reflection-vertical { */
-/* 	background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 25%, transparent), transparent); */
-/* } */
-/* @utility gradient-reflection-vertical-strong { */
-/* 	background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 80%, transparent), transparent); */
-/* } */
-/* @utility gradient-reflection-diagonal { */
-/* 	background: linear-gradient(135deg, color-mix(in srgb, white 15%, transparent) 0%, color-mix(in srgb, white 8%, transparent) 20%, transparent 50%);  */
-/* } */
-
-
 /* ================================================
    Gradients
    ================================================
 
-   @utility  →  composable, modifier-safe (hover:, dark:, md:)
+   @utility  →  modifier-safe (hover:, dark:, md:)
    plain     →  decorative overlays, never need modifiers
 
-   Alpha expressions use color-mix(in srgb, <token> <N>%, transparent)
-   throughout this file. This is semantically equivalent to the legacy
-   rgb(var(--*-rgb) / alpha) pattern and requires no *-rgb channel vars.
+   All alpha expressions use color-mix(in srgb, <token> N%, transparent).
 
-   ── Brand ───────────────────────────────────────────────────
-   gradient-primary          blue → cyan, br direction
-   gradient-primary-soft     blue/30 → cyan/20 → purple/20, br
+   Brand
+   ─────
+   gradient-primary           accent-1 → accent-2, br
+   gradient-primary-soft      accent-1/30 → accent-2/20, br
+   gradient-title-highlight   accent-1 → accent-2, lr (animated)
+   gradient-brand-logo        neutral-1 → accent-1, 135deg
+   gradient-brand-underline   accent-1 → accent-2, horizontal
+   gradient-number-highlight  accent-2 → white, br
 
-   ── Text clipping ───────────────────────────────────────────
-   gradient-text             clips background-image to text shape
-                             combine with any gradient-* utility:
-                             class="gradient-text gradient-primary"
+   Atmosphere (background elements)
+   ──────────────────────────────────
+   gradient-atmosphere-chrome        dual radial accent hazes
+   gradient-atmosphere-metallic-orb  neutral radial orb
+   gradient-atmosphere-grid          neutral line grid
 
-   ── Reflection overlays ─────────────────────────────────────
-   Apply to absolute-positioned child elements (overlay-full).
-   Plain classes — decorative overlays never need modifiers.
+   Text clipping
+   ─────────────
+   gradient-text   clips background to text shape; combine with any gradient-* utility
 
-   gradient-reflection-diagonal          135deg white gloss (glass surfaces)
-   gradient-reflection-horizontal        90deg  accent sweep, 25% opacity
-   gradient-reflection-horizontal-strong 90deg  accent sweep, 80% opacity
-   gradient-reflection-light             br     white/25 → transparent
-   gradient-reflection-dark              br     black/30 → transparent
-   gradient-reflection-top               to-t   white/25 fade at top edge
+   Reflection overlays  (apply to overlay-full children)
+   ──────────────────────────────────────────────────────
+   gradient-reflection-diagonal          135deg white gloss
+   gradient-reflection-horizontal        90deg accent-1 sweep, 25%
+   gradient-reflection-horizontal-strong 90deg accent-1 sweep, 80%
+   gradient-reflection-light             br white/25 → transparent
+   gradient-reflection-dark              br black/30 → transparent
+   gradient-reflection-top               to-t white/25 fade
 
    Migration
    ─────────
-   reflection-light                    →  gradient-reflection-light
-   reflection-dark                     →  gradient-reflection-dark
-   reflection-top                      →  gradient-reflection-top
    gradient-reflection-vertical        →  gradient-reflection-horizontal
    gradient-reflection-vertical-strong →  gradient-reflection-horizontal-strong
 
