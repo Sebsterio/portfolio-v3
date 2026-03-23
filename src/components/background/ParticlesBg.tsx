@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-export function PaerticlesBg() {
+export function ParticlesBg() {
 	return (
 		<div className='absolute inset-0'>
 			{Array.from({ length: 15 }).map((_, i) => (
