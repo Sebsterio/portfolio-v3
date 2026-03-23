@@ -1,0 +1,21 @@
+/* ================================================
+   Themes — TEST ONLY
+   ================================================
+   Proof-of-concept warm theme to validate token
+   decoupling. Not production-ready.
+
+   Usage: add data-theme="warm" to <html>
+   ================================================ */
+
+[data-theme="warm"] {
+  --theme-accent-1:       oklch(0.65 0.19  40);    /*  amber        */
+  --theme-accent-2:       oklch(0.72 0.15  70);    /*  gold         */
+  --theme-accent-2-vivid: oklch(0.82 0.18  60);    /*  bright amber */
+
+  --theme-neutral-1:      oklch(0.96 0.01  80);    /*  warm white   */
+  --theme-neutral-2:      oklch(0.88 0.01  80);
+  --theme-neutral-3:      oklch(0.70 0.01  80);
+  --theme-neutral-4:      oklch(0.60 0.01  80);
+
+  --theme-surface:        oklch(0.13 0.015 50);    /*  dark warm base */
+}

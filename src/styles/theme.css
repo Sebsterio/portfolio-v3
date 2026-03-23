@@ -1,41 +1,82 @@
-/* Runtime CSS variables */
+/* ================================================
+   Theme palette — runtime override points
+   ================================================
+   Define a new theme by redefining these variables
+   inside a selector (.theme-light, [data-theme="x"]).
+   Nothing else needs to change.
+
+   --theme-accent-*    chromatic accent hues
+   --theme-neutral-*   greyscale surface/text tones (1=lightest, 4=darkest)
+   --theme-surface     base material for glass cards/panels
+   --color-project-*   per-project brand colours (editorial glows)
+   ================================================ */
+
 :root {
-  --accent-blue-rgb: 59 130 246;
-  --accent-cyan-rgb: 6 182 212;
-  --chrome-silver-rgb: 240 240 240;
-  --chrome-light-rgb: 212 212 212;
-  --chrome-mid-rgb: 160 160 160;
-  --chrome-dark-rgb: 136 136 136;
-  --white-rgb: 255 255 255;
-  --black-rgb: 0 0 0;
+  --theme-accent-1:       		oklch(0.623 0.188 259.8);	/*  #3b82f6   59, 130, 246  */
+  --theme-accent-2:       		oklch(0.715 0.126 215.2);	/*  #04b6d4    4, 182, 212  */
+  --theme-accent-2-vivid: 		oklch(0.816 0.145 216.5);	/*  #04d9ff    4, 217, 255  */
 
-  /* Glass surface base colour — override per theme for dark/light mode */
-  --glass-surface-rgb: 10 10 14;
+  --theme-neutral-1: 					oklch(0.955 0 0);        	/*  #f0f0f0  240, 240, 240  */
+  --theme-neutral-2: 					oklch(0.870 0 0);        	/*  #d4d4d4  212, 212, 212  */
+  --theme-neutral-3: 					oklch(0.706 0 0);        	/*  #a0a0a0  160, 160, 160  */
+  --theme-neutral-4: 					oklch(0.627 0 0);        	/*  #888888  136, 136, 136  */
 
-  /* --rgb-black: 13,13,13; */
+  --theme-surface: 						oklch(0.147 0.009 285.3);  /*  #0a0a0e   10,  10,  14  */
+
+  --color-project-bounce:   	oklch(0.627 0.164 271.5);	/*  #667eea  102, 126, 234  */
+  --color-project-meco:     	oklch(0.722 0.173   3.3);	/*  #fa709a  250, 112, 154  */
+  --color-project-tt:       	oklch(0.724 0.149 248.1);	/*  #4facfe   79, 172, 254  */
+  --color-project-ebit:     	oklch(0.459 0.242 295.6);	/*  #6a11cb  106,  17, 203  */
+  --color-project-ao:       	oklch(0.795 0.172 323.2);	/*  #f093fb  240, 147, 251  */
+  --color-project-freelance:	oklch(0.952 0.040  75.8);	/*  #ffecd2  255, 236, 210  */
 }
 
-/* Static design tokens */
+
+/* ================================================
+   Static design tokens
+   ================================================
+   All color tokens reference :root palette variables.
+   Swap a full theme by redefining :root — nothing here
+   needs to change.
+
+   --color-accent     semantic brand/interactive role
+   --color-accent-1   direct palette access (same hue as accent today)
+   --color-accent-2   direct palette access (secondary hue)
+   --color-neutral-*  greyscale text/surface tones
+   ================================================ */
+
 @theme {
+
   /* ================================================
      Fonts
-     ================================================ *//* These reference the actual values defined in @layer base :root. The var() fallback prevents a circular resolution if the custom property is somehow missing at token-evaluation time. */
+     ================================================ */
 
   --font-urbanist: var(--font-urbanist, sans-serif);
-  --font-dm-sans:  var(--font-dm-sans, sans-serif);
+  --font-dm-sans:  var(--font-dm-sans,  sans-serif);
 
-  
+
   /* ================================================
      Colors
      ================================================ */
-     
-  --color-accent-blue:   rgb(var(--accent-blue-rgb));    /*   #3b82f6   /   59,  130, 246   */
-  --color-accent-cyan:   rgb(var(--accent-cyan-rgb));    /*   #06b6d4   /   6,   182, 212   */
-  --color-chrome-silver: rgb(var(--chrome-silver-rgb));  /*   #f0f0f0   /   240, 240, 240   */
-  --color-chrome-light:  rgb(var(--chrome-light-rgb));   /*   #d4d4d4   /   212, 212, 212   */
-  --color-chrome-mid:    rgb(var(--chrome-mid-rgb));     /*   #a0a0a0   /   160, 160, 160   */
-  --color-chrome-dark:   rgb(var(--chrome-dark-rgb));    /*   #888888   /   136, 136, 136   */
-     
+
+  /* ---- Semantic ---- */
+  /* Remap the brand/interactive colour by changing --theme-accent-1 in :root. */
+  --color-accent:    var(--theme-accent-1);
+
+  /* ---- Accent palette ---- */
+  --color-accent-1:  var(--theme-accent-1);
+  --color-accent-2:  var(--theme-accent-2);
+
+  /* ---- Neutral palette ---- */
+  --color-neutral-1: var(--theme-neutral-1);
+  --color-neutral-2: var(--theme-neutral-2);
+  --color-neutral-3: var(--theme-neutral-3);
+  --color-neutral-4: var(--theme-neutral-4);
+
+  /* ---- Absolute ---- */
+  --color-white: oklch(1 0 0);
+  --color-black: oklch(0 0 0);
+
 
   /* ================================================
      Background Images
@@ -62,140 +103,83 @@
   );
 
   /* --- Bounce --- */
-  --background-image-gradient-bounce-main: linear-gradient(
-    135deg,
-    #667eea 0%,
-    #764ba2 50%,
-    #f093fb 100%
-  );
-  --background-image-gradient-bounce-small: linear-gradient(
-    135deg,
-    #a8edea 0%,
-    #fed6e3 100%
-  );
+  --background-image-gradient-bounce-main:  linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --background-image-gradient-bounce-small: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 
   /* --- Meco --- */
-  --background-image-gradient-meco-main: linear-gradient(
-    135deg,
-    #fa709a 0%,
-    #fee140 100%
-  );
-  --background-image-gradient-meco-2: linear-gradient(
-    135deg,
-    #fbc2eb 0%,
-    #a6c1ee 100%
-  );
-  --background-image-gradient-meco-3: linear-gradient(
-    135deg,
-    #fddb92 0%,
-    #d1fdff 100%
-  );
+  --background-image-gradient-meco-main: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --background-image-gradient-meco-2:    linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+  --background-image-gradient-meco-3:    linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
 
   /* --- TT --- */
-  --background-image-gradient-tt: linear-gradient(
-    135deg,
-    #4facfe 0%,
-    #00f2fe 100%
-  );
+  --background-image-gradient-tt: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 
   /* --- EBIT --- */
-  --background-image-gradient-ebit-main: linear-gradient(
-    135deg,
-    #6a11cb 0%,
-    #2575fc 100%
-  );
-  --background-image-gradient-ebit-small: linear-gradient(
-    135deg,
-    #a8edea 0%,
-    #fed6e3 100%
-  );
+  --background-image-gradient-ebit-main:  linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  --background-image-gradient-ebit-small: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 
   /* --- AO --- */
-  --background-image-gradient-ao-main: linear-gradient(
-    135deg,
-    #f093fb 0%,
-    #f5576c 100%
-  );
-  --background-image-gradient-ao-small: linear-gradient(
-    135deg,
-    #ff9a9e 0%,
-    #fecfef 100%
-  );
+  --background-image-gradient-ao-main:  linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --background-image-gradient-ao-small: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
 
   /* --- Freelance --- */
-  --background-image-gradient-freelance-main: linear-gradient(
-    135deg,
-    #ffecd2 0%,
-    #fcb69f 100%
-  );
-  --background-image-gradient-freelance-small: linear-gradient(
-    135deg,
-    #89f7fe 0%,
-    #66a6ff 100%
-  );
+  --background-image-gradient-freelance-main:  linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  --background-image-gradient-freelance-small: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
 
 
   /* ================================================
      Animations
      ================================================ */
 
-  --animate-gradient-shift:               gradientShift 3s ease infinite;
-  --animate-shine-sweep:                  shineSweep 0.8s ease;
-  --animate-status-pulse:                 statusPulse 2s ease-in-out infinite;
-  
-  /* Backgrounds */
-  
-  --animate-liquid-move:                  liquidMove 20s ease-in-out infinite;
-  --animate-orb-float:                    orbFloat 25s ease-in-out infinite;
-  --animate-quantum-grid-perspective:     gridPerspective 20s ease-in-out infinite;
-  --animate-quantum-float:                quantumFloat 10s ease-in-out infinite;
-  --animate-quantum-shape-float:          shapeFloat 8s ease-in-out infinite;
+  --animate-gradient-shift:           gradientShift 3s ease infinite;
+  --animate-shine-sweep:              shineSweep 0.8s ease;
+  --animate-status-pulse:             statusPulse 2s ease-in-out infinite;
+
+  --animate-liquid-move:              liquidMove 20s ease-in-out infinite;
+  --animate-orb-float:                orbFloat 25s ease-in-out infinite;
+  --animate-quantum-grid-perspective: gridPerspective 20s ease-in-out infinite;
+  --animate-quantum-float:            quantumFloat 10s ease-in-out infinite;
+  --animate-quantum-shape-float:      shapeFloat 8s ease-in-out infinite;
 
 }
+
 
 /* ================================================
-	 Keyframes
-	 ================================================ */
+   Keyframes
+   ================================================ */
 
 @keyframes shineSweep {
-	from { transform: translateX(-100%); }
-	to   { transform: translateX(100%); }
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
 }
-
 @keyframes gradientShift {
-	0%, 100% { background-position: 0% 50%; }
-	50%      { background-position: 100% 50%; }
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
-
 @keyframes liquidMove {
-	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
-	50%      { transform: translate(20px, -20px) scale(1.05); opacity: 1; }
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50%      { transform: translate(20px, -20px) scale(1.05); opacity: 1; }
 }
-
 @keyframes orbFloat {
-	0%, 100% { transform: translate(0, 0) scale(1); }
-	33%      { transform: translate(40px, -40px) scale(1.1); }
-	66%      { transform: translate(-30px, 30px) scale(0.9); }
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -40px) scale(1.1); }
+  66%      { transform: translate(-30px, 30px) scale(0.9); }
 }
-
 @keyframes statusPulse {
-	0%, 100% { transform: scale(1); opacity: 1; }
-	50%      { transform: scale(1.5); opacity: 0.5; }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.5); opacity: 0.5; }
 }
-
 @keyframes gridPerspective {
-	0%, 100% { transform: rotateX(60deg) scale(2) translateZ(0); opacity: 0.3; }
-	50%      { transform: rotateX(60deg) scale(2) translateZ(100px); opacity: 0.5; }
+  0%, 100% { transform: rotateX(60deg) scale(2) translateZ(0); opacity: 0.3; }
+  50%      { transform: rotateX(60deg) scale(2) translateZ(100px); opacity: 0.5; }
 }
-
 @keyframes quantumFloat {
-	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-	25%      { transform: translate(100px, -100px) scale(1.5); opacity: 0.8; }
-	50%      { transform: translate(-50px, -200px) scale(0.8); opacity: 0.5; }
-	75%      { transform: translate(-100px, -100px) scale(1.2); opacity: 0.6; }
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  25%      { transform: translate(100px, -100px) scale(1.5); opacity: 0.8; }
+  50%      { transform: translate(-50px, -200px) scale(0.8); opacity: 0.5; }
+  75%      { transform: translate(-100px, -100px) scale(1.2); opacity: 0.6; }
 }
-
 @keyframes shapeFloat {
-	0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-	50%      { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50%      { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
 }

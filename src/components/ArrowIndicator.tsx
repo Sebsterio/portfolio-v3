@@ -26,7 +26,7 @@ export const ArrowIndicator = ({ className, onClick, 'aria-label': ariaLabel }: 
 		className={cn(
 			'focus-ring',
 			'flex h-12 w-12 cursor-pointer items-center justify-center rounded-full',
-			'border border-accent-blue/30 bg-accent-blue/10 text-xl text-accent-cyan',
+			'border border-accent/30 bg-accent/10 text-xl text-label',
 			'transition-all duration-300',
 			className,
 		)}

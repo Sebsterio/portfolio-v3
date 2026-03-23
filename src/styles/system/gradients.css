@@ -1,60 +1,43 @@
-/* Partial */
-/*  */
-/* @utility gradient-text 		{ @apply text-transparent bg-clip-text;		}	 */
-/*  */
-/* Standalone */
-/*  */
-/* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	} */
-/* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; } */
-/*  */
-/* .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; } */
-/* .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; } */
-/* .reflection-top   	 { @apply bg-linear-to-t from-transparent via-transparent to-white/25; } */
-/*  */
-/* @utility gradient-reflection-vertical { */
-/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent); */
-/* } */
-/* @utility gradient-reflection-vertical-strong { */
-/* 	background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent); */
-/* } */
-/* @utility gradient-reflection-diagonal { */
-/* 	background: linear-gradient(135deg, rgb(var(--white-rgb) / 0.15) 0%, rgb(var(--white-rgb) / 0.08) 20%, transparent 50%);  */
-/* } */
-
-
 /* ================================================
    Gradients
    ================================================
 
-   @utility  →  composable, modifier-safe (hover:, dark:, md:)
+   @utility  →  modifier-safe (hover:, dark:, md:)
    plain     →  decorative overlays, never need modifiers
 
-   ── Brand ───────────────────────────────────────────────────
-   gradient-primary          blue → cyan, br direction
-   gradient-primary-soft     blue/30 → cyan/20 → purple/20, br
+   All alpha expressions use color-mix(in srgb, <token> N%, transparent).
 
-   ── Text clipping ───────────────────────────────────────────
-   gradient-text             clips background-image to text shape
-                             combine with any gradient-* utility:
-                             class="gradient-text gradient-primary"
+   Brand
+   ─────
+   gradient-primary           accent-1 → accent-2, br
+   gradient-primary-soft      accent-1/30 → accent-2/20, br
+   gradient-accent-sweep      accent-1 → accent-2, lr + animated bg-size sweep
+   gradient-brand-logo        neutral-1 → accent-1, 135deg
+   gradient-brand-underline   accent-1 → accent-2, horizontal
+   gradient-number-highlight  accent-2 → white, br
 
-   ── Reflection overlays ─────────────────────────────────────
-   Apply to absolute-positioned child elements (overlay-full).
-   Plain classes — decorative overlays never need modifiers.
+   Atmosphere (background elements)
+   ──────────────────────────────────
+   gradient-atmosphere-chrome        dual radial accent hazes
+   gradient-atmosphere-metallic-orb  neutral radial orb
+   gradient-atmosphere-grid          neutral line grid
 
-   gradient-reflection-diagonal          135deg white gloss (glass surfaces)
-   gradient-reflection-horizontal        90deg  accent sweep, 25% opacity
-   gradient-reflection-horizontal-strong 90deg  accent sweep, 80% opacity
-   gradient-reflection-light             br     white/25 → transparent
-   gradient-reflection-dark              br     black/30 → transparent
-   gradient-reflection-top               to-t   white/25 fade at top edge
+   Text clipping
+   ─────────────
+   gradient-text   clips background to text shape; combine with any gradient-* utility
+
+   Reflection overlays  (apply to overlay-full children)
+   ──────────────────────────────────────────────────────
+   gradient-reflection-diagonal          135deg white gloss
+   gradient-reflection-horizontal        90deg accent-1 sweep, 25%
+   gradient-reflection-horizontal-strong 90deg accent-1 sweep, 80%
+   gradient-reflection-light             br white/25 → transparent
+   gradient-reflection-dark              br black/30 → transparent
+   gradient-reflection-top               to-t white/25 fade
 
    Migration
    ─────────
-   reflection-light                    →  gradient-reflection-light
-   reflection-dark                     →  gradient-reflection-dark
-   reflection-top                      →  gradient-reflection-top
-   gradient-reflection-vertical        →  gradient-reflection-horizontal
+   gradient-title-highlight            →  gradient-accent-sweep
    gradient-reflection-vertical-strong →  gradient-reflection-horizontal-strong
 
    ================================================ */
@@ -63,11 +46,48 @@
 /* ---- Brand ---- */
 
 @utility gradient-primary {
-  @apply bg-linear-to-br from-accent-blue to-accent-cyan;
+  @apply bg-linear-to-br from-accent-1 to-accent-2;
 }
 
 @utility gradient-primary-soft {
-  @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20;
+  @apply bg-linear-to-br from-accent-1/30 to-accent-2/20;
+}
+
+@utility gradient-accent-sweep {
+  @apply bg-linear-to-r from-accent-1 to-accent-2;
+}
+
+@utility gradient-brand-logo {
+  background-image: linear-gradient(135deg, var(--color-neutral-1) 20%, var(--color-accent-1) 80%);
+}
+
+@utility gradient-brand-underline {
+  background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+}
+
+@utility gradient-number-highlight {
+  @apply bg-linear-to-br from-accent-2 to-white;
+}
+
+@utility gradient-atmosphere-chrome {
+  background:
+    radial-gradient(ellipse at 25% 35%, color-mix(in srgb, var(--color-accent-1) 15%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, color-mix(in srgb, var(--color-accent-2) 10%, transparent) 0%, transparent 50%);
+}
+
+@utility gradient-atmosphere-metallic-orb {
+  background: radial-gradient(
+    circle at 30% 30%,
+    color-mix(in srgb, var(--color-neutral-1) 20%, transparent),
+    color-mix(in srgb, var(--color-neutral-3) 10%, transparent) 40%,
+    transparent 70%
+  );
+}
+
+@utility gradient-atmosphere-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-neutral-3) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-neutral-3) 8%, transparent) 1px, transparent 1px);
 }
 
 
@@ -81,19 +101,19 @@
 /* ---- Reflection Overlays ---- */
 
 @utility gradient-reflection-horizontal {
-  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.25), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-1) 25%, transparent), transparent);
 }
 
 @utility gradient-reflection-horizontal-strong {
-  background: linear-gradient(90deg, transparent, rgb(var(--accent-blue-rgb) / 0.8), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-1) 80%, transparent), transparent);
 }
 
 @utility gradient-reflection-diagonal {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15)  0%,
-    rgba(255, 255, 255, 0.08) 20%,
-    transparent               50%
+    color-mix(in srgb, white 15%, transparent)  0%,
+    color-mix(in srgb, white  8%, transparent) 20%,
+    transparent                                50%
   );
 }
 

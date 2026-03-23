@@ -3,7 +3,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import './theme.css'; 
+@import './theme.css';
+@import './themes.css';
 @import './base.css'; 
 
 @import './system/gradients.css';
