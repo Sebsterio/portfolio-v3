@@ -232,7 +232,7 @@ export const projects: Project[] = [
 		year: '2017-2020',
 		location: 'London, UK',
 		role: 'Web Developer & Designer (Freelance)',
-		label: '',
+		label: 'Pre-Seed Startup',
 		tags: ['PWA', 'React', 'Node.js', 'MongoDB', 'Material UI', 'UX Design'],
 		summary: 'Vet clinics struggling with inefficient paper-based pet health reporting',
 		intro:
@@ -264,12 +264,12 @@ export const projects: Project[] = [
 		freelance: true,
 		slug: 'narbon-ecommerce',
 		title: 'E-Commerce Progressive Web App',
-		company: 'Narbon Fashion',
+		company: 'Narbon',
 		period: 'Nov 2017 - Nov 2020',
 		year: '2017-2020',
 		location: 'London, UK',
 		role: 'Web Developer & Designer (Freelance)',
-		label: '',
+		label: 'Fashion Brand',
 		tags: ['E-Commerce', 'React', 'Redux', 'Firebase', 'Stripe', 'Styled Components', 'UX Design'],
 		summary: 'Fashion brand requiring modern e-commerce platform with seamless mobile experience',
 		intro:
