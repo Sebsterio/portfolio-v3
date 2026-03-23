@@ -73,7 +73,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 const TimelineDateWide = ({ period }: { period: string }) => (
 	<div className='relative'>
 		<div className='flex w-32 shrink-0 items-start justify-end pt-8'>
-			<span className='pr-4 text-sm font-semibold whitespace-nowrap text-accent-cyan'>{period}</span>
+			<span className='pr-4 text-sm font-semibold whitespace-nowrap text-label'>{period}</span>
 		</div>
 		<TimelineDot active className='absolute top-8 -right-px z-10 translate-x-1/2' />
 	</div>
@@ -82,7 +82,7 @@ const TimelineDateWide = ({ period }: { period: string }) => (
 const TimelineDateNarrow = ({ period }: { period: string }) => (
 	<div className='relative w-8 self-stretch'>
 		<div className='absolute top-1/2 left-2 -translate-y-1/2'>
-			<span className='block origin-center -translate-x-1/2 -rotate-90 text-sm font-semibold tracking-wider whitespace-nowrap text-accent-cyan'>
+			<span className='block origin-center -translate-x-1/2 -rotate-90 text-sm font-semibold tracking-wider whitespace-nowrap text-label'>
 				{period}
 			</span>
 		</div>
@@ -93,7 +93,7 @@ const TimelineDateNarrow = ({ period }: { period: string }) => (
 const TimelineDateMobile = ({ period }: { period: string }) => (
 	<div className='mb-3 flex items-center gap-3'>
 		<TimelineDot active />
-		<span className='translate-y-px text-sm font-semibold text-accent-cyan'>{period}</span>
+		<span className='translate-y-px text-sm font-semibold text-label'>{period}</span>
 	</div>
 );
 

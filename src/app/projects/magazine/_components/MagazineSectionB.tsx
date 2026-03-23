@@ -27,9 +27,9 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 			<div className='relative z-20 mr-0 ml-0 grid max-w-[1400px] items-center gap-8 md:gap-12 lg:ml-auto lg:grid-cols-[0.8fr_1.2fr] lg:gap-16'>
 				{/* Text Column */}
 				<div className='py-4 md:py-8'>
-					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-accent-cyan uppercase md:text-sm'>{preTitle}</p>
+					<p className='mb-6 font-urbanist text-xs font-bold tracking-wider text-label uppercase md:text-sm'>{preTitle}</p>
 
-					<h3 className='mb-3 font-urbanist text-4xl leading-[0.95] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[4rem]'>
+					<h3 className='mb-3 font-urbanist text-4xl leading-[0.95] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[4rem]'>
 						{title}
 					</h3>
 
@@ -48,20 +48,20 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 				<div className='-order-1 grid grid-cols-1 gap-6 md:grid-cols-2 lg:order-0'>
 					<ProjectImage
 						gradient='bg-gradient-meco-main'
-						className='magazine-image h-[200px] shadow-[0_25px_60px_rgba(0,0,0,0.6),0_0_50px_rgba(250,112,154,0.2)] hover:scale-[1.02] md:col-span-2 md:h-[280px] lg:h-[300px]'
+						className='shadow-editorial-meco magazine-image h-[200px] hover:scale-[1.02] md:col-span-2 md:h-[280px] lg:h-[300px]'
 						overlayType='dark'
 						glintOnHover
 					/>
 
 					<ProjectImage
 						gradient='bg-gradient-meco-2'
-						className='magazine-image h-[150px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
+						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 
 					<ProjectImage
 						gradient='bg-gradient-meco-3'
-						className='magazine-image h-[150px] shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
+						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 				</div>

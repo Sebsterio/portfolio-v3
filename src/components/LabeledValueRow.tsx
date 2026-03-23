@@ -10,7 +10,7 @@ const CLASSES = {
 	row: cn(
 		'flex items-center justify-between',
 		'py-3 md:py-4',
-		'border-b border-chrome-light/10 last:border-b-0', //
+		'border-b border-neutral-2/10 last:border-b-0',
 	),
 
 	label: cn(

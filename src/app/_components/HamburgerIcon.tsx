@@ -4,11 +4,11 @@ type HamburgerIconProps = {
 
 export function HamburgerIcon({ isOpen }: HamburgerIconProps) {
 	return (
-		<svg width='24' height='24' viewBox='0 0 24 24' className='overflow-visible text-chrome-silver/80' aria-hidden='true'>
+		<svg width='24' height='24' viewBox='0 0 24 24' className='overflow-visible text-secondary' aria-hidden='true'>
 			<defs>
 				<filter id='hamburgerGlow' x='-50%' y='-50%' width='200%' height='200%'>
-					<feDropShadow dx='0' dy='0' stdDeviation='3' floodColor='rgb(255,255,255)' floodOpacity='0.1' />
-					<feDropShadow dx='0' dy='0' stdDeviation='2' floodColor='rgb(59,130,246)' floodOpacity='1' />
+					<feDropShadow dx='0' dy='0' stdDeviation='3' style={{ floodColor: 'white', floodOpacity: 0.1 }} />
+					<feDropShadow dx='0' dy='0' stdDeviation='2' style={{ floodColor: 'var(--color-accent)', floodOpacity: 1 }} />
 				</filter>
 			</defs>
 

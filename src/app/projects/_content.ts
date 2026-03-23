@@ -42,6 +42,7 @@ export const projects: Project[] = [
 			promo: [
 				'/assets/projects/bounce/comp-1.png',
 				'/assets/projects/bounce/marketing.webp',
+				// '/assets/projects/bounce/comp-md-alpha-sm.png',
 				'', //
 			],
 			screens: [
@@ -211,7 +212,7 @@ export const projects: Project[] = [
 			main: '/assets/projects/ao/comp-md.png',
 			promo: [
 				'/assets/projects/ao/comp.png',
-				'/assets/projects/ao/comp-sm.png',
+				'/assets/projects/ao/comp-sm-alpha-sm.png',
 				'', //
 			],
 			screens: [
@@ -252,10 +253,10 @@ export const projects: Project[] = [
 		link: 'http://www.animalysis.com/demo',
 		images: {
 			logo: '',
-			thumbnail: '',
-			main: '',
-			promo: ['', '', ''],
-			screens: ['', '', ''],
+			thumbnail: '/assets/projects/anim/animalysis.jpg',
+			main: '/assets/projects/anim/animalysis.jpg',
+			promo: ['/assets/projects/anim/animalysis.jpg', '', ''],
+			screens: ['/assets/projects/anim/animalysis.jpg', '', ''],
 		},
 	},
 	{

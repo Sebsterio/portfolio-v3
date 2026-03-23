@@ -36,14 +36,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 			>
 				{/* Logo */}
 				<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight md:text-2xl'>
-					<span
-						className='bg-clip-text text-transparent'
-						style={{
-							backgroundImage: 'linear-gradient(135deg, #f0f0f0 20%, #3b82f6 80%)',
-						}}
-					>
-						{logo}
-					</span>
+					<span className='gradient-brand-logo gradient-text inline-block'>{logo}</span>
 				</Link>
 
 				{/* Desktop Navigation */}
@@ -57,19 +50,13 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 									className={cn(
 										'group relative text-[13px] font-semibold tracking-wider uppercase',
 										isCurrent
-											? 'pointer-events-none text-chrome-silver'
-											: 'text-muted transition-all duration-300 hover:text-chrome-silver',
+											? 'pointer-events-none text-primary'
+											: 'text-muted transition-all duration-300 hover:text-primary',
 									)}
 								>
 									{item.label}
 									{!isCurrent && (
-										<span
-											className='absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full'
-											style={{
-												background: 'linear-gradient(90deg, #3b82f6, #06b6d4)',
-												boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)',
-											}}
-										/>
+										<span className='gradient-brand-underline glow-brand-underline absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full' />
 									)}
 								</Link>
 							</li>

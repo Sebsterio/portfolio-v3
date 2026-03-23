@@ -9,9 +9,9 @@ type ProjectTagsProps = {
 };
 
 const variantClasses = {
-	default: 'text-accent-cyan surface-tag',
-	muted: 'text-chrome-silver/80 surface-tag', // AboutPage only
-	highlight: 'text-accent-cyan font-semibold surface-tag-highlight', // Magazine/SectionA only
+	default: 'text-label surface-tag',
+	muted: 'text-secondary surface-tag', // AboutPage only
+	highlight: 'text-label font-semibold surface-tag-highlight', // Magazine/SectionA only
 };
 
 const sizeClasses = {

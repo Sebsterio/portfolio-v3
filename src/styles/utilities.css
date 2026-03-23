@@ -3,97 +3,13 @@
    ================================================ */
 
 
+/* ---- Interaction ---- */
 
-
-/* -------------------------------- */
-/* Glass Decoration System // TODO  */
-/* -------------------------------- */
-
-/* .glass-decorated {
-  position: relative;
-  overflow: hidden;
+/**
+ * focus-ring — keyboard focus indicator for interactive elements (buttons, links).
+ * Activates on focus-visible only (keyboard navigation, not pointer clicks).
+ * Cards surface focus via ArrowIndicator — never apply focus-ring to a card container.
+ */
+@utility focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black;
 }
-.glass-decorated::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.15) 0%,
-    rgba(255,255,255,0.08) 20%,
-    transparent 50%
-  );
-  z-index: 0;
-}
-.glass-decorated::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,...");
-  opacity: 0.02;
-  z-index: 0;
-} */
-
-/* Animated Shine */
-
-/* .glass-shine {
-  position: relative;
-  overflow: hidden;
-}
-.glass-shine::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(59,130,246,0.25),
-    transparent
-  );
-  transform: skewX(-20deg);
-  transition: all 800ms ease-out;
-}
-.glass-shine:hover::after {
-  left: 100%;
-} */
-
-/* Glass Corners */
-
-/* .glass-corners {
-  position: relative;
-}
-.glass-corners::before,
-.glass-corners::after {
-  content: '';
-  position: absolute;
-  width: 12rem;
-  height: 12rem;
-  pointer-events: none;
-  z-index: 0;
-}
-.glass-corners::before {
-  top: 0;
-  right: 0;
-  background: linear-gradient(
-    to bottom left,
-    rgba(59,130,246,0.1),
-    transparent,
-    transparent
-  );
-}
-.glass-corners::after {
-  bottom: 0;
-  left: 0;
-  background: linear-gradient(
-    to top right,
-    rgba(34,211,238,0.1),
-    transparent,
-    transparent
-  );
-} */

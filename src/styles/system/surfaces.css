@@ -2,59 +2,51 @@
    Surfaces — Glass System
    ================================================
 
-   @utility   →  glass-surface-N, glass-elevation-N
-               must be utilities to support modifiers
-               e.g. hover:glass-elevation-2, dark:glass-surface-3
-
-   plain class →  glass-radius-N, decorative overlays
-               these never need modifier variants
-
-   ── Surface levels ──────────────────────────────
-   1   subtle     chips, tags, pills, small badges
+   Surface utilities  (glass-surface-N)
+   ─────────────────────────────────────
+   1   subtle     chips, tags, pills
    2   default    cards, panels, content sections
    3   strong     modals, drawers, popovers
 
-   Each surface utility owns three responsibilities:
-     - Structural:  position: relative, overflow: hidden
-     - Material:    background + backdrop-filter + border
-     - Curvature:   --glass-curvature (inset shadow)
-                    box-shadow: var(--glass-curvature)
+   Each surface utility sets:
+     background + backdrop-filter + border  (material)
+     --glass-curvature                      (inset edge depth)
+   Border uses longhand so border-color can be overridden at call-site.
 
-   Border uses longhand properties so border-color can
-   be overridden by a Tailwind utility at call-site
-   without touching border-width or border-style.
+   Elevation utilities  (glass-elevation-N)
+   ─────────────────────────────────────────
+   Compose outset shadows with the surface's --glass-curvature.
+   Require a glass-surface-N on the same element.
+   1   raised      contact + ambient + faint accent haze
+   2   elevated    deep ambient + strong accent glow
 
-   ── Elevation levels ────────────────────────────
-   1   raised     contact + ambient + subtle accent haze
-   2   elevated   deep ambient + strong accent glow
-
-   Elevation utilities compose with surface curvature:
-     box-shadow: var(--glass-elevation), var(--glass-curvature)
-
-   --glass-curvature is defined on the element by the
-   surface utility, so both axes resolve correctly when
-   surface + elevation classes appear on the same element.
-
-   A flat surface (no elevation) simply uses the
-   curvature-only box-shadow set by glass-surface-N.
-
-   ── Radius levels ───────────────────────────────
+   Radius classes  (glass-radius-N)
+   ──────────────────────────────────
    1   rounded-2xl
    2   rounded-3xl / md:rounded-4xl
    3   rounded-[28px]
 
-   ── Decorative overlays ─────────────────────────
-   Applied to overlay-full children rendered BEFORE
-   content in DOM — natural stacking, no z-index.
+   Decorative overlay classes
+   ──────────────────────────
+   Apply to overlay-full children rendered BEFORE content (DOM order = z-order).
+   glass-reflection    135deg gloss sheen
+   glass-edge-glow     top-edge accent streak (90deg accent sweep + blur; see also
+                       gradient-reflection-horizontal-strong in gradients.css for the
+                       unblurred equivalent)
+   glass-panel-accents dual corner accent blobs
+   glass-noise         grain texture
 
-   glass-reflection   135deg gloss sheen
-   glass-edge-glow    top-edge accent streak
-   glass-noise        grain texture
+   Glass interaction
+   ─────────────────
+   glass-glint          overlay parked off-screen left (resting)
+   glass-glint-active   overlay swept off-screen right (active)
+   Usage: <div className="glass-glint group-hover:glass-glint-active" />
+   Requires overlay-full on parent. Transition built in.
 
-   ── Migration ───────────────────────────────────
-   glass-shadow-0     →  (removed; flat = surface only, no elevation class)
-   glass-shadow-1     →  glass-elevation-1
-   glass-shadow-2     →  glass-elevation-2
+   Theme override
+   ──────────────
+   --theme-surface in :root controls the card/panel material colour.
+   Redefine it in a theme selector to change all surfaces without touching this file.
 
    ================================================ */
 
@@ -66,15 +58,15 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      rgb(var(--glass-surface-rgb) / 0.35);
+  background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
   backdrop-filter: blur(14px);
   border-width:    1px;
   border-style:    solid;
-  border-color:    rgb(var(--white-rgb) / 0.06);
+  border-color:    color-mix(in srgb, white 6%, transparent);
   /* Curvature — inset edge depth, used by elevation utilities */
   --glass-curvature:
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.09),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.03);
+    inset 0  1px 0 color-mix(in srgb, white 9%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white 3%, transparent);
   box-shadow: var(--glass-curvature);
 }
 
@@ -83,15 +75,15 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      rgb(var(--glass-surface-rgb) / 0.68);
+  background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
   backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
   border-width:    1px;
   border-style:    solid;
-  border-color:    rgb(var(--white-rgb) / 0.08);
+  border-color:    color-mix(in srgb, white 8%, transparent);
   /* Curvature */
   --glass-curvature:
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.12),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.04);
+    inset 0  1px 0 color-mix(in srgb, white 12%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white  4%, transparent);
   box-shadow: var(--glass-curvature);
 }
 
@@ -100,15 +92,15 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      rgb(var(--glass-surface-rgb) / 0.86);
+  background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
   backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
   border-width:    1px;
   border-style:    solid;
-  border-color:    rgb(var(--white-rgb) / 0.10);
+  border-color:    color-mix(in srgb, white 10%, transparent);
   /* Curvature */
   --glass-curvature:
-    inset 0  1px 0 rgb(var(--white-rgb) / 0.15),
-    inset 0 -1px 0 rgb(var(--white-rgb) / 0.05);
+    inset 0  1px 0 color-mix(in srgb, white 15%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white  5%, transparent);
   box-shadow: var(--glass-curvature);
 }
 
@@ -122,17 +114,17 @@
 
 @utility glass-elevation-1 {
   --glass-elevation:
-    0  1px  3px  rgb(var(--black-rgb) / 0.40),
-    0 12px 40px  rgb(var(--black-rgb) / 0.40),
-    0  4px 16px  rgb(var(--accent-blue-rgb) / 0.07);
+    0  1px  3px  color-mix(in srgb, black 40%, transparent),
+    0 12px 40px  color-mix(in srgb, black 40%, transparent),
+    0  4px 16px  color-mix(in srgb, var(--color-accent-1)  7%, transparent);
   box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
 @utility glass-elevation-2 {
   --glass-elevation:
-    0  2px  6px  rgb(var(--black-rgb) / 0.50),
-    0 24px 64px  rgb(var(--black-rgb) / 0.50),
-    0  8px 32px  rgb(var(--accent-blue-rgb) / 0.20);
+    0  2px  6px  color-mix(in srgb, black 50%, transparent),
+    0 24px 64px  color-mix(in srgb, black 50%, transparent),
+    0  8px 32px  color-mix(in srgb, var(--color-accent-1) 20%, transparent);
   box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
@@ -153,9 +145,9 @@
 .glass-reflection {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.1)  0%,
-    rgba(255, 255, 255, 0.04) 24%,
-    transparent               52%
+    color-mix(in srgb, white 10%, transparent)  0%,
+    color-mix(in srgb, white  4%, transparent) 24%,
+    transparent                                 52%
   );
 }
 
@@ -163,7 +155,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(var(--accent-blue-rgb) / 0.75),
+    color-mix(in srgb, var(--color-accent-1) 75%, transparent),
     transparent
   );
   filter:  blur(2px);
@@ -173,11 +165,28 @@
 /* Dual corner reflections. Radial gradients produce softer blobs than linear wedges at panel scale. */
 .glass-panel-accents {
   background:
-    radial-gradient(ellipse 40% 40% at 100% 0%,   rgb(var(--accent-blue-rgb) / 0.04), transparent),
-    radial-gradient(ellipse 40% 40% at 0%   100%, rgb(var(--accent-cyan-rgb) / 0.03), transparent);
+    radial-gradient(ellipse 40% 40% at 100% 0%,   color-mix(in srgb, var(--color-accent-1)  4%, transparent), transparent),
+    radial-gradient(ellipse 40% 40% at 0%   100%, color-mix(in srgb, var(--color-accent-2)  3%, transparent), transparent);
 }
 
 .glass-noise {
-	opacity: 0.025;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* ---- Glass Interaction ---- */
+
+@utility glass-glint {
+  @apply overlay-full gradient-reflection-horizontal;
+  transform: translateX(-100%) skewX(-20deg);
+  will-change: transform;
+  transition-property: transform;
+  transition-timing-function: var(--tw-ease, ease-out);
+  transition-duration: var(--tw-duration, 200ms);
+  transition-delay: var(--tw-delay, 0ms);
+}
+
+@utility glass-glint-active {
+  transform: translateX(100%) skewX(-20deg);
 }

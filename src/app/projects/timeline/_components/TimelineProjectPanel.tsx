@@ -12,10 +12,10 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 padding-panel', className)}>
 		<div className='relative stack-lg'>
 			<div className='space-y-3 md:space-y-4'>
-				<InlineList.Div className='cluster-md text-sm text-accent-cyan'>{[project.period, project.location]}</InlineList.Div>
-				<h2 className='font-urbanist text-3xl leading-tight font-bold text-chrome-silver md:text-5xl'>{project.title}</h2>
-				<p className='text-xl text-chrome-silver/80 md:text-2xl'>
-					<span>{project.company}</span> <span className='text-chrome-silver/40'>{' - ' + project.label}</span>
+				<InlineList.Div className='cluster-md text-sm text-label'>{[project.period, project.location]}</InlineList.Div>
+				<h2 className='font-urbanist text-3xl leading-tight font-bold text-primary md:text-5xl'>{project.title}</h2>
+				<p className='text-xl text-secondary md:text-2xl'>
+					<span>{project.company}</span> <span className='text-muted'>{' - ' + project.label}</span>
 				</p>
 			</div>
 

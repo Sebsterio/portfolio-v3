@@ -10,7 +10,7 @@ type BackLinkProps = ComponentProps<typeof TransitionLink> & {
 export const BackLink = ({ href, children, className, ...props }: BackLinkProps) => (
 	<TransitionLink
 		href={href}
-		className={cn('text-muted inline-flex items-center gap-2 text-sm transition-colors hover:text-accent-cyan', className)}
+		className={cn('text-muted inline-flex items-center gap-2 text-sm transition-colors hover:text-label', className)}
 		{...props}
 	>
 		<ArrowLeft className='h-4 w-4' />

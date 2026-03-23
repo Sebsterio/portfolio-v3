@@ -26,8 +26,8 @@ const CLASSES = {
 			'glow-accent-sm', //
 		),
 		secondary: cn(
-			'border-chrome-silver/15 bg-white/3 text-chrome-silver backdrop-blur-[10px]',
-			'hover:border-chrome-silver/40 hover:bg-white/8',
+			'border-neutral-1/15 bg-fill-sm text-neutral-1 backdrop-blur-[10px]',
+			'hover:border-neutral-1/40 hover:bg-fill-lg',
 		),
 	},
 } as const;

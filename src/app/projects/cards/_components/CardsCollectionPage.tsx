@@ -55,7 +55,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
 				<>
 					<div className='space-y-3'>
-						<div className='ui-meta tracking-wider text-accent-cyan uppercase'>{project.year}</div>
+						<div className='ui-meta tracking-wider text-label uppercase'>{project.year}</div>
 						<h3 className='heading-2 text-primary line-clamp-2'>{project.title}</h3>
 						<p className='text-tertiary'>{project.company}</p>
 					</div>
@@ -78,7 +78,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 			<ArrowIndicator
 				aria-label={`View ${project.title}`}
 				className={cn('absolute right-8 bottom-8', [
-					'group-hover:translate-x-2 group-hover:bg-accent-blue/20',
+					'group-hover:translate-x-2 group-hover:bg-accent/20',
 				])}
 			/>
 		</Panel>

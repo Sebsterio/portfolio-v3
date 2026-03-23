@@ -18,11 +18,11 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 				{/* Text Column */}
 				<div className='pt-4 md:pt-12'>
 					{/* Number */}
-					<div className='decorative-text decorative-outline -mb-4 text-[clamp(4rem,10vw,8rem)] leading-[0.8] transition-all duration-500 group-hover:[-webkit-text-stroke:2px_rgba(0,217,255,0.5)] group-hover:[text-shadow:0_0_50px_rgba(0,217,255,0.3)]'>
+					<div className='decorative-text decorative-outline decorative-outline-editorial-strong-hover -mb-4 text-[clamp(4rem,10vw,8rem)] leading-[0.8]'>
 						{number}
 					</div>
 
-					<h3 className='mb-4 font-urbanist text-4xl leading-[0.9] font-black text-white transition-all duration-300 group-hover:text-accent-cyan md:text-5xl lg:text-6xl xl:text-[4.5rem]'>
+					<h3 className='mb-4 font-urbanist text-4xl leading-[0.9] font-black text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-6xl xl:text-[4.5rem]'>
 						{title}
 					</h3>
 
@@ -42,7 +42,7 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 					<ProjectImage
 						src={imageMain}
 						gradient='bg-gradient-tt'
-						className='magazine-image h-[250px] w-full shadow-[0_30px_70px_rgba(0,0,0,0.6),0_0_50px_rgba(79,172,254,0.2)] hover:scale-[1.02] hover:-rotate-1 md:h-[320px] lg:h-[380px]'
+						className='shadow-editorial-tt magazine-image h-[250px] w-full hover:scale-[1.02] hover:-rotate-1 md:h-[320px] lg:h-[380px]'
 						overlayType='light'
 						glintOnHover
 					/>
