@@ -52,7 +52,7 @@
    glass-noise        grain texture
 
    ── Theme override point ─────────────────────────
-   --glass-surface is defined in :root (theme.css) as
+   --theme-surface is defined in :root (theme.css) as
    a runtime-overridable variable. Redefine it in a
    theme selector (e.g. .light, [data-theme="light"])
    to change the card/panel material colour without
@@ -73,7 +73,7 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      color-mix(in srgb, var(--glass-surface) 35%, transparent);
+  background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
   backdrop-filter: blur(14px);
   border-width:    1px;
   border-style:    solid;
@@ -90,7 +90,7 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      color-mix(in srgb, var(--glass-surface) 68%, transparent);
+  background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
   backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
   border-width:    1px;
   border-style:    solid;
@@ -107,7 +107,7 @@
   position: relative;
   overflow: hidden;
   /* Material */
-  background:      color-mix(in srgb, var(--glass-surface) 86%, transparent);
+  background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
   backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
   border-width:    1px;
   border-style:    solid;
@@ -131,7 +131,7 @@
   --glass-elevation:
     0  1px  3px  color-mix(in srgb, black 40%, transparent),
     0 12px 40px  color-mix(in srgb, black 40%, transparent),
-    0  4px 16px  color-mix(in srgb, var(--color-accent-blue)  7%, transparent);
+    0  4px 16px  color-mix(in srgb, var(--color-accent-1)  7%, transparent);
   box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
@@ -139,7 +139,7 @@
   --glass-elevation:
     0  2px  6px  color-mix(in srgb, black 50%, transparent),
     0 24px 64px  color-mix(in srgb, black 50%, transparent),
-    0  8px 32px  color-mix(in srgb, var(--color-accent-blue) 20%, transparent);
+    0  8px 32px  color-mix(in srgb, var(--color-accent-1) 20%, transparent);
   box-shadow: var(--glass-elevation), var(--glass-curvature);
 }
 
@@ -170,7 +170,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--color-accent-blue) 75%, transparent),
+    color-mix(in srgb, var(--color-accent-1) 75%, transparent),
     transparent
   );
   filter:  blur(2px);
@@ -180,8 +180,8 @@
 /* Dual corner reflections. Radial gradients produce softer blobs than linear wedges at panel scale. */
 .glass-panel-accents {
   background:
-    radial-gradient(ellipse 40% 40% at 100% 0%,   color-mix(in srgb, var(--color-accent-blue)  4%, transparent), transparent),
-    radial-gradient(ellipse 40% 40% at 0%   100%, color-mix(in srgb, var(--color-accent-cyan)  3%, transparent), transparent);
+    radial-gradient(ellipse 40% 40% at 100% 0%,   color-mix(in srgb, var(--color-accent-1)  4%, transparent), transparent),
+    radial-gradient(ellipse 40% 40% at 0%   100%, color-mix(in srgb, var(--color-accent-2)  3%, transparent), transparent);
 }
 
 .glass-noise {

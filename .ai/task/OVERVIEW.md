@@ -1,49 +1,42 @@
-# Task: Complete the Semantic Color Layer — COMPLETED
+# Task: Theme-Decoupled Token System — COMPLETED
 
 ## Status: ✅ Complete
 
 ## What was done
 
-### theme.css
-- Added `--color-accent: oklch(0.623 0.188 259.8)` as a dedicated semantic brand token in `@theme`
-- Decoupled from `--color-accent-blue` — can now be remapped independently
+### theme.css — complete rewrite
+- :root holds only --theme-* palette variables (overridable per-theme)
+  --theme-accent-1, --theme-accent-2, --theme-accent-2-vivid
+  --theme-neutral-1 through --theme-neutral-4
+  --theme-surface
+  --color-project-* (unchanged)
+- @theme tokens are pure var() aliases — no oklch values duplicated
+  --color-accent: var(--theme-accent-1)    ← semantic brand role
+  --color-accent-1/2: var(--theme-accent-*)  ← palette access
+  --color-neutral-1/2/3/4: var(--theme-neutral-*)
+  --color-white/black: direct oklch (absolute, never change)
+- Dropped from @theme: accent-sky, accent-purple (only gradient midpoints),
+  accent-cyan-bright (no Tailwind utility existed — moved to :root as --theme-accent-2-vivid)
 
-### typography.css
-- Removed `.text-accent` CSS class — superseded by Tailwind-generated `text-accent` utility from `--color-accent`
-- Added `@utility text-label { @apply text-accent-cyan; }` — content-annotation role
-- Converted entire emphasis scale (`text-primary` through `text-subtle`) and high-contrast scale from plain CSS classes to `@utility` definitions — enables modifier variants (`hover:text-primary`, `group-hover:text-label`, etc.)
-- Updated doc header to reflect new Brand / Semantic section
+### Typography, base, effects, surfaces, gradients, decorative, components — token renames
+- accent-blue → accent-1 throughout
+- accent-cyan → accent-2 throughout
+- chrome-silver/light/mid/dark → neutral-1/2/3/4 throughout
+- --glass-surface → --theme-surface in surfaces.css
+- --color-accent-cyan-bright → --theme-accent-2-vivid in decorative.css
 
-### Component migrations (20 files)
+### Gradient simplifications
+- gradient-primary-soft: dropped purple/20 stop (accent-purple gone) → 2-stop
+- gradient-title-highlight: dropped sky midpoint (accent-sky gone) → 2-stop accent-1→accent-2
 
-**Neutral text** — `text-chrome-silver` / `text-chrome-silver/N` → semantic emphasis scale:
-ShowcaseCard, ImpactList, AppHeader, MobileMenuOverlay, HamburgerIcon, DisplayModeSwitcher,
-TimelineProjectPanel, TimelineProjectSidebarItem, CardsProjectPage
-
-**Brand/interactive** — `text/bg/border-accent-blue` → `text/bg/border-accent`:
-TechCategoryGroup, StatusBadge, ArrowIndicator, SectionHeader, TimelineDot,
-TimelineProjectSidebarItem, TimelineProjectPage, CardsProjectPage, CardsCollectionPage
-
-**Content annotation** — `text-accent-cyan` → `text-label`:
-ImpactList, BackLink, ProjectTags, ArrowIndicator, TimelineProjectPanel,
-TimelineProjectSidebarItem, TimelineProjectPage, TimelineCollectionPage,
-CardsProjectPage, CardsCollectionPage, MagazineSectionA, MagazineSectionB,
-MagazineSectionC, MagazineSectionD, MagazineSectionE, MagazineSectionMulti
-
-**SVG hardcodes fixed** — HamburgerIcon:
-`floodColor='rgb(59,130,246)'` → `style={{ floodColor: 'var(--color-accent)' }}`
-`floodColor='rgb(255,255,255)'` → `style={{ floodColor: 'white' }}`
-
-### docs/CONVENTIONS.md
-- Added Color conventions section documenting the two-layer model, the full semantic token table,
-  when raw palette is appropriate, and how to remap the brand color globally
-
-## Intentional non-migrations
-- `FloatingShapesBg` `border-accent-blue` — decorative, no semantic role
-- `border-accent-cyan` in MagazineSectionD — editorial design decision
-- `bg-chrome-dark` on TimelineDot inactive — specific named color, not a tone
+### Button/styles.ts
+- chrome-silver → neutral-1 (missed in previous semantic layer pass)
 
 ## Validation
-- `pnpm lint` — clean
-- Final grep for raw palette violations — 1 hit (FloatingShapesBg, intentional exception)
-- No CSS system files changed
+- pnpm lint — clean
+- Grep for all old token names — zero live matches
+
+## Net result
+To define a new theme: redefine --theme-accent-1, --theme-accent-2,
+--theme-neutral-1 through --theme-neutral-4, and --theme-surface in :root
+(or a scoped selector). Nothing else needs to change.

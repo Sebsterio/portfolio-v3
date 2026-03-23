@@ -47,16 +47,16 @@
 
 /* ---- Glow Scale ---- */
 
-@utility glow-accent-sm { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-blue) 20%, transparent); }
-@utility glow-accent-md { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-blue) 40%, transparent); }
-@utility glow-accent-lg { box-shadow: 0 0 15px var(--color-accent-blue); }
+@utility glow-accent-sm { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-1) 20%, transparent); }
+@utility glow-accent-md { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-1) 40%, transparent); }
+@utility glow-accent-lg { box-shadow: 0 0 15px var(--color-accent-1); }
 
 
 /* ---- Directional Shadows ---- */
 
-@utility shadow-accent-md { box-shadow: 0 15px 50px color-mix(in srgb, var(--color-accent-blue) 35%, transparent); }
-@utility shadow-accent-lg { box-shadow: 0 25px 70px color-mix(in srgb, var(--color-accent-blue) 50%, transparent); }
-@utility shadow-brand-underline { box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-blue) 50%, transparent); }
+@utility shadow-accent-md { box-shadow: 0 15px 50px color-mix(in srgb, var(--color-accent-1) 35%, transparent); }
+@utility shadow-accent-lg { box-shadow: 0 25px 70px color-mix(in srgb, var(--color-accent-1) 50%, transparent); }
+@utility shadow-brand-underline { box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-1) 50%, transparent); }
 @utility shadow-image-md         { box-shadow: 0 20px 50px color-mix(in srgb, black 50%, transparent); }
 @utility shadow-image-md-strong  { box-shadow: 0 20px 50px color-mix(in srgb, black 60%, transparent); }
 @utility shadow-image-lg         { box-shadow: 0 25px 60px color-mix(in srgb, black 60%, transparent); }
@@ -64,26 +64,26 @@
 @utility shadow-image-2xl        { box-shadow: 0 30px 80px color-mix(in srgb, black 70%, transparent); }
 @utility shadow-showcase-badge {
   box-shadow:
-    0  8px 24px color-mix(in srgb, var(--color-accent-blue) 35%, transparent),
-    0  0  16px color-mix(in srgb, var(--color-accent-blue) 15%, transparent);
+    0  8px 24px color-mix(in srgb, var(--color-accent-1) 35%, transparent),
+    0  0  16px color-mix(in srgb, var(--color-accent-1) 15%, transparent);
 }
 @utility shadow-showcase-badge-hover {
   box-shadow:
-    0 10px 32px color-mix(in srgb, var(--color-accent-blue) 55%, transparent),
-    0  0  24px color-mix(in srgb, var(--color-accent-blue) 35%, transparent);
+    0 10px 32px color-mix(in srgb, var(--color-accent-1) 55%, transparent),
+    0  0  24px color-mix(in srgb, var(--color-accent-1) 35%, transparent);
 }
-@utility shadow-dot-active   { box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-blue) 80%, transparent); }
-@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-chrome-dark) 80%, transparent); }
-@utility shadow-status-dot   { box-shadow: 0 0 15px var(--color-accent-blue); }
-@utility shadow-particle-accent { box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-cyan) 40%, transparent); }
-@utility shadow-particle-chrome { box-shadow: 0 0 6px color-mix(in srgb, var(--color-chrome-mid) 25%, transparent); }
-@utility shadow-atmosphere-blue { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-blue) 30%, transparent); }
-@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-cyan) 30%, transparent); }
+@utility shadow-dot-active   { box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-1) 80%, transparent); }
+@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-neutral-4) 80%, transparent); }
+@utility shadow-status-dot   { box-shadow: 0 0 15px var(--color-accent-1); }
+@utility shadow-particle-accent { box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-2) 40%, transparent); }
+@utility shadow-particle-chrome { box-shadow: 0 0 6px color-mix(in srgb, var(--color-neutral-3) 25%, transparent); }
+@utility shadow-atmosphere-blue { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-1) 30%, transparent); }
+@utility shadow-atmosphere-cyan { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-2) 30%, transparent); }
 
 
 /* ---- Background Fills ---- */
 
-@utility bg-accent-soft        { background: color-mix(in srgb, var(--color-accent-blue)  10%, transparent); }
+@utility bg-accent-soft        { background: color-mix(in srgb, var(--color-accent-1) 10%, transparent); }
 @utility bg-surface-glass-sm   { background: color-mix(in srgb, white  3%, transparent); }
 @utility bg-surface-glass-md   { background: color-mix(in srgb, white  5%, transparent); }
 @utility bg-surface-glass-lg   { background: color-mix(in srgb, white  8%, transparent); }
@@ -143,7 +143,7 @@
  */
 
 @utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-black;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black;
 }
 
 

@@ -1,36 +1,55 @@
 /* ================================================
-   Runtime override points
+   Theme palette — runtime override points
    ================================================
-   Only variables that need to be overridable at runtime
-   live here (e.g. for future dark/light theme switching).
-   Static design tokens belong in @theme below.
+   Define a new theme by redefining these variables
+   inside a selector (.theme-light, [data-theme="x"]).
+   Nothing else needs to change.
+
+   --theme-accent-*    chromatic accent hues
+   --theme-neutral-*   greyscale surface/text tones (1=lightest, 4=darkest)
+   --theme-surface     base material for glass cards/panels
+   --color-project-*   per-project brand colours (editorial glows)
    ================================================ */
 
 :root {
-  /* ---- Glass surface material ---- */
-  /* Redefine per-theme to change card/panel background colour */
-  --glass-surface: oklch(0.147 0.009 285.3);  /* #0a0a0e */
+  /* ---- Accent hues ---- */
+  --theme-accent-1:       oklch(0.623 0.188 259.8);  /* blue  */
+  --theme-accent-2:       oklch(0.715 0.126 215.2);  /* cyan  */
+  --theme-accent-2-vivid: oklch(0.816 0.145 216.5);  /* vivid cyan — large-type decorative only */
 
-  /* ---- Project brand accent colours ---- */
-  /* These are per-project identity colours consumed by           */
-  /* shadow-editorial-* classes in effects.css as glow shadows.  */
-  /* Named by project, not by role, to allow per-project branding */
-  --color-project-bounce:    oklch(0.627 0.164 271.5);  /* #667eea */
-  --color-project-meco:      oklch(0.722 0.173   3.3);  /* #fa709a */
-  --color-project-tt:        oklch(0.724 0.149 248.1);  /* #4facfe */
-  --color-project-ebit:      oklch(0.459 0.242 295.6);  /* #6a11cb */
-  --color-project-ao:        oklch(0.795 0.172 323.2);  /* #f093fb */
-  --color-project-freelance: oklch(0.952 0.040  75.8);  /* #ffecd2 */
+  /* ---- Neutral scale ---- */
+  --theme-neutral-1: oklch(0.955 0 0);  /* ~#f0f0f0 */
+  --theme-neutral-2: oklch(0.870 0 0);  /* ~#d4d4d4 */
+  --theme-neutral-3: oklch(0.706 0 0);  /* ~#a0a0a0 */
+  --theme-neutral-4: oklch(0.627 0 0);  /* ~#888888 */
+
+  /* ---- Surface ---- */
+  /* Glass card/panel base material — override per theme */
+  --theme-surface: oklch(0.147 0.009 285.3);  /* ~#0a0a0e */
+
+  /* ---- Project brand colours ---- */
+  /* Per-project identity colours for editorial shadow glows.  */
+  /* Named by project, not by role — branding is intentional.  */
+  --color-project-bounce:    oklch(0.627 0.164 271.5);
+  --color-project-meco:      oklch(0.722 0.173   3.3);
+  --color-project-tt:        oklch(0.724 0.149 248.1);
+  --color-project-ebit:      oklch(0.459 0.242 295.6);
+  --color-project-ao:        oklch(0.795 0.172 323.2);
+  --color-project-freelance: oklch(0.952 0.040  75.8);
 }
 
 
 /* ================================================
    Static design tokens
    ================================================
-   All values are direct oklch() expressions.
-   No var() indirection — tokens resolve to a single
-   CSS custom property each, enabling clean opacity
-   modifier support in Tailwind v4.
+   All color tokens reference :root palette variables.
+   Swap a full theme by redefining :root — nothing here
+   needs to change.
+
+   --color-accent     semantic brand/interactive role
+   --color-accent-1   direct palette access (same hue as accent today)
+   --color-accent-2   direct palette access (secondary hue)
+   --color-neutral-*  greyscale text/surface tones
    ================================================ */
 
 @theme {
@@ -39,9 +58,6 @@
      Fonts
      ================================================ */
 
-  /* Reference the values defined in @layer base :root.    */
-  /* var() fallback prevents circular resolution at token- */
-  /* evaluation time if the custom property is missing.    */
   --font-urbanist: var(--font-urbanist, sans-serif);
   --font-dm-sans:  var(--font-dm-sans,  sans-serif);
 
@@ -50,25 +66,19 @@
      Colors
      ================================================ */
 
-  /* ---- Semantic brand token ---- */
-  /* Decoupled from the palette — remap here without touching components. */
-  --color-accent: oklch(0.623 0.188 259.8);  /*  brand/interactive blue — matches accent-blue today  */
+  /* ---- Semantic ---- */
+  /* Remap the brand/interactive colour by changing --theme-accent-1 in :root. */
+  --color-accent:    var(--theme-accent-1);
 
-  /* ---- Accent scale ---- */
-  /* accent-cyan-bright is the vivid large-type variant used      */
-  /* in decorative-outline-editorial-* classes in decorative.css. */
-  /* It is deliberately more saturated than accent-cyan.          */
-  --color-accent-blue:        oklch(0.623 0.188 259.8);  /*  #3b82f6  */
-  --color-accent-cyan:        oklch(0.715 0.126 215.2);  /*  #06b6d4  */
-  --color-accent-sky:         oklch(0.754 0.139 232.7);  /*  #38bdf8  */
-  --color-accent-purple:      oklch(0.627 0.233 303.9);  /*  #a855f7  */
-  --color-accent-cyan-bright: oklch(0.816 0.145 216.5);  /*  #00d9ff  */
+  /* ---- Accent palette ---- */
+  --color-accent-1:  var(--theme-accent-1);
+  --color-accent-2:  var(--theme-accent-2);
 
-  /* ---- Chrome scale (neutral surface tones) ---- */
-  --color-chrome-silver: oklch(0.955 0 0);  /*  #f0f0f0  */
-  --color-chrome-light:  oklch(0.870 0 0);  /*  #d4d4d4  */
-  --color-chrome-mid:    oklch(0.706 0 0);  /*  #a0a0a0  */
-  --color-chrome-dark:   oklch(0.627 0 0);  /*  #888888  */
+  /* ---- Neutral palette ---- */
+  --color-neutral-1: var(--theme-neutral-1);
+  --color-neutral-2: var(--theme-neutral-2);
+  --color-neutral-3: var(--theme-neutral-3);
+  --color-neutral-4: var(--theme-neutral-4);
 
   /* ---- Absolute ---- */
   --color-white: oklch(1 0 0);
@@ -100,7 +110,7 @@
   );
 
   /* --- Bounce --- */
-  --background-image-gradient-bounce-main: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --background-image-gradient-bounce-main:  linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
   --background-image-gradient-bounce-small: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 
   /* --- Meco --- */
@@ -132,7 +142,6 @@
   --animate-shine-sweep:              shineSweep 0.8s ease;
   --animate-status-pulse:             statusPulse 2s ease-in-out infinite;
 
-  /* Backgrounds */
   --animate-liquid-move:              liquidMove 20s ease-in-out infinite;
   --animate-orb-float:                orbFloat 25s ease-in-out infinite;
   --animate-quantum-grid-perspective: gridPerspective 20s ease-in-out infinite;
@@ -150,40 +159,33 @@
   from { transform: translateX(-100%); }
   to   { transform: translateX(100%); }
 }
-
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
   50%      { background-position: 100% 50%; }
 }
-
 @keyframes liquidMove {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
   50%      { transform: translate(20px, -20px) scale(1.05); opacity: 1; }
 }
-
 @keyframes orbFloat {
   0%, 100% { transform: translate(0, 0) scale(1); }
   33%      { transform: translate(40px, -40px) scale(1.1); }
   66%      { transform: translate(-30px, 30px) scale(0.9); }
 }
-
 @keyframes statusPulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50%      { transform: scale(1.5); opacity: 0.5; }
 }
-
 @keyframes gridPerspective {
   0%, 100% { transform: rotateX(60deg) scale(2) translateZ(0); opacity: 0.3; }
   50%      { transform: rotateX(60deg) scale(2) translateZ(100px); opacity: 0.5; }
 }
-
 @keyframes quantumFloat {
   0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
   25%      { transform: translate(100px, -100px) scale(1.5); opacity: 0.8; }
   50%      { transform: translate(-50px, -200px) scale(0.8); opacity: 0.5; }
   75%      { transform: translate(-100px, -100px) scale(1.2); opacity: 0.6; }
 }
-
 @keyframes shapeFloat {
   0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
   50%      { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }

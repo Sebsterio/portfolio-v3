@@ -4,8 +4,8 @@
 /*  */
 /* Standalone */
 /*  */
-/* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-blue to-accent-cyan;	} */
-/* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-purple-500/20; } */
+/* @utility gradient-primary 			{ @apply bg-linear-to-br from-accent-1 to-accent-2;	} */
+/* @utility gradient-primary-soft 	{ @apply bg-linear-to-br from-accent-1/30 to-accent-2/20; } */
 /*  */
 /* .reflection-light 	 { @apply bg-linear-to-br from-white/25 to-transparent; } */
 /* .reflection-dark  	 { @apply bg-linear-to-br from-black/30 to-transparent; } */
@@ -67,48 +67,48 @@
 /* ---- Brand ---- */
 
 @utility gradient-primary {
-  @apply bg-linear-to-br from-accent-blue to-accent-cyan;
+  @apply bg-linear-to-br from-accent-1 to-accent-2;
 }
 
 @utility gradient-primary-soft {
-  @apply bg-linear-to-br from-accent-blue/30 via-accent-cyan/20 to-accent-purple/20;
+  @apply bg-linear-to-br from-accent-1/30 to-accent-2/20;
 }
 
 @utility gradient-title-highlight {
-  @apply bg-linear-to-r from-accent-blue via-accent-sky to-accent-cyan;
+  @apply bg-linear-to-r from-accent-1 to-accent-2;
 }
 
 @utility gradient-brand-logo {
-  background-image: linear-gradient(135deg, var(--color-chrome-silver) 20%, var(--color-accent-blue) 80%);
+  background-image: linear-gradient(135deg, var(--color-neutral-1) 20%, var(--color-accent-1) 80%);
 }
 
 @utility gradient-brand-underline {
-  background: linear-gradient(90deg, var(--color-accent-blue), var(--color-accent-cyan));
+  background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
 }
 
 @utility gradient-number-highlight {
-  @apply bg-linear-to-br from-accent-cyan to-white;
+  @apply bg-linear-to-br from-accent-2 to-white;
 }
 
 @utility gradient-atmosphere-chrome {
   background:
-    radial-gradient(ellipse at 25% 35%, color-mix(in srgb, var(--color-accent-blue) 15%, transparent) 0%, transparent 50%),
-    radial-gradient(ellipse at 75% 65%, color-mix(in srgb, var(--color-accent-cyan)  10%, transparent) 0%, transparent 50%);
+    radial-gradient(ellipse at 25% 35%, color-mix(in srgb, var(--color-accent-1) 15%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, color-mix(in srgb, var(--color-accent-2) 10%, transparent) 0%, transparent 50%);
 }
 
 @utility gradient-atmosphere-metallic-orb {
   background: radial-gradient(
     circle at 30% 30%,
-    color-mix(in srgb, var(--color-chrome-silver) 20%, transparent),
-    color-mix(in srgb, var(--color-chrome-mid)    10%, transparent) 40%,
+    color-mix(in srgb, var(--color-neutral-1) 20%, transparent),
+    color-mix(in srgb, var(--color-neutral-3) 10%, transparent) 40%,
     transparent 70%
   );
 }
 
 @utility gradient-atmosphere-grid {
   background-image:
-    linear-gradient(color-mix(in srgb, var(--color-chrome-mid) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--color-chrome-mid) 8%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--color-neutral-3) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-neutral-3) 8%, transparent) 1px, transparent 1px);
 }
 
 
@@ -122,11 +122,11 @@
 /* ---- Reflection Overlays ---- */
 
 @utility gradient-reflection-horizontal {
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 25%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-1) 25%, transparent), transparent);
 }
 
 @utility gradient-reflection-horizontal-strong {
-  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-blue) 80%, transparent), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent-1) 80%, transparent), transparent);
 }
 
 @utility gradient-reflection-diagonal {

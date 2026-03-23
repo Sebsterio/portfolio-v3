@@ -62,8 +62,8 @@
 }
 
 .decorative-outline-hover:hover {
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-cyan) 30%, transparent);
-  text-shadow: 0 0 60px color-mix(in srgb, var(--color-accent-cyan) 30%, transparent);
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-2) 30%, transparent);
+  text-shadow: 0 0 60px color-mix(in srgb, var(--color-accent-2) 30%, transparent);
 }
 
 .decorative-outline-editorial-hover {
@@ -71,8 +71,8 @@
 }
 
 .decorative-outline-editorial-hover:hover {
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-cyan-bright) 30%, transparent);
-  text-shadow: 0 0 60px color-mix(in srgb, var(--color-accent-cyan-bright) 30%, transparent);
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
+  text-shadow: 0 0 60px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
 }
 
 .decorative-outline-editorial-strong-hover {
@@ -80,8 +80,8 @@
 }
 
 .decorative-outline-editorial-strong-hover:hover {
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-cyan-bright) 50%, transparent);
-  text-shadow: 0 0 50px color-mix(in srgb, var(--color-accent-cyan-bright) 30%, transparent);
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 50%, transparent);
+  text-shadow: 0 0 50px color-mix(in srgb, var(--theme-accent-2-vivid) 30%, transparent);
 }
 
 .decorative-outline-editorial-soft-hover {
@@ -89,7 +89,7 @@
 }
 
 .decorative-outline-editorial-soft-hover:hover {
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-accent-cyan-bright) 20%, transparent);
+  -webkit-text-stroke: 2px color-mix(in srgb, var(--theme-accent-2-vivid) 20%, transparent);
 }
 
 .decorative-faded {
@@ -101,18 +101,18 @@
 }
 
 .text-glow-editorial {
-  text-shadow: 0 0 40px color-mix(in srgb, var(--color-accent-cyan-bright) 50%, transparent);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--theme-accent-2-vivid) 50%, transparent);
 }
 
 
 /* ---- Geometric Elements ---- */
 
 .decorative-circle {
-  @apply absolute border-2 border-accent-cyan/15 rounded-full opacity-60
+  @apply absolute border-2 border-accent-2/15 rounded-full opacity-60
          transition-transform duration-1000
          hover:scale-110 hover:rotate-45;
 }
 
 .decorative-line {
-  @apply absolute h-px bg-linear-to-r from-transparent via-accent-cyan/25 to-transparent;
+  @apply absolute h-px bg-linear-to-r from-transparent via-accent-2/25 to-transparent;
 }

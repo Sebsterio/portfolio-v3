@@ -11,7 +11,7 @@
 
   body {
     /* THEME: Liquid Chrome */
-    @apply bg-black text-chrome-silver antialiased;
+    @apply bg-black text-neutral-1 antialiased;
     font-family: var(--font-dm-sans);
   }
 }
