@@ -109,7 +109,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClick: () => void }) => (
 	<button
 		onClick={onClick}
-		className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-surface-glass-sm'
+		className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
 		style={{ viewTransitionName: `project-card-${p.id}` }}
 	>
 		<TimelineDot size='sm' className='absolute top-1/2 left-0 -translate-y-1/2' />

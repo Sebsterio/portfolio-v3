@@ -13,12 +13,12 @@ const CLASSES = {
 	hero: {
 		title: cn('text-[clamp(64px,8vw,110px)] leading-[1.05] tracking-[-0.03em]'),
 		lineNormal: cn('bg-chrome-metallic'),
-		lineHighlight: cn('gradient-title-highlight animate-gradient-shift bg-size-[200%_200%]'),
+		lineHighlight: cn('gradient-accent-sweep animate-gradient-shift bg-size-[200%_200%]'),
 	},
 	page: {
 		title: cn('text-[clamp(48px,6vw,80px)] leading-tight tracking-[-0.02em]'),
 		lineNormal: cn('bg-chrome-metallic'),
-		lineHighlight: cn('gradient-title-highlight animate-gradient-shift bg-size-[200%_200%]'),
+		lineHighlight: cn('gradient-accent-sweep animate-gradient-shift bg-size-[200%_200%]'),
 	},
 	projects: {
 		title: cn('text-5xl font-bold md:text-6xl'),

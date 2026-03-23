@@ -28,7 +28,7 @@ export function MagazineSectionE({
 	return (
 		<section id={sectionId} className='group relative -mt-12 ml-0 lg:ml-[2%] xl:ml-[8%]'>
 			{/* Decorative Mega Title */}
-			<h2 className='decorative-text decorative-outline-soft decorative-outline-editorial-soft-hover pointer-events-none absolute -top-16 right-0 z-10 text-[clamp(8rem,22vw,18rem)] md:-top-24 lg:right-[-5%]'>
+			<h2 className='decorative-text decorative-outline-mid decorative-outline-editorial-soft-hover pointer-events-none absolute -top-16 right-0 z-10 text-[clamp(8rem,22vw,18rem)] md:-top-24 lg:right-[-5%]'>
 				{megaTitle}
 			</h2>
 

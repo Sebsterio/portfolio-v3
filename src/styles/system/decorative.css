@@ -10,13 +10,13 @@
    decorative-text                        display font, black, uppercase, tight leading
    decorative-outline                     transparent fill + white stroke 15%
    decorative-outline-faint               white stroke 8%
-   decorative-outline-soft                white stroke 10%
+   decorative-outline-mid                 white stroke 10%
    decorative-outline-hover               accent-2 stroke — activates on parent .group hover
    decorative-outline-editorial-hover     accent-2-vivid stroke on .group hover
    decorative-outline-editorial-strong-hover   stronger vivid stroke on .group hover
    decorative-outline-editorial-soft-hover     soft vivid stroke on .group hover
    decorative-faded                       gradient-clipped near-transparent fill
-   text-glow-editorial                    accent-2-vivid text glow
+   text-glow-editorial                    accent-2-vivid text glow — defined in effects.css
 
    Geometric elements
    ──────────────────
@@ -37,6 +37,7 @@
    project-decorative-faded         →  decorative-faded
    deco-circle                      →  decorative-circle
    deco-line                        →  decorative-line
+   decorative-outline-soft          →  decorative-outline-mid
    --editorial-cyan-rgb             →  --theme-accent-2-vivid
    --color-accent-cyan-bright       →  --theme-accent-2-vivid
 
@@ -59,7 +60,7 @@
   -webkit-text-stroke: 2px color-mix(in srgb, white 8%, transparent);
 }
 
-.decorative-outline-soft {
+.decorative-outline-mid {
   @apply text-transparent;
   -webkit-text-stroke: 2px color-mix(in srgb, white 10%, transparent);
 }
@@ -106,11 +107,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.text-glow-editorial {
-  text-shadow: 0 0 40px color-mix(in srgb, var(--theme-accent-2-vivid) 50%, transparent);
-}
-
 
 /* ---- Geometric Elements ---- */
 

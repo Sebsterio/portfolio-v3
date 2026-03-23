@@ -33,6 +33,15 @@ Deterministic implementation conventions for current codebase behavior.
 - Keep style layers in `src/styles` aligned with current import structure in `globals.css`.
 - Inline `style` is limited to cases like `viewTransitionName` where class-based styling is not sufficient.
 
+## Effects naming conventions
+
+Two distinct prefixes are enforced in the design system:
+
+- `glow-*` — `box-shadow` or `text-shadow` with **no x/y offset** (`0 0 radius`). Radial ambient light.
+- `shadow-*` — `box-shadow` **with x/y offset**. Directional depth or lift.
+
+Never use `shadow-` for a zero-offset radial effect. See `effects.css` for the full catalogue.
+
 ## Color conventions
 
 ### Token architecture

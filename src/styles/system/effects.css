@@ -2,46 +2,63 @@
    Effects — Shadows, Glows & Animated Overlays
    ================================================
 
-   Glow scale
-   ──────────────────────────────────────────
-   glow-accent-sm/md/lg   accent-1 ambient → interactive → full
+   Naming convention enforced throughout:
+     glow-*    box-shadow or text-shadow with NO offset (0 0 ...) — radial ambient light
+     shadow-*  box-shadow WITH x/y offset — directional depth/lift
 
-   Directional shadows
-   ──────────────────────────────────────────
-   shadow-accent-md/lg    card lift / hover lift
-   shadow-image-*         black depth shadows for images
-   shadow-showcase-badge  badge lift + glow (normal / hover)
-   shadow-dot-active/inactive   timeline dot states
-   shadow-status-dot      pulsing status indicator glow
-   shadow-particle-accent/neutral   background particle glows
-   shadow-atmosphere-1/2  background shape ambient glows
-   shadow-editorial-*     per-project image lift + brand haze
+   Glow scale  (box-shadow, accent-1)
+   ─────────────────────────────────────────────
+   glow-accent-sm     0 0 20px  20%   soft ambient
+   glow-accent-md     0 0 20px  40%   standard interactive
+   glow-accent-lg     0 0 15px 100%   full intensity
+
+   Glow variants  (box-shadow, various tokens)
+   ─────────────────────────────────────────────
+   glow-dot-active/inactive     timeline dot states
+   glow-brand-underline         nav underline glow
+   glow-atmosphere-1/2          background shape ambient (accent-1 / accent-2)
+   glow-particle-accent/neutral background particle glows
+
+   Text glow
+   ─────────────────────────────────────────────
+   text-glow-editorial   text-shadow, theme-accent-2-vivid — used on editorial section numbers
+
+   Directional shadows  (have x/y offset)
+   ─────────────────────────────────────────────
+   shadow-accent-md/lg          card lift / hover lift
+   shadow-image-*               black depth for images (md, md-strong, lg, xl, 2xl)
+   shadow-showcase-badge*       badge lift + glow composite (normal / hover)
+   shadow-editorial-*           per-project image lift + brand haze
 
    Background fills
-   ──────────────────────────────────────────
-   bg-accent-soft         accent-1 at 10%
-   bg-surface-glass-sm/md/lg/xl   white fill 3–10%
+   ─────────────────────────────────────────────
+   bg-accent-soft     accent-1 10% fill
+   bg-fill-sm/md/lg/xl   white translucent fills — used for hover states on interactive elements
+                          NOT related to glass-surface-* (which is the glass material system)
 
    Focus ring
-   ──────────────────────────────────────────
-   focus-ring   keyboard focus ring (focus-visible only).
-                Cards surface focus via ArrowIndicator — never put focus-ring on a card container.
+   ─────────────────────────────────────────────
+   → Moved to utilities.css
 
    Glint sweep
-   ──────────────────────────────────────────
-   glass-glint / glass-glint-active   parked left / swept right
-   Usage: <div className="glass-glint group-hover:glass-glint-active" />
-   Requires overlay-full on parent. Transition is built in.
+   ─────────────────────────────────────────────
+   → Moved to surfaces.css (glass surface interaction)
 
    Migration
-   ──────────────────────────────────────────
+   ─────────────────────────────────────────────
    glow-primary            →  glow-accent-md
    glow-primary-soft       →  glow-accent-sm
    glow-accent-strong      →  glow-accent-lg
    bg-primary-soft         →  bg-accent-soft
-   shadow-particle-chrome  →  shadow-particle-neutral
-   shadow-atmosphere-blue  →  shadow-atmosphere-1
-   shadow-atmosphere-cyan  →  shadow-atmosphere-2
+   shadow-status-dot       →  glow-accent-lg  (was exact duplicate)
+   shadow-dot-active       →  glow-dot-active
+   shadow-dot-inactive     →  glow-dot-inactive
+   shadow-brand-underline  →  glow-brand-underline
+   shadow-atmosphere-blue  →  glow-atmosphere-1
+   shadow-atmosphere-cyan  →  glow-atmosphere-2
+   shadow-particle-chrome  →  glow-particle-neutral
+   shadow-particle-accent  →  glow-particle-accent
+   bg-surface-glass-sm/md/lg/xl  →  bg-fill-sm/md/lg/xl
 
    ================================================ */
 
@@ -52,12 +69,27 @@
 @utility glow-accent-md { box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent-1) 40%, transparent); }
 @utility glow-accent-lg { box-shadow: 0 0 15px var(--color-accent-1); }
 
+/* text-shadow variant — used on editorial large-type section numbers */
+.text-glow-editorial {
+  text-shadow: 0 0 40px color-mix(in srgb, var(--theme-accent-2-vivid) 50%, transparent);
+}
+
+
+/* ---- Glow Variants ---- */
+
+@utility glow-dot-active        { box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-1) 80%, transparent); }
+@utility glow-dot-inactive      { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-neutral-4) 80%, transparent); }
+@utility glow-brand-underline   { box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-1) 50%, transparent); }
+@utility glow-atmosphere-1      { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-1) 20%, transparent); }
+@utility glow-atmosphere-2      { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-2) 20%, transparent); }
+@utility glow-particle-accent   { box-shadow: 0 0  8px color-mix(in srgb, var(--color-accent-2) 40%, transparent); }
+@utility glow-particle-neutral  { box-shadow: 0 0  6px color-mix(in srgb, var(--color-neutral-3) 20%, transparent); }
+
 
 /* ---- Directional Shadows ---- */
 
-@utility shadow-accent-md { box-shadow: 0 15px 50px color-mix(in srgb, var(--color-accent-1) 35%, transparent); }
+@utility shadow-accent-md { box-shadow: 0 15px 50px color-mix(in srgb, var(--color-accent-1) 40%, transparent); }
 @utility shadow-accent-lg { box-shadow: 0 25px 70px color-mix(in srgb, var(--color-accent-1) 50%, transparent); }
-@utility shadow-brand-underline { box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent-1) 50%, transparent); }
 @utility shadow-image-md         { box-shadow: 0 20px 50px color-mix(in srgb, black 50%, transparent); }
 @utility shadow-image-md-strong  { box-shadow: 0 20px 50px color-mix(in srgb, black 60%, transparent); }
 @utility shadow-image-lg         { box-shadow: 0 25px 60px color-mix(in srgb, black 60%, transparent); }
@@ -65,37 +97,29 @@
 @utility shadow-image-2xl        { box-shadow: 0 30px 80px color-mix(in srgb, black 70%, transparent); }
 @utility shadow-showcase-badge {
   box-shadow:
-    0  8px 24px color-mix(in srgb, var(--color-accent-1) 35%, transparent),
-    0  0  16px color-mix(in srgb, var(--color-accent-1) 15%, transparent);
+    0  8px 24px color-mix(in srgb, var(--color-accent-1) 40%, transparent),
+    0  0  16px color-mix(in srgb, var(--color-accent-1) 20%, transparent);
 }
 @utility shadow-showcase-badge-hover {
   box-shadow:
-    0 10px 32px color-mix(in srgb, var(--color-accent-1) 55%, transparent),
-    0  0  24px color-mix(in srgb, var(--color-accent-1) 35%, transparent);
+    0 10px 32px color-mix(in srgb, var(--color-accent-1) 60%, transparent),
+    0  0  24px color-mix(in srgb, var(--color-accent-1) 40%, transparent);
 }
-@utility shadow-dot-active   { box-shadow: 0 0 12px color-mix(in srgb, var(--color-accent-1) 80%, transparent); }
-@utility shadow-dot-inactive { box-shadow: 0 0 2px 1px color-mix(in srgb, var(--color-neutral-4) 80%, transparent); }
-@utility shadow-status-dot   { box-shadow: 0 0 15px var(--color-accent-1); }
-@utility shadow-particle-accent { box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent-2) 40%, transparent); }
-@utility shadow-particle-neutral { box-shadow: 0 0 6px color-mix(in srgb, var(--color-neutral-3) 25%, transparent); }
-@utility shadow-atmosphere-1 { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-1) 30%, transparent); }
-@utility shadow-atmosphere-2 { box-shadow: 0 0 15px color-mix(in srgb, var(--color-accent-2) 30%, transparent); }
 
 
 /* ---- Background Fills ---- */
 
-@utility bg-accent-soft        { background: color-mix(in srgb, var(--color-accent-1) 10%, transparent); }
-@utility bg-surface-glass-sm   { background: color-mix(in srgb, white  3%, transparent); }
-@utility bg-surface-glass-md   { background: color-mix(in srgb, white  5%, transparent); }
-@utility bg-surface-glass-lg   { background: color-mix(in srgb, white  8%, transparent); }
-@utility bg-surface-glass-xl   { background: color-mix(in srgb, white 10%, transparent); }
+@utility bg-accent-soft  { background: color-mix(in srgb, var(--color-accent-1) 10%, transparent); }
+@utility bg-fill-sm      { background: color-mix(in srgb, white  3%, transparent); }
+@utility bg-fill-md      { background: color-mix(in srgb, white  5%, transparent); }
+@utility bg-fill-lg      { background: color-mix(in srgb, white  8%, transparent); }
+@utility bg-fill-xl      { background: color-mix(in srgb, white 10%, transparent); }
 
 
 /* ---- Per-project editorial shadows ---- */
 /*
-  Each class pairs a deep black lift shadow with a project-brand-coloured haze.
-  Brand colours are defined as --color-project-* in :root (theme.css),
-  making them overridable per-theme without touching this file.
+  Each class pairs a deep black lift shadow with a project-brand haze.
+  Brand colours defined as --color-project-* in :root (theme.css).
 */
 
 .shadow-editorial-bounce {
@@ -103,63 +127,28 @@
     0 30px 70px color-mix(in srgb, black 60%, transparent),
     0  0  60px color-mix(in srgb, var(--color-project-bounce) 20%, transparent);
 }
-
 .shadow-editorial-meco {
   box-shadow:
     0 25px 60px color-mix(in srgb, black 60%, transparent),
     0  0  50px color-mix(in srgb, var(--color-project-meco) 20%, transparent);
 }
-
 .shadow-editorial-tt {
   box-shadow:
     0 30px 70px color-mix(in srgb, black 60%, transparent),
     0  0  50px color-mix(in srgb, var(--color-project-tt) 20%, transparent);
 }
-
 .shadow-editorial-ebit {
   box-shadow:
     0 30px 80px color-mix(in srgb, black 70%, transparent),
     0  0  60px color-mix(in srgb, var(--color-project-ebit) 20%, transparent);
 }
-
 .shadow-editorial-ao {
   box-shadow:
     0 25px 60px color-mix(in srgb, black 60%, transparent),
     0  0  50px color-mix(in srgb, var(--color-project-ao) 20%, transparent);
 }
-
 .shadow-editorial-freelance {
   box-shadow:
     0 30px 80px color-mix(in srgb, black 70%, transparent),
     0  0  60px color-mix(in srgb, var(--color-project-freelance) 20%, transparent);
-}
-
-
-/* ---- Focus Ring ---- */
-
-/**
- * Applied to interactive elements (buttons, links) — activates on keyboard
- * navigation only (focus-visible). Cards surface focus feedback through
- * the ArrowIndicator button inside them; the container is not a focus target.
- */
-
-@utility focus-ring {
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black;
-}
-
-
-/* ---- Glint Sweep ---- */
-
-@utility glass-glint {
-  @apply overlay-full gradient-reflection-horizontal;
-  transform: translateX(-100%) skewX(-20deg);
-  will-change: transform;
-  transition-property: transform;
-  transition-timing-function: var(--tw-ease, ease-out);
-  transition-duration: var(--tw-duration, 200ms);
-  transition-delay: var(--tw-delay, 0ms);
-}
-
-@utility glass-glint-active {
-  transform: translateX(100%) skewX(-20deg);
 }

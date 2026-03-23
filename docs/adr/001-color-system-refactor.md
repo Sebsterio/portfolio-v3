@@ -41,3 +41,22 @@ Optionally override `--theme-accent-2-vivid` and `--color-project-*`. Nothing el
 
 ## Known deferred work
 `--background-image-gradient-*` tokens in `@theme` still contain hardcoded hex values. These are per-project brand assets, not theme palette — separate concern.
+
+---
+
+## Addendum — Effects & Gradients Cleanup
+
+**Enforced `glow-` vs `shadow-` naming split.** `glow-*` = zero-offset radial. `shadow-*` = offset directional. Previously mixed.
+
+**Renames:** `shadow-dot-active/inactive → glow-dot-active/inactive`, `shadow-brand-underline → glow-brand-underline`, `shadow-atmosphere-1/2 → glow-atmosphere-1/2`, `shadow-particle-accent/neutral → glow-particle-accent/neutral`. `shadow-status-dot` dropped (was exact duplicate of `glow-accent-lg`).
+
+**`bg-surface-glass-*` renamed to `bg-fill-*`** to eliminate collision with `glass-surface-*` (glass material system).
+
+**Class relocations:** `glass-glint/glass-glint-active` → `surfaces.css` (glass interaction belongs with glass system). `focus-ring` → `utilities.css` (interaction behaviour, not a visual effect). `text-glow-editorial` → `effects.css` (glow belongs with glow scale).
+
+**`decorative-outline-soft` → `decorative-outline-mid`** to disambiguate from `decorative-outline-faint` (two near-synonyms at 8%/10%).
+
+**`gradient-title-highlight` → `gradient-accent-sweep`** to remove use-case encoding from the gradient layer.
+
+**Alpha consolidation in effects.css:** ambient glows at 20%, standard at 40%, strong at 50–60%. Removed arbitrary intermediate steps (25%, 30%, 35%, 55%).
+

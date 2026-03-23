@@ -11,7 +11,7 @@
    ─────
    gradient-primary           accent-1 → accent-2, br
    gradient-primary-soft      accent-1/30 → accent-2/20, br
-   gradient-title-highlight   accent-1 → accent-2, lr (animated)
+   gradient-accent-sweep      accent-1 → accent-2, lr + animated bg-size sweep
    gradient-brand-logo        neutral-1 → accent-1, 135deg
    gradient-brand-underline   accent-1 → accent-2, horizontal
    gradient-number-highlight  accent-2 → white, br
@@ -37,7 +37,7 @@
 
    Migration
    ─────────
-   gradient-reflection-vertical        →  gradient-reflection-horizontal
+   gradient-title-highlight            →  gradient-accent-sweep
    gradient-reflection-vertical-strong →  gradient-reflection-horizontal-strong
 
    ================================================ */
@@ -53,7 +53,7 @@
   @apply bg-linear-to-br from-accent-1/30 to-accent-2/20;
 }
 
-@utility gradient-title-highlight {
+@utility gradient-accent-sweep {
   @apply bg-linear-to-r from-accent-1 to-accent-2;
 }
 

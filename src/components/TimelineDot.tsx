@@ -13,8 +13,8 @@ const sizeClasses = {
 };
 
 const stateClasses = {
-	active: 'bg-accent shadow-dot-active',
-	default: 'bg-neutral-4 shadow-dot-inactive',
+	active: 'bg-accent glow-dot-active',
+	default: 'bg-neutral-4 glow-dot-inactive',
 };
 
 export const TimelineDot = ({ active = false, size = 'lg', className }: TimelineDotProps) => {

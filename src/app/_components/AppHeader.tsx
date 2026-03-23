@@ -56,7 +56,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 								>
 									{item.label}
 									{!isCurrent && (
-										<span className='gradient-brand-underline shadow-brand-underline absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full' />
+										<span className='gradient-brand-underline glow-brand-underline absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full' />
 									)}
 								</Link>
 							</li>

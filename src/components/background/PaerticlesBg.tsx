@@ -8,7 +8,7 @@ export function PaerticlesBg() {
 					key={i}
 					className={cn(
 						'absolute h-[3px] w-[3px] animate-quantum-float rounded-full opacity-0',
-						i % 3 === 0 ? 'bg-accent-2 shadow-particle-accent' : 'bg-neutral-3 shadow-particle-neutral',
+						i % 3 === 0 ? 'bg-accent-2 glow-particle-accent' : 'bg-neutral-3 glow-particle-neutral',
 					)}
 					style={{
 						left: `${(i * 7) % 100}%`,

@@ -30,9 +30,18 @@
    ──────────────────────────
    Apply to overlay-full children rendered BEFORE content (DOM order = z-order).
    glass-reflection    135deg gloss sheen
-   glass-edge-glow     top-edge accent streak
+   glass-edge-glow     top-edge accent streak (90deg accent sweep + blur; see also
+                       gradient-reflection-horizontal-strong in gradients.css for the
+                       unblurred equivalent)
    glass-panel-accents dual corner accent blobs
    glass-noise         grain texture
+
+   Glass interaction
+   ─────────────────
+   glass-glint          overlay parked off-screen left (resting)
+   glass-glint-active   overlay swept off-screen right (active)
+   Usage: <div className="glass-glint group-hover:glass-glint-active" />
+   Requires overlay-full on parent. Transition built in.
 
    Theme override
    ──────────────
@@ -163,4 +172,21 @@
 .glass-noise {
   opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* ---- Glass Interaction ---- */
+
+@utility glass-glint {
+  @apply overlay-full gradient-reflection-horizontal;
+  transform: translateX(-100%) skewX(-20deg);
+  will-change: transform;
+  transition-property: transform;
+  transition-timing-function: var(--tw-ease, ease-out);
+  transition-duration: var(--tw-duration, 200ms);
+  transition-delay: var(--tw-delay, 0ms);
+}
+
+@utility glass-glint-active {
+  transform: translateX(100%) skewX(-20deg);
 }
