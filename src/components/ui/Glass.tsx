@@ -24,10 +24,10 @@ export function Glass({ children, className, style, texture, glint, accents, ref
 
 			{accents && <div className='glass-panel-accents overlay-full' aria-hidden />}
 			{reflection && <div className='glass-reflection overlay-full' aria-hidden />}
-			{edgeGlow && <div className='glass-edge-glow overlay top-0 left-[15%] h-0.5 w-[70%]' aria-hidden />}
 
 			{children}
 
+			{edgeGlow && <div className='glass-edge-glow overlay top-0 left-[15%] h-0.5 w-[70%]' aria-hidden />}
 			{glint && <div className='glass-glint overlay-full group-hover:glass-glint-active' aria-hidden />}
 		</div>
 	);

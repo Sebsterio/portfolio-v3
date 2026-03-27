@@ -109,3 +109,21 @@
    ------------------------------------------------
 ::view-transition-new(c-page):only-child { animation-name: vt-slide-in-b; }
 ::view-transition-old(c-page):only-child { animation-name: vt-slide-to-b; } */
+
+
+
+/* ------------------------------------------------
+   Compositing safety — glass surfaces during transitions
+   ------------------------------------------------
+
+   TransitionProvider sets data-transitioning on <html> while a view transition
+   is active. Live elements are hidden behind VT pseudo-elements during animation
+   so disabling backdrop-filter here is invisible to the user, but it eliminates
+   any residual per-frame recompositing of blurred layers on mobile GPUs.
+   ------------------------------------------------ */
+
+/* [data-transitioning] .glass-surface-1::before,
+[data-transitioning] .glass-surface-2::before,
+[data-transitioning] .glass-surface-3::before {
+  backdrop-filter: none;
+} */

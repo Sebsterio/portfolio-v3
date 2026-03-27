@@ -187,11 +187,9 @@
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--color-accent-1) 75%, transparent),
+    color-mix(in srgb, var(--color-accent-1) 20%, transparent),
     transparent
   );
-  filter:  blur(2px);
-  opacity: 0.45;
 }
 
 /* Dual corner reflections. Radial gradients produce softer blobs than linear wedges at panel scale. */
@@ -202,8 +200,10 @@
 }
 
 .glass-noise {
+	background-image: url('/assets/textures/noise.webp');	/* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); */
+  background-size: 200px 200px;
+  background-repeat: repeat;
   opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 
@@ -212,7 +212,6 @@
 @utility glass-glint {
   @apply overlay-full gradient-reflection-horizontal;
   transform: translateX(-100%) skewX(-20deg);
-  will-change: transform;
   transition-property: transform;
   transition-timing-function: var(--tw-ease, ease-out);
   transition-duration: var(--tw-duration, 200ms);
