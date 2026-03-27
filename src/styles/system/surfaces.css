@@ -52,6 +52,18 @@
 
    ================================================ */
 
+@layer base {
+  @property --glass-curvature {
+    syntax: "<shadow>";
+    inherits: false;
+    initial-value: none;
+  }
+	@property --glass-elevation {
+    syntax: "<shadow>";
+    inherits: false;
+    initial-value: none;
+  }
+}
 
 /* ---- Surface ---- */
 
@@ -149,15 +161,14 @@
     0  1px  3px  color-mix(in srgb, black 40%, transparent),
     0 12px 40px  color-mix(in srgb, black 40%, transparent),
     0  4px 16px  color-mix(in srgb, var(--color-accent-1)  7%, transparent);
-  box-shadow: var(--glass-elevation), var(--glass-curvature);
-}
+box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
 
 @utility glass-elevation-2 {
   --glass-elevation:
     0  2px  6px  color-mix(in srgb, black 50%, transparent),
     0 24px 64px  color-mix(in srgb, black 50%, transparent),
     0  8px 32px  color-mix(in srgb, var(--color-accent-1) 20%, transparent);
-  box-shadow: var(--glass-elevation), var(--glass-curvature);
+  box-shadow: var(--glass-elevation), var(--glass-curvature, none);
 }
 
 
