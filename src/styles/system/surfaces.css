@@ -9,8 +9,10 @@
    3   strong     modals, drawers, popovers
 
    Each surface utility sets:
-     background + backdrop-filter + border  (material)
-     --glass-curvature                      (inset edge depth)
+     border + --glass-curvature             (on the element)
+     background + backdrop-filter           (on ::before — keeps the VT-named element
+                                             filter-free so view-transition snapshots
+                                             produce a clean flat raster)
    Border uses longhand so border-color can be overridden at call-site.
 
    Elevation utilities  (glass-elevation-N)
@@ -57,9 +59,21 @@
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material */
-  background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
-  backdrop-filter: blur(14px);
+  /* Material — background and backdrop-filter live on ::before so that any
+     element with a view-transition-name has no filter on itself. This allows
+     the VT snapshot to be captured as a clean flat raster; the blurred
+     appearance is baked in at capture time rather than recomposited per frame. */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
+    backdrop-filter: blur(14px);
+  }
+  /* Border */
   border-width:    1px;
   border-style:    solid;
   border-color:    color-mix(in srgb, white 6%, transparent);
@@ -74,9 +88,18 @@
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material */
-  background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
-  backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
+  /* Material — see glass-surface-1 for ::before rationale */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
+    backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
+  }
+  /* Border */
   border-width:    1px;
   border-style:    solid;
   border-color:    color-mix(in srgb, white 8%, transparent);
@@ -91,9 +114,18 @@
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material */
-  background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
-  backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
+  /* Material — see glass-surface-1 for ::before rationale */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
+    backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
+  }
+  /* Border */
   border-width:    1px;
   border-style:    solid;
   border-color:    color-mix(in srgb, white 10%, transparent);
