@@ -168,14 +168,42 @@
 .glass-radius-3 { @apply rounded-[28px]; }
 
 
-/* ---- Decorative Overlays ---- */
+/* ---- Decor canvas — reads all named slots ---- */
 /*
-  Applied to overlay-full children rendered BEFORE content in DOM.
-  DOM order ensures they sit behind content without z-index.
+  Applied to the Glass root when any decor prop is active.
+  Defines exactly 4 background-image slots so background-position
+  and background-size can address each layer unambiguously.
+  Unset slots fall back to `none` (a valid, transparent bg layer).
 */
+@utility glass-decor {
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image:
+      var(--tw-glass-reflection, none),
+      var(--tw-glass-accent-tr, none),
+      var(--tw-glass-accent-bl, none),
+      var(--tw-glass-edge, none);
+    background-position:
+      center,
+      center,
+      center,
+      15% 0;
+    background-size:
+      auto,
+      auto,
+      auto,
+      70% 2px;
+    background-repeat: no-repeat;
+  }
+}
 
-.glass-reflection {
-  background: linear-gradient(
+@utility glass-reflection {
+  --tw-glass-reflection: linear-gradient(
     135deg,
     color-mix(in srgb, white 10%, transparent)  0%,
     color-mix(in srgb, white  4%, transparent) 24%,
@@ -183,8 +211,21 @@
   );
 }
 
-.glass-edge-glow {
-  background: linear-gradient(
+@utility glass-accents {
+  --tw-glass-accent-tr: radial-gradient(
+    ellipse 40% 40% at 100% 0%,
+    color-mix(in srgb, var(--color-accent-1) 4%, transparent),
+    transparent
+  );
+  --tw-glass-accent-bl: radial-gradient(
+    ellipse 40% 40% at 0% 100%,
+    color-mix(in srgb, var(--color-accent-2) 3%, transparent),
+    transparent
+  );
+}
+
+@utility glass-edge {
+  --tw-glass-edge: linear-gradient(
     90deg,
     transparent,
     color-mix(in srgb, var(--color-accent-1) 20%, transparent),
@@ -192,15 +233,10 @@
   );
 }
 
-/* Dual corner reflections. Radial gradients produce softer blobs than linear wedges at panel scale. */
-.glass-panel-accents {
-  background:
-    radial-gradient(ellipse 40% 40% at 100% 0%,   color-mix(in srgb, var(--color-accent-1)  4%, transparent), transparent),
-    radial-gradient(ellipse 40% 40% at 0%   100%, color-mix(in srgb, var(--color-accent-2)  3%, transparent), transparent);
-}
+/* ---- Glass Texture ---- */
 
-.glass-noise {
-	background-image: url('/assets/textures/noise.webp');	/* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); */
+@utility glass-noise {
+	background-image: url('/assets/textures/noise.webp');	
   background-size: 200px 200px;
   background-repeat: repeat;
   opacity: 0.025;
