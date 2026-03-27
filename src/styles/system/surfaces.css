@@ -148,6 +148,13 @@
   box-shadow: var(--glass-curvature);
 }
 
+[data-transitioning] .glass-surface-1::before,
+[data-transitioning] .glass-surface-2::before,
+[data-transitioning] .glass-surface-3::before {
+  backdrop-filter: none;
+}
+
+
 
 /* ---- Elevation ---- */
 /*
@@ -253,6 +260,9 @@ box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
   opacity: 0.025;
 }
 
+[data-transitioning] .glass-noise {
+  display: none;
+}
 
 /* ---- Glass Interaction ---- */
 
@@ -267,4 +277,8 @@ box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
 
 @utility glass-glint-active {
   transform: translateX(100%) skewX(-20deg);
+}
+
+[data-transitioning] .glass-glint {
+  display: none;
 }
