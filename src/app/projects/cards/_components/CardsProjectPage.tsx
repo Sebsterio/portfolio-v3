@@ -67,7 +67,7 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 			type='button'
 			onClick={onClick}
 			className={cn(
-				'h-12 w-12 rounded-full md:h-14 md:w-14',
+				'h-12 w-12 rounded-full select-none md:h-14 md:w-14',
 				'flex items-center justify-center',
 				'bg-fill-md hover:bg-fill-xl',
 				'transition-transform duration-300 hover:scale-110',
@@ -88,7 +88,7 @@ type ProjectIndicatorsProps = {
 
 function ProjectIndicators({ projects, currentIndex, onNavigate, className }: ProjectIndicatorsProps) {
 	return (
-		<div className={cn('flex items-center gap-2', className)}>
+		<div className={cn('flex items-center gap-2 select-none', className)}>
 			{projects.map((item, index) => (
 				<button
 					type='button'
@@ -142,7 +142,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				<div className='space-y-4 pb-2'>
 					<p className='text-base leading-relaxed text-tertiary md:text-xl'>{project.summary}</p>
 					<ProjectTags size='lg' tags={project.tags} />
-					<p className='animate-pulse text-sm text-accent'>Flip card →</p>
+					<p className='animate-pulse text-sm text-accent select-none'>Flip card →</p>
 				</div>
 			</div>
 		</Panel>
