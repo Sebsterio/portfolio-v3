@@ -86,12 +86,17 @@
   border-width:    1px;
   border-style:    solid;
   border-color:    color-mix(in srgb, white 6%, transparent);
-  /* Curvature — inset edge depth, used by elevation utilities */
+  /* Curvature */
   --glass-curvature:
     inset 0  1px 0 color-mix(in srgb, white 9%, transparent),
     inset 0 -1px 0 color-mix(in srgb, white 3%, transparent);
-  box-shadow: var(--glass-curvature);
+	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
+
+[data-transitioning] .glass-surface-1 {
+	background:      var(--theme-surface);
+  backdrop-filter: none;
+} 
 
 @utility glass-surface-2 {
   /* Structural */
@@ -108,8 +113,13 @@
   --glass-curvature:
     inset 0  1px 0 color-mix(in srgb, white 12%, transparent),
     inset 0 -1px 0 color-mix(in srgb, white  4%, transparent);
-  box-shadow: var(--glass-curvature);
+	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
+
+[data-transitioning] .glass-surface-2 {
+	background:      var(--theme-surface);
+  backdrop-filter: none;
+} 
 
 @utility glass-surface-3 { /* UNUSED */
   /* Structural */
@@ -126,14 +136,13 @@
   --glass-curvature:
     inset 0  1px 0 color-mix(in srgb, white 15%, transparent),
     inset 0 -1px 0 color-mix(in srgb, white  5%, transparent);
-  box-shadow: var(--glass-curvature);
+	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
 
-/* [data-transitioning] .glass-surface-1,
-[data-transitioning] .glass-surface-2,
 [data-transitioning] .glass-surface-3 {
+	background:      var(--theme-surface);
   backdrop-filter: none;
-} */
+} 
 
 
 /* ---- Elevation ---- */
@@ -194,6 +203,12 @@
   }
 }
 
+@media (width < --breakpoint-md) {
+  [data-transitioning] .glass-decor::after {
+    display: none;
+  }
+}
+
 @utility glass-reflection {
   --tw-glass-reflection: linear-gradient(
     135deg,
@@ -235,9 +250,11 @@
   opacity: 0.025;
 }
 
-/* [data-transitioning] .glass-noise {
-  display: none;
-} */
+@media (width < --breakpoint-md) {
+  [data-transitioning] .glass-noise {
+    display: none;
+  }
+}
 
 
 /* ---- Glass Interaction ---- */
@@ -257,4 +274,11 @@
 
 [data-transitioning] .glass-glint {
   display: none;
+}
+
+@media (width < --breakpoint-md) {
+  .glass-noise,
+	.glass-glint-active {
+    display: none;
+  }
 }
