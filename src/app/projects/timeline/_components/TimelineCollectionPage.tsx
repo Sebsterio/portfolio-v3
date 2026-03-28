@@ -38,7 +38,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Desktop Narrow ────────────────────────────────────── */}
-			<div className='relative mr-8 hidden md:block xl:hidden'>
+			<div className='relative mr-8 hidden lg:block xl:hidden'>
 				<VT classes='vt-t-list'>
 					<TimelineLine className='left-8' />
 					<div className='space-y-12'>
@@ -55,7 +55,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Mobile ─────────────────────────────────────────────── */}
-			<div className='relative md:hidden'>
+			<div className='relative lg:hidden'>
 				<TimelineLine position='left' />
 				<div className='stack-md'>
 					{projects.map((project) => (

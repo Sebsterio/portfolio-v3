@@ -14,8 +14,6 @@ import { ImpactList } from '@/components/ImpactList';
 import { CaseStudySection } from '@/components/CaseStudySection';
 import { VT } from '@/lib/transitions/components/TransitionSlot';
 
-// import { PROJECT_PAGE_TITLE_ID } from '../../_config';
-
 type TimelineProjectPageProps = {
 	project: Project;
 	allProjects: Project[];
