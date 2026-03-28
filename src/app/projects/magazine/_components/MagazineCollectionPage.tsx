@@ -6,6 +6,7 @@ import { MagazineSectionD } from './MagazineSectionD';
 import { MagazineSectionE } from './MagazineSectionE';
 import { MagazineSectionMulti } from './MagazineSectionMulti';
 import { getProjectAnchorId } from '../../_lib';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
@@ -29,82 +30,84 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 	const freelanceProjects = projects.filter((p) => p.freelance);
 
 	return (
-		<div className='relative pt-20 vt-m-page'>
-			<MagazineCollectionPageDecorations />
+		<VT classes='vt-m-page'>
+			<div className='relative pt-20'>
+				<MagazineCollectionPageDecorations />
 
-			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-36'>
-				{projects.map(({ id, company, role, roleDetail, label, location, images, ...project }, index) =>
-					id === 'bounce' ? (
-						<MagazineSectionA
-							{...project}
-							key={id}
-							sectionId={getProjectAnchorId(id)}
-							number={getNumberProp(index)}
-							megaTitle='BOUNCE'
-							title={company}
-							subtitle={`${role} · ${label}`}
-							imageMain={images.promo[0]}
-							imageAside={images.promo[1]}
-						/>
-					) : id === 'meco' ? (
-						<MagazineSectionB
-							{...project}
-							key={id}
-							sectionId={getProjectAnchorId(id)}
-							number={getNumberProp(index)}
-							megaTitle='MECO'
-							title={company}
-							preTitle={`${label} · ${location}`}
-							subtitle={role}
-						/>
-					) : id === 'tt' ? (
-						<MagazineSectionC
-							{...project}
-							key={id}
-							sectionId={getProjectAnchorId(id)}
-							number={getNumberProp(index)}
-							title={company}
-							subTitle={`${role} · ${label}`}
-							imageMain={images.promo[0]}
-						/>
-					) : id === 'ebit' ? (
-						<MagazineSectionD
-							{...project}
-							key={id}
-							sectionId={getProjectAnchorId(id)}
-							number={getNumberProp(index)}
-							title={company}
-							subtitle={`${role} · ${label}`}
-							imageMain={images.promo[0]}
-							imageAside={images.promo[1]}
-						/>
-					) : id === 'ao' ? (
-						<MagazineSectionE
-							{...project}
-							key={id}
-							sectionId={getProjectAnchorId(id)}
-							number={getNumberProp(index)}
-							megaTitle='AO.COM'
-							preTitle={label}
-							title={company}
-							subtitle={`${role} · ${roleDetail}`}
-							imageMain={images.promo[0]}
-							imageAside={images.promo[1]}
-						/>
-					) : null,
-				)}
-				<MagazineSectionMulti
-					number={`${getNumberProp(freelanceIndex)} — FREELANCE`}
-					title='Freelance Projects'
-					subtitle='Web Developer & Designer · Various Clients'
-					entries={freelanceProjects.map(({ id, company, description, images }) => ({
-						sectionId: id,
-						title: company,
-						description,
-						image: images.promo[0],
-					}))}
-				/>
+				<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-36'>
+					{projects.map(({ id, company, role, roleDetail, label, location, images, ...project }, index) =>
+						id === 'bounce' ? (
+							<MagazineSectionA
+								{...project}
+								key={id}
+								sectionId={getProjectAnchorId(id)}
+								number={getNumberProp(index)}
+								megaTitle='BOUNCE'
+								title={company}
+								subtitle={`${role} · ${label}`}
+								imageMain={images.promo[0]}
+								imageAside={images.promo[1]}
+							/>
+						) : id === 'meco' ? (
+							<MagazineSectionB
+								{...project}
+								key={id}
+								sectionId={getProjectAnchorId(id)}
+								number={getNumberProp(index)}
+								megaTitle='MECO'
+								title={company}
+								preTitle={`${label} · ${location}`}
+								subtitle={role}
+							/>
+						) : id === 'tt' ? (
+							<MagazineSectionC
+								{...project}
+								key={id}
+								sectionId={getProjectAnchorId(id)}
+								number={getNumberProp(index)}
+								title={company}
+								subTitle={`${role} · ${label}`}
+								imageMain={images.promo[0]}
+							/>
+						) : id === 'ebit' ? (
+							<MagazineSectionD
+								{...project}
+								key={id}
+								sectionId={getProjectAnchorId(id)}
+								number={getNumberProp(index)}
+								title={company}
+								subtitle={`${role} · ${label}`}
+								imageMain={images.promo[0]}
+								imageAside={images.promo[1]}
+							/>
+						) : id === 'ao' ? (
+							<MagazineSectionE
+								{...project}
+								key={id}
+								sectionId={getProjectAnchorId(id)}
+								number={getNumberProp(index)}
+								megaTitle='AO.COM'
+								preTitle={label}
+								title={company}
+								subtitle={`${role} · ${roleDetail}`}
+								imageMain={images.promo[0]}
+								imageAside={images.promo[1]}
+							/>
+						) : null,
+					)}
+					<MagazineSectionMulti
+						number={`${getNumberProp(freelanceIndex)} — FREELANCE`}
+						title='Freelance Projects'
+						subtitle='Web Developer & Designer · Various Clients'
+						entries={freelanceProjects.map(({ id, company, description, images }) => ({
+							sectionId: id,
+							title: company,
+							description,
+							image: images.promo[0],
+						}))}
+					/>
+				</div>
 			</div>
-		</div>
+		</VT>
 	);
 };

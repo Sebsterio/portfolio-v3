@@ -3,6 +3,7 @@ import { TextBlock, Title } from '@/components/typography';
 import { DisplayModeSwitcher } from './_components/DisplayModeSwitcher';
 import { PROJECT_PAGE_TITLE_ID } from './_config';
 import { header } from './_content';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type ProjectsLayoutProps = {
 	children: React.ReactNode;
@@ -10,17 +11,19 @@ type ProjectsLayoutProps = {
 
 export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 	return (
-		<div className='stack-xl w-full'>
-			<div className='flex flex-col items-center stack-lg vt-p-header'>
-				<div className='stack-sm text-center' id={PROJECT_PAGE_TITLE_ID}>
-					<Title variant='projects'>{header.title}</Title>
-					<TextBlock>{header.subtitle}</TextBlock>
-				</div>
+		<div className='w-full stack-xl'>
+			<VT bind classes='vt-p-header'>
+				<div className='flex flex-col items-center stack-lg'>
+					<div className='stack-sm text-center' id={PROJECT_PAGE_TITLE_ID}>
+						<Title variant='projects'>{header.title}</Title>
+						<TextBlock>{header.subtitle}</TextBlock>
+					</div>
 
-				<Suspense fallback={<div className='h-11 w-85' />}>
-					<DisplayModeSwitcher />
-				</Suspense>
-			</div>
+					<Suspense fallback={<div className='h-11 w-85' />}>
+						<DisplayModeSwitcher />
+					</Suspense>
+				</div>
+			</VT>
 
 			<div className='relative w-full'>{children}</div>
 		</div>

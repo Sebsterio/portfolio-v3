@@ -30,7 +30,7 @@
 
    Decorative overlay classes
    ──────────────────────────
-   Apply to overlay-full children rendered BEFORE content (DOM order = z-order).
+   Apply to children rendered BEFORE content (DOM order = z-order).
    glass-reflection    135deg gloss sheen
    glass-edge-glow     top-edge accent streak (90deg accent sweep + blur; see also
                        gradient-reflection-horizontal-strong in gradients.css for the
@@ -43,7 +43,7 @@
    glass-glint          overlay parked off-screen left (resting)
    glass-glint-active   overlay swept off-screen right (active)
    Usage: <div className="glass-glint group-hover:glass-glint-active" />
-   Requires overlay-full on parent. Transition built in.
+   Requires on parent. Transition built in.
 
    Theme override
    ──────────────
@@ -65,26 +65,23 @@
   }
 }
 
+
+/* ---- Radius ---- */
+
+.glass-radius-1 { @apply rounded-2xl; }
+.glass-radius-2 { @apply rounded-3xl md:rounded-4xl; }
+.glass-radius-3 { @apply rounded-[28px]; }
+
+
 /* ---- Surface ---- */
 
 @utility glass-surface-1 {
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material — background and backdrop-filter live on ::before so that any
-     element with a view-transition-name has no filter on itself. This allows
-     the VT snapshot to be captured as a clean flat raster; the blurred
-     appearance is baked in at capture time rather than recomposited per frame. */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-    background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
-    backdrop-filter: blur(14px);
-  }
+	/* Material */
+	background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
+	backdrop-filter: blur(4px);
   /* Border */
   border-width:    1px;
   border-style:    solid;
@@ -100,17 +97,9 @@
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material — see glass-surface-1 for ::before rationale */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-    background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
-    backdrop-filter: blur(28px) saturate(1.2) brightness(1.04);
-  }
+  /* Material */
+	background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
+	backdrop-filter: blur(3px);
   /* Border */
   border-width:    1px;
   border-style:    solid;
@@ -122,21 +111,13 @@
   box-shadow: var(--glass-curvature);
 }
 
-@utility glass-surface-3 {
+@utility glass-surface-3 { /* UNUSED */
   /* Structural */
   position: relative;
   overflow: hidden;
-  /* Material — see glass-surface-1 for ::before rationale */
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-    background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
-    backdrop-filter: blur(48px) saturate(1.35) brightness(1.02);
-  }
+  /* Material */
+	background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
+	backdrop-filter: blur(1px);
   /* Border */
   border-width:    1px;
   border-style:    solid;
@@ -148,12 +129,11 @@
   box-shadow: var(--glass-curvature);
 }
 
-[data-transitioning] .glass-surface-1::before,
-[data-transitioning] .glass-surface-2::before,
-[data-transitioning] .glass-surface-3::before {
+/* [data-transitioning] .glass-surface-1,
+[data-transitioning] .glass-surface-2,
+[data-transitioning] .glass-surface-3 {
   backdrop-filter: none;
-}
-
+} */
 
 
 /* ---- Elevation ---- */
@@ -168,7 +148,8 @@
     0  1px  3px  color-mix(in srgb, black 40%, transparent),
     0 12px 40px  color-mix(in srgb, black 40%, transparent),
     0  4px 16px  color-mix(in srgb, var(--color-accent-1)  7%, transparent);
-box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
+	box-shadow: var(--glass-elevation), var(--glass-curvature, none);
+}
 
 @utility glass-elevation-2 {
   --glass-elevation:
@@ -177,13 +158,6 @@ box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
     0  8px 32px  color-mix(in srgb, var(--color-accent-1) 20%, transparent);
   box-shadow: var(--glass-elevation), var(--glass-curvature, none);
 }
-
-
-/* ---- Radius ---- */
-
-.glass-radius-1 { @apply rounded-2xl; }
-.glass-radius-2 { @apply rounded-3xl md:rounded-4xl; }
-.glass-radius-3 { @apply rounded-[28px]; }
 
 
 /* ---- Decor canvas — reads all named slots ---- */
@@ -251,6 +225,7 @@ box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
   );
 }
 
+
 /* ---- Glass Texture ---- */
 
 @utility glass-noise {
@@ -260,14 +235,15 @@ box-shadow: var(--glass-elevation), var(--glass-curvature, none);}
   opacity: 0.025;
 }
 
-[data-transitioning] .glass-noise {
+/* [data-transitioning] .glass-noise {
   display: none;
-}
+} */
+
 
 /* ---- Glass Interaction ---- */
 
 @utility glass-glint {
-  @apply overlay-full gradient-reflection-horizontal;
+  @apply gradient-reflection-horizontal;
   transform: translateX(-100%) skewX(-20deg);
   transition-property: transform;
   transition-timing-function: var(--tw-ease, ease-out);

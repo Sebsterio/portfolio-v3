@@ -5,6 +5,7 @@ import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } fro
 
 import { copy, buttons, showcaseItems } from './_content';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type HomePageProps = Record<string, never>;
 
@@ -14,31 +15,38 @@ export default function HomePage({}: HomePageProps) {
 	return (
 		<div className={cn('grid w-full grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
 			{/* Left Column - Hero Content */}
+
 			<div className='pt-4 md:pt-6'>
-				<StatusBadge className='mb-7 vt-top md:mb-9'>{copy.superscript}</StatusBadge>
+				<VT classes='vt-top'>
+					<StatusBadge className='mb-7 md:mb-9'>{copy.superscript}</StatusBadge>
+				</VT>
+				<VT classes='vt-left'>
+					<div className='stack-2xl'>
+						<Title variant='hero'>{copy.title}</Title>
 
-				<div className='stack-2xl vt-left'>
-					<Title variant='hero'>{copy.title}</Title>
+						<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
-					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
-
-					<div className='flex flex-wrap gap-5'>
-						<Button href={buttons.primary.href} variant='cta' size='lg'>
-							{buttons.primary.text}
-						</Button>
-						<Button href={buttons.secondary.href} variant='secondary' size='lg'>
-							{buttons.secondary.text}
-						</Button>
+						<div className='flex flex-wrap gap-5'>
+							<Button href={buttons.primary.href} variant='cta' size='lg'>
+								{buttons.primary.text}
+							</Button>
+							<Button href={buttons.secondary.href} variant='secondary' size='lg'>
+								{buttons.secondary.text}
+							</Button>
+						</div>
 					</div>
-				</div>
+				</VT>
 			</div>
 
 			{/* Right Column - Showcase Cards */}
-			<div className={cn('vt-right lg:vt-main', 'w-full space-y-4 md:space-y-6')}>
-				{showcaseItems.map(({ id, icon, title, description }) => (
-					<ShowcaseCard key={id} icon={icon} title={title} description={description} />
-				))}
-			</div>
+
+			<VT classes='vt-right lg:vt-main'>
+				<div className='w-full space-y-4 md:space-y-6'>
+					{showcaseItems.map(({ id, icon, title, description }) => (
+						<ShowcaseCard key={id} icon={icon} title={title} description={description} />
+					))}
+				</div>
+			</VT>
 		</div>
 	);
 }

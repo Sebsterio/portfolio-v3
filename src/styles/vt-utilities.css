@@ -2,6 +2,8 @@
    View Transition — Named Slots
    ================================================ */
 
+@utility vt-none   { view-transition-name: none;   }
+
 /* --- Generic Directions --- */
 
 @utility vt-main   { view-transition-name: main;   }

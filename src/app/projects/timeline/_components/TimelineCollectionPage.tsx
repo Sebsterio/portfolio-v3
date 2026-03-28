@@ -8,6 +8,7 @@ import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
@@ -20,33 +21,37 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	return (
 		<div className='w-full stack-lg'>
 			{/* Desktop Wide ─────────────────────────────────────── */}
-			<div className='relative mr-32 ml-8 hidden vt-t-list xl:block'>
-				<TimelineLine position='right' />
-				<div className='space-y-12'>
-					{projects.map((project) => (
-						<div key={project.id} className='relative flex items-start gap-8'>
-							<TimelineDateWide period={project.period} />
-							<TimelineCard onClick={() => go(project)} className='flex-1'>
-								<TimelineCardContent project={project} limit={4} />
-							</TimelineCard>
-						</div>
-					))}
-				</div>
+			<div className='relative mr-32 ml-8 hidden xl:block'>
+				<VT classes='xl:vt-t-list'>
+					<TimelineLine position='right' />
+					<div className='space-y-12'>
+						{projects.map((project) => (
+							<div key={project.id} className='relative flex items-start gap-8'>
+								<TimelineDateWide period={project.period} />
+								<TimelineCard onClick={() => go(project)} className='flex-1'>
+									<TimelineCardContent project={project} limit={4} />
+								</TimelineCard>
+							</div>
+						))}
+					</div>
+				</VT>
 			</div>
 
 			{/* Desktop Narrow ────────────────────────────────────── */}
-			<div className='relative mr-8 hidden vt-t-list md:block xl:hidden'>
-				<TimelineLine className='left-8' />
-				<div className='space-y-12'>
-					{projects.map((project) => (
-						<div key={project.id} className='relative flex gap-8'>
-							<TimelineDateNarrow period={project.period} />
-							<TimelineCard onClick={() => go(project)} className='w-full'>
-								<TimelineCardContent project={project} limit={4} />
-							</TimelineCard>
-						</div>
-					))}
-				</div>
+			<div className='relative mr-8 hidden md:block xl:hidden'>
+				<VT classes='md:vt-t-list xl:vt-none'>
+					<TimelineLine className='left-8' />
+					<div className='space-y-12'>
+						{projects.map((project) => (
+							<div key={project.id} className='relative flex gap-8'>
+								<TimelineDateNarrow period={project.period} />
+								<TimelineCard onClick={() => go(project)} className='w-full'>
+									<TimelineCardContent project={project} limit={4} />
+								</TimelineCard>
+							</div>
+						))}
+					</div>
+				</VT>
 			</div>
 
 			{/* Mobile ─────────────────────────────────────────────── */}
@@ -56,9 +61,11 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<TimelineCard onClick={() => go(project)} className='mr-2 p-6' style={{ viewTransitionName: `project-card-${project.id}` }}>
-								<TimelineCardContent project={project} limit={4} />
-							</TimelineCard>
+							<VT bind name={`project-card-${project.id}`}>
+								<TimelineCard onClick={() => go(project)} className='mr-2 p-6'>
+									<TimelineCardContent project={project} limit={4} />
+								</TimelineCard>
+							</VT>
 						</div>
 					))}
 				</div>
@@ -99,14 +106,11 @@ const TimelineDateMobile = ({ period }: { period: string }) => (
 
 const TimelineCardContent = ({ project, limit = 4 }: { project: Project; limit?: number }) => (
 	<div className='relative space-y-3 md:space-y-4'>
-		<InlineList.Div className='cluster-sm hidden text-sm md:flex text-subtle'>{[project.location, project.role]}</InlineList.Div>
-		<h3 className='heading-2 text-primary md:heading-1'>{project.title}</h3>
-		<p className='text-tertiary md:text-secondary md:text-lg'>{project.company}</p>
-		<p className='text-muted text-sm leading-relaxed md:text-base'>{project.summary}</p>
+		<InlineList.Div className='cluster-sm hidden text-sm text-subtle md:flex'>{[project.location, project.role]}</InlineList.Div>
+		<h3 className='heading-2 md:heading-1 text-primary'>{project.title}</h3>
+		<p className='text-tertiary md:text-lg md:text-secondary'>{project.company}</p>
+		<p className='text-sm leading-relaxed text-muted md:text-base'>{project.summary}</p>
 		<ProjectTags tags={project.tags} limit={limit} className='pt-2' size='lg' />
-		<ArrowIndicator
-			aria-label={`View ${project.title}`}
-			className='absolute right-0 bottom-0 group-hover:translate-x-1'
-		/>
+		<ArrowIndicator aria-label={`View ${project.title}`} className='absolute right-0 bottom-0 group-hover:translate-x-1' />
 	</div>
 );
