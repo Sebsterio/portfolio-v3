@@ -104,7 +104,7 @@
   overflow: hidden;
   /* Material */
 	background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
-	backdrop-filter: blur(3px);
+	backdrop-filter: blur(2px);
   /* Border */
   border-width:    1px;
   border-style:    solid;

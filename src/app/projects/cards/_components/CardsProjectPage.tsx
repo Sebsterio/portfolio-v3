@@ -14,17 +14,16 @@ import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ExternalLinkButton } from '@/components/Button';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type CardsProjectPageProps = {
 	project: Project;
 	allProjects: Project[];
 };
-
 type NavigationTarget = {
 	slug: string;
 	options?: { scroll?: false; scrollTo?: string };
 };
-
 type ProjectNeighbors = {
 	currentIndex: number;
 	prev: Project;
@@ -41,51 +40,16 @@ const CARD_IMAGE_GRADIENTS = [
 	'bg-gradient-freelance-small',
 ] as const;
 
-const CARD_FLIP_DURATION_MS = 600;
-
-const CARD_WRAPPER_STYLE: CSSProperties = {
-	transformStyle: 'preserve-3d',
-};
-
-const CARD_FACE_SHARED_STYLE: CSSProperties = {
-	backfaceVisibility: 'hidden',
-	WebkitBackfaceVisibility: 'hidden',
-};
-
-function getProjectNeighbors(project: Project, allProjects: Project[]): ProjectNeighbors {
-	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
-
-	if (currentIndex < 0) {
-		throw new Error(`CardsProjectPage: project "${project.id}" not found in allProjects.`);
-	}
-
-	return {
-		currentIndex,
-		prev: allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length],
-		next: allProjects[(currentIndex + 1) % allProjects.length],
-	};
-}
-
 function getCardImageGradient(index: number): string {
 	return CARD_IMAGE_GRADIENTS[index % CARD_IMAGE_GRADIENTS.length];
 }
 
-function getProjectCardTransitionStyle(flipped: boolean): CSSProperties {
+function getProjectNeighbors(project: Project, allProjects: Project[]): ProjectNeighbors {
+	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
 	return {
-		...CARD_WRAPPER_STYLE,
-		transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-		transition: `transform ${CARD_FLIP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
-	};
-}
-
-function getProjectCardViewTransitionStyle(projectId: Project['id']): CSSProperties {
-	return {
-		viewTransitionName: `project-card-${projectId}`,
-	};
-}
-function getProjectCardInnerViewTransitionStyle(projectId: Project['id']): CSSProperties {
-	return {
-		viewTransitionName: `project-card-inner-${projectId}`,
+		currentIndex,
+		prev: allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length],
+		next: allProjects[(currentIndex + 1) % allProjects.length],
 	};
 }
 
@@ -154,7 +118,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
-			style={CARD_FACE_SHARED_STYLE}
+			style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
 		>
 			<div className='space-y-6 md:space-y-8'>
 				<div className='space-y-3 md:space-y-4'>
@@ -176,7 +140,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				/>
 
 				<div className='space-y-4 pb-2'>
-					<p className='text-tertiary text-base leading-relaxed md:text-xl'>{project.summary}</p>
+					<p className='text-base leading-relaxed text-tertiary md:text-xl'>{project.summary}</p>
 					<ProjectTags size='lg' tags={project.tags} />
 					<p className='animate-pulse text-sm text-accent'>Flip card →</p>
 				</div>
@@ -196,7 +160,8 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
 			style={{
-				...CARD_FACE_SHARED_STYLE,
+				backfaceVisibility: 'hidden',
+				WebkitBackfaceVisibility: 'hidden',
 				transform: 'rotateY(180deg)',
 			}}
 		>
@@ -237,14 +202,15 @@ type ProjectTransitionSlotProps = {
 
 function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) {
 	return (
-		<div
-			aria-hidden='true'
-			className={cn(
-				'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
-				side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
-			)}
-			style={getProjectCardInnerViewTransitionStyle(projectId)}
-		/>
+		<VT bind name={`project-card-inner-${projectId}`}>
+			<div
+				aria-hidden='true'
+				className={cn(
+					'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
+					side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
+				)}
+			/>
+		</VT>
 	);
 }
 
@@ -263,18 +229,23 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
 			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
-			<div style={getProjectCardViewTransitionStyle(project.id)}>
-				<div
-					onClick={onFlip}
-					className='block w-full cursor-pointer bg-transparent p-0 text-left'
-					style={getProjectCardInnerViewTransitionStyle(project.id)}
-				>
-					<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
-						<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
-						<ProjectCardBack project={project} flipped={flipped} />
+			<VT name={`project-card-${project.id}`}>
+				<VT bind name={`project-card-inner-${project.id}`}>
+					<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
+						<div
+							className='grid'
+							style={{
+								transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+								transformStyle: 'preserve-3d',
+								transition: `transform 600ms cubic-bezier(0.22, 1, 0.36, 1)`,
+							}}
+						>
+							<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
+							<ProjectCardBack project={project} flipped={flipped} />
+						</div>
 					</div>
-				</div>
-			</div>
+				</VT>
+			</VT>
 		</div>
 	);
 }

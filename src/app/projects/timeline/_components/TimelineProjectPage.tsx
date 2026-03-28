@@ -33,7 +33,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 			{/* Desktop ─────────────────────────────────────────── */}
 			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
-				<VT classes='vt-none lg:vt-t-list'>
+				<VT classes='vt-t-list'>
 					<aside className='relative'>
 						<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
 						<div className='space-y-3'>
@@ -43,7 +43,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 						</div>
 					</aside>
 				</VT>
-				<VT classes='vt-none lg:vt-t-detail'>
+				<VT classes='vt-t-detail'>
 					<main>
 						<TimelineProjectPanel project={project} />
 					</main>

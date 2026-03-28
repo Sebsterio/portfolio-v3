@@ -22,7 +22,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 		<div className='w-full stack-lg'>
 			{/* Desktop Wide ─────────────────────────────────────── */}
 			<div className='relative mr-32 ml-8 hidden xl:block'>
-				<VT classes='xl:vt-t-list'>
+				<VT classes='vt-t-list'>
 					<TimelineLine position='right' />
 					<div className='space-y-12'>
 						{projects.map((project) => (
@@ -39,7 +39,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 			{/* Desktop Narrow ────────────────────────────────────── */}
 			<div className='relative mr-8 hidden md:block xl:hidden'>
-				<VT classes='md:vt-t-list xl:vt-none'>
+				<VT classes='vt-t-list'>
 					<TimelineLine className='left-8' />
 					<div className='space-y-12'>
 						{projects.map((project) => (
