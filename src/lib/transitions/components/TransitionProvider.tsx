@@ -15,7 +15,7 @@
  * - Ensures View Transitions API captures correct DOM snapshot
  */
 
-import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo, startTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from '../types';
 import { getNormalizeHref, isCurrentPage } from '../utils';
@@ -37,6 +37,15 @@ const isDev = process.env.NODE_ENV === 'development';
 
 const devWarn = (msg: string) => (isDev ? console.warn(msg) : undefined);
 
+/**
+ * Synchronous DOM write — must stay outside React's render cycle.
+ *
+ * Set to `true` before `startViewTransition` so that `TransitionElement`
+ * switches from `display: contents` to `display: block` in time for the
+ * old-state snapshot. Chromium captures a zero-size snapshot for
+ * `display: contents` VT elements, so both snapshots must be taken with
+ * `block` in effect.
+ */
 const updateDocumentTransitioning = (value: boolean) => {
 	const { dataset } = document.documentElement;
 	if (value) dataset.transitioning = 'true';
@@ -60,6 +69,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	const router = useRouter();
 	const pathname = usePathname();
 	const pathnameRef = useRef(pathname);
+	const isTransitioningRef = useRef(false);
 	const resolveNavigation = useRef<(() => void) | null>(null);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -72,25 +82,29 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 		resolveNavigation.current = null;
 	}, []);
 
-	const transition = useCallback(
-		async (action: () => void, _config?: TransitionConfig) => {
-			const navigationComplete = new Promise<void>((resolve) => (resolveNavigation.current = resolve));
-			const navigationTimeout = new Promise<void>((resolve) =>
-				setTimeout(() => resolve(devWarn('[Transition] navigationComplete timed out — resolving fallback')), NAVIGATION_TIMEOUT_MS),
-			);
-			setIsTransitioning(true);
-			updateDocumentTransitioning(true);
-			await executeTransition(action, Promise.race([navigationComplete, navigationTimeout]));
-			updateDocumentTransitioning(false);
-			setIsTransitioning(false);
-		},
-		[setIsTransitioning],
-	);
+	const transition = useCallback(async (action: () => void, _config?: TransitionConfig) => {
+		if (isTransitioningRef.current) return;
+
+		const navigationComplete = new Promise<void>((resolve) => (resolveNavigation.current = resolve));
+		const navigationTimeout = new Promise<void>((resolve) =>
+			setTimeout(() => resolve(devWarn('[Transition] navigationComplete timed out — resolving fallback')), NAVIGATION_TIMEOUT_MS),
+		);
+
+		isTransitioningRef.current = true;
+		updateDocumentTransitioning(true); // Synchronous: must precede startViewTransition so the old-state snapshot captures TransitionElement in `display: block` (fixes Chromium zero-size bug).
+		startTransition(() => setIsTransitioning(true)); // Non-urgent: React consumers of isTransitioning don't need to block the VT callback. startTransition defers these re-renders so the browser thread stays free for snapshot capture and the animation rAF loop.
+
+		await executeTransition(action, Promise.race([navigationComplete, navigationTimeout]));
+
+		updateDocumentTransitioning(false);
+		startTransition(() => setIsTransitioning(false));
+		isTransitioningRef.current = false;
+	}, []);
 
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
 			if (isCurrentPage(href, pathnameRef.current)) return devWarn(`[Navigation] Blocked: Already on ${href}`);
-			if (config?.skip || !document.startViewTransition) return;
+			if (config?.skip || !document.startViewTransition) return action();
 			return transition(action, config);
 		},
 		[transition],

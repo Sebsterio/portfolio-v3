@@ -48,7 +48,7 @@ function TransitionResolver({ bind, wrap = !bind, ...props }: TransitionResolver
 function TransitionElement({ name, className, classes, style, ...props }: TransitionElementProps) {
 	return (
 		<div
-			className={cn('contents in-data-transitioning:block', classes, className)}
+			className={cn('contents in-data-transitioning:block', className, classes)}
 			style={{ ...style, ...(name && { viewTransitionName: name }) }}
 			{...props}
 		/>
@@ -64,7 +64,7 @@ function TransitionElement({ name, className, classes, style, ...props }: Transi
  */
 function TransitionDecorator({ name, children, className, classes, style }: TransitionDecoratorProps) {
 	return React.cloneElement(children, {
-		className: cn(children.props.className, classes, className),
+		className: cn(children.props.className, className, classes),
 		style: { ...children.props.style, ...style, ...(name && { viewTransitionName: name }) },
 	});
 }

@@ -17,18 +17,15 @@
   --easing-panel-slide-in: cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-/* @media (pointer: coarse) {
+/* Mobile */
+@media (pointer: coarse) {
   :root {
-    --duration-vt-exit:  150ms;
-    --duration-vt-enter: 280ms;
+  --distance-vt-slide:    50%;
+  --duration-vt-base:     200ms;
+  --duration-vt-exit:     150ms;
+  --duration-vt-enter:    250ms;
   }
-} */
-
-/* Prevent root flash (edge cases) */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.001ms;
-}
+} 
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -40,23 +37,28 @@
   }
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+  animation-duration: 0.001ms;	/* Prevent flash (edge cases) */
+}
 
 /* ------------------------------------------------
    Default Page-Slot Transitions
    ------------------------------------------------ */
 
 ::view-transition-old(*) {
-  animation-duration:        var(--duration-vt-exit);
+  animation-name:            vt-fade-out;
+	animation-duration:        var(--duration-vt-exit);
   animation-timing-function: var(--easing-spring-release);
   animation-fill-mode:       both;
-  animation-name:            vt-fade-out;
 }
 
 ::view-transition-new(*) {
-  animation-duration:        var(--duration-vt-enter);
+  animation-name:            vt-fade-in;
+	animation-duration:        var(--duration-vt-enter);
   animation-timing-function: var(--easing-panel-slide-in);
   animation-fill-mode:       both;
-  animation-name:            vt-fade-in;
 }
 
 
@@ -82,7 +84,10 @@
    ------------------------------------------------ */
 
 /* --- Base: Common ---------------------------- */
-
+/* 
+	If name is in both pages  -> Container morphs, content fades
+	If name only in one page  -> Element slides from/to right
+*/
 ::view-transition-old(main)             		{ animation-name: vt-fade-out; 	 } 
 ::view-transition-new(main)             		{ animation-name: vt-fade-in; 	 }
 ::view-transition-old(main):only-child  		{ animation-name: vt-slide-to-r; } 
@@ -90,7 +95,10 @@
 
 
 /* --- Projects: Common ---------------------------- */
-
+/* 
+	On nav within /projects/**   -> Header appears static      
+	On nav to/from other routes	 -> Header slides from/to top
+*/
 ::view-transition-old(p-header)             { animation-name: none; 					visibility: hidden; } 
 ::view-transition-new(p-header)             { animation-name: none; 	 										 				}
 ::view-transition-old(p-header):only-child  { animation-name: vt-slide-to-t;  visibility: visible } 
@@ -98,7 +106,10 @@
 
 
 /* --- Projects: Timeline -------------------------- */
-
+/* 
+	On nav between list and detail  -> Aside morphs to/from List						// TODO: disable vt-old 
+	On nav to/from timeline route	  -> Aside slides from/to left; 					// TODO: non-vt enter transition
+*/
 ::view-transition-old(t-list)             { animation-name: vt-fade-out; 	 } 
 ::view-transition-new(t-list)             { animation-name: vt-fade-in;  	 }
 ::view-transition-old(t-list):only-child  { animation-name: vt-slide-to-l; } 

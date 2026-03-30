@@ -52,19 +52,6 @@
 
    ================================================ */
 
-@layer base {
-  @property --glass-curvature {
-    syntax: "<shadow>";
-    inherits: false;
-    initial-value: none;
-  }
-	@property --glass-elevation {
-    syntax: "<shadow>";
-    inherits: false;
-    initial-value: none;
-  }
-}
-
 
 /* ---- Radius ---- */
 
@@ -93,11 +80,6 @@
 	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
 
-[data-transitioning] .glass-surface-1 {
-	background:      var(--theme-surface);
-  backdrop-filter: none;
-} 
-
 @utility glass-surface-2 {
   /* Structural */
   position: relative;
@@ -115,11 +97,6 @@
     inset 0 -1px 0 color-mix(in srgb, white  4%, transparent);
 	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
-
-[data-transitioning] .glass-surface-2 {
-	background:      var(--theme-surface);
-  backdrop-filter: none;
-} 
 
 @utility glass-surface-3 { /* UNUSED */
   /* Structural */
@@ -139,10 +116,14 @@
 	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
 }
 
-[data-transitioning] .glass-surface-3 {
-	background:      var(--theme-surface);
-  backdrop-filter: none;
-} 
+@media (width < theme(--breakpoint-md)) {
+	[data-transitioning] .glass-surface-1,
+	[data-transitioning] .glass-surface-2,
+	[data-transitioning] .glass-surface-3 {
+		backdrop-filter: none;
+		background:      var(--theme-surface); /* Visual compensation for disabled backdrop-filter; marginal perf gain, if any */
+	} 
+}  
 
 
 /* ---- Elevation ---- */
@@ -176,6 +157,7 @@
   and background-size can address each layer unambiguously.
   Unset slots fall back to `none` (a valid, transparent bg layer).
 */
+
 @utility glass-decor {
   &::after {
     content: '';
@@ -200,12 +182,6 @@
       auto,
       70% 2px;
     background-repeat: no-repeat;
-  }
-}
-
-@media (width < --breakpoint-md) {
-  [data-transitioning] .glass-decor::after {
-    display: none;
   }
 }
 
@@ -241,7 +217,11 @@
 }
 
 
-/* ---- Glass Texture ---- */
+/* ---- Texture - bottom layer (background) ---- */
+/*
+  Applied separately on individual children.
+	Element opacity controls `background-image` opacity independently of parent
+*/
 
 @utility glass-noise {
 	background-image: url('/assets/textures/noise.webp');	
@@ -250,14 +230,12 @@
   opacity: 0.025;
 }
 
-@media (width < --breakpoint-md) {
-  [data-transitioning] .glass-noise {
-    display: none;
-  }
-}
 
-
-/* ---- Glass Interaction ---- */
+/* ---- Interaction - top layer (overlay) ---- */
+/*
+  Applied separately on children elements.
+	Isolates interaction-specific `transition` and `transform` properties
+*/
 
 @utility glass-glint {
   @apply gradient-reflection-horizontal;
@@ -272,12 +250,13 @@
   transform: translateX(100%) skewX(-20deg);
 }
 
-[data-transitioning] .glass-glint {
+[data-transitioning] .glass-glint,
+[data-transitioning] .glass-glint-active {
   display: none;
 }
 
-@media (width < --breakpoint-md) {
-  .glass-noise,
+@media (width < theme(--breakpoint-md)) {
+  .glass-glint,
 	.glass-glint-active {
     display: none;
   }
