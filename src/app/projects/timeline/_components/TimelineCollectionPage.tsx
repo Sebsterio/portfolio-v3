@@ -9,6 +9,7 @@ import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
 import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { cn } from '@/lib/utils';
 
 type TimelineCollectionPageProps = {
 	projects: Project[];
@@ -20,31 +21,15 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 	return (
 		<div className='w-full stack-lg'>
-			{/* Desktop Wide ─────────────────────────────────────── */}
-			<div className='relative mr-32 ml-8 hidden xl:block'>
+			{/* Desktop ─────────────────────────────────────── */}
+			<div className='relative ml-8 hidden lg:mr-8 lg:block xl:mr-32'>
 				<VT classes='vt-t-list'>
-					<TimelineLine position='right' />
-					<div className='space-y-12'>
-						{projects.map((project) => (
-							<div key={project.id} className='relative flex items-start gap-8'>
-								<TimelineDateWide period={project.period} />
-								<TimelineCard onClick={() => go(project)} className='flex-1'>
-									<TimelineCardContent project={project} limit={4} />
-								</TimelineCard>
-							</div>
-						))}
-					</div>
-				</VT>
-			</div>
-
-			{/* Desktop Narrow ────────────────────────────────────── */}
-			<div className='relative mr-8 hidden lg:block xl:hidden'>
-				<VT classes='vt-t-list'>
-					<TimelineLine className='left-8' />
+					<TimelineLine className='left-8 xl:left-32' />
 					<div className='space-y-12'>
 						{projects.map((project) => (
 							<div key={project.id} className='relative flex gap-8'>
-								<TimelineDateNarrow period={project.period} />
+								<TimelineDateWide period={project.period} className='hidden xl:block' />
+								<TimelineDateNarrow period={project.period} className='xl:hidden' />
 								<TimelineCard onClick={() => go(project)} className='w-full'>
 									<TimelineCardContent project={project} limit={4} />
 								</TimelineCard>
@@ -56,7 +41,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 
 			{/* Mobile ─────────────────────────────────────────────── */}
 			<div className='relative lg:hidden'>
-				<TimelineLine position='left' />
+				<TimelineLine className='left-1.75' />
 				<div className='stack-md'>
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
@@ -77,8 +62,8 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 // ─── Local sub-components ────────────────────────────────────────────────────
 // Extracted to reduce repetition. Move to separate files if they grow.
 
-const TimelineDateWide = ({ period }: { period: string }) => (
-	<div className='relative'>
+const TimelineDateWide = ({ period, className }: { period: string; className?: string }) => (
+	<div className={cn('relative', className)}>
 		<div className='flex w-32 shrink-0 items-start justify-end pt-8'>
 			<span className='pr-4 text-sm font-semibold whitespace-nowrap text-label'>{period}</span>
 		</div>
@@ -86,14 +71,14 @@ const TimelineDateWide = ({ period }: { period: string }) => (
 	</div>
 );
 
-const TimelineDateNarrow = ({ period }: { period: string }) => (
-	<div className='relative w-8 self-stretch'>
+const TimelineDateNarrow = ({ period, className }: { period: string; className?: string }) => (
+	<div className={cn('relative w-8 self-stretch', className)}>
 		<div className='absolute top-1/2 left-2 -translate-y-1/2'>
 			<span className='block origin-center -translate-x-1/2 -rotate-90 text-sm font-semibold tracking-wider whitespace-nowrap text-label'>
 				{period}
 			</span>
 		</div>
-		<TimelineDot active className='absolute top-8 right-[-3px] z-10 translate-x-1/2' />
+		<TimelineDot active className='absolute top-8 -right-0.75 z-10 translate-x-1/2' />
 	</div>
 );
 

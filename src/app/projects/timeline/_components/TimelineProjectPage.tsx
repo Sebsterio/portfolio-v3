@@ -33,7 +33,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
 				<VT classes='vt-t-list'>
 					<aside className='relative'>
-						<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
+						<TimelineLine className='left-4' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
 						<div className='space-y-3'>
 							{projects.map((p) => (
 								<ProjectSidebarItem key={p.id} project={p} isActive={project.id === p.id} onClick={() => go(p)} />
@@ -50,7 +50,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 			{/* Mobile ──────────────────────────────────────────── */}
 			<div className='relative lg:hidden'>
-				<TimelineLine position='left' />
+				<TimelineLine className='left-1.75' />
 				<div className='space-y-3'>
 					{projects.map((p) => {
 						const isExpanded = p.id === project.id;
