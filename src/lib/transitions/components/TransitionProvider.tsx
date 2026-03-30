@@ -21,6 +21,8 @@ import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig
 import { getNormalizeHref, isCurrentPage } from '../utils';
 import { DEFAULT_IS_SCROLL } from '../config';
 
+/* Config */
+
 const NAVIGATION_TIMEOUT_MS = 2000; // Guard against navigationComplete never resolving (e.g. missing PageTransition wrapper).
 
 /* Contexts */
@@ -42,7 +44,6 @@ const updateDocumentTransitioning = (value: boolean) => {
 };
 
 const executeTransition = async (callback: () => void, navigationComplete: Promise<void>) => {
-	updateDocumentTransitioning(true); // sets before snapshot as VT elements must change from .contents to .block
 	try {
 		await document.startViewTransition(async () => {
 			callback();
@@ -51,7 +52,6 @@ const executeTransition = async (callback: () => void, navigationComplete: Promi
 	} catch (error) {
 		console.error('View transition failed:', error);
 	}
-	updateDocumentTransitioning(false);
 };
 
 /* Providers */
@@ -79,7 +79,9 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 				setTimeout(() => resolve(devWarn('[Transition] navigationComplete timed out — resolving fallback')), NAVIGATION_TIMEOUT_MS),
 			);
 			setIsTransitioning(true);
+			updateDocumentTransitioning(true);
 			await executeTransition(action, Promise.race([navigationComplete, navigationTimeout]));
+			updateDocumentTransitioning(false);
 			setIsTransitioning(false);
 		},
 		[setIsTransitioning],
@@ -87,9 +89,9 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
-			if (isCurrentPage(href, pathnameRef.current)) devWarn(`[Navigation] Blocked: Already on ${href}`);
+			if (isCurrentPage(href, pathnameRef.current)) return devWarn(`[Navigation] Blocked: Already on ${href}`);
 			if (config?.skip || !document.startViewTransition) return;
-			else transition(action, config);
+			return transition(action, config);
 		},
 		[transition],
 	);
@@ -116,7 +118,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	);
 };
 
-/* Public Hooks */
+/* Hooks */
 
 export const useTransitionReady = () => {
 	const signalReady = useContext(TransitionReadyContext);

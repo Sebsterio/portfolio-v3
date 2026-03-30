@@ -10,7 +10,6 @@
 :root {
   --distance-vt-slide:    100%;
   --duration-vt-base:     300ms;
-  /* --duration-vt-exit:     400ms; */
   --duration-vt-exit:     200ms;
   --duration-vt-enter:    400ms;
   --easing-vt-default:    cubic-bezier(0.4, 0, 0.2, 1);
@@ -18,7 +17,6 @@
   --easing-panel-slide-in: cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-/* Touch devices: tighter durations to match platform interaction tempo */
 /* @media (pointer: coarse) {
   :root {
     --duration-vt-exit:  150ms;
@@ -63,16 +61,8 @@
 
 
 /* ------------------------------------------------
-   Base: Page Sections
-   TODO: rename these slots
+    Generic Transitions
    ------------------------------------------------ */
-
-/* if paired: morph */
-::view-transition-old(main)             		{ animation-name: vt-fade-out; 	 } 
-::view-transition-new(main)             		{ animation-name: vt-fade-in; 	 }
-/* not paired: slide */
-::view-transition-old(main):only-child  		{ animation-name: vt-slide-to-r; } 
-::view-transition-new(main):only-child  		{ animation-name: vt-slide-in-r; }
 
 ::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
 ::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
@@ -86,22 +76,31 @@
 ::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
 ::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
 
-/* route-internal nav */
+
+/* ------------------------------------------------
+    Page Sections
+   ------------------------------------------------ */
+
+/* --- Base: Common ---------------------------- */
+
+::view-transition-old(main)             		{ animation-name: vt-fade-out; 	 } 
+::view-transition-new(main)             		{ animation-name: vt-fade-in; 	 }
+::view-transition-old(main):only-child  		{ animation-name: vt-slide-to-r; } 
+::view-transition-new(main):only-child  		{ animation-name: vt-slide-in-r; }
+
+
+/* --- Projects: Common ---------------------------- */
+
 ::view-transition-old(p-header)             { animation-name: none; 					visibility: hidden; } 
 ::view-transition-new(p-header)             { animation-name: none; 	 										 				}
-/* route-external nav */
 ::view-transition-old(p-header):only-child  { animation-name: vt-slide-to-t;  visibility: visible } 
 ::view-transition-new(p-header):only-child  { animation-name: vt-slide-in-t; 											}
 
 
-/* ------------------------------------------------
-   Projects: Timeline View
-   ------------------------------------------------ */
+/* --- Projects: Timeline -------------------------- */
 
-/* route-internal nav */
 ::view-transition-old(t-list)             { animation-name: vt-fade-out; 	 } 
 ::view-transition-new(t-list)             { animation-name: vt-fade-in;  	 }
-/* route-external nav */
 ::view-transition-old(t-list):only-child  { animation-name: vt-slide-to-l; } 
 ::view-transition-new(t-list):only-child  { animation-name: vt-slide-in-l; }
 
@@ -109,16 +108,7 @@
 ::view-transition-new(t-detail)           { animation-name: vt-slide-in-r; }
 
 
-/* ------------------------------------------------
-   Projects: Magazine View
-   ------------------------------------------------ */
+/* --- Projects: Magazine -------------------------- */
 
 ::view-transition-new(m-page):only-child { animation-name: vt-slide-in-r; }
 ::view-transition-old(m-page):only-child { animation-name: vt-slide-to-r; }
-
-
-/* ------------------------------------------------
-   Projects: Cards View — kept for reference
-   ------------------------------------------------
-::view-transition-new(c-page):only-child { animation-name: vt-slide-in-b; }
-::view-transition-old(c-page):only-child { animation-name: vt-slide-to-b; } */
