@@ -2,27 +2,24 @@
    View Transition — Named Slots
    ================================================ */
 
-@utility vt-none   { view-transition-name: none;   }
+
+/* --- Cross-Page Morphing --- */
+
+@utility vt-main		{ view-transition-name: main;   }
+
 
 /* --- Generic Directions --- */
 
-@utility vt-main   { view-transition-name: main;   }
-@utility vt-left   { view-transition-name: left;   }
-@utility vt-right  { view-transition-name: right;  }
-@utility vt-bottom { view-transition-name: bottom; }
-@utility vt-top    { view-transition-name: top;    }
+@utility vt-left  	{ view-transition-name: match-element; view-transition-class: vt-left;   }
+@utility vt-right 	{ view-transition-name: match-element; view-transition-class: vt-right;  }
+@utility vt-bottom	{ view-transition-name: match-element; view-transition-class: vt-bottom; }
+@utility vt-top   	{ view-transition-name: match-element; view-transition-class: vt-top;    }
 
-/* --- Projects: Page Header --- */
 
-@utility vt-p-header  { view-transition-name: p-header;  }
-@utility vt-p-content { view-transition-name: p-content; }
-
-/* --- Projects: Timeline View --- */
+/* --- Projects-Page Morphing --- /* TODO: use "Generic Directions" */
 
 @utility vt-t-list   { view-transition-name: t-list;   }
 @utility vt-t-detail { view-transition-name: t-detail; }
-
-/* --- Projects: Magazine / Cards Views --- */
 
 @utility vt-m-page { view-transition-name: m-page; }
 @utility vt-c-page { view-transition-name: c-page; }

@@ -10,12 +10,21 @@
 :root {
   --distance-vt-slide:    100%;
   --duration-vt-base:     300ms;
+  /* --duration-vt-exit:     400ms; */
   --duration-vt-exit:     200ms;
   --duration-vt-enter:    400ms;
   --easing-vt-default:    cubic-bezier(0.4, 0, 0.2, 1);
   --easing-spring-release: cubic-bezier(0.4, 0, 1, 1);
   --easing-panel-slide-in: cubic-bezier(0.2, 0, 0.2, 1);
 }
+
+/* Touch devices: tighter durations to match platform interaction tempo */
+/* @media (pointer: coarse) {
+  :root {
+    --duration-vt-exit:  150ms;
+    --duration-vt-enter: 280ms;
+  }
+} */
 
 /* Prevent root flash (edge cases) */
 ::view-transition-old(root),
@@ -41,12 +50,14 @@
 ::view-transition-old(*) {
   animation-duration:        var(--duration-vt-exit);
   animation-timing-function: var(--easing-spring-release);
+  animation-fill-mode:       both;
   animation-name:            vt-fade-out;
 }
 
 ::view-transition-new(*) {
   animation-duration:        var(--duration-vt-enter);
   animation-timing-function: var(--easing-panel-slide-in);
+  animation-fill-mode:       both;
   animation-name:            vt-fade-in;
 }
 
@@ -56,44 +67,46 @@
    TODO: rename these slots
    ------------------------------------------------ */
 
-::view-transition-new(main):only-child  { animation-name: vt-slide-in-r; }
-::view-transition-old(main)             { animation-name: vt-fade-out; }
-::view-transition-new(main)             { animation-name: vt-fade-in; }
-::view-transition-old(main):only-child  { animation-name: vt-slide-to-r; }
+/* if paired: morph */
+::view-transition-old(main)             		{ animation-name: vt-fade-out; 	 } 
+::view-transition-new(main)             		{ animation-name: vt-fade-in; 	 }
+/* not paired: slide */
+::view-transition-old(main):only-child  		{ animation-name: vt-slide-to-r; } 
+::view-transition-new(main):only-child  		{ animation-name: vt-slide-in-r; }
 
-::view-transition-old(left)             { animation-name: vt-slide-to-l; }
-::view-transition-new(left)             { animation-name: vt-slide-in-l; }
+::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
+::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
 
-::view-transition-old(top)              { animation-name: vt-slide-to-t; }
-::view-transition-new(top)              { animation-name: vt-slide-in-t; }
+::view-transition-old(.vt-top)              { animation-name: vt-slide-to-t; }
+::view-transition-new(.vt-top)              { animation-name: vt-slide-in-t; }
 
-::view-transition-old(right)            { animation-name: vt-slide-to-r; }
-::view-transition-new(right)            { animation-name: vt-slide-in-r; }
+::view-transition-old(.vt-right)            { animation-name: vt-slide-to-r; }
+::view-transition-new(.vt-right)            { animation-name: vt-slide-in-r; }
 
-::view-transition-old(bottom)           { animation-name: vt-slide-to-b; }
-::view-transition-new(bottom)           { animation-name: vt-slide-in-b; }
+::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
+::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
 
-::view-transition-new(p-header):only-child  { animation-name: vt-slide-in-t; }
-::view-transition-old(p-header)             { animation-name: vt-fade-out; }
-::view-transition-new(p-header)             { animation-name: vt-fade-in; }
-::view-transition-old(p-header):only-child  { animation-name: vt-slide-to-t; }
+/* route-internal nav */
+::view-transition-old(p-header)             { animation-name: none; 					visibility: hidden; } 
+::view-transition-new(p-header)             { animation-name: none; 	 										 				}
+/* route-external nav */
+::view-transition-old(p-header):only-child  { animation-name: vt-slide-to-t;  visibility: visible } 
+::view-transition-new(p-header):only-child  { animation-name: vt-slide-in-t; 											}
 
 
 /* ------------------------------------------------
    Projects: Timeline View
    ------------------------------------------------ */
 
+/* route-internal nav */
+::view-transition-old(t-list)             { animation-name: vt-fade-out; 	 } 
+::view-transition-new(t-list)             { animation-name: vt-fade-in;  	 }
+/* route-external nav */
+::view-transition-old(t-list):only-child  { animation-name: vt-slide-to-l; } 
 ::view-transition-new(t-list):only-child  { animation-name: vt-slide-in-l; }
-::view-transition-old(t-list)             { animation-name: vt-fade-out; }
-::view-transition-new(t-list)             { animation-name: vt-fade-in; }
-::view-transition-old(t-list):only-child  { animation-name: vt-slide-to-l; }
 
 ::view-transition-old(t-detail)           { animation-name: vt-slide-to-r; }
 ::view-transition-new(t-detail)           { animation-name: vt-slide-in-r; }
-
-/* Accordion slot — kept for reference
-::view-transition-old(.accordeon) { animation-name: vt-shrink-y; animation-timing-function: linear; }
-::view-transition-new(.accordeon) { animation-name: vt-expand-y; animation-timing-function: linear; } */
 
 
 /* ------------------------------------------------
