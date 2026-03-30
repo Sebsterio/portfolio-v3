@@ -105,15 +105,10 @@
   border-width:    1px;
   border-style:    solid;
   border-color:    var(--glass-surface-border, transparent);
-  backdrop-filter: var(--glass-surface-backdrop, none);
   background:      var(--glass-surface-bg, transparent);
+  backdrop-filter: var(--glass-surface-backdrop, none);
 	
-  @variant mobile {
-  	@variant transitioning {
-			backdrop-filter: none;
-			background:      var(--theme-surface);		/* Visual compensation for disabled blur. */
-  	}
-  }
+  @variant mobile {	@variant transitioning {	backdrop-filter: none; }}
 }
 
 @utility glass-surface-1 {

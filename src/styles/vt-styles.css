@@ -83,7 +83,15 @@
     Page Sections
    ------------------------------------------------ */
 
-/* --- Base: Common ---------------------------- */
+/* --- Base: App ---------------------------------- */
+
+/* AppHeader: keep in front of VT-elements with slide-top transition  */
+::view-transition-old(app-header),
+::view-transition-new(app-header) 					{ animation: 	none; }
+::view-transition-group(app-header) 				{ z-index: 		50;   }
+
+
+/* --- Base: Common ------------------------------- */
 /* 
 	If name is in both pages  -> Container morphs, content fades
 	If name only in one page  -> Element slides from/to right
