@@ -21,6 +21,8 @@ import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig
 import { getNormalizeHref, isCurrentPage } from '../utils';
 import { DEFAULT_IS_SCROLL } from '../config';
 
+const NAVIGATION_TIMEOUT_MS = 2000; // Guard against navigationComplete never resolving (e.g. missing PageTransition wrapper).
+
 /* Contexts */
 
 const TransitionStateContext = createContext<NavigationStateContext | null>(null);
@@ -31,7 +33,7 @@ const TransitionReadyContext = createContext<(() => void) | null>(null);
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const devWarn = (msg: string) => isDev && console.warn(msg);
+const devWarn = (msg: string) => (isDev ? console.warn(msg) : undefined);
 
 const updateDocumentTransitioning = (value: boolean) => {
 	const { dataset } = document.documentElement;
@@ -39,11 +41,8 @@ const updateDocumentTransitioning = (value: boolean) => {
 	else delete dataset.transitioning;
 };
 
-const executeTransition = async (callback: () => void, navigationComplete: Promise<void>, skip?: boolean) => {
-	if (!document.startViewTransition || skip) {
-		callback();
-		return;
-	}
+const executeTransition = async (callback: () => void, navigationComplete: Promise<void>) => {
+	updateDocumentTransitioning(true); // sets before snapshot as VT elements must change from .contents to .block
 	try {
 		await document.startViewTransition(async () => {
 			callback();
@@ -52,42 +51,7 @@ const executeTransition = async (callback: () => void, navigationComplete: Promi
 	} catch (error) {
 		console.error('View transition failed:', error);
 	}
-};
-
-/* Private Hooks */
-
-const useIsTransitioning = () => {
-	const [isTransitioning, setIsTransitioning] = useState(false);
-
-	useEffect(() => {
-		updateDocumentTransitioning(isTransitioning);
-		return () => updateDocumentTransitioning(false);
-	}, [isTransitioning]);
-
-	return { isTransitioning, setIsTransitioning };
-};
-
-const useTransition = (setIsTransitioning: (value: boolean) => void) => {
-	const resolveNavigation = useRef<(() => void) | null>(null);
-
-	const signalReady = useCallback(() => {
-		resolveNavigation.current?.();
-		resolveNavigation.current = null;
-	}, []);
-
-	const transition = useCallback(
-		async (action: () => void, config?: TransitionConfig) => {
-			setIsTransitioning(true);
-			const navigationComplete = new Promise<void>((resolve) => {
-				resolveNavigation.current = resolve;
-			});
-			await executeTransition(action, navigationComplete, config?.skip);
-			setIsTransitioning(false);
-		},
-		[setIsTransitioning],
-	);
-
-	return { transition, signalReady };
+	updateDocumentTransitioning(false);
 };
 
 /* Providers */
@@ -96,20 +60,36 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	const router = useRouter();
 	const pathname = usePathname();
 	const pathnameRef = useRef(pathname);
-	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
-	const { transition, signalReady } = useTransition(setIsTransitioning);
+	const resolveNavigation = useRef<(() => void) | null>(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	useEffect(() => {
 		pathnameRef.current = pathname;
 	}, [pathname]);
 
+	const signalReady = useCallback(() => {
+		resolveNavigation.current?.();
+		resolveNavigation.current = null;
+	}, []);
+
+	const transition = useCallback(
+		async (action: () => void, _config?: TransitionConfig) => {
+			const navigationComplete = new Promise<void>((resolve) => (resolveNavigation.current = resolve));
+			const navigationTimeout = new Promise<void>((resolve) =>
+				setTimeout(() => resolve(devWarn('[Transition] navigationComplete timed out — resolving fallback')), NAVIGATION_TIMEOUT_MS),
+			);
+			setIsTransitioning(true);
+			await executeTransition(action, Promise.race([navigationComplete, navigationTimeout]));
+			setIsTransitioning(false);
+		},
+		[setIsTransitioning],
+	);
+
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
-			if (!isCurrentPage(href, pathnameRef.current)) {
-				return transition(action, config);
-			}
-			devWarn(`[Navigation] Blocked: Already on ${href}`);
-			return Promise.resolve();
+			if (isCurrentPage(href, pathnameRef.current)) devWarn(`[Navigation] Blocked: Already on ${href}`);
+			if (config?.skip || !document.startViewTransition) return;
+			else transition(action, config);
 		},
 		[transition],
 	);
@@ -118,14 +98,10 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 		() => ({
 			navigate: (href: string, config?: TransitionConfig) =>
 				navigate(href, () => router.push(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
-
 			replace: (href: string, config?: TransitionConfig) =>
 				navigate(href, () => router.replace(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
-
 			back: (config?: TransitionConfig) => transition(() => router.back(), config),
-
 			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
-
 			prefetch: (href: string) => router.prefetch(href),
 		}),
 		[router, navigate, transition],

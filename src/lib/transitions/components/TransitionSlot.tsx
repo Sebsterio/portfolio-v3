@@ -65,6 +65,6 @@ function TransitionElement({ name, className, classes, style, ...props }: Transi
 function TransitionDecorator({ name, children, className, classes, style }: TransitionDecoratorProps) {
 	return React.cloneElement(children, {
 		className: cn(children.props.className, classes, className),
-		style: { ...style, ...children.props.style, ...(name && { viewTransitionName: name }) },
+		style: { ...children.props.style, ...style, ...(name && { viewTransitionName: name }) },
 	});
 }
