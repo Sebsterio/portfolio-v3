@@ -43,6 +43,7 @@
   animation-duration: 0.001ms;	/* Prevent flash (edge cases) */
 }
 
+
 /* ------------------------------------------------
    Default Page-Slot Transitions
    ------------------------------------------------ */
@@ -79,19 +80,21 @@
 ::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
 
 
+
 /* ------------------------------------------------
     Page Sections
    ------------------------------------------------ */
 
-/* --- Base: App ---------------------------------- */
 
-/* AppHeader: keep in front of VT-elements with slide-top transition  */
+/* --- App: Header ---------------------------------- */
+
+/* Keep in front of VT-elements with slide-top transition  */
 ::view-transition-old(app-header),
 ::view-transition-new(app-header) 					{ animation: 	none; }
 ::view-transition-group(app-header) 				{ z-index: 		50;   }
 
 
-/* --- Base: Common ------------------------------- */
+/* --- App: Common ------------------------------- */
 /* 
 	If name is in both pages  -> Container morphs, content fades
 	If name only in one page  -> Element slides from/to right
@@ -104,13 +107,13 @@
 
 /* --- Projects: Common ---------------------------- */
 /* 
-	On nav within /projects/**   -> Header appears static      
+	On nav within /projects/**   -> Header is static      
 	On nav to/from other routes	 -> Header slides from/to top
 */
-::view-transition-old(p-header)             { animation-name: none; 					visibility: hidden; } 
-::view-transition-new(p-header)             { animation-name: none; 	 										 				}
-::view-transition-old(p-header):only-child  { animation-name: vt-slide-to-t;  visibility: visible } 
-::view-transition-new(p-header):only-child  { animation-name: vt-slide-in-t; 											}
+::view-transition-old(p-header):not(&:only-child)     { animation: none; 							  } 
+::view-transition-new(p-header):not(&:only-child)     { animation: none; 	 							}
+::view-transition-old(p-header):only-child  					{ animation-name: vt-slide-to-t;  } 
+::view-transition-new(p-header):only-child  					{ animation-name: vt-slide-in-t; 	}
 
 
 /* --- Projects: Timeline -------------------------- */
