@@ -2,186 +2,173 @@
    Surfaces — Glass System
    ================================================
 
-   Surface utilities  (glass-surface-N)
-   ─────────────────────────────────────
+   Surface utilities (glass-surface-N)
+   ───────────────────────────────────
    1   subtle     chips, tags, pills
-   2   default    cards, panels, content sections
+   2   default    cards, panels, sections
    3   strong     modals, drawers, popovers
 
-   Each surface utility sets:
-     border + --glass-curvature             (on the element)
-     background + backdrop-filter           (on ::before — keeps the VT-named element
-                                             filter-free so view-transition snapshots
-                                             produce a clean flat raster)
-   Border uses longhand so border-color can be overridden at call-site.
+   Base surface utility is internal.
+   Numbered surface utilities provide the material tokens:
+     background
+     backdrop-filter
+     border-color
+     --glass-curvature
 
-   Elevation utilities  (glass-elevation-N)
-   ─────────────────────────────────────────
-   Compose outset shadows with the surface's --glass-curvature.
-   Require a glass-surface-N on the same element.
-   1   raised      contact + ambient + faint accent haze
-   2   elevated    deep ambient + strong accent glow
+   On mobile during transitions, backdrop-filter is disabled and
+   background falls back to --theme-surface.
 
-   Radius classes  (glass-radius-N)
-   ──────────────────────────────────
+   Elevation utilities (glass-elevation-N)
+   ───────────────────────────────────────
+   Set --glass-elevation and compose with --glass-curvature via the
+   internal shadow utility.
+
+   1   raised      ambient + faint accent haze
+   2   elevated    deeper ambient + stronger accent glow
+
+   Radius utilities (glass-radius-N)
+   ─────────────────────────────────
    1   rounded-2xl
    2   rounded-3xl / md:rounded-4xl
    3   rounded-[28px]
 
-   Decorative overlay classes
-   ──────────────────────────
-   Apply to children rendered BEFORE content (DOM order = z-order).
-   glass-reflection    135deg gloss sheen
-   glass-edge-glow     top-edge accent streak (90deg accent sweep + blur; see also
-                       gradient-reflection-horizontal-strong in gradients.css for the
-                       unblurred equivalent)
-   glass-panel-accents dual corner accent blobs
-   glass-noise         grain texture
+   Decorative overlay utilities
+   ────────────────────────────
+   glass-decor       decor canvas (::after)
+   glass-reflection  gloss sheen
+   glass-accents     corner accent blobs
+   glass-edge        top-edge accent streak
+   glass-noise       grain texture
 
-   Glass interaction
-   ─────────────────
-   glass-glint          overlay parked off-screen left (resting)
-   glass-glint-active   overlay swept off-screen right (active)
-   Usage: <div className="glass-glint group-hover:glass-glint-active" />
-   Requires on parent. Transition built in.
+   Interaction utilities
+   ────────────────────
+   glass-glint          desktop-only resting state
+   glass-glint-active   desktop-only active state
 
-   Theme override
-   ──────────────
-   --theme-surface in :root controls the card/panel material colour.
-   Redefine it in a theme selector to change all surfaces without touching this file.
+   Usage:
+   <div className="glass-glint group-hover:glass-glint-active" />
+
+   Theme
+   ─────
+   --theme-surface controls the base material color.
 
    ================================================ */
 
 
+
 /* ---- Radius ---- */
 
-.glass-radius-1 { @apply rounded-2xl; }
-.glass-radius-2 { @apply rounded-3xl md:rounded-4xl; }
-.glass-radius-3 { @apply rounded-[28px]; }
+@utility glass-radius-1 { @apply rounded-2xl; 							 }
+@utility glass-radius-2 { @apply rounded-3xl md:rounded-4xl; }
+@utility glass-radius-3 { @apply rounded-[28px];						 }
 
-
-/* ---- Surface ---- */
-
-@utility glass-surface-1 {
-  /* Structural */
-  position: relative;
-  overflow: hidden;
-	/* Material */
-	background:      color-mix(in srgb, var(--theme-surface) 35%, transparent);
-	backdrop-filter: blur(4px);
-  /* Border */
-  border-width:    1px;
-  border-style:    solid;
-  border-color:    color-mix(in srgb, white 6%, transparent);
-  /* Curvature */
-  --glass-curvature:
-    inset 0  1px 0 color-mix(in srgb, white 9%, transparent),
-    inset 0 -1px 0 color-mix(in srgb, white 3%, transparent);
-	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
-}
-
-@utility glass-surface-2 {
-  /* Structural */
-  position: relative;
-  overflow: hidden;
-  /* Material */
-	background:      color-mix(in srgb, var(--theme-surface) 68%, transparent);
-	backdrop-filter: blur(2px);
-  /* Border */
-  border-width:    1px;
-  border-style:    solid;
-  border-color:    color-mix(in srgb, white 8%, transparent);
-  /* Curvature */
-  --glass-curvature:
-    inset 0  1px 0 color-mix(in srgb, white 12%, transparent),
-    inset 0 -1px 0 color-mix(in srgb, white  4%, transparent);
-	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
-}
-
-@utility glass-surface-3 { /* UNUSED */
-  /* Structural */
-  position: relative;
-  overflow: hidden;
-  /* Material */
-	background:      color-mix(in srgb, var(--theme-surface) 86%, transparent);
-	backdrop-filter: blur(1px);
-  /* Border */
-  border-width:    1px;
-  border-style:    solid;
-  border-color:    color-mix(in srgb, white 10%, transparent);
-  /* Curvature */
-  --glass-curvature:
-    inset 0  1px 0 color-mix(in srgb, white 15%, transparent),
-    inset 0 -1px 0 color-mix(in srgb, white  5%, transparent);
-	box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
-}
-
-@media (width < theme(--breakpoint-md)) {
-	[data-transitioning] .glass-surface-1,
-	[data-transitioning] .glass-surface-2,
-	[data-transitioning] .glass-surface-3 {
-		backdrop-filter: none;
-		background:      var(--theme-surface); /* Visual compensation for disabled backdrop-filter; marginal perf gain, if any */
-	} 
-}  
 
 
 /* ---- Elevation ---- */
 /*
-  Composes outset shadow layers with the surface's --glass-curvature.
-  Requires a glass-surface-N class on the same element so that
-  --glass-curvature is in scope.
+  Elevation tokens only.
+  Compose with --glass-curvature via the internal shadow utility.
 */
+
+/* Internal */
+@utility glass-shadow-BASE {
+  box-shadow: var(--glass-elevation, none), var(--glass-curvature, none);
+}
 
 @utility glass-elevation-1 {
   --glass-elevation:
-    0  1px  3px  color-mix(in srgb, black 40%, transparent),
-    0 12px 40px  color-mix(in srgb, black 40%, transparent),
-    0  4px 16px  color-mix(in srgb, var(--color-accent-1)  7%, transparent);
-	box-shadow: var(--glass-elevation), var(--glass-curvature, none);
+    0  1px  3px color-mix(in srgb, black 40%, transparent),
+    0 12px 40px color-mix(in srgb, black 40%, transparent),
+    0  4px 16px color-mix(in srgb, var(--color-accent-1) 7%, transparent);
+  @apply glass-shadow-BASE;
 }
 
 @utility glass-elevation-2 {
   --glass-elevation:
-    0  2px  6px  color-mix(in srgb, black 50%, transparent),
-    0 24px 64px  color-mix(in srgb, black 50%, transparent),
-    0  8px 32px  color-mix(in srgb, var(--color-accent-1) 20%, transparent);
-  box-shadow: var(--glass-elevation), var(--glass-curvature, none);
+    0  2px  6px color-mix(in srgb, black 50%, transparent),
+    0 24px 64px color-mix(in srgb, black 50%, transparent),
+    0  8px 32px color-mix(in srgb, var(--color-accent-1) 20%, transparent);
+  @apply glass-shadow-BASE;
 }
 
 
-/* ---- Decor canvas — reads all named slots ---- */
+/* ---- Surface ---- */
 /*
-  Applied to the Glass root when any decor prop is active.
-  Defines exactly 4 background-image slots so background-position
-  and background-size can address each layer unambiguously.
-  Unset slots fall back to `none` (a valid, transparent bg layer).
+  Base structure is internal.
+  Numbered utilities provide surface tokens.
+*/
+
+/* Internal */
+@utility glass-surface-BASE {
+  position:        relative;
+  overflow:        hidden;
+  border-width:    1px;
+  border-style:    solid;
+  border-color:    var(--glass-surface-border, transparent);
+  backdrop-filter: var(--glass-surface-backdrop, none);
+  background:      var(--glass-surface-bg, transparent);
+	
+  @variant mobile {
+  	@variant transitioning {
+			backdrop-filter: none;
+			background:      var(--theme-surface);		/* Visual compensation for disabled blur. */
+  	}
+  }
+}
+
+@utility glass-surface-1 {
+  @apply glass-surface-BASE glass-shadow-BASE;
+  --glass-surface-bg: color-mix(in srgb, var(--theme-surface) 35%, transparent);
+  --glass-surface-backdrop: blur(4px);
+  --glass-surface-border: color-mix(in srgb, white 6%, transparent);
+  --glass-surface-curvature:
+    inset 0  1px 0 color-mix(in srgb, white  9%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white  3%, transparent);
+}
+
+@utility glass-surface-2 {
+  @apply glass-surface-BASE glass-shadow-BASE;
+  --glass-surface-bg: color-mix(in srgb, var(--theme-surface) 68%, transparent);
+  --glass-surface-backdrop: blur(2px);
+  --glass-surface-border: color-mix(in srgb, white 8%, transparent);
+  --glass-surface-curvature:
+    inset 0  1px 0 color-mix(in srgb, white 12%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white  4%, transparent);
+}
+
+@utility glass-surface-3 { 
+  @apply glass-surface-BASE glass-shadow-BASE;
+  --glass-surface-bg: color-mix(in srgb, var(--theme-surface) 86%, transparent);
+  --glass-surface-backdrop: blur(1px);
+  --glass-surface-border: color-mix(in srgb, white 10%, transparent);
+  --glass-surface-curvature:
+    inset 0  1px 0 color-mix(in srgb, white 15%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, white  5%, transparent);
+}
+
+
+/* ---- Decor canvas ---- */
+/*
+  Shared decor canvas.
+  Reads named background-image slots from companion utilities.
 */
 
 @utility glass-decor {
   &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    border-radius: inherit;
-    pointer-events: none;
+    content:          '';
+    position:         absolute;
+    inset:            0;
+    z-index:          0;
+    border-radius:    inherit;
+    pointer-events:   none;
     background-image:
       var(--tw-glass-reflection, none),
-      var(--tw-glass-accent-tr, none),
-      var(--tw-glass-accent-bl, none),
-      var(--tw-glass-edge, none);
-    background-position:
-      center,
-      center,
-      center,
-      15% 0;
-    background-size:
-      auto,
-      auto,
-      auto,
-      70% 2px;
-    background-repeat: no-repeat;
+      var(--tw-glass-accent-tr,  none),
+      var(--tw-glass-accent-bl,  none),
+      var(--tw-glass-edge,       none);
+    background-position: center, center, center, 15% 0;
+    background-size:     auto,   auto,   auto,   70% 2px;
+    background-repeat:   no-repeat;
   }
 }
 
@@ -217,47 +204,43 @@
 }
 
 
-/* ---- Texture - bottom layer (background) ---- */
+/* ---- Texture ---- */
 /*
-  Applied separately on individual children.
-	Element opacity controls `background-image` opacity independently of parent
+  Independent texture layer.
+  Opacity controls texture strength only.
 */
 
 @utility glass-noise {
-	background-image: url('/assets/textures/noise.webp');	
-  background-size: 200px 200px;
+  background-image:  url('/assets/textures/noise.webp');
+  background-size:   200px 200px;
   background-repeat: repeat;
-  opacity: 0.025;
+  opacity:           0.025;
 }
 
 
-/* ---- Interaction - top layer (overlay) ---- */
+/* ---- Interaction ---- */
 /*
-  Applied separately on children elements.
-	Isolates interaction-specific `transition` and `transform` properties
+  Desktop-only glint overlay.
+  Resting state is off-screen left; active state sweeps right.
 */
 
 @utility glass-glint {
-  @apply gradient-reflection-horizontal;
-  transform: translateX(-100%) skewX(-20deg);
-  transition-property: transform;
-  transition-timing-function: var(--tw-ease, ease-out);
-  transition-duration: var(--tw-duration, 200ms);
-  transition-delay: var(--tw-delay, 0ms);
+	display: none;
+
+	@variant desktop {
+		@apply gradient-reflection-horizontal;
+		transition-property: transform;
+		transition-timing-function: var(--tw-ease, ease-out);
+		transition-duration: var(--tw-duration, 200ms);
+		transition-delay: var(--tw-delay, 0ms);
+		transform: translateX(-100%) skewX(-20deg);
+		
+		@variant transitioning 	{ display: none; }
+  } 
 }
 
 @utility glass-glint-active {
-  transform: translateX(100%) skewX(-20deg);
-}
-
-[data-transitioning] .glass-glint,
-[data-transitioning] .glass-glint-active {
-  display: none;
-}
-
-@media (width < theme(--breakpoint-md)) {
-  .glass-glint,
-	.glass-glint-active {
-    display: none;
-  }
+  @variant desktop {
+		transform: translateX(100%) skewX(-20deg);
+  } 
 }
