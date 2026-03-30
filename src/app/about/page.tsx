@@ -14,10 +14,9 @@ export default function AboutPage({}: AboutPageProps) {
 
 	return (
 		<div
-			className={cn(
-				'grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]',
+			className={cn('grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]', [
 				'gap-10 md:gap-12 lg:gap-16', //
-			)}
+			])}
 		>
 			{/* Main Content Column */}
 

@@ -13,17 +13,17 @@ export default function HomePage({}: HomePageProps) {
 	useTransitionReady();
 
 	return (
-		<div className={cn('grid w-full grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
+		<div className={cn('grid w-full grid-cols-1 gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
 			{/* Left Column - Hero Content */}
 
-			<div className='pt-4 md:pt-6'>
-				<VT classes='vt-top'>
-					<StatusBadge className='mb-7 md:mb-9'>{copy.superscript}</StatusBadge>
+			<div className='mt-4 stack-lg md:mt-6'>
+				<VT bind classes='vt-top'>
+					<StatusBadge>{copy.superscript}</StatusBadge>
 				</VT>
-				<VT classes='vt-left'>
+
+				<VT bind classes='vt-left'>
 					<div className='stack-2xl'>
 						<Title variant='hero'>{copy.title}</Title>
-
 						<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
 						<div className='flex flex-wrap gap-5'>

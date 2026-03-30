@@ -13,7 +13,10 @@
 @utility vt-left  	{ view-transition-name: match-element; view-transition-class: vt-left;   }
 @utility vt-right 	{ view-transition-name: match-element; view-transition-class: vt-right;  }
 @utility vt-bottom	{ view-transition-name: match-element; view-transition-class: vt-bottom; }
-@utility vt-top   	{ view-transition-name: match-element; view-transition-class: vt-top;    }
+@utility vt-top   	{ 
+	view-transition-name: match-element; view-transition-class: vt-top;    
+	animation: 						vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both
+}
 
 
 /* --- Projects-Page Morphing --- /* TODO: use "Generic Directions" */
