@@ -69,8 +69,8 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 			className={cn(
 				'h-12 w-12 rounded-full select-none md:h-14 md:w-14',
 				'flex items-center justify-center',
-				'bg-fill-md hover:bg-fill-xl',
-				'transition-transform duration-300 hover:scale-110',
+				'bg-fill-md hover:scale-110 hover:bg-fill-xl',
+				'transition-[colors,scale] duration-300',
 				className,
 			)}
 		>
@@ -95,7 +95,7 @@ function ProjectIndicators({ projects, currentIndex, onNavigate, className }: Pr
 					key={item.id}
 					onClick={() => onNavigate(item.slug)}
 					className={cn(
-						'h-2 rounded-full transition-all duration-300',
+						'h-2 rounded-full transition-colors duration-300',
 						index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40',
 					)}
 				/>
@@ -113,7 +113,7 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 	return (
 		<Panel
 			className={cn(
-				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'glass-surface-2 glass-radius-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
@@ -153,7 +153,7 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
 		<Panel
 			className={cn(
-				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'glass-surface-2 glass-radius-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'border-accent/30',
 				'transition-opacity duration-300',
