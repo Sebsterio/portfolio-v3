@@ -7,6 +7,7 @@ import { TransitionLink as Link } from '@/lib/transitions/components/TransitionL
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
 import { Glass } from '@/components/ui/Glass';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type NavItem = {
 	label: string;
@@ -24,7 +25,7 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
-		<nav className='relative'>
+		<VT as='nav' /* name='app-header' */ className='relative'>
 			{/* Main Nav */}
 			<Glass
 				edgeGlow
@@ -35,8 +36,8 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 				])}
 			>
 				{/* Logo */}
-				<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight md:text-2xl'>
-					<span className='gradient-brand-logo gradient-text inline-block'>{logo}</span>
+				<Link href='/' className='font-urbanist text-xl font-extrabold tracking-tight select-none md:text-2xl'>
+					<span className='inline-block gradient-brand-logo gradient-text'>{logo}</span>
 				</Link>
 
 				{/* Desktop Navigation */}
@@ -48,15 +49,15 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 								<Link
 									href={item.href}
 									className={cn(
-										'group relative text-[13px] font-semibold tracking-wider uppercase',
+										'group relative text-[13px] font-semibold tracking-wider uppercase select-none',
 										isCurrent
-											? 'pointer-events-none text-primary'
+											? 'pointer-events-none text-primary' //
 											: 'text-muted transition-all duration-300 hover:text-primary',
 									)}
 								>
 									{item.label}
 									{!isCurrent && (
-										<span className='gradient-brand-underline glow-brand-underline absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 transition-all duration-300 group-hover:w-full' />
+										<span className='absolute -bottom-1.5 left-1/2 h-[2px] w-0 -translate-x-1/2 glow-brand-underline transition-all duration-300 gradient-brand-underline group-hover:w-full' />
 									)}
 								</Link>
 							</li>
@@ -72,6 +73,6 @@ export const AppHeader = ({ logo, navItems, className }: AppHeaderProps) => {
 			/>
 
 			<MobileMenuOverlay className='overlay-page z-50' isOpen={isMenuOpen} navItems={navItems} onClose={() => setIsMenuOpen(false)} />
-		</nav>
+		</VT>
 	);
 };

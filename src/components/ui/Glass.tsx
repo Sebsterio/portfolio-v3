@@ -19,12 +19,19 @@ export type GlassProps = {
 
 export function Glass({ children, className, style, texture, glint, accents, reflection, edgeGlow, onClick }: GlassProps) {
 	return (
-		<div className={cn(onClick && 'cursor-pointer', glint && 'group', className)} style={style} onClick={onClick}>
-			{texture && <div className='glass-noise overlay-full' aria-hidden />}
-
-			{accents && <div className='glass-panel-accents overlay-full' aria-hidden />}
-			{reflection && <div className='glass-reflection overlay-full' aria-hidden />}
-			{edgeGlow && <div className='glass-edge-glow overlay top-0 left-[15%] h-0.5 w-[70%]' aria-hidden />}
+		<div
+			className={cn(
+				reflection && 'glass-decor glass-reflection',
+				edgeGlow && 'glass-decor glass-edge',
+				accents && 'glass-decor glass-accents',
+				glint && 'group',
+				onClick && 'cursor-pointer',
+				className,
+			)}
+			style={style}
+			onClick={onClick}
+		>
+			{texture && <div className='overlay-full glass-noise' aria-hidden />}
 
 			{children}
 

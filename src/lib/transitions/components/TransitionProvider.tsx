@@ -15,11 +15,15 @@
  * - Ensures View Transitions API captures correct DOM snapshot
  */
 
-import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useCallback, useMemo, startTransition } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from '../types';
 import { getNormalizeHref, isCurrentPage } from '../utils';
 import { DEFAULT_IS_SCROLL } from '../config';
+
+/* Config */
+
+const NAVIGATION_TIMEOUT_MS = 2000; // Guard against navigationComplete never resolving (e.g. missing PageTransition wrapper).
 
 /* Contexts */
 
@@ -31,19 +35,24 @@ const TransitionReadyContext = createContext<(() => void) | null>(null);
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const devWarn = (msg: string) => isDev && console.warn(msg);
+const devWarn = (msg: string) => (isDev ? console.warn(msg) : undefined);
 
+/**
+ * Synchronous DOM write — must stay outside React's render cycle.
+ *
+ * Set to `true` before `startViewTransition` so that `TransitionElement`
+ * switches from `display: contents` to `display: block` in time for the
+ * old-state snapshot. Chromium captures a zero-size snapshot for
+ * `display: contents` VT elements, so both snapshots must be taken with
+ * `block` in effect.
+ */
 const updateDocumentTransitioning = (value: boolean) => {
 	const { dataset } = document.documentElement;
 	if (value) dataset.transitioning = 'true';
 	else delete dataset.transitioning;
 };
 
-const executeTransition = async (callback: () => void, navigationComplete: Promise<void>, skip?: boolean) => {
-	if (!document.startViewTransition || skip) {
-		callback();
-		return;
-	}
+const executeTransition = async (callback: () => void, navigationComplete: Promise<void>) => {
 	try {
 		await document.startViewTransition(async () => {
 			callback();
@@ -54,62 +63,49 @@ const executeTransition = async (callback: () => void, navigationComplete: Promi
 	}
 };
 
-/* Private Hooks */
-
-const useIsTransitioning = () => {
-	const [isTransitioning, setIsTransitioning] = useState(false);
-
-	useEffect(() => {
-		updateDocumentTransitioning(isTransitioning);
-		return () => updateDocumentTransitioning(false);
-	}, [isTransitioning]);
-
-	return { isTransitioning, setIsTransitioning };
-};
-
-const useTransition = (setIsTransitioning: (value: boolean) => void) => {
-	const resolveNavigation = useRef<(() => void) | null>(null);
-
-	const signalReady = useCallback(() => {
-		resolveNavigation.current?.();
-		resolveNavigation.current = null;
-	}, []);
-
-	const transition = useCallback(
-		async (action: () => void, config?: TransitionConfig) => {
-			setIsTransitioning(true);
-			const navigationComplete = new Promise<void>((resolve) => {
-				resolveNavigation.current = resolve;
-			});
-			await executeTransition(action, navigationComplete, config?.skip);
-			setIsTransitioning(false);
-		},
-		[setIsTransitioning],
-	);
-
-	return { transition, signalReady };
-};
-
 /* Providers */
 
 export const TransitionProvider = ({ children }: { children: React.ReactNode }) => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const pathnameRef = useRef(pathname);
-	const { isTransitioning, setIsTransitioning } = useIsTransitioning();
-	const { transition, signalReady } = useTransition(setIsTransitioning);
+	const isTransitioningRef = useRef(false);
+	const resolveNavigation = useRef<(() => void) | null>(null);
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	useEffect(() => {
 		pathnameRef.current = pathname;
 	}, [pathname]);
 
+	const signalReady = useCallback(() => {
+		resolveNavigation.current?.();
+		resolveNavigation.current = null;
+	}, []);
+
+	const transition = useCallback(async (action: () => void, _config?: TransitionConfig) => {
+		if (isTransitioningRef.current) return;
+
+		const navigationComplete = new Promise<void>((resolve) => (resolveNavigation.current = resolve));
+		const navigationTimeout = new Promise<void>((resolve) =>
+			setTimeout(() => resolve(devWarn('[Transition] navigationComplete timed out — resolving fallback')), NAVIGATION_TIMEOUT_MS),
+		);
+
+		isTransitioningRef.current = true;
+		updateDocumentTransitioning(true); // Synchronous: must precede startViewTransition so the old-state snapshot captures TransitionElement in `display: block` (fixes Chromium zero-size bug).
+		startTransition(() => setIsTransitioning(true)); // Non-urgent: React consumers of isTransitioning don't need to block the VT callback. startTransition defers these re-renders so the browser thread stays free for snapshot capture and the animation rAF loop.
+
+		await executeTransition(action, Promise.race([navigationComplete, navigationTimeout]));
+
+		updateDocumentTransitioning(false);
+		startTransition(() => setIsTransitioning(false));
+		isTransitioningRef.current = false;
+	}, []);
+
 	const navigate = useCallback(
 		(href: string, action: () => void, config?: TransitionConfig) => {
-			if (!isCurrentPage(href, pathnameRef.current)) {
-				return transition(action, config);
-			}
-			devWarn(`[Navigation] Blocked: Already on ${href}`);
-			return Promise.resolve();
+			if (isCurrentPage(href, pathnameRef.current)) return devWarn(`[Navigation] Blocked: Already on ${href}`);
+			if (config?.skip || !document.startViewTransition) return action();
+			return transition(action, config);
 		},
 		[transition],
 	);
@@ -118,14 +114,10 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 		() => ({
 			navigate: (href: string, config?: TransitionConfig) =>
 				navigate(href, () => router.push(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
-
 			replace: (href: string, config?: TransitionConfig) =>
 				navigate(href, () => router.replace(href, { scroll: config?.scroll ?? DEFAULT_IS_SCROLL }), config),
-
 			back: (config?: TransitionConfig) => transition(() => router.back(), config),
-
 			forward: (config?: TransitionConfig) => transition(() => router.forward(), config),
-
 			prefetch: (href: string) => router.prefetch(href),
 		}),
 		[router, navigate, transition],
@@ -140,7 +132,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 	);
 };
 
-/* Public Hooks */
+/* Hooks */
 
 export const useTransitionReady = () => {
 	const signalReady = useContext(TransitionReadyContext);
