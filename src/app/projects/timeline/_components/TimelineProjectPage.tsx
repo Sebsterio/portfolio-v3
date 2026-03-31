@@ -30,27 +30,39 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</BackLink>
 
 			{/* Desktop ─────────────────────────────────────────── */}
+
 			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
-				<VT classes='vt-t-list'>
-					<aside className='relative'>
-						<TimelineLine className='left-4' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
+				<aside className='relative'>
+					<VT.Area classes='vt-t-list'>
+						<TimelineLine
+							className='left-4'
+							fadeEnds={false}
+							style={{ height: `calc(100% - ${2 * projects.length}rem)` }} //
+						/>
 						<div className='space-y-3'>
 							{projects.map((p) => (
-								<ProjectSidebarItem key={p.id} project={p} isActive={project.id === p.id} onClick={() => go(p)} />
+								<ProjectSidebarItem
+									key={p.id}
+									project={p}
+									isActive={project.id === p.id}
+									onClick={() => go(p)} //
+								/>
 							))}
 						</div>
-					</aside>
-				</VT>
-				<VT classes='vt-t-detail'>
-					<main>
+					</VT.Area>
+				</aside>
+				<main>
+					<VT.Area classes='vt-t-detail'>
 						<TimelineProjectPanel project={project} />
-					</main>
-				</VT>
+					</VT.Area>
+				</main>
 			</div>
 
 			{/* Mobile ──────────────────────────────────────────── */}
+
 			<div className='relative lg:hidden'>
 				<TimelineLine className='left-1.75' />
+
 				<div className='space-y-3'>
 					{projects.map((p) => {
 						const isExpanded = p.id === project.id;
@@ -75,8 +87,8 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-sm font-semibold text-label'>{p.period}</span>
 		</div>
 
-		<VT bind name={`project-card-${p.id}`}>
-			<Panel className='glass-radius-2 glass-surface-1 space-y-6 border-accent/30 p-6 glass-elevation-1'>
+		<VT.Onto name={`project-card-${p.id}`}>
+			<Panel className='glass-surface-1 space-y-6 glass-radius-2 border-accent/30 p-6 glass-elevation-1'>
 				<div className='relative space-y-5'>
 					<div className='space-y-1.5'>
 						<h2 className='heading-1 text-primary'>{p.title}</h2>
@@ -103,12 +115,12 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 					)}
 				</div>
 			</Panel>
-		</VT>
+		</VT.Onto>
 	</div>
 );
 
 const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClick: () => void }) => (
-	<VT bind name={`project-card-${p.id}`}>
+	<VT.Onto name={`project-card-${p.id}`}>
 		<button
 			onClick={onClick}
 			className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
@@ -120,5 +132,5 @@ const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClic
 				<div className='text-xs text-subtle'>{p.company}</div>
 			</div>
 		</button>
-	</VT>
+	</VT.Onto>
 );

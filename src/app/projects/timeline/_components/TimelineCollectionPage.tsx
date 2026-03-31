@@ -23,7 +23,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 		<div className='w-full stack-lg'>
 			{/* Desktop ─────────────────────────────────────── */}
 			<div className='relative ml-8 hidden lg:mr-8 lg:block xl:mr-32'>
-				<VT classes='vt-t-list'>
+				<VT.Area classes='vt-t-list'>
 					<TimelineLine className='left-8 xl:left-32' />
 					<div className='space-y-12'>
 						{projects.map((project) => (
@@ -36,7 +36,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 							</div>
 						))}
 					</div>
-				</VT>
+				</VT.Area>
 			</div>
 
 			{/* Mobile ─────────────────────────────────────────────── */}
@@ -46,11 +46,11 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<VT bind name={`project-card-${project.id}`}>
+							<VT.Onto name={`project-card-${project.id}`}>
 								<TimelineCard onClick={() => go(project)} className='mr-2 p-6'>
 									<TimelineCardContent project={project} limit={4} />
 								</TimelineCard>
-							</VT>
+							</VT.Onto>
 						</div>
 					))}
 				</div>

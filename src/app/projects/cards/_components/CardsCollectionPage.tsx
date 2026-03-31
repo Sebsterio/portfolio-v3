@@ -23,12 +23,12 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 		<div className='w-full stack-lg'>
 			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
-					<VT name={`project-card-${project.id}`} key={project.id}>
+					<VT.Onto name={`project-card-${project.id}`} key={project.id}>
 						<ProjectCard
 							project={project}
 							onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
 						/>
-					</VT>
+					</VT.Onto>
 				))}
 			</div>
 		</div>
@@ -48,7 +48,7 @@ const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
 		<Panel
 			edgeGlow
 			className={cn(
-				'glass-radius-3 group glass-surface-2 h-105 padding-card glass-elevation-1',
+				'group glass-surface-2 h-105 glass-radius-3 padding-card glass-elevation-1',
 				'transition-all hover:scale-105 hover:glass-elevation-2',
 			)}
 			{...{ style, onClick }}

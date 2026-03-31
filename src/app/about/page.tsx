@@ -13,14 +13,10 @@ export default function AboutPage({}: AboutPageProps) {
 	useTransitionReady();
 
 	return (
-		<div
-			className={cn('grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]', [
-				'gap-10 md:gap-12 lg:gap-16', //
-			])}
-		>
+		<div className={cn('grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]', 'gap-10 md:gap-12 lg:gap-16')}>
 			{/* Main Content Column */}
 
-			<VT classes='vt-left'>
+			<VT.Area classes='vt-left'>
 				<div className='stack-2xl'>
 					<Title variant='page'>{copy.title}</Title>
 
@@ -34,11 +30,11 @@ export default function AboutPage({}: AboutPageProps) {
 						</div>
 					</Section>
 				</div>
-			</VT>
+			</VT.Area>
 
 			{/* Sidebar Column */}
 
-			<VT classes='vt-right lg:vt-main'>
+			<VT.Area classes='vt-right lg:vt-main'>
 				<div className='stack-md'>
 					<InfoCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-4 md:space-y-6 md:pb-2'>
@@ -58,7 +54,7 @@ export default function AboutPage({}: AboutPageProps) {
 						</div>
 					</InfoCard>
 				</div>
-			</VT>
+			</VT.Area>
 		</div>
 	);
 }

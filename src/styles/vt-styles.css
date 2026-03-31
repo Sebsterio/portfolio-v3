@@ -32,22 +32,22 @@
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
+    animation-duration:			0.001ms !important;
+    animation-iteration-count: 	1 	!important;
   }
 }
 
+/* Prevent flash (edge cases) */
 ::view-transition-old(root),
-::view-transition-new(root) {
-	animation: none;
-  animation-duration: 0.001ms;	/* Prevent flash (edge cases) */
+::view-transition-new(root) {	
+	animation-duration: 	0.001ms; 
+	/* animation: 				none; */ 
 }
 
 
-/* ------------------------------------------------
-   Default Page-Slot Transitions
-   ------------------------------------------------ */
+/* --- Defaults ---------------------------------- */
 
+/* Exit */
 ::view-transition-old(*) {
   animation-name:            vt-fade-out;
 	animation-duration:        var(--duration-vt-exit);
@@ -55,6 +55,7 @@
   animation-fill-mode:       both;
 }
 
+/* Enter */
 ::view-transition-new(*) {
   animation-name:            vt-fade-in;
 	animation-duration:        var(--duration-vt-enter);
@@ -62,40 +63,27 @@
   animation-fill-mode:       both;
 }
 
-
-/* ------------------------------------------------
-    Generic Transitions
-   ------------------------------------------------ */
-
-::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
-::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
-
-::view-transition-old(.vt-top)              { animation-name: vt-slide-to-t; }
-::view-transition-new(.vt-top)              { animation-name: vt-slide-in-t; }
-
-::view-transition-old(.vt-right)            { animation-name: vt-slide-to-r; }
-::view-transition-new(.vt-right)            { animation-name: vt-slide-in-r; }
-
-::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
-::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
-
+/* Morphing */
+::view-transition-group(*) {
+	animation-duration: 			 var(--duration-vt-base);
+	animation-timing-function: var(--easing-vt-default);
+	animation-fill-mode: 			 both;
+} 
 
 
 /* ------------------------------------------------
-    Page Sections
+    Transition Elements  (vt-named)
    ------------------------------------------------ */
 
-
-/* --- App: Header ---------------------------------- */
-
-/* Keep in front of VT-elements with slide-top transition  */
-::view-transition-old(app-header),
+/* --- App Header ---------------------------------- *//* 
+	Keep in front of VT-elements with slide-top transition  
+*/
+::view-transition-old(app-header) 					{ animation: 	none; display: none }
 ::view-transition-new(app-header) 					{ animation: 	none; }
-::view-transition-group(app-header) 				{ z-index: 		50;   }
+::view-transition-group(app-header) 				{ z-index: 		50;   } 
 
 
-/* --- App: Common ------------------------------- */
-/* 
+/* --- App: Common ------------------------------- *//* 
 	If name is in both pages  -> Container morphs, content fades
 	If name only in one page  -> Element slides from/to right
 */
@@ -105,8 +93,7 @@
 ::view-transition-new(main):only-child  		{ animation-name: vt-slide-in-r; }
 
 
-/* --- Projects: Common ---------------------------- */
-/* 
+/* --- Projects: Common ---------------------------- *//* 
 	On nav within /projects/**   -> Header is static      
 	On nav to/from other routes	 -> Header slides from/to top
 */
@@ -116,10 +103,9 @@
 ::view-transition-new(p-header):only-child  					{ animation-name: vt-slide-in-t; 	}
 
 
-/* --- Projects: Timeline -------------------------- */
-/* 
-	On nav between list and detail  -> Aside morphs to/from List						// TODO: disable vt-old 
-	On nav to/from timeline route	  -> Aside slides from/to left; 					// TODO: non-vt enter transition
+/* --- Projects: Timeline -------------------------- *//* 
+	On nav between list and detail  -> Aside morphs to/from List		// TODO: disable vt-old 
+	On nav to/from timeline route	  -> Aside slides from/to left; 	// TODO: non-vt enter transition
 */
 ::view-transition-old(t-list)             { animation-name: vt-fade-out; 	 } 
 ::view-transition-new(t-list)             { animation-name: vt-fade-in;  	 }
@@ -134,3 +120,21 @@
 
 ::view-transition-new(m-page):only-child { animation-name: vt-slide-in-r; }
 ::view-transition-old(m-page):only-child { animation-name: vt-slide-to-r; }
+
+
+
+/* ------------------------------------------------
+    Generic Transitions  (vt-class)
+   ------------------------------------------------ */
+
+::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
+::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
+
+::view-transition-old(.vt-top)              { animation-name: vt-slide-to-t; }
+::view-transition-new(.vt-top)              { animation-name: vt-slide-in-t; }
+
+::view-transition-old(.vt-right)            { animation-name: vt-slide-to-r; }
+::view-transition-new(.vt-right)            { animation-name: vt-slide-in-r; }
+
+::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
+::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
