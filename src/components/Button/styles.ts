@@ -6,7 +6,7 @@ export type ButtonSize = 'sm' | 'lg';
 const CLASSES = {
 	base: cn(
 		'inline-flex items-center gap-2 rounded-full border-2',
-		'font-dm-sans font-bold',
+		'font-dm-sans font-bold select-none',
 		'transition-all duration-200',
 		'hover:scale-102 active:scale-95 active:duration-50',
 		'focus-ring',
@@ -26,8 +26,8 @@ const CLASSES = {
 			'glow-accent-sm', //
 		),
 		secondary: cn(
-			'border-neutral-1/15 bg-fill-sm text-neutral-1 backdrop-blur-[10px]',
-			'hover:border-neutral-1/40 hover:bg-fill-lg',
+			'border-neutral-1/15 text-neutral-1 backdrop-blur-[10px] bg-fill-sm',
+			'hover:border-neutral-1/40 hover:bg-fill-lg', //
 		),
 	},
 } as const;

@@ -12,8 +12,7 @@ import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
 import { ImpactList } from '@/components/ImpactList';
 import { CaseStudySection } from '@/components/CaseStudySection';
-
-// import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -31,24 +30,39 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</BackLink>
 
 			{/* Desktop ─────────────────────────────────────────── */}
-			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
-				<aside className='relative vt-t-list'>
-					<TimelineLine position='center' fadeEnds={false} style={{ height: `calc(100% - ${2 * projects.length}rem)` }} />
-					<div className='space-y-3'>
-						{projects.map((p) => (
-							<ProjectSidebarItem key={p.id} project={p} isActive={project.id === p.id} onClick={() => go(p)} />
-						))}
-					</div>
-				</aside>
 
-				<main className='vt-t-detail'>
-					<TimelineProjectPanel project={project} />
+			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
+				<aside className='relative'>
+					<VT.Area name='t-list'>
+						<TimelineLine
+							className='left-4'
+							fadeEnds={false}
+							style={{ height: `calc(100% - ${2 * projects.length}rem)` }} //
+						/>
+						<div className='space-y-3'>
+							{projects.map((p) => (
+								<ProjectSidebarItem
+									key={p.id}
+									project={p}
+									isActive={project.id === p.id}
+									onClick={() => go(p)} //
+								/>
+							))}
+						</div>
+					</VT.Area>
+				</aside>
+				<main>
+					<VT.Area classes='vt-right'>
+						<TimelineProjectPanel project={project} />
+					</VT.Area>
 				</main>
 			</div>
 
 			{/* Mobile ──────────────────────────────────────────── */}
+
 			<div className='relative lg:hidden'>
-				<TimelineLine position='left' />
+				<TimelineLine className='left-1.75' />
+
 				<div className='space-y-3'>
 					{projects.map((p) => {
 						const isExpanded = p.id === project.id;
@@ -73,50 +87,50 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-sm font-semibold text-label'>{p.period}</span>
 		</div>
 
-		<Panel
-			className='glass-radius-2 glass-surface-1 space-y-6 border-accent/30 p-6 glass-elevation-1'
-			style={{ viewTransitionName: `project-card-${p.id}` }}
-		>
-			<div className='relative space-y-5'>
-				<div className='space-y-1.5'>
-					<h2 className='heading-1 text-primary'>{p.title}</h2>
-					<p className='text-secondary text-lg'>{p.company}</p>
-					<p className='text-muted text-sm'>{p.role}</p>
+		<VT.Onto name={`project-card-${p.id}`}>
+			<Panel className='glass-surface-1 space-y-6 glass-radius-2 border-accent/30 p-6 glass-elevation-1'>
+				<div className='relative space-y-5'>
+					<div className='space-y-1.5'>
+						<h2 className='heading-1 text-primary'>{p.title}</h2>
+						<p className='text-lg text-secondary'>{p.company}</p>
+						<p className='text-sm text-muted'>{p.role}</p>
+					</div>
+
+					<p className='leading-relaxed text-secondary'>{p.intro}</p>
+
+					<CaseStudySection label='The Challenge' content={p.challenge} size='sm' />
+					<CaseStudySection label='The Solution' content={p.solution} size='sm' />
+
+					<div className='space-y-3 pt-1'>
+						<h3 className='heading-3 font-bold text-primary'>Impact</h3>
+						<ImpactList items={p.impact} size='sm' />
+					</div>
+
+					<ProjectTags tags={p.tags} size='sm' />
+
+					{p.link && (
+						<ExternalLinkButton href={p.link} size='sm'>
+							Visit Project →
+						</ExternalLinkButton>
+					)}
 				</div>
-
-				<p className='text-secondary leading-relaxed'>{p.intro}</p>
-
-				<CaseStudySection label='The Challenge' content={p.challenge} size='sm' />
-				<CaseStudySection label='The Solution' content={p.solution} size='sm' />
-
-				<div className='space-y-3 pt-1'>
-					<h3 className='heading-3 text-primary font-bold'>Impact</h3>
-					<ImpactList items={p.impact} size='sm' />
-				</div>
-
-				<ProjectTags tags={p.tags} size='sm' />
-
-				{p.link && (
-					<ExternalLinkButton href={p.link} size='sm'>
-						Visit Project →
-					</ExternalLinkButton>
-				)}
-			</div>
-		</Panel>
+			</Panel>
+		</VT.Onto>
 	</div>
 );
 
 const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClick: () => void }) => (
-	<button
-		onClick={onClick}
-		className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
-		style={{ viewTransitionName: `project-card-${p.id}` }}
-	>
-		<TimelineDot size='sm' className='absolute top-1/2 left-0 -translate-y-1/2' />
-		<div className='space-y-1'>
-			<div className='ui-meta text-label'>{p.period}</div>
-			<div className='text-muted font-display text-sm font-semibold'>{p.title}</div>
-			<div className='text-subtle text-xs'>{p.company}</div>
-		</div>
-	</button>
+	<VT.Onto name={`project-card-${p.id}`}>
+		<button
+			onClick={onClick}
+			className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
+		>
+			<TimelineDot size='sm' className='absolute top-1/2 left-0 -translate-y-1/2' />
+			<div className='space-y-1'>
+				<div className='ui-meta text-label'>{p.period}</div>
+				<div className='font-display text-sm font-semibold text-muted'>{p.title}</div>
+				<div className='text-xs text-subtle'>{p.company}</div>
+			</div>
+		</button>
+	</VT.Onto>
 );

@@ -2,12 +2,11 @@
 
 import { useCallback } from 'react';
 import type { NavigationConfig } from '../types';
-import { usePageTransition, usePageTransitionState } from '../components/TransitionProvider';
+import { usePageTransition } from '../components/TransitionProvider';
 import { DEFAULT_IS_SCROLL } from '../config';
 
 export const useTransitionRouter = () => {
 	const { navigate: baseNavigate, back, forward, replace, prefetch } = usePageTransition();
-	const state = usePageTransitionState();
 
 	const navigate = useCallback(
 		async (href: string, config?: NavigationConfig) => {
@@ -29,5 +28,5 @@ export const useTransitionRouter = () => {
 		[baseNavigate, prefetch],
 	);
 
-	return { navigate, back, forward, replace, prefetch, state };
+	return { navigate, back, forward, replace, prefetch };
 };

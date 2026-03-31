@@ -27,7 +27,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 			</div>
 
 			<div className='mmg-grid mx-5 sm:mx-10 md:mx-16 lg:mr-0 xl:ml-20'>
-				<div id={entry0.sectionId} className={cn('mmg-e0-text', 'space-y-3 transition-transform duration-400 hover:translate-x-4')}>
+				<div id={entry0.sectionId} className={cn('mmg-e0-text', 'space-y-3 transition-[translate] duration-400 hover:translate-x-4')}>
 					<h4 className={cn('font-urbanist text-2xl font-bold text-label', 'md:text-3xl')}>{entry0.title}</h4>
 					<p className='text-sm leading-relaxed text-secondary md:text-base'>{entry0.description}</p>
 				</div>
@@ -63,7 +63,7 @@ export function MagazineSectionMulti({ number, title, subtitle, entries }: Magaz
 
 				<div className='mmg-divider border-b border-accent-2/15' />
 
-				<div id={entry1.sectionId} className={cn('mmg-e1-text', 'space-y-3 transition-transform duration-400 hover:translate-x-4')}>
+				<div id={entry1.sectionId} className={cn('mmg-e1-text', 'space-y-3 transition-[translate] duration-400 hover:translate-x-4')}>
 					<h4 className={cn('font-urbanist text-2xl font-bold text-label', 'md:text-3xl')}>{entry1.title}</h4>
 					<p className='text-sm leading-relaxed text-secondary md:text-base'>{entry1.description}</p>
 				</div>

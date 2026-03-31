@@ -6,6 +6,7 @@ import { MagazineSectionD } from './MagazineSectionD';
 import { MagazineSectionE } from './MagazineSectionE';
 import { MagazineSectionMulti } from './MagazineSectionMulti';
 import { getProjectAnchorId } from '../../_lib';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 const MagazineCollectionPageDecorations = () => (
 	<>
@@ -29,7 +30,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 	const freelanceProjects = projects.filter((p) => p.freelance);
 
 	return (
-		<div className='relative pt-20 vt-m-page'>
+		<VT.Div name='m-page' className='relative pt-20'>
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-36'>
@@ -105,6 +106,6 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 					}))}
 				/>
 			</div>
-		</div>
+		</VT.Div>
 	);
 };

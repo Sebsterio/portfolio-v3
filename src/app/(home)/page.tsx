@@ -5,6 +5,7 @@ import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } fro
 
 import { copy, buttons, showcaseItems } from './_content';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type HomePageProps = Record<string, never>;
 
@@ -12,14 +13,15 @@ export default function HomePage({}: HomePageProps) {
 	useTransitionReady();
 
 	return (
-		<div className={cn('grid w-full grid-cols-1 items-start gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
+		<div className={cn('grid w-full grid-cols-1 gap-10 md:gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20')}>
 			{/* Left Column - Hero Content */}
-			<div className='pt-4 md:pt-6'>
-				<StatusBadge className='mb-7 vt-top md:mb-9'>{copy.superscript}</StatusBadge>
 
-				<div className='stack-2xl vt-left'>
+			<div className='mt-4 stack-lg md:mt-6'>
+				<VT as={StatusBadge} classes='vt-top'>
+					{copy.superscript}
+				</VT>
+				<VT.Div classes='vt-left' className='stack-2xl'>
 					<Title variant='hero'>{copy.title}</Title>
-
 					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
 					<div className='flex flex-wrap gap-5'>
@@ -30,15 +32,18 @@ export default function HomePage({}: HomePageProps) {
 							{buttons.secondary.text}
 						</Button>
 					</div>
-				</div>
+				</VT.Div>
 			</div>
 
 			{/* Right Column - Showcase Cards */}
-			<div className={cn('vt-right lg:vt-main', 'w-full space-y-4 md:space-y-6')}>
-				{showcaseItems.map(({ id, icon, title, description }) => (
-					<ShowcaseCard key={id} icon={icon} title={title} description={description} />
-				))}
-			</div>
+
+			<VT.Area classes='vt-right lg:vt-main'>
+				<div className='w-full space-y-4 md:space-y-6'>
+					{showcaseItems.map(({ id, icon, title, description }) => (
+						<ShowcaseCard key={id} icon={icon} title={title} description={description} />
+					))}
+				</div>
+			</VT.Area>
 		</div>
 	);
 }

@@ -14,17 +14,16 @@ import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ExternalLinkButton } from '@/components/Button';
+import { VT } from '@/lib/transitions/components/TransitionSlot';
 
 type CardsProjectPageProps = {
 	project: Project;
 	allProjects: Project[];
 };
-
 type NavigationTarget = {
 	slug: string;
 	options?: { scroll?: false; scrollTo?: string };
 };
-
 type ProjectNeighbors = {
 	currentIndex: number;
 	prev: Project;
@@ -41,51 +40,16 @@ const CARD_IMAGE_GRADIENTS = [
 	'bg-gradient-freelance-small',
 ] as const;
 
-const CARD_FLIP_DURATION_MS = 600;
-
-const CARD_WRAPPER_STYLE: CSSProperties = {
-	transformStyle: 'preserve-3d',
-};
-
-const CARD_FACE_SHARED_STYLE: CSSProperties = {
-	backfaceVisibility: 'hidden',
-	WebkitBackfaceVisibility: 'hidden',
-};
-
-function getProjectNeighbors(project: Project, allProjects: Project[]): ProjectNeighbors {
-	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
-
-	if (currentIndex < 0) {
-		throw new Error(`CardsProjectPage: project "${project.id}" not found in allProjects.`);
-	}
-
-	return {
-		currentIndex,
-		prev: allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length],
-		next: allProjects[(currentIndex + 1) % allProjects.length],
-	};
-}
-
 function getCardImageGradient(index: number): string {
 	return CARD_IMAGE_GRADIENTS[index % CARD_IMAGE_GRADIENTS.length];
 }
 
-function getProjectCardTransitionStyle(flipped: boolean): CSSProperties {
+function getProjectNeighbors(project: Project, allProjects: Project[]): ProjectNeighbors {
+	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
 	return {
-		...CARD_WRAPPER_STYLE,
-		transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-		transition: `transform ${CARD_FLIP_DURATION_MS}ms cubic-bezier(0.22, 1, 0.36, 1)`,
-	};
-}
-
-function getProjectCardViewTransitionStyle(projectId: Project['id']): CSSProperties {
-	return {
-		viewTransitionName: `project-card-${projectId}`,
-	};
-}
-function getProjectCardInnerViewTransitionStyle(projectId: Project['id']): CSSProperties {
-	return {
-		viewTransitionName: `project-card-inner-${projectId}`,
+		currentIndex,
+		prev: allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length],
+		next: allProjects[(currentIndex + 1) % allProjects.length],
 	};
 }
 
@@ -103,10 +67,10 @@ function NavigationButton({ direction, onClick, className }: NavigationButtonPro
 			type='button'
 			onClick={onClick}
 			className={cn(
-				'h-12 w-12 rounded-full md:h-14 md:w-14',
+				'h-12 w-12 rounded-full select-none md:h-14 md:w-14',
 				'flex items-center justify-center',
-				'bg-fill-md hover:bg-fill-xl',
-				'transition-transform duration-300 hover:scale-110',
+				'bg-fill-md hover:scale-110 hover:bg-fill-xl',
+				'transition-[colors,scale] duration-300',
 				className,
 			)}
 		>
@@ -124,14 +88,14 @@ type ProjectIndicatorsProps = {
 
 function ProjectIndicators({ projects, currentIndex, onNavigate, className }: ProjectIndicatorsProps) {
 	return (
-		<div className={cn('flex items-center gap-2', className)}>
+		<div className={cn('flex items-center gap-2 select-none', className)}>
 			{projects.map((item, index) => (
 				<button
 					type='button'
 					key={item.id}
 					onClick={() => onNavigate(item.slug)}
 					className={cn(
-						'h-2 rounded-full transition-all duration-300',
+						'h-2 rounded-full transition-colors duration-300',
 						index === currentIndex ? 'w-8 bg-accent' : 'w-2 bg-white/20 hover:bg-white/40',
 					)}
 				/>
@@ -149,12 +113,12 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 	return (
 		<Panel
 			className={cn(
-				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'glass-surface-2 glass-radius-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'transition-opacity duration-300',
 				flipped ? 'pointer-events-none opacity-0' : 'opacity-100',
 			)}
-			style={CARD_FACE_SHARED_STYLE}
+			style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
 		>
 			<div className='space-y-6 md:space-y-8'>
 				<div className='space-y-3 md:space-y-4'>
@@ -176,9 +140,9 @@ function ProjectCardFront({ project, flipped, gradientClass }: ProjectCardFacePr
 				/>
 
 				<div className='space-y-4 pb-2'>
-					<p className='text-tertiary text-base leading-relaxed md:text-xl'>{project.summary}</p>
+					<p className='text-base leading-relaxed text-tertiary md:text-xl'>{project.summary}</p>
 					<ProjectTags size='lg' tags={project.tags} />
-					<p className='animate-pulse text-sm text-accent'>Flip card →</p>
+					<p className='animate-pulse text-sm text-accent select-none'>Flip card →</p>
 				</div>
 			</div>
 		</Panel>
@@ -189,14 +153,15 @@ function ProjectCardBack({ project, flipped }: ProjectCardFaceProps) {
 	return (
 		<Panel
 			className={cn(
-				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'glass-surface-2 glass-radius-2 glass-elevation-1',
 				'col-start-1 row-start-1 padding-panel',
 				'border-accent/30',
 				'transition-opacity duration-300',
 				flipped ? 'opacity-100' : 'pointer-events-none opacity-0',
 			)}
 			style={{
-				...CARD_FACE_SHARED_STYLE,
+				backfaceVisibility: 'hidden',
+				WebkitBackfaceVisibility: 'hidden',
 				transform: 'rotateY(180deg)',
 			}}
 		>
@@ -237,14 +202,15 @@ type ProjectTransitionSlotProps = {
 
 function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) {
 	return (
-		<div
-			aria-hidden='true'
-			className={cn(
-				'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
-				side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
-			)}
-			style={getProjectCardInnerViewTransitionStyle(projectId)}
-		/>
+		<VT.Onto name={`project-card-inner-${projectId}`}>
+			<div
+				aria-hidden='true'
+				className={cn(
+					'pointer-events-none absolute top-1/4 bottom-1/4 hidden w-[20rem] max-w-[28vw] overflow-hidden rounded-4xl lg:block',
+					side === 'prev' ? 'right-[calc(100%+2rem)]' : 'left-[calc(100%+2rem)]',
+				)}
+			/>
+		</VT.Onto>
 	);
 }
 
@@ -263,18 +229,23 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
 			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
-			<div style={getProjectCardViewTransitionStyle(project.id)}>
-				<div
-					onClick={onFlip}
-					className='block w-full cursor-pointer bg-transparent p-0 text-left'
-					style={getProjectCardInnerViewTransitionStyle(project.id)}
-				>
-					<div className='grid' style={getProjectCardTransitionStyle(flipped)}>
-						<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
-						<ProjectCardBack project={project} flipped={flipped} />
+			<VT.Area name={`project-card-${project.id}`}>
+				<VT.Onto name={`project-card-inner-${project.id}`}>
+					<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
+						<div
+							className='grid'
+							style={{
+								transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+								transformStyle: 'preserve-3d',
+								transition: `transform 600ms cubic-bezier(0.22, 1, 0.36, 1)`,
+							}}
+						>
+							<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
+							<ProjectCardBack project={project} flipped={flipped} />
+						</div>
 					</div>
-				</div>
-			</div>
+				</VT.Onto>
+			</VT.Area>
 		</div>
 	);
 }
@@ -326,10 +297,9 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 
 			<div className='flex flex-col items-center gap-8'>
 				<div
-					className={cn(
-						'w-full max-w-350',
+					className={cn('w-full max-w-350', [
 						'grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8 lg:gap-y-10',
-					)}
+					])}
 				>
 					<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
 						<FlipProjectCard

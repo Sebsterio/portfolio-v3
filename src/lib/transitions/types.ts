@@ -10,8 +10,8 @@ export interface NavigationStateContext {
 }
 
 export type TransitionMethodsContext = {
-	navigate: (href: string, config?: TransitionConfig) => Promise<void>;
-	replace: (href: string, config?: TransitionConfig) => Promise<void>;
+	navigate: (href: string, config?: TransitionConfig) => Promise<void> | void;
+	replace: (href: string, config?: TransitionConfig) => Promise<void> | void;
 	back: (config?: TransitionConfig) => void;
 	forward: (config?: TransitionConfig) => void;
 	prefetch: (href: string) => void;

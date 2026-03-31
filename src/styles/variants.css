@@ -1,0 +1,24 @@
+/* ---- Dark Mode ---- */
+
+@custom-variant dark (&:is(.dark *));
+
+
+/* ---- View Transition ---- */
+
+@custom-variant transitioning (&:where(:root[data-transitioning] *));
+
+
+/* ---- Viewport/Device ---- */
+
+@custom-variant mobile  { @media (width < theme(--breakpoint-md))  {  @slot;  }}
+@custom-variant desktop { @media (width >= theme(--breakpoint-md)) {  @slot;  }}
+
+
+/* ---- View Transition AND Viewport/Device ---- */
+
+@custom-variant mobile-transitioning {
+  @media (width < theme(--breakpoint-md))  {  &:where(:root[data-transitioning] *) {  @slot;  }  }
+}
+@custom-variant desktop-transitioning {
+  @media (width >= theme(--breakpoint-md)) {	&:where(:root[data-transitioning] *) {  @slot;  }  }
+}
