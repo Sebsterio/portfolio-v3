@@ -5,17 +5,7 @@
 
 /* --- Cross-Page Morphing --- */
 
-/* Common */
-
 @utility vt-main			{ view-transition-name: main;   	}
-
-
-/* Projects Pages */
-
-@utility vt-t-list   	{ view-transition-name: t-list;   }
-@utility vt-t-detail 	{ view-transition-name: t-detail; }
-@utility vt-m-page 		{ view-transition-name: m-page; 	}
-@utility vt-c-page 		{ view-transition-name: c-page; 	}
 
 
 

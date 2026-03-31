@@ -30,7 +30,7 @@ export const MagazineCollectionPage = ({ projects }: MagazineCollectionPageProps
 	const freelanceProjects = projects.filter((p) => p.freelance);
 
 	return (
-		<VT.Div classes='vt-m-page' className='relative pt-20'>
+		<VT.Div name='m-page' className='relative pt-20'>
 			<MagazineCollectionPageDecorations />
 
 			<div className='relative z-10 space-y-24 md:space-y-40 lg:space-y-36'>

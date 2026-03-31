@@ -33,7 +33,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 
 			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
 				<aside className='relative'>
-					<VT.Area classes='vt-t-list'>
+					<VT.Area name='t-list'>
 						<TimelineLine
 							className='left-4'
 							fadeEnds={false}
@@ -52,7 +52,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 					</VT.Area>
 				</aside>
 				<main>
-					<VT.Area classes='vt-t-detail'>
+					<VT.Area classes='vt-right'>
 						<TimelineProjectPanel project={project} />
 					</VT.Area>
 				</main>
