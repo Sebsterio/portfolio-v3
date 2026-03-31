@@ -1,19 +1,16 @@
 /* ================================================
    View Transition — Styles
    ================================================ */
-
-
-/* ------------------------------------------------
-   Base Configuration
-   ------------------------------------------------ */
+   
+/* --- Base Configuration ------------------------- */
 
 :root {
-  --distance-vt-slide:    100%;
-  --duration-vt-base:     300ms;
+  --distance-vt-slide:     100%;
+	--duration-vt-morph:    600ms;
   --duration-vt-exit:     200ms;
   --duration-vt-enter:    400ms;
-  --easing-vt-default:    cubic-bezier(0.4, 0, 0.2, 1);
-  --easing-spring-release: cubic-bezier(0.4, 0, 1, 1);
+  --easing-vt-default:     cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-spring-release: cubic-bezier(0.4, 0, 1,   1);
   --easing-panel-slide-in: cubic-bezier(0.2, 0, 0.2, 1);
 }
 
@@ -21,11 +18,14 @@
 @media (pointer: coarse) {
   :root {
   --distance-vt-slide:    50%;
-  --duration-vt-base:     200ms;
+	--duration-vt-morph:    450ms;
   --duration-vt-exit:     150ms;
-  --duration-vt-enter:    250ms; */
-  }
-} 
+  --duration-vt-enter:    300ms;
+  }	/* 
+	::view-transition-group(*),	::view-transition-old(*),
+	::view-transition-new(*)  { animation-delay: 100ms; }  
+*/} 
+
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -39,10 +39,7 @@
 
 /* Prevent flash (edge cases) */
 ::view-transition-old(root),
-::view-transition-new(root) {	
-	animation-duration: 	0.001ms; 
-	/* animation: 				none; */ 
-}
+::view-transition-new(root)	 { animation-duration: 0.001ms; }
 
 
 /* --- Defaults ---------------------------------- */
@@ -65,7 +62,7 @@
 
 /* Morphing */
 ::view-transition-group(*) {
-	animation-duration: 			 var(--duration-vt-base);
+	animation-duration: 			 var(--duration-vt-morph);
 	animation-timing-function: var(--easing-vt-default);
 	animation-fill-mode: 			 both;
 } 
@@ -97,18 +94,15 @@
 	On nav within /projects/**   -> Header is static      
 	On nav to/from other routes	 -> Header slides from/to top
 */
-::view-transition-old(p-header):not(:only-child)    { animation-duration:	0.001ms	 } 
-::view-transition-new(p-header):not(:only-child)    { animation-duration:	0.001ms	 }
 ::view-transition-old(p-header):only-child  				{ animation-name: vt-slide-to-t; --distance-vt-slide: 50%; } 
 ::view-transition-new(p-header):only-child  				{ animation-name: vt-slide-in-t; --distance-vt-slide: 50%;}
-
-/* ::view-transition-group(t-list) {  TODO
-
-} */
+::view-transition-old(p-header):not(:only-child), 
+::view-transition-new(p-header):not(:only-child),
+::view-transition-group(p-header) 									{	animation-duration:	0.001ms } 
 
 /* --- Projects: Timeline -------------------------- *//* 
-	On nav between list and detail  -> Aside morphs to/from List		// TODO: disable vt-old 
-	On nav to/from timeline route	  -> Aside slides from/to left; 	// TODO: non-vt enter transition
+	On nav between list and detail  -> Aside morphs to/from List
+	On nav to/from timeline route	  -> Aside slides from/to left
 */
 ::view-transition-old(t-list):only-child  			{ animation-name: vt-slide-to-l; } 
 ::view-transition-new(t-list):only-child  			{ animation-name: vt-slide-in-l; }
@@ -117,11 +111,9 @@
 ::view-transition-old(t-list):not(:only-child),
 ::view-transition-new(t-list):not(:only-child),
 ::view-transition-group(t-list) {
-	animation-duration: 			 			var(--duration-vt-base);
+	animation-duration: 			 			var(--duration-vt-morph);
 	animation-timing-function: 			var(--easing-vt-default);
 } 
-
-
 
 /* --- Projects: Magazine -------------------------- */
 

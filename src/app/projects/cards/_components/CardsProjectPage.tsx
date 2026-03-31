@@ -297,10 +297,9 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 
 			<div className='flex flex-col items-center gap-8'>
 				<div
-					className={cn(
-						'w-full max-w-350',
+					className={cn('w-full max-w-350', [
 						'grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8 lg:gap-y-10',
-					)}
+					])}
 				>
 					<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
 						<FlipProjectCard
