@@ -224,6 +224,7 @@
 
 	@variant desktop {
 		@apply gradient-reflection-horizontal;
+		display: block;
 		transition-property: transform;
 		transition-timing-function: var(--tw-ease, ease-out);
 		transition-duration: var(--tw-duration, 200ms);
