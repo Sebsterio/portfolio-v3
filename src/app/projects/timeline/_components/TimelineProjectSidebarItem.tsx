@@ -6,10 +6,12 @@ export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Pr
 	<button
 		onClick={onClick}
 		className={cn(
-			'relative w-full rounded-xl p-4 pl-10 text-left transition-colors duration-300',
-			isActive ? 'border border-accent/30 bg-accent/10' : 'border border-transparent hover:bg-fill-sm',
+			'relative w-full rounded-xl p-4 pl-10 text-left',
+			'transition-[background-color,border-color,opacity] duration-300',
+			isActive
+				? ['border border-accent/30 bg-accent/10', 'transitioning:border-transparent transitioning:bg-accent/5']
+				: 'border border-transparent hover:bg-fill-sm',
 		)}
-		// style={{ viewTransitionName: `project-card-${project.id}` }}
 	>
 		<TimelineDot active={isActive} size={isActive ? 'md' : 'sm'} className='absolute top-1/2 left-2.5 -translate-y-1/2' />
 
