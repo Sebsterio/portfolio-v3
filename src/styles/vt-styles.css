@@ -77,12 +77,12 @@
 *//* 
 ::view-transition-old(app-header) 					{ animation: 	none; display: none }
 ::view-transition-new(app-header) 					{ animation: 	none; }
-::view-transition-group(app-header) 				{ z-index: 		50;   }  */
-
+::view-transition-group(app-header) 				{ z-index: 		50;   }  
+*/
 
 /* --- App: Common ------------------------------- *//* 
+	If name only in one page  -> Element slides to/from right
 	If name is in both pages  -> Container morphs, content fades
-	If name only in one page  -> Element slides from/to right
 */
 ::view-transition-old(main)             		{ animation-name: vt-fade-out; 	 } 
 ::view-transition-new(main)             		{ animation-name: vt-fade-in; 	 }
@@ -91,8 +91,8 @@
 
 
 /* --- Projects: Common ---------------------------- *//* 
-	On nav within /projects/**   -> Header is static      
 	On nav to/from other routes	 -> Header slides from/to top
+	On nav within /projects/**   -> Header is static      
 */
 ::view-transition-old(p-header):only-child  				{ animation-name: vt-slide-to-t; --distance-vt-slide: 50%; } 
 ::view-transition-new(p-header):only-child  				{ animation-name: vt-slide-in-t; --distance-vt-slide: 50%;}
@@ -100,9 +100,10 @@
 ::view-transition-new(p-header):not(:only-child),
 ::view-transition-group(p-header) 									{	animation-duration:	0.001ms } 
 
+
 /* --- Projects: Timeline -------------------------- *//* 
-	On nav between list and detail  -> Aside morphs to/from List
 	On nav to/from timeline route	  -> Aside slides from/to left
+	On nav between list and detail  -> Aside morphs to/from List
 */
 ::view-transition-old(t-list):only-child  			{ animation-name: vt-slide-to-l; } 
 ::view-transition-new(t-list):only-child  			{ animation-name: vt-slide-in-l; }
@@ -115,10 +116,28 @@
 	animation-timing-function: 			var(--easing-vt-default);
 } 
 
+/* --- Projects: Cards ----------------------------- *//* 
+	ON nav to/from Cards: list page	->  all cards slide to/from bottom
+	ON nav to/from Cards: detail 		->  the card slides to/from bottom
+	ON nav between list and detail	->  selected card morphs, other cards slide to/from bottom
+	ON nav from detail to next  		->  active card slides to left; next card slides from right // TODO
+	ON nav from detail to previous	->  active card slides to right; prev card slides from left // TODO
+*/
+
+::view-transition-old(.project-card):only-child	{	animation-name: vt-slide-to-b; }
+::view-transition-new(.project-card):only-child	{	animation-name: vt-slide-in-b; }
+
+::view-transition-group(.project-card),
+::view-transition-old(.project-card):not(:only-child),
+::view-transition-new(.project-card):not(:only-child) {
+	animation-duration: 			 	var(--duration-vt-morph);
+	animation-timing-function: 	var(--easing-vt-default);
+} 
+
 /* --- Projects: Magazine -------------------------- */
 
-::view-transition-new(m-page):only-child { animation-name: vt-slide-in-r; }
-::view-transition-old(m-page):only-child { animation-name: vt-slide-to-r; }
+::view-transition-new(m-page):only-child 				{ animation-name: vt-slide-in-r; } /* TODO: :only-child redundant */
+::view-transition-old(m-page):only-child 				{ animation-name: vt-slide-to-r; }
 
 
 

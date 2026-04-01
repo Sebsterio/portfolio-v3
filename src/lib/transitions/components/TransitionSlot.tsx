@@ -1,25 +1,30 @@
 import React, { JSX } from 'react';
 import { cn } from '@/lib/utils';
 
-type TransitionName = { name?: string };
-type TransitionStyling = { style?: React.CSSProperties; className?: string; classes?: string };
 type CloneableChild = React.ReactElement<{ style?: React.CSSProperties; className?: string }>;
-
-type TransitionElementProps = TransitionName & TransitionStyling & React.PropsWithChildren;
-type TransitionDecoratorProps = TransitionName & TransitionStyling & { children: CloneableChild };
-
 type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
 
-type TransitionPolymorphicProps<C extends React.ElementType> = TransitionName &
-	TransitionStyling & { as: C; ref?: PolymorphicRef<C> } & Omit<React.ComponentPropsWithoutRef<C>, 'as' | 'name' | 'style' | 'ref'>;
+type TransitionBaseProps = {
+	name?: string;
+	group?: 'normal' | 'contain' | 'nearest' | string;
+	vtClass?: string;
+	className?: string;
+	classes?: string;
+	style?: React.CSSProperties;
+};
 
+type TransitionElementProps = TransitionBaseProps & React.PropsWithChildren;
+type TransitionDecoratorProps = TransitionBaseProps & { children: CloneableChild };
+type TransitionPolymorphicProps<C extends React.ElementType> = TransitionBaseProps & { as: C; ref?: PolymorphicRef<C> } & Omit<
+		React.ComponentPropsWithoutRef<C>,
+		'as' | 'name' | 'style' | 'ref'
+	>;
 type TransitionResolverProps<C extends React.ElementType = 'div'> =
 	| TransitionPolymorphicProps<C>
 	| ({ as?: never; bind: true; wrap?: false } & TransitionDecoratorProps)
 	| ({ as?: never; bind?: false; wrap?: boolean } & TransitionElementProps);
 
-type TransitionIntrinsicProps<T extends keyof JSX.IntrinsicElements> = TransitionName &
-	TransitionStyling &
+type TransitionIntrinsicProps<T extends keyof JSX.IntrinsicElements> = TransitionBaseProps &
 	Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'name' | 'style' | 'ref'>;
 
 type AllProps = { as?: unknown; bind?: boolean; wrap?: boolean } & (TransitionDecoratorProps | TransitionElementProps); // AUX
@@ -65,12 +70,12 @@ function TransitionResolver<C extends React.ElementType = 'div'>(props: Transiti
  * Target:    containers without backdrop-filter - on self or descendants
  */
 function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: TransitionPolymorphicProps<C>) {
-	const { as, name, style, className, classes, ...rest } = props;
+	const { as, name, group, vtClass, style, className, classes, ...rest } = props;
 	const Tag = as as React.ElementType;
 	return (
 		<Tag
 			className={cn(className, classes)}
-			style={{ ...style, ...(name && { viewTransitionName: name }) }}
+			style={withTransitionStyle(style, name, vtClass, group)}
 			{...rest} //
 		/>
 	);
@@ -90,11 +95,11 @@ function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: Trans
  * — `display: contents` — no box, no compositor promotion; children's `backdrop-filter` applies behind the parent.
  * — `display: block` — fixes Chromium issue making VT elements have a zero-size snapshot; creates a compositing boundary, blocking children's `backdrop-filter`.
  */
-function TransitionElement({ name, className, classes, style, ...props }: TransitionElementProps) {
+function TransitionElement({ name, group, vtClass, className, classes, style, ...props }: TransitionElementProps) {
 	return (
 		<div
 			className={cn('contents in-data-transitioning:block', className, classes)}
-			style={{ ...style, ...(name && { viewTransitionName: name }) }}
+			style={withTransitionStyle(style, name, vtClass, group)}
 			{...props}
 		/>
 	);
@@ -110,14 +115,23 @@ function TransitionElement({ name, className, classes, style, ...props }: Transi
  * — `cloneElement` breaks `React.memo` bailouts on the child unconditionally.
  * — Child must accept both `style` and `className` props.
  */
-function TransitionDecorator({ name, children, className, classes, style }: TransitionDecoratorProps) {
+function TransitionDecorator({ name, group, vtClass, children, className, classes, style }: TransitionDecoratorProps) {
 	return React.cloneElement(children, {
 		className: cn(children.props.className, className, classes),
-		style: { ...children.props.style, ...style, ...(name && { viewTransitionName: name }) },
+		style: withTransitionStyle({ ...children.props.style, ...style }, name, vtClass, group),
 	});
 }
 
-// ── Intrinsic companions ──────────────────────────────────────────────────────
+// ── Helpers ──────────────────────────────────────────────────────────────────────────
+
+function withTransitionStyle(style: React.CSSProperties | undefined, name?: string, vtClass?: string, group?: string): React.CSSProperties {
+	return {
+		...style,
+		...(name && { viewTransitionName: name }),
+		...(group && { viewTransitionGroup: group }),
+		...(vtClass && { viewTransitionClass: vtClass }),
+	};
+}
 
 function createTransitionIntrinsic<T extends keyof JSX.IntrinsicElements>(tag: T) {
 	return function TransitionIntrinsic(props: TransitionIntrinsicProps<T>) {

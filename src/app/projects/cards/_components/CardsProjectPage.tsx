@@ -229,22 +229,22 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
 			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
-			<VT.Area name={`project-card-${project.id}`}>
-				<VT.Onto name={`project-card-inner-${project.id}`}>
-					<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
-						<div
-							className='grid'
-							style={{
-								transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-								transformStyle: 'preserve-3d',
-								transition: `transform 600ms cubic-bezier(0.22, 1, 0.36, 1)`,
-							}}
-						>
-							<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
-							<ProjectCardBack project={project} flipped={flipped} />
-						</div>
+			<VT.Area name={`project-card-${project.id}`} vtClass='project-card'>
+				{/* <VT.Onto name={`project-card-inner-${project.id}`}> */}
+				<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
+					<div
+						className='grid'
+						style={{
+							transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+							transformStyle: 'preserve-3d',
+							transition: `transform 600ms cubic-bezier(0.22, 1, 0.36, 1)`,
+						}}
+					>
+						<ProjectCardFront project={project} gradientClass={gradientClass} flipped={flipped} />
+						<ProjectCardBack project={project} flipped={flipped} />
 					</div>
-				</VT.Onto>
+				</div>
+				{/* </VT.Onto> */}
 			</VT.Area>
 		</div>
 	);
