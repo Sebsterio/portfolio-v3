@@ -119,15 +119,21 @@
 	On nav to/from timeline route	  -> Aside slides from/to left
 	On nav between list and detail  -> Aside morphs to/from List
 */
-::view-transition-old(t-list):only-child  			{ animation-name: vt-slide-to-l; } 
+::view-transition-old(t-list):only-child  			{ animation-name: vt-slide-to-l; }  /* Desktop - external nav */
 ::view-transition-new(t-list):only-child  			{ animation-name: vt-slide-in-l; }
-::view-transition-old(t-list):not(:only-child) 	{ animation-name: vt-fade-out; 	 } 
+::view-transition-old(t-list):not(:only-child) 	{ animation-name: vt-fade-out; 	 }  /* Desktop - internal nav */
 ::view-transition-new(t-list):not(:only-child) 	{ animation-name: vt-fade-in;  	 }
-::view-transition-old(t-list):not(:only-child),
-::view-transition-new(t-list):not(:only-child),
-::view-transition-group(t-list) {
+::view-transition-old(.t-project):only-child			{ animation-name: vt-slide-to-l; }  /* Mobile - external nav */
+::view-transition-new(.t-project):only-child			{ animation-name: vt-slide-in-l; }
+::view-transition-old(.t-active):not(:only-child) { animation-name: vt-scale-y-out; } /* Mobile - internal nav */
+::view-transition-new(.t-active):not(:only-child) { animation-name: vt-scale-y-in;  }
+
+/* Adjustments - internal nav */
+::view-transition-old(.t-active):not(:only-child), ::view-transition-old(t-list):not(:only-child),
+::view-transition-new(.t-active):not(:only-child), ::view-transition-new(t-list):not(:only-child),
+::view-transition-group(.t-active), 							 ::view-transition-group(t-list) {
 	animation-duration: 			 			var(--duration-vt-exit);
-	animation-timing-function: 			var(--easing-vt-exit);
+	animation-timing-function: 			var(--easing-spring-release);
 } 
 
 /* --- Projects: Cards ----------------------------- *//* 

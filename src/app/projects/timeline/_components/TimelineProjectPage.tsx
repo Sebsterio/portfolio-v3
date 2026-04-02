@@ -87,7 +87,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-sm font-semibold text-label'>{p.period}</span>
 		</div>
 
-		<VT.Onto name={`t-project-${p.id}`}>
+		<VT.Onto name={`t-project-${p.id}`} vtClass='t-project t-active'>
 			<Panel className='glass-surface-1 space-y-6 glass-radius-2 border-accent/30 p-6 glass-elevation-1'>
 				<div className='relative space-y-5'>
 					<div className='space-y-1.5'>
@@ -120,7 +120,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 );
 
 const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClick: () => void }) => (
-	<VT.Onto name={`t-project-${p.id}`}>
+	<VT.Onto name={`t-project-${p.id}`} vtClass='t-project'>
 		<button
 			onClick={onClick}
 			className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
