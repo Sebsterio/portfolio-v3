@@ -63,8 +63,7 @@
 	animation-fill-mode: 			 both;
 } 
 
-
-/* ------------------------------------------------
+/* ------------------------------------------------ // Keep this before `main` to support classes like `vt-left lg:vt-main` (tech debt)
     Generic Transitions  (vt-class)
    ------------------------------------------------ */
 
@@ -79,7 +78,6 @@
 
 ::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
 ::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
-
 
 
 /* ------------------------------------------------
