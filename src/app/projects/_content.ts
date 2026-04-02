@@ -250,7 +250,7 @@ export const projects: Project[] = [
 			'Improved diagnostic accuracy through structured data',
 			'Enabled clinics to identify health trends across patient base',
 		],
-		link: 'http://www.animalysis.com/demo',
+		link: '',
 		images: {
 			logo: '',
 			thumbnail: '/assets/projects/anim/animalysis.jpg',
@@ -287,7 +287,7 @@ export const projects: Project[] = [
 			'Increased conversion by enabling session persistence and account registration',
 			'Prevented out-of-stock issues through real-time inventory integration',
 		],
-		link: 'https://www.shop.narbonpatricia.com',
+		link: 'https://narbon.netlify.app',
 		images: {
 			logo: '',
 			thumbnail: '/assets/projects/narbon/shop-desktop-md.png',
