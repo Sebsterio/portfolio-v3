@@ -19,28 +19,24 @@
   :root {
   --distance-vt-slide:    50%;
 	--duration-vt-morph:    450ms;
-  --duration-vt-exit:     150ms;
-  --duration-vt-enter:    300ms;
-  }	/* 
-	::view-transition-group(*),	::view-transition-old(*),
-	::view-transition-new(*)  { animation-delay: 100ms; }  
-*/} 
-
+  --duration-vt-exit:     200ms;
+  --duration-vt-enter:    350ms;
+  }	
+	::view-transition-group(*) { animation-delay: 100ms; }
+	::view-transition-old(*)	 { animation-delay: 100ms; }
+} 
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation-duration:			0.001ms !important;
-    animation-iteration-count: 	1 	!important;
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
+    animation-duration:		0.001ms !important;
   }
 }
 
 /* Prevent flash (edge cases) */
-::view-transition-old(root),
-::view-transition-new(root)	 { animation-duration: 0.001ms; }
-
+::view-transition-old(root), ::view-transition-new(root)	{ 
+	animation-duration: 		0.001ms;
+}
 
 /* --- Defaults ---------------------------------- */
 
@@ -66,6 +62,24 @@
 	animation-timing-function: var(--easing-vt-default);
 	animation-fill-mode: 			 both;
 } 
+
+
+/* ------------------------------------------------
+    Generic Transitions  (vt-class)
+   ------------------------------------------------ */
+
+::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
+::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
+
+::view-transition-old(.vt-top)              { animation-name: vt-slide-to-t; }
+::view-transition-new(.vt-top)              { animation-name: vt-slide-in-t; }
+
+::view-transition-old(.vt-right)            { animation-name: vt-slide-to-r; }
+::view-transition-new(.vt-right)            { animation-name: vt-slide-in-r; }
+
+::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
+::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
+
 
 
 /* ------------------------------------------------
@@ -112,59 +126,21 @@
 ::view-transition-old(t-list):not(:only-child),
 ::view-transition-new(t-list):not(:only-child),
 ::view-transition-group(t-list) {
-	animation-duration: 			 			var(--duration-vt-morph);
-	animation-timing-function: 			var(--easing-vt-default);
+	animation-duration: 			 			var(--duration-vt-exit);
+	animation-timing-function: 			var(--easing-vt-exit);
 } 
 
 /* --- Projects: Cards ----------------------------- *//* 
 	ON nav to/from Cards: list page	->  all cards slide to/from bottom
 	ON nav to/from Cards: detail 		->  the card slides to/from bottom
 	ON nav between list and detail	->  selected card morphs, other cards slide to/from bottom
-	ON nav from detail to next  		->  active card slides to left; next card slides from right // TODO
-	ON nav from detail to previous	->  active card slides to right; prev card slides from left // TODO
+	ON nav from detail to next  		->  active card slides to left; next card slides from right
+	ON nav from detail to previous	->  active card slides to right; prev card slides from left
 */
-
-/* (List Page) external nav OR umatched cards (List <-> Detail) nav  */
-::view-transition-old(.c-project):only-child	{	animation-name: vt-slide-to-b }
-::view-transition-new(.c-project):only-child	{	animation-name: vt-slide-in-b }
-
-/* (Detail Page) external nav */
-::view-transition-old(.c-project-active):only-child	{	animation-name: vt-slide-to-b }
-::view-transition-new(.c-project-active):only-child { animation-name: vt-slide-in-b; } 
-
-/* (List -> Detail): Morphing card in front of sliding cards */
-::view-transition-group(.c-project-active)  				{	z-index: 10 } 
-
-/* (Detail -> List): Slide waits for morph  (z-index unavailable) */
-::view-transition-new(.c-project):only-child	 			{	animation-delay: 200ms } 
-
-/* (Detail -> Detail): Next and Previous slide with same duration */
-::view-transition-old(.c-project-active)  					{	animation-duration: var(--duration-vt-enter) } 
-
-
-
-
-
-
-/* --- Projects: Magazine -------------------------- */
-
-::view-transition-new(m-page):only-child 				{ animation-name: vt-slide-in-r; } /* TODO: :only-child redundant */
-::view-transition-old(m-page):only-child 				{ animation-name: vt-slide-to-r; }
-
-
-
-/* ------------------------------------------------
-    Generic Transitions  (vt-class)
-   ------------------------------------------------ */
-
-::view-transition-old(.vt-left)             { animation-name: vt-slide-to-l; }
-::view-transition-new(.vt-left)             { animation-name: vt-slide-in-l; }
-
-::view-transition-old(.vt-top)              { animation-name: vt-slide-to-t; }
-::view-transition-new(.vt-top)              { animation-name: vt-slide-in-t; }
-
-::view-transition-old(.vt-right)            { animation-name: vt-slide-to-r; }
-::view-transition-new(.vt-right)            { animation-name: vt-slide-in-r; }
-
-::view-transition-old(.vt-bottom)           { animation-name: vt-slide-to-b; }
-::view-transition-new(.vt-bottom)           { animation-name: vt-slide-in-b; }
+::view-transition-old(.c-project):only-child { animation-name:	vt-slide-to-b; } /* (List -> External): all cards  -OR-  (List -> Detail): unselected cards  */
+::view-transition-new(.c-project):only-child { animation-name:	vt-slide-in-b; } /* (External -> List): all cards  -OR-  (Detail -> List): unselected cards  */
+::view-transition-old(.c-active):only-child	 { animation-name:	vt-slide-to-b; } /* (Detail -> External)  */
+::view-transition-new(.c-active):only-child  { animation-name:	vt-slide-in-b; } /* (External -> Detail)  */
+::view-transition-group(.c-active)  				 			{ z-index:		10;		 		 		 } /* (List -> Detail): Morphing card in front of sliding cards */
+::view-transition-new(.c-project):only-child			{ animation-delay: 		var(--duration-vt-exit); 	} /* (Detail -> List): Slide waits for morph  (z-index unavailable) */
+::view-transition-old(.c-active):not(:only-child)	{	animation-duration: var(--duration-vt-enter); } /* (Detail -> Detail): Next and Previous slide with same duration */

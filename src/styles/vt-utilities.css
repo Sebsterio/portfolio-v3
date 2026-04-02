@@ -5,8 +5,7 @@
 
 /* --- Cross-Page Morphing --- */
 
-@utility vt-main			{ view-transition-name: main;   	}
-
+@utility vt-main			{ view-transition-name: main; }
 
 
 /* --- Generic Directions --- */
@@ -18,21 +17,3 @@
 	/* Prevents flashing on nav from projects-pages to home. Alternative: make all elements enter & exit same vt duration */
 	animation: vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both; 
 } 
-
-/* * / 
-@utility exit-top    	{ view-transition-name: match-element; view-transition-class: vt-top; }
-@utility exit-left   	{ view-transition-name: match-element; view-transition-class: vt-left; }
-@utility exit-right  	{ view-transition-name: match-element; view-transition-class: vt-right; }
-@utility exit-bottom 	{ view-transition-name: match-element; view-transition-class: vt-bottom; }
-
-@utility enter-top    { animation: vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
-@utility enter-left   { animation: vt-slide-in-l var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
-@utility enter-right  { animation: vt-slide-in-r var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
-@utility enter-bottom { animation: vt-slide-in-b var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
-
-/* TO rename later * /
-@utility vt-top    		{ @apply enter-top exit-top; }
-@utility vt-left   		{ @apply enter-left exit-left; }
-@utility vt-right  		{ @apply enter-right exit-right; }
-@utility vt-bottom 		{ @apply enter-bottom exit-bottom; }
-/* */
