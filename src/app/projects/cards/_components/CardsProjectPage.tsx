@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import type { CSSProperties } from 'react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
@@ -225,11 +224,11 @@ type FlipProjectCardProps = {
 
 function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass, flipped, onFlip }: FlipProjectCardProps) {
 	return (
-		<div className='relative mx-auto w-full max-w-4xl overflow-x-clip perspective-[2000px]'>
-			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
-			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
+		<div className='relative z-50 mx-auto w-full max-w-4xl overflow-x-clip perspective-[2000px]'>
+			{/* <ProjectTransitionSlot projectId={prevProjectId} side='prev' />
+			<ProjectTransitionSlot projectId={nextProjectId} side='next' /> */}
 
-			<VT.Area name={`project-card-${project.id}`} vtClass='project-card'>
+			<VT.Area name={`c-project-${project.id}`} vtClass='c-project-active'>
 				{/* <VT.Onto name={`project-card-inner-${project.id}`}> */}
 				<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
 					<div
@@ -257,24 +256,6 @@ type ProjectCardControlsProps = {
 	onNext: () => void;
 	onNavigate: (slug: string) => void;
 };
-
-function ProjectCardControls({ projects, currentIndex, onPrev, onNext, onNavigate }: ProjectCardControlsProps) {
-	return (
-		<>
-			<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
-				<NavigationButton direction='prev' onClick={onPrev} />
-			</div>
-
-			<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
-				<NavigationButton direction='next' onClick={onNext} />
-			</div>
-
-			<div className='col-start-2 row-start-2 justify-self-center lg:col-start-2'>
-				<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={onNavigate} />
-			</div>
-		</>
-	);
-}
 
 export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
@@ -324,3 +305,21 @@ export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps
 		</div>
 	);
 };
+
+function ProjectCardControls({ projects, currentIndex, onPrev, onNext, onNavigate }: ProjectCardControlsProps) {
+	return (
+		<>
+			<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
+				<NavigationButton direction='prev' onClick={onPrev} />
+			</div>
+
+			<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
+				<NavigationButton direction='next' onClick={onNext} />
+			</div>
+
+			<div className='col-start-2 row-start-2 justify-self-center lg:col-start-2'>
+				<ProjectIndicators projects={projects} currentIndex={currentIndex} onNavigate={onNavigate} />
+			</div>
+		</>
+	);
+}

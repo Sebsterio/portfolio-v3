@@ -23,7 +23,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 		<div className='w-full stack-lg'>
 			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
-					<VT.Onto name={`project-card-${project.id}`} vtClass='project-card' key={project.id}>
+					<VT.Onto name={`c-project-${project.id}`} vtClass='c-project' key={project.id}>
 						<ProjectCard
 							project={project}
 							onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}

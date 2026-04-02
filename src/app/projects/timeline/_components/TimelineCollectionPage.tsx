@@ -46,7 +46,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<VT.Onto name={`project-card-${project.id}`}>
+							<VT.Onto name={`t-project-${project.id}`}>
 								<TimelineCard onClick={() => go(project)} className='mr-2 p-6'>
 									<TimelineCardContent project={project} limit={4} />
 								</TimelineCard>

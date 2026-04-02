@@ -44,7 +44,7 @@
 
 /* --- Defaults ---------------------------------- */
 
-/* Exit */
+/* Exiting Element */
 ::view-transition-old(*) {
   animation-name:            vt-fade-out;
 	animation-duration:        var(--duration-vt-exit);
@@ -52,7 +52,7 @@
   animation-fill-mode:       both;
 }
 
-/* Enter */
+/* Entering Element */
 ::view-transition-new(*) {
   animation-name:            vt-fade-in;
 	animation-duration:        var(--duration-vt-enter);
@@ -60,7 +60,7 @@
   animation-fill-mode:       both;
 }
 
-/* Morphing */
+/* Morphing Area */
 ::view-transition-group(*) {
 	animation-duration: 			 var(--duration-vt-morph);
 	animation-timing-function: var(--easing-vt-default);
@@ -124,15 +124,25 @@
 	ON nav from detail to previous	->  active card slides to right; prev card slides from left // TODO
 */
 
-::view-transition-old(.project-card):only-child	{	animation-name: vt-slide-to-b; }
-::view-transition-new(.project-card):only-child	{	animation-name: vt-slide-in-b; }
+/* (List Page) external nav OR umatched cards (List <-> Detail) nav  */
+::view-transition-old(.c-project):only-child	{	animation-name: vt-slide-to-b }
+::view-transition-new(.c-project):only-child	{	animation-name: vt-slide-in-b }
 
-::view-transition-group(.project-card),
-::view-transition-old(.project-card):not(:only-child),
-::view-transition-new(.project-card):not(:only-child) {
-	animation-duration: 			 	var(--duration-vt-morph);
-	animation-timing-function: 	var(--easing-vt-default);
-} 
+/* (Detail Page) external nav */
+::view-transition-old(.c-project-active):only-child	{	animation-name: vt-slide-to-b }
+::view-transition-new(.c-project-active):only-child { animation-name: vt-slide-in-b; } 
+
+/* (List -> Detail): Morphing card in front of sliding cards */
+::view-transition-group(.c-project-active)  				{	z-index: 10 } 
+
+/* (Detail -> List): Slide waits for morph  (z-index unavailable) */
+::view-transition-new(.c-project):only-child	 			{	animation-delay: 200ms } 
+
+
+
+
+
+
 
 /* --- Projects: Magazine -------------------------- */
 
