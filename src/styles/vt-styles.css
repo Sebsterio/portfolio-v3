@@ -138,6 +138,8 @@
 /* (Detail -> List): Slide waits for morph  (z-index unavailable) */
 ::view-transition-new(.c-project):only-child	 			{	animation-delay: 200ms } 
 
+/* (Detail -> Detail): Next and Previous slide with same duration */
+::view-transition-old(.c-project-active)  					{	animation-duration: var(--duration-vt-enter) } 
 
 
 

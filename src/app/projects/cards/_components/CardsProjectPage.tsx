@@ -201,7 +201,7 @@ type ProjectTransitionSlotProps = {
 
 function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) {
 	return (
-		<VT.Onto name={`project-card-inner-${projectId}`}>
+		<VT.Onto name={`c-project-${projectId}`} vtClass='c-project-active'>
 			<div
 				aria-hidden='true'
 				className={cn(
@@ -225,11 +225,10 @@ type FlipProjectCardProps = {
 function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass, flipped, onFlip }: FlipProjectCardProps) {
 	return (
 		<div className='relative z-50 mx-auto w-full max-w-4xl overflow-x-clip perspective-[2000px]'>
-			{/* <ProjectTransitionSlot projectId={prevProjectId} side='prev' />
-			<ProjectTransitionSlot projectId={nextProjectId} side='next' /> */}
+			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
+			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
 			<VT.Area name={`c-project-${project.id}`} vtClass='c-project-active'>
-				{/* <VT.Onto name={`project-card-inner-${project.id}`}> */}
 				<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
 					<div
 						className='grid'
@@ -243,7 +242,6 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 						<ProjectCardBack project={project} flipped={flipped} />
 					</div>
 				</div>
-				{/* </VT.Onto> */}
 			</VT.Area>
 		</div>
 	);
