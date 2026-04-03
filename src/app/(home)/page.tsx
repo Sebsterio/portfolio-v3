@@ -37,7 +37,7 @@ export default function HomePage({}: HomePageProps) {
 
 			{/* Right Column - Showcase Cards */}
 
-			<VT.Area classes='vt-right lg:vt-main'>
+			<VT.Area classes='max-lg:vt-right lg:vt-main'>
 				<div className='w-full space-y-4 md:space-y-6'>
 					{showcaseItems.map(({ id, icon, title, description }) => (
 						<ShowcaseCard key={id} icon={icon} title={title} description={description} />

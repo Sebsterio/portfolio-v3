@@ -17,7 +17,7 @@ export function UnderConstructionPage() {
 				</TextBlock>
 			</VT.Div>
 
-			<VT.Area classes='vt-right lg:vt-main'>
+			<VT.Area classes='max-lg:vt-right lg:vt-main'>
 				<InfoCard title={copy.cardTitle}>
 					<div className='my-6 space-y-6'>
 						{copy.cardRows.map(({ label, value }) => (
