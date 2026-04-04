@@ -58,6 +58,8 @@
 :root {
   --duration-theme-transition: 2000ms;
   --easing-theme-transition: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Wait for the route view transition to settle before starting the slow palette drift. */
+  --delay-theme-transition: calc(var(--duration-vt-morph, 600ms) + 160ms);
 
   transition-property:
     --theme-accent-1,
@@ -70,10 +72,12 @@
     --theme-surface;
   transition-duration: var(--duration-theme-transition);
   transition-timing-function: var(--easing-theme-transition);
+  transition-delay: var(--delay-theme-transition);
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-theme-transition: 1ms;
+    --delay-theme-transition: 0ms;
   }
 }

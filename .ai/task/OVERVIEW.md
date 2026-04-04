@@ -1,9 +1,9 @@
 # Active Task Overview
 
-Centralize route theme transitions at the palette layer.
+Delay the centralized root palette transition so it does not compete with view transitions.
 
 Goals:
-- Animate the root `--theme-*` palette tokens instead of animating theme consumer properties.
-- Make `--duration-theme-transition` authoritative again for theme changes.
-- Remove the descendant-wide theme-transition mechanism that conflicts with component transition classes.
-- Avoid broad component-class migration and keep local hover/motion transitions intact.
+- Keep theme animation centralized at the `--theme-*` token layer.
+- Start the slow color interpolation only after the route view transition has mostly finished.
+- Preserve high perceived performance and a seamless handoff from page transition to color transition.
+- Avoid reintroducing consumer-side transition hacks or broad component-class migration.
