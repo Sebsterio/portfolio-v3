@@ -20,7 +20,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import type { NavigationStateContext, TransitionMethodsContext, TransitionConfig } from '../types';
 import { getNormalizeHref, isCurrentPage } from '../utils';
 import { DEFAULT_IS_SCROLL } from '../config';
-import { commitRootTheme, resolvePathTheme } from '@/lib/theme/runtime';
 
 /* Config */
 
@@ -76,10 +75,6 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 
 	useEffect(() => {
 		pathnameRef.current = pathname;
-	}, [pathname]);
-
-	useEffect(() => {
-		commitRootTheme(resolvePathTheme(pathname));
 	}, [pathname]);
 
 	const signalReady = useCallback(() => {

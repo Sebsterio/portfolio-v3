@@ -1,9 +1,11 @@
 import type React from 'react';
 
+import { getProjectThemeLookup } from '@/app/projects/_lib';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
-import { getThemeBootstrapScript } from '@/lib/theme/runtime';
+import { ThemeBootstrapScript } from '@/lib/theme/components/ThemeBootstrapScript';
+import { ThemeRouteController } from '@/lib/theme/components/ThemeRouteController';
 
 import { AppHeader } from './_components/AppHeader';
 import { AppBackground } from './_components/AppBackground';
@@ -18,12 +20,12 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
-	const themeBootstrapScript = getThemeBootstrapScript();
+	const projectThemes = getProjectThemeLookup();
 
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<head>
-				<script id='theme-bootstrap' dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+				<ThemeBootstrapScript projectThemes={projectThemes} />
 			</head>
 			<body
 				className={cn(
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 					'px-2 py-4 lg:py-6',
 				)}
 			>
+				<ThemeRouteController projectThemes={projectThemes} />
 				<TransitionProvider>
 					<div className='overlay-page overflow-hidden'>
 						<AppBackground />
