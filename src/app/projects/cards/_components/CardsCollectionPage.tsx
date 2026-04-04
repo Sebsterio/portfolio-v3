@@ -40,16 +40,18 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 type ProjectCardProps = {
 	project: Project;
 	style?: React.CSSProperties;
+	className?: string;
 	onClick: () => void;
 };
 
-const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
+const ProjectCard = ({ project, style, className, onClick }: ProjectCardProps) => {
 	return (
 		<Panel
 			edgeGlow
 			className={cn(
 				'group glass-surface-2 h-105 glass-radius-3 padding-card glass-elevation-1',
 				'transition-all hover:scale-105 hover:glass-elevation-2',
+				className,
 			)}
 			{...{ style, onClick }}
 		>
