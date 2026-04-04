@@ -1,15 +1,22 @@
 import { projects } from './_content';
 
+const workProjects = projects.filter((p) => !p.personal);
+const personalProjects = projects.filter((p) => p.personal);
+
 // --- Data access ---
 
 export async function getProjects() {
-	return projects;
+	return workProjects;
 }
+
+export async function getPersonalProjects() {
+	return personalProjects;
+}
+
 export function getProject(slug: string) {
 	return projects.find((p) => p.slug === slug);
 }
 
-// TODO: add field "name"
 export function getProjectName(slug: string): string | undefined {
 	return projects.find((p) => p.slug === slug)?.title;
 }

@@ -1,13 +1,14 @@
 import { PageTransition } from '@/lib/transitions/components/PageTransition';
 import { CardsCollectionPage } from './_components/CardsCollectionPage';
-import { getProjects } from '../_lib';
+import { getPersonalProjects, getProjects } from '../_lib';
 
 export default async function CardsProjectsPage() {
-	const projects = await getProjects();
+	const workProjects = await getProjects();
+	const personalProjects = await getPersonalProjects();
 
 	return (
 		<PageTransition>
-			<CardsCollectionPage projects={projects} />
+			<CardsCollectionPage projects={[...workProjects, ...personalProjects]} />
 		</PageTransition>
 	);
 }
