@@ -4,6 +4,7 @@
 @import './variants.css';
 @import './theme.css';
 @import './themes.css';
+@import './theme-transition.css';
 @import './base.css'; 
 
 @import './system/gradients.css';
