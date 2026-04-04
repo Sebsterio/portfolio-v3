@@ -1,6 +1,5 @@
 # Active Task Plan
 
-1. Extend the root palette transition contract with a dedicated start delay tied to the existing view-transition timing variables.
-2. Keep the delay fully centralized on `:root` so the runtime and component classes stay unchanged.
-3. Preserve reduced-motion behavior by collapsing both duration and delay.
-4. Run the smallest relevant validation and note any environment blockers.
+1. Read the current theme mapping from `src/app/projects/_content.ts`.
+2. Update `src/lib/theme/runtime.test.ts` so its expectations match the current mapping.
+3. Run the smallest relevant validation if the environment allows it.

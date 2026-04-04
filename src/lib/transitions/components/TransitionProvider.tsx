@@ -78,7 +78,7 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
 		pathnameRef.current = pathname;
 	}, [pathname]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		commitRootTheme(resolvePathTheme(pathname));
 	}, [pathname]);
 
