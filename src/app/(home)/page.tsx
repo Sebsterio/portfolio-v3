@@ -5,7 +5,7 @@ import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } fro
 
 import { copy, buttons, showcaseItems } from './_content';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type HomePageProps = Record<string, never>;
 

@@ -5,7 +5,7 @@ import { copy, highlights, quickFacts, techCategories } from './_content';
 import { cn } from '@/lib/utils';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { ProjectTags } from '@/components/ProjectTags';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type AboutPageProps = Record<string, never>;
 

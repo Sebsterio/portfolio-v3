@@ -21,4 +21,8 @@
 @utility vt-top 		{	--vt-name: match-element; --vt-class: vt-top;		  @apply vt-slot; }
 
 
+/* --- TEMP: prevents a glitch --- */
+
 @utility enter-top 	{	animation: vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
+
+

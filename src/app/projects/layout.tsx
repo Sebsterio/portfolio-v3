@@ -3,7 +3,7 @@ import { TextBlock, Title } from '@/components/typography';
 import { DisplayModeSwitcher } from './_components/DisplayModeSwitcher';
 import { PROJECT_PAGE_TITLE_ID } from './_config';
 import { header } from './_content';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type ProjectsLayoutProps = {
 	children: React.ReactNode;

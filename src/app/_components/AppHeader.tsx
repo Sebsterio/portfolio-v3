@@ -7,7 +7,7 @@ import { TransitionLink as Link } from '@/lib/transitions/components/TransitionL
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
 import { Glass } from '@/components/ui/Glass';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type NavItem = {
 	label: string;

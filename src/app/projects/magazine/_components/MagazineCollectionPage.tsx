@@ -6,7 +6,7 @@ import { MagazineSectionD } from './MagazineSectionD';
 import { MagazineSectionE } from './MagazineSectionE';
 import { MagazineSectionMulti } from './MagazineSectionMulti';
 import { getProjectAnchorId } from '../../_lib';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 const MagazineCollectionPageDecorations = () => (
 	<>

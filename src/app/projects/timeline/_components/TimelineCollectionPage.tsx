@@ -8,7 +8,7 @@ import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 import { cn } from '@/lib/utils';
 
 type TimelineCollectionPageProps = {
