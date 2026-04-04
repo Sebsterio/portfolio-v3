@@ -17,10 +17,10 @@ export default function HomePage({}: HomePageProps) {
 			{/* Left Column - Hero Content */}
 
 			<div className='mt-4 stack-lg md:mt-6'>
-				<VT as={StatusBadge} classes='vt-top'>
+				<VT as={StatusBadge} slot='vt-top' className='enter-top' /* HACK: Prevents flash */>
 					{copy.superscript}
 				</VT>
-				<VT.Div classes='vt-left' className='stack-2xl'>
+				<VT.Div slot='vt-left' className='stack-2xl'>
 					<Title variant='hero'>{copy.title}</Title>
 					<TextBlock className='max-w-lg md:max-w-xl'>{copy.subtitle}</TextBlock>
 
@@ -37,7 +37,7 @@ export default function HomePage({}: HomePageProps) {
 
 			{/* Right Column - Showcase Cards */}
 
-			<VT.Area classes='max-lg:vt-right lg:vt-main'>
+			<VT.Area slot='max-lg:vt-right lg:vt-main'>
 				<div className='w-full space-y-4 md:space-y-6'>
 					{showcaseItems.map(({ id, icon, title, description }) => (
 						<ShowcaseCard key={id} icon={icon} title={title} description={description} />

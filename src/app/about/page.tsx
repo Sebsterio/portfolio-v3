@@ -16,7 +16,7 @@ export default function AboutPage({}: AboutPageProps) {
 		<div className={cn('grid w-full grid-cols-1 lg:grid-cols-[1fr_400px]', 'gap-10 md:gap-12 lg:gap-16')}>
 			{/* Main Content Column */}
 
-			<VT.Area classes='vt-left'>
+			<VT.Area slot='vt-left'>
 				<div className='stack-2xl'>
 					<Title variant='page'>{copy.title}</Title>
 
@@ -34,7 +34,7 @@ export default function AboutPage({}: AboutPageProps) {
 
 			{/* Sidebar Column */}
 
-			<VT.Area classes='max-lg:vt-right lg:vt-main'>
+			<VT.Area slot='max-lg:vt-right lg:vt-main'>
 				<div className='stack-md'>
 					<InfoCard title={copy.sectionTitles.quickFacts}>
 						<div className='space-y-4 md:space-y-6 md:pb-2'>
