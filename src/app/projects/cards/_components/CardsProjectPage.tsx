@@ -13,7 +13,7 @@ import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ExternalLinkButton } from '@/components/Button';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type CardsProjectPageProps = {
 	project: Project;

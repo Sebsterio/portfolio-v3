@@ -8,7 +8,7 @@ import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 // ----------------------------------------------------------------------------
 

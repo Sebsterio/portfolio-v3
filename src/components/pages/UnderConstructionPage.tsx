@@ -3,7 +3,7 @@
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { Title, TextBlock, LabeledValueRow, InfoCard } from '@/components';
 import { copy } from './_content';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 export function UnderConstructionPage() {
 	useTransitionReady();

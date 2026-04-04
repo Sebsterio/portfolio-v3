@@ -12,7 +12,7 @@ import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
 import { ImpactList } from '@/components/ImpactList';
 import { CaseStudySection } from '@/components/CaseStudySection';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type TimelineProjectPageProps = {
 	project: Project;
