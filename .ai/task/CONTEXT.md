@@ -1,7 +1,7 @@
 # Active Task Context
 
-- The app already uses `--theme-*` CSS custom properties as the theme source of truth.
-- Theme changes are triggered by changing `data-theme` on the root element.
-- A descendant-wide transition rule in `src/styles/system/motion.css` is being overridden by component `transition-*` classes, causing inconsistent or abrupt theme changes.
-- The fix should be centralized and isolated: animate the root palette tokens directly instead of migrating component classes to carry theme timing.
-- Local hover, transform, opacity, and other motion transitions should remain owned by their existing component styles.
+- The app now animates theme changes by transitioning the root `--theme-*` palette tokens.
+- The remaining UX issue is timing overlap: the token interpolation begins too early and visually competes with the route view transition.
+- The fix should remain centralized in the root palette transition contract.
+- Existing runtime theme resolution and component-local hover/motion transitions should remain unchanged.
+- The delay can be soft and intentionally noticeable as long as the overall handoff feels smooth.
