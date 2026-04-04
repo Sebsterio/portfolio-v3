@@ -8,7 +8,7 @@ import { TimelineDot } from '@/components/TimelineDot';
 import type { Project } from '@/types';
 import { InlineList } from '@/components/InlineList';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 import { cn } from '@/lib/utils';
 
 type TimelineCollectionPageProps = {
@@ -46,7 +46,7 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 					{projects.map((project) => (
 						<div key={project.id} className='relative'>
 							<TimelineDateMobile period={project.period} />
-							<VT.Onto name={`t-project-${project.id}`} vtClass='t-project'>
+							<VT.Onto name={`t-project-${project.id}`} classes='t-project'>
 								<TimelineCard onClick={() => go(project)} className='mr-2 p-6'>
 									<TimelineCardContent project={project} limit={4} />
 								</TimelineCard>

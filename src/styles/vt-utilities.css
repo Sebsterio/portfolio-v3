@@ -2,18 +2,27 @@
    View Transition — Named Slots
    ================================================ */
 
+@utility vt-slot {
+	view-transition-name: 	var(--vt-name, none);
+	view-transition-class: 	var(--vt-class, none);
+}
+
 
 /* --- Cross-Page Morphing --- */
 
-@utility vt-main			{ view-transition-name: main; }
+@utility vt-main 		{	--vt-name: main;	--vt-class: none;		@apply vt-slot; 		}
 
 
 /* --- Generic Directions --- */
 
-@utility vt-left  		{ view-transition-name: match-element; view-transition-class: vt-left;   }
-@utility vt-right 		{ view-transition-name: match-element; view-transition-class: vt-right;  }
-@utility vt-bottom		{ view-transition-name: match-element; view-transition-class: vt-bottom; }
-@utility vt-top   		{ view-transition-name: match-element; view-transition-class: vt-top; 
-	/* Prevents flashing on nav from projects-pages to home. Alternative: make all elements enter & exit same vt duration */
-	animation: vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both; 
-} 
+@utility vt-left 		{	--vt-name: match-element; --vt-class: vt-left;	  @apply vt-slot; }
+@utility vt-right 	{	--vt-name: match-element; --vt-class: vt-right;   @apply vt-slot; }
+@utility vt-bottom 	{	--vt-name: match-element; --vt-class: vt-bottom;  @apply vt-slot; }
+@utility vt-top 		{	--vt-name: match-element; --vt-class: vt-top;		  @apply vt-slot; }
+
+
+/* --- TEMP: prevents a glitch --- */
+
+@utility enter-top 	{	animation: vt-slide-in-t var(--duration-vt-enter) var(--easing-panel-slide-in) both; }
+
+

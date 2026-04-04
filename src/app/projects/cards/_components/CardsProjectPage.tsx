@@ -13,7 +13,7 @@ import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
 import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ExternalLinkButton } from '@/components/Button';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -201,7 +201,7 @@ type ProjectTransitionSlotProps = {
 
 function ProjectTransitionSlot({ projectId, side }: ProjectTransitionSlotProps) {
 	return (
-		<VT.Onto name={`c-project-${projectId}`} vtClass='c-active'>
+		<VT.Onto name={`c-project-${projectId}`} classes='c-active'>
 			<div
 				aria-hidden='true'
 				className={cn(
@@ -228,7 +228,7 @@ function FlipProjectCard({ project, prevProjectId, nextProjectId, gradientClass,
 			<ProjectTransitionSlot projectId={prevProjectId} side='prev' />
 			<ProjectTransitionSlot projectId={nextProjectId} side='next' />
 
-			<VT.Area name={`c-project-${project.id}`} vtClass='c-active'>
+			<VT.Area name={`c-project-${project.id}`} classes='c-active'>
 				<div onClick={onFlip} className='w-full cursor-pointer bg-transparent p-0 text-left'>
 					<div
 						className='grid'

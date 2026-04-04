@@ -8,7 +8,7 @@ import { PROJECT_PAGE_TITLE_ID } from '../../_config';
 import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
 import { ArrowIndicator } from '@/components/ArrowIndicator';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 // ----------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 		<div className='w-full stack-lg'>
 			<div className='mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3'>
 				{projects.map((project) => (
-					<VT.Onto name={`c-project-${project.id}`} vtClass='c-project' key={project.id}>
+					<VT.Onto name={`c-project-${project.id}`} classes='c-project' key={project.id}>
 						<ProjectCard
 							project={project}
 							onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
@@ -40,16 +40,18 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 type ProjectCardProps = {
 	project: Project;
 	style?: React.CSSProperties;
+	className?: string;
 	onClick: () => void;
 };
 
-const ProjectCard = ({ project, style, onClick }: ProjectCardProps) => {
+const ProjectCard = ({ project, style, className, onClick }: ProjectCardProps) => {
 	return (
 		<Panel
 			edgeGlow
 			className={cn(
 				'group glass-surface-2 h-105 glass-radius-3 padding-card glass-elevation-1',
 				'transition-all hover:scale-105 hover:glass-elevation-2',
+				className,
 			)}
 			{...{ style, onClick }}
 		>

@@ -1,15 +1,18 @@
 import React, { JSX } from 'react';
 import { cn } from '@/lib/utils';
 
-type CloneableChild = React.ReactElement<{ style?: React.CSSProperties; className?: string }>;
+type TransitionVarName = '--vt-name' | '--vt-class';
+type TransitionStyle = React.CSSProperties & Partial<Record<TransitionVarName, string>>;
+
+type CloneableChild = React.ReactElement<{ style?: TransitionStyle; className?: string }>;
 type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
 
 type TransitionBaseProps = {
+	slot?: string;
 	name?: string;
 	group?: 'normal' | 'contain' | 'nearest' | string;
-	vtClass?: string;
-	className?: string;
 	classes?: string;
+	className?: string;
 	style?: React.CSSProperties;
 };
 
@@ -29,27 +32,22 @@ type TransitionIntrinsicProps<T extends keyof JSX.IntrinsicElements> = Transitio
 
 type AllProps = { as?: unknown; bind?: boolean; wrap?: boolean } & (TransitionDecoratorProps | TransitionElementProps); // AUX
 
-// ================================================================================================================= //
-
 // ── Export & Compound ────────────────────────────────────────────────────────────────────
 
+export { TransitionCompound as ViewTransition };
 export { TransitionCompound as VT };
 
 const TransitionCompound = Object.assign(TransitionResolver, {
-	Area: TransitionElement,
+	Area: TransitionWrapper,
 	Onto: TransitionDecorator,
 	As: TransitionPolymorphic,
 	Div: createTransitionIntrinsic('div'),
-	Span: createTransitionIntrinsic('span'),
-	Button: createTransitionIntrinsic('button'),
 }) as {
 	<C extends React.ElementType = 'div'>(props: TransitionResolverProps<C>): React.ReactNode;
 	Area: (props: TransitionElementProps) => React.ReactNode;
 	Onto: (props: TransitionDecoratorProps) => React.ReactNode;
 	As: <C extends React.ElementType>(props: TransitionPolymorphicProps<C>) => React.ReactNode;
 	Div: (props: TransitionIntrinsicProps<'div'>) => React.ReactNode;
-	Span: (props: TransitionIntrinsicProps<'span'>) => React.ReactNode;
-	Button: (props: TransitionIntrinsicProps<'button'>) => React.ReactNode;
 };
 
 // ── Resolver implementation ───────────────────────────────────────────────────
@@ -59,7 +57,9 @@ function TransitionResolver<C extends React.ElementType = 'div'>(props: Transiti
 
 	if (as) return <TransitionPolymorphic {...(props as TransitionPolymorphicProps<C>)} />;
 	if (bind) return <TransitionDecorator {...(rest as TransitionDecoratorProps)} />;
-	if (wrap) return <TransitionElement {...(rest as TransitionElementProps)} />;
+	if (wrap) return <TransitionWrapper {...(rest as TransitionElementProps)} />;
+
+	return null;
 }
 
 // ── Strategy implementations ──────────────────────────────────────────────────
@@ -70,12 +70,12 @@ function TransitionResolver<C extends React.ElementType = 'div'>(props: Transiti
  * Target:    containers without backdrop-filter - on self or descendants
  */
 function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: TransitionPolymorphicProps<C>) {
-	const { as, name, group, vtClass, style, className, classes, ...rest } = props;
+	const { as, name, group, classes, style, className, slot, ...rest } = props;
 	const Tag = as as React.ElementType;
 	return (
 		<Tag
-			className={cn(className, classes)}
-			style={withTransitionStyle(style, name, vtClass, group)}
+			className={getTransitionClassName(className, slot)}
+			style={getTransitionStyle({ name, group, classes, style })}
 			{...rest} //
 		/>
 	);
@@ -95,12 +95,13 @@ function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: Trans
  * — `display: contents` — no box, no compositor promotion; children's `backdrop-filter` applies behind the parent.
  * — `display: block` — fixes Chromium issue making VT elements have a zero-size snapshot; creates a compositing boundary, blocking children's `backdrop-filter`.
  */
-function TransitionElement({ name, group, vtClass, className, classes, style, ...props }: TransitionElementProps) {
+function TransitionWrapper(props: TransitionElementProps) {
+	const { name, group, classes, style, className, slot, ...rest } = props;
 	return (
 		<div
-			className={cn('contents in-data-transitioning:block', className, classes)}
-			style={withTransitionStyle(style, name, vtClass, group)}
-			{...props}
+			className={getTransitionClassName('contents in-data-transitioning:block', className, slot)}
+			style={getTransitionStyle({ name, group, classes, style })}
+			{...rest}
 		/>
 	);
 }
@@ -115,21 +116,25 @@ function TransitionElement({ name, group, vtClass, className, classes, style, ..
  * — `cloneElement` breaks `React.memo` bailouts on the child unconditionally.
  * — Child must accept both `style` and `className` props.
  */
-function TransitionDecorator({ name, group, vtClass, children, className, classes, style }: TransitionDecoratorProps) {
+function TransitionDecorator({ children, name, group, classes, className, slot, style }: TransitionDecoratorProps) {
 	return React.cloneElement(children, {
-		className: cn(children.props.className, className, classes),
-		style: withTransitionStyle({ ...children.props.style, ...style }, name, vtClass, group),
+		className: getTransitionClassName(children.props.className, className, slot),
+		style: getTransitionStyle({ name, group, classes, style: { ...children.props.style, ...style } }),
 	});
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────────────
 
-function withTransitionStyle(style: React.CSSProperties | undefined, name?: string, vtClass?: string, group?: string): React.CSSProperties {
+function getTransitionClassName(...classNames: (string | undefined)[]): string {
+	return cn('vt-slot', ...classNames);
+}
+
+function getTransitionStyle({ name, group, classes, style }: TransitionBaseProps): TransitionStyle {
 	return {
 		...style,
-		...(name && { viewTransitionName: name }),
+		...(name && { '--vt-name': name }),
+		...(classes && { '--vt-class': classes }),
 		...(group && { viewTransitionGroup: group }),
-		...(vtClass && { viewTransitionClass: vtClass }),
 	};
 }
 

@@ -12,7 +12,7 @@ import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
 import { ExternalLinkButton } from '@/components';
 import { ImpactList } from '@/components/ImpactList';
 import { CaseStudySection } from '@/components/CaseStudySection';
-import { VT } from '@/lib/transitions/components/TransitionSlot';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -52,7 +52,7 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 					</VT.Area>
 				</aside>
 				<main>
-					<VT.Area classes='vt-right'>
+					<VT.Area slot='vt-right'>
 						<TimelineProjectPanel project={project} />
 					</VT.Area>
 				</main>
@@ -87,7 +87,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 			<span className='text-sm font-semibold text-label'>{p.period}</span>
 		</div>
 
-		<VT.Onto name={`t-project-${p.id}`} vtClass='t-project t-active'>
+		<VT.Onto name={`t-project-${p.id}`} classes='t-project t-active'>
 			<Panel className='glass-surface-1 space-y-6 glass-radius-2 border-accent/30 p-6 glass-elevation-1'>
 				<div className='relative space-y-5'>
 					<div className='space-y-1.5'>
@@ -120,7 +120,7 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 );
 
 const CollapsedMobileItem = ({ project: p, onClick }: { project: Project; onClick: () => void }) => (
-	<VT.Onto name={`t-project-${p.id}`} vtClass='t-project'>
+	<VT.Onto name={`t-project-${p.id}`} classes='t-project'>
 		<button
 			onClick={onClick}
 			className='relative w-full rounded-xl border border-transparent p-4 pl-10 text-left transition-all duration-300 hover:bg-fill-sm'
