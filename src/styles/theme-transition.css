@@ -1,0 +1,82 @@
+/* ================================================
+   Theme Transitions
+   ================================================
+
+   Animate the root palette tokens directly so every
+   consumer that references --theme-* inherits the
+   same timing without needing per-component overrides.
+   ================================================ */
+
+@property --theme-accent-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.623 0.188 259.8);
+}
+
+@property --theme-accent-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.715 0.126 215.2);
+}
+
+@property --theme-accent-2-vivid {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.816 0.145 216.5);
+}
+
+@property --theme-neutral-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.955 0 0);
+}
+
+@property --theme-neutral-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.870 0 0);
+}
+
+@property --theme-neutral-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.706 0 0);
+}
+
+@property --theme-neutral-4 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.627 0 0);
+}
+
+@property --theme-surface {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(0.147 0.009 285.3);
+}
+
+:root {
+  --duration-theme-transition: 1200ms;
+  --easing-theme-transition: linear;
+  --delay-theme-transition: calc(var(--duration-vt-morph, 600ms) + 100ms); /* Wait for the route view transition to settle before starting the slow palette drift. */
+
+  transition-property:
+    --theme-accent-1,
+    --theme-accent-2,
+    --theme-accent-2-vivid,
+    --theme-neutral-1,
+    --theme-neutral-2,
+    --theme-neutral-3,
+    --theme-neutral-4,
+    --theme-surface;
+  transition-duration: var(--duration-theme-transition);
+  transition-timing-function: var(--easing-theme-transition);
+  transition-delay: var(--delay-theme-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-theme-transition: 1ms;
+    --delay-theme-transition: 0ms;
+  }
+}

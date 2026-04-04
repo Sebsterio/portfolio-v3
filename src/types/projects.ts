@@ -1,8 +1,11 @@
+import type { ThemeName } from '@/lib/theme/types';
+
 export type DisplayMode = 'timeline' | 'cards' | 'magazine';
 
 export type Project = {
 	id: string;
 	slug: string;
+	theme: ThemeName | null;
 	title: string;
 	company: string;
 	period: string;

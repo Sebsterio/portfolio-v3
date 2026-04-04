@@ -31,14 +31,25 @@ Routes are implemented under `src/app`.
 
 - Route `page.tsx` files are server components by default.
 - Interactive page sections are client components (`'use client'`).
-- Root layout mounts the transition provider in `src/app/layout.tsx`.
+- Root layout mounts the transition provider and the root theme runtime in `src/app/layout.tsx`.
 
 ## Data flow
 
 - Project data is defined in `src/app/projects/_content.ts`.
-- Data access is through `getProjects()` and `getProject(slug)` in `src/app/projects/_lib.ts`.
+- Data access is through helpers in `src/app/projects/_lib.ts`.
+- Project-owned route theme lookup is derived in `src/app/projects/_lib.ts` through `getProjectThemeBySlug(slug)` and `getProjectThemeLookup()`.
 - Timeline and cards detail pages generate static params from project slugs.
 - Magazine slug routes generate static params from project slugs, then redirect to anchored sections in the magazine page.
+
+## Route theme runtime
+
+- Theme activation contract is the root `data-theme` attribute on `document.documentElement`.
+- Only `/projects/timeline/[slug]` and `/projects/cards/[slug]` resolve a named project theme.
+- Theme resolution logic lives in `src/lib/theme/runtime.ts` and consumes a provided slug-to-theme lookup.
+- Root layout passes the project theme lookup to:
+  - `ThemeBootstrapScript` for first-paint theme assignment before hydration
+  - `ThemeRouteController` for client-side route changes
+- `TransitionProvider` does not own theme changes.
 
 ## Navigation and transitions
 
@@ -52,6 +63,8 @@ Routes are implemented under `src/app`.
 Global styles are imported from `src/styles/globals.css` using layered files:
 
 - `theme.css`
+- `themes.css`
+- `theme-transition.css`
 - `base.css`
 - `system/*.css`
 - `components.css`
@@ -64,11 +77,13 @@ Tailwind is used in CSS-first mode with static class detection.
 
 - Visual regression tests: `e2e/tests/vrt.spec.ts`.
 - Unit test config: `vitest.config.mts` (`src/**/*.test.{ts,tsx}`).
-- Current matching unit tests are minimal and currently limited to `src/temp/TestComponent.test.tsx`.
+- Current targeted unit tests include project/theme helpers under `src/app/projects` and `src/lib/theme`.
 - Lint config: `eslint.config.mjs`.
 
 ## Invariants
 
 - Projects view mode is URL-addressable under `/projects/{timeline|cards|magazine}`.
 - Internal navigation should use transition-aware APIs.
+- Root theme writes stay centralized and only mutate the root `data-theme` attribute via the theme runtime.
+- Theme animation is driven at the palette layer in `src/styles/theme-transition.css`, not by per-component theme transition rules.
 - Permanent docs are derived from implementation, not from prior prose.

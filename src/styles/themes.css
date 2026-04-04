@@ -1,21 +1,78 @@
-/* ================================================
-   Themes — TEST ONLY
-   ================================================
-   Proof-of-concept warm theme to validate token
-   decoupling. Not production-ready.
 
-   Usage: add data-theme="warm" to <html>
-   ================================================ */
+:root[data-theme='emerald'] {
+  --theme-accent-1:        oklch(0.620 0.170 155);
+  --theme-accent-2:        oklch(0.700 0.135 185);
+  --theme-accent-2-vivid:  oklch(0.790 0.175 145);
 
-[data-theme="warm"] {
-  --theme-accent-1:       oklch(0.65 0.19  40);    /*  amber        */
-  --theme-accent-2:       oklch(0.72 0.15  70);    /*  gold         */
-  --theme-accent-2-vivid: oklch(0.82 0.18  60);    /*  bright amber */
+  --theme-neutral-1:       oklch(0.955 0.004 160);
+  --theme-neutral-2:       oklch(0.870 0.005 160);
+  --theme-neutral-3:       oklch(0.706 0.006 160);
+  --theme-neutral-4:       oklch(0.627 0.007 160);
 
-  --theme-neutral-1:      oklch(0.96 0.01  80);    /*  warm white   */
-  --theme-neutral-2:      oklch(0.88 0.01  80);
-  --theme-neutral-3:      oklch(0.70 0.01  80);
-  --theme-neutral-4:      oklch(0.60 0.01  80);
+  --theme-surface:         oklch(0.147 0.014 170);
+}
 
-  --theme-surface:        oklch(0.13 0.015 50);    /*  dark warm base */
+:root[data-theme='violet'] {
+  --theme-accent-1:        oklch(0.610 0.175 310);
+  --theme-accent-2:        oklch(0.695 0.125 280);
+  --theme-accent-2-vivid:  oklch(0.785 0.180 335);
+
+  --theme-neutral-1:       oklch(0.955 0.004 300);
+  --theme-neutral-2:       oklch(0.870 0.005 300);
+  --theme-neutral-3:       oklch(0.706 0.006 300);
+  --theme-neutral-4:       oklch(0.627 0.007 300);
+
+  --theme-surface:         oklch(0.147 0.016 295);
+}
+
+:root[data-theme='amber'] {
+  --theme-accent-1:        oklch(0.680 0.165 75);
+  --theme-accent-2:        oklch(0.735 0.120 45);
+  --theme-accent-2-vivid:  oklch(0.820 0.185 95);
+
+  --theme-neutral-1:       oklch(0.958 0.005 85);
+  --theme-neutral-2:       oklch(0.872 0.006 85);
+  --theme-neutral-3:       oklch(0.708 0.007 85);
+  --theme-neutral-4:       oklch(0.629 0.008 85);
+
+  --theme-surface:         oklch(0.150 0.013 70);
+}
+
+:root[data-theme='crimson'] {
+  --theme-accent-1:        oklch(0.590 0.210 25);
+  --theme-accent-2:        oklch(0.675 0.145 350);
+  --theme-accent-2-vivid:  oklch(0.760 0.205 5);
+
+  --theme-neutral-1:       oklch(0.955 0.005 10);
+  --theme-neutral-2:       oklch(0.870 0.006 10);
+  --theme-neutral-3:       oklch(0.706 0.007 10);
+  --theme-neutral-4:       oklch(0.627 0.008 10);
+
+  --theme-surface:         oklch(0.145 0.016 12);
+}
+
+:root[data-theme='lime'] {
+  --theme-accent-1:        oklch(0.700 0.175 130);
+  --theme-accent-2:        oklch(0.740 0.125 165);
+  --theme-accent-2-vivid:  oklch(0.820 0.200 110);
+
+  --theme-neutral-1:       oklch(0.956 0.004 135);
+  --theme-neutral-2:       oklch(0.871 0.005 135);
+  --theme-neutral-3:       oklch(0.707 0.006 135);
+  --theme-neutral-4:       oklch(0.628 0.007 135);
+
+  --theme-surface:         oklch(0.148 0.014 145);
+}
+
+:root[data-theme='rose'] {
+  --theme-accent-1:        oklch(0.620 0.230 355);
+  --theme-accent-2:        oklch(0.690 0.190 335);
+  --theme-accent-2-vivid:  oklch(0.770 0.250 325);
+
+  --theme-neutral-1:       oklch(0.955 0.010 350);
+  --theme-neutral-2:       oklch(0.870 0.012 350);
+  --theme-neutral-3:       oklch(0.706 0.014 350);
+  --theme-neutral-4:       oklch(0.627 0.016 350);
+
+  --theme-surface:         oklch(0.145 0.025 345);
 }

@@ -1,8 +1,11 @@
 import type React from 'react';
 
+import { getProjectThemeLookup } from '@/app/projects/_lib';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
+import { ThemeBootstrapScript } from '@/lib/theme/components/ThemeBootstrapScript';
+import { ThemeRouteController } from '@/lib/theme/components/ThemeRouteController';
 
 import { AppHeader } from './_components/AppHeader';
 import { AppBackground } from './_components/AppBackground';
@@ -17,9 +20,13 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+	const projectThemes = getProjectThemeLookup();
+
 	return (
-		<html lang='en'>
-			<head />
+		<html lang='en' suppressHydrationWarning>
+			<head>
+				<ThemeBootstrapScript projectThemes={projectThemes} />
+			</head>
 			<body
 				className={cn(
 					[urbanist.variable, dmSans.variable, 'antialiased'],
@@ -28,6 +35,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 					'px-2 py-4 lg:py-6',
 				)}
 			>
+				<ThemeRouteController projectThemes={projectThemes} />
 				<TransitionProvider>
 					<div className='overlay-page overflow-hidden'>
 						<AppBackground />
