@@ -9,6 +9,7 @@ export const projects: Project[] = [
 	{
 		id: 'bounce',
 		slug: 'bounce-luggage',
+		theme: 'emerald',
 		title: 'Cross-Platform Component Library',
 		company: 'Bounce.com',
 		period: 'Oct 2024 - Aug 2025',
@@ -56,6 +57,7 @@ export const projects: Project[] = [
 	{
 		id: 'meco',
 		slug: 'underground-meco',
+		theme: 'amber',
 		title: 'Event Management Ecosystem',
 		company: 'Underground Meco',
 		period: 'Feb 2024 - Oct 2024',
@@ -93,6 +95,7 @@ export const projects: Project[] = [
 	{
 		id: 'tt',
 		slug: 'tt-education',
+		theme: null,
 		title: 'Platform Modernization',
 		company: 'TT Education',
 		period: 'Jul 2023 - Feb 2024',
@@ -134,6 +137,7 @@ export const projects: Project[] = [
 	{
 		id: 'ebit',
 		slug: 'tokensite',
+		theme: 'violet',
 		title: 'Blockchain Analytics Platform',
 		company: 'eBit Labs',
 		period: 'Oct 2021 - Feb 2023',
@@ -179,6 +183,7 @@ export const projects: Project[] = [
 	{
 		id: 'ao',
 		slug: 'ao-payments',
+		theme: 'rose',
 		title: 'Centralized Payment System',
 		company: 'AO.com',
 		period: 'Nov 2020 - Oct 2021',
@@ -226,6 +231,7 @@ export const projects: Project[] = [
 		id: 'animalysis',
 		freelance: true,
 		slug: 'animalysis',
+		theme: 'lime',
 		title: 'Vet Clinic Management System',
 		company: 'Animalysis',
 		period: 'Nov 2017 - Nov 2020',
@@ -263,6 +269,7 @@ export const projects: Project[] = [
 		id: 'narbon',
 		freelance: true,
 		slug: 'narbon-ecommerce',
+		theme: 'crimson',
 		title: 'E-Commerce Progressive Web App',
 		company: 'Narbon',
 		period: 'Nov 2017 - Nov 2020',
@@ -306,6 +313,7 @@ export const projects: Project[] = [
 		personal: true,
 		brief: true,
 		slug: 'portfolio-v2',
+		theme: null,
 		title: 'Previous Portfolio',
 		company: 'Personal',
 		period: '',

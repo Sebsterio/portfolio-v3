@@ -28,7 +28,7 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 						src={project.images.screens[i]}
 						alt={`Screenshot of ${project.title}`}
 						className={cn('glass-surface-2 aspect-video rounded-xl gradient-primary-soft shadow-none', [
-							'opacity-75 transition-opacity duration-300 hover:opacity-100',
+							'transition-opacity duration-300 opacity-75 hover:opacity-100',
 						])}
 					/>
 				))}

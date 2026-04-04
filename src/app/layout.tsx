@@ -3,6 +3,7 @@ import type React from 'react';
 import { cn } from '@/lib/utils';
 import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
+import { getThemeBootstrapScript } from '@/lib/theme/runtime';
 
 import { AppHeader } from './_components/AppHeader';
 import { AppBackground } from './_components/AppBackground';
@@ -17,9 +18,13 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+	const themeBootstrapScript = getThemeBootstrapScript();
+
 	return (
-		<html lang='en'>
-			<head />
+		<html lang='en' suppressHydrationWarning>
+			<head>
+				<script id='theme-bootstrap' dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
+			</head>
 			<body
 				className={cn(
 					[urbanist.variable, dmSans.variable, 'antialiased'],
