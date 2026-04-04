@@ -9,7 +9,7 @@ export const projects: Project[] = [
 	{
 		id: 'bounce',
 		slug: 'bounce-luggage',
-		theme: 'emerald',
+		theme: 'violet',
 		title: 'Cross-Platform Component Library',
 		company: 'Bounce.com',
 		period: 'Oct 2024 - Aug 2025',
@@ -95,7 +95,7 @@ export const projects: Project[] = [
 	{
 		id: 'tt',
 		slug: 'tt-education',
-		theme: null,
+		theme: 'emerald',
 		title: 'Platform Modernization',
 		company: 'TT Education',
 		period: 'Jul 2023 - Feb 2024',
@@ -137,7 +137,7 @@ export const projects: Project[] = [
 	{
 		id: 'ebit',
 		slug: 'tokensite',
-		theme: 'violet',
+		theme: 'crimson',
 		title: 'Blockchain Analytics Platform',
 		company: 'eBit Labs',
 		period: 'Oct 2021 - Feb 2023',
@@ -183,7 +183,7 @@ export const projects: Project[] = [
 	{
 		id: 'ao',
 		slug: 'ao-payments',
-		theme: 'rose',
+		theme: 'lime',
 		title: 'Centralized Payment System',
 		company: 'AO.com',
 		period: 'Nov 2020 - Oct 2021',
@@ -231,7 +231,7 @@ export const projects: Project[] = [
 		id: 'animalysis',
 		freelance: true,
 		slug: 'animalysis',
-		theme: 'lime',
+		theme: null,
 		title: 'Vet Clinic Management System',
 		company: 'Animalysis',
 		period: 'Nov 2017 - Nov 2020',
@@ -269,7 +269,7 @@ export const projects: Project[] = [
 		id: 'narbon',
 		freelance: true,
 		slug: 'narbon-ecommerce',
-		theme: 'crimson',
+		theme: 'rose',
 		title: 'E-Commerce Progressive Web App',
 		company: 'Narbon',
 		period: 'Nov 2017 - Nov 2020',

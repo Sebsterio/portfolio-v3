@@ -1,6 +1,17 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { commitRootTheme, getProjectThemeBySlug, resolvePathTheme } from './runtime';
 
+const PROJECT_THEME_CASES = [
+	['bounce-luggage', 'violet'],
+	['underground-meco', 'amber'],
+	['tt-education', 'emerald'],
+	['tokensite', 'crimson'],
+	['ao-payments', 'lime'],
+	['animalysis', null],
+	['narbon-ecommerce', 'rose'],
+	['portfolio-v2', null],
+] as const;
+
 describe('theme runtime', () => {
 	beforeEach(() => {
 		document.documentElement.removeAttribute('data-theme');
@@ -12,19 +23,22 @@ describe('theme runtime', () => {
 	});
 
 	test('reads the project-owned theme by slug', () => {
-		expect(getProjectThemeBySlug('bounce-luggage')).toBe('emerald');
-		expect(getProjectThemeBySlug('tokensite')).toBe('violet');
-		expect(getProjectThemeBySlug('tt-education')).toBeNull();
+		for (const [slug, theme] of PROJECT_THEME_CASES) {
+			expect(getProjectThemeBySlug(slug)).toBe(theme);
+		}
 	});
 
 	test('resolves timeline detail routes to the project theme', () => {
-		expect(resolvePathTheme('/projects/timeline/bounce-luggage')).toBe('emerald');
-		expect(resolvePathTheme('/projects/timeline/ao-payments/')).toBe('rose');
+		for (const [slug, theme] of PROJECT_THEME_CASES) {
+			expect(resolvePathTheme(`/projects/timeline/${slug}`)).toBe(theme);
+			expect(resolvePathTheme(`/projects/timeline/${slug}/`)).toBe(theme);
+		}
 	});
 
 	test('resolves cards detail routes to the same project theme', () => {
-		expect(resolvePathTheme('/projects/cards/bounce-luggage')).toBe('emerald');
-		expect(resolvePathTheme('/projects/cards/narbon-ecommerce')).toBe('crimson');
+		for (const [slug, theme] of PROJECT_THEME_CASES) {
+			expect(resolvePathTheme(`/projects/cards/${slug}`)).toBe(theme);
+		}
 	});
 
 	test('keeps list and non-project routes on the base palette', () => {

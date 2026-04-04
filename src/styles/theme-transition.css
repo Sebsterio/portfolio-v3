@@ -56,10 +56,9 @@
 }
 
 :root {
-  --duration-theme-transition: 2000ms;
-  --easing-theme-transition: cubic-bezier(0.4, 0, 0.2, 1);
-  /* Wait for the route view transition to settle before starting the slow palette drift. */
-  --delay-theme-transition: calc(var(--duration-vt-morph, 600ms) + 160ms);
+  --duration-theme-transition: 1200ms;
+  --easing-theme-transition: linear;
+  --delay-theme-transition: calc(var(--duration-vt-morph, 600ms) + 100ms); /* Wait for the route view transition to settle before starting the slow palette drift. */
 
   transition-property:
     --theme-accent-1,
