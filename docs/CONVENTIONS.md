@@ -15,7 +15,8 @@ Deterministic implementation conventions for current codebase behavior.
 ## Data conventions
 
 - Projects data source is `src/app/projects/_content.ts`.
-- Use `getProjects()` and `getProject(slug)` from `src/app/projects/_lib.ts`.
+- Use helpers from `src/app/projects/_lib.ts` for project-derived reads.
+- Project theme lookup data belongs in `src/app/projects/_lib.ts`, not in root runtime modules or transition modules.
 - For slug pages, use `generateStaticParams()` from project slugs.
 
 ## Navigation conventions
@@ -25,6 +26,15 @@ Deterministic implementation conventions for current codebase behavior.
 - Keep transition readiness signaling through `PageTransition` and `useTransitionReady`.
 - Do not replace transition-aware navigation with plain `next/link` or `useRouter` in transition flows.
 - External URLs and static file links are outside transition flows.
+- Do not add route-theme behavior to `TransitionProvider`; theme routing is a sibling root concern.
+
+## Theme runtime conventions
+
+- Root theme activation is owned by the theme runtime under `src/lib/theme`.
+- Keep root theme writes centralized through `commitRootTheme()`.
+- `resolvePathTheme()` should resolve from an injected slug-to-theme lookup, not by importing project content directly.
+- Only project detail routes under `/projects/timeline/[slug]` and `/projects/cards/[slug]` may resolve a named route theme.
+- Keep first-paint theme assignment and client route theme updates aligned by feeding the same lookup data to both `ThemeBootstrapScript` and `ThemeRouteController`.
 
 ## Styling conventions
 
@@ -57,6 +67,8 @@ CSS/TSX                 reference @theme tokens only
 **To create a new theme:** redefine these `:root` variables in a selector (e.g. `[data-theme="warm"]`):
 `--theme-accent-1`, `--theme-accent-2`, `--theme-neutral-1/2/3/4`, `--theme-surface`.
 Nothing else changes.
+
+Theme transitions are owned by `src/styles/theme-transition.css` at the root palette layer. Do not add component-level theme timing rules to chase color interpolation.
 
 ---
 
