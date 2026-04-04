@@ -1,7 +1,9 @@
 # Active Task Overview
 
-Sync the theme runtime test coverage with the current project theme mapping.
+Refactor the route-based theme runtime to reduce technical debt without changing the feature behavior.
 
 Goals:
-- Update the runtime test expectations to match the current `projects` config.
-- Cover the current slug-to-theme mapping clearly so future drift is easy to spot.
+- Use `src/app/projects/_lib.ts` as the server-side source for project theme lookup data.
+- Decouple theme routing from `TransitionProvider`.
+- Split route resolution, DOM commits, and first-paint bootstrap concerns into clearer boundaries.
+- Keep the root `data-theme` contract and the existing palette-layer transition system.

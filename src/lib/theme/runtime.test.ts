@@ -1,16 +1,19 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
-import { commitRootTheme, getProjectThemeBySlug, resolvePathTheme } from './runtime';
+import { commitRootTheme, resolvePathTheme } from './runtime';
+import type { ProjectThemeLookup } from './types';
 
-const PROJECT_THEME_CASES = [
-	['bounce-luggage', 'violet'],
-	['underground-meco', 'amber'],
-	['tt-education', 'emerald'],
-	['tokensite', 'crimson'],
-	['ao-payments', 'lime'],
-	['animalysis', null],
-	['narbon-ecommerce', 'rose'],
-	['portfolio-v2', null],
-] as const;
+const PROJECT_THEMES = {
+	'bounce-luggage': 'violet',
+	'underground-meco': 'amber',
+	'tt-education': 'emerald',
+	tokensite: 'crimson',
+	'ao-payments': 'lime',
+	animalysis: null,
+	'narbon-ecommerce': 'rose',
+	'portfolio-v2': null,
+} as const satisfies ProjectThemeLookup;
+
+const PROJECT_THEME_CASES = Object.entries(PROJECT_THEMES);
 
 describe('theme runtime', () => {
 	beforeEach(() => {
@@ -22,37 +25,36 @@ describe('theme runtime', () => {
 		document.documentElement.removeAttribute('data-theme');
 	});
 
-	test('reads the project-owned theme by slug', () => {
-		for (const [slug, theme] of PROJECT_THEME_CASES) {
-			expect(getProjectThemeBySlug(slug)).toBe(theme);
-		}
-	});
-
 	test('resolves timeline detail routes to the project theme', () => {
 		for (const [slug, theme] of PROJECT_THEME_CASES) {
-			expect(resolvePathTheme(`/projects/timeline/${slug}`)).toBe(theme);
-			expect(resolvePathTheme(`/projects/timeline/${slug}/`)).toBe(theme);
+			expect(resolvePathTheme(`/projects/timeline/${slug}`, PROJECT_THEMES)).toBe(theme);
+			expect(resolvePathTheme(`/projects/timeline/${slug}/`, PROJECT_THEMES)).toBe(theme);
 		}
 	});
 
 	test('resolves cards detail routes to the same project theme', () => {
 		for (const [slug, theme] of PROJECT_THEME_CASES) {
-			expect(resolvePathTheme(`/projects/cards/${slug}`)).toBe(theme);
+			expect(resolvePathTheme(`/projects/cards/${slug}`, PROJECT_THEMES)).toBe(theme);
 		}
 	});
 
 	test('keeps list and non-project routes on the base palette', () => {
-		expect(resolvePathTheme('/')).toBeNull();
-		expect(resolvePathTheme('/about')).toBeNull();
-		expect(resolvePathTheme('/projects/timeline')).toBeNull();
-		expect(resolvePathTheme('/projects/cards')).toBeNull();
-		expect(resolvePathTheme('/projects/magazine')).toBeNull();
-		expect(resolvePathTheme('/projects/magazine/tokensite')).toBeNull();
+		expect(resolvePathTheme('/', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/about', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/projects/timeline', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/projects/cards', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/projects/magazine', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/projects/magazine/tokensite', PROJECT_THEMES)).toBeNull();
 	});
 
 	test('returns the base palette for unknown slugs', () => {
-		expect(resolvePathTheme('/projects/timeline/unknown-project')).toBeNull();
-		expect(resolvePathTheme('/projects/cards/unknown-project')).toBeNull();
+		expect(resolvePathTheme('/projects/timeline/unknown-project', PROJECT_THEMES)).toBeNull();
+		expect(resolvePathTheme('/projects/cards/unknown-project', PROJECT_THEMES)).toBeNull();
+	});
+
+	test('ignores query strings and hashes when resolving themed detail routes', () => {
+		expect(resolvePathTheme('/projects/timeline/tokensite?panel=details', PROJECT_THEMES)).toBe('crimson');
+		expect(resolvePathTheme('/projects/cards/narbon-ecommerce#overview', PROJECT_THEMES)).toBe('rose');
 	});
 
 	test('dedupes unchanged root theme writes', () => {

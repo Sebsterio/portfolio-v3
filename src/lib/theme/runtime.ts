@@ -1,10 +1,6 @@
-import { projects } from '@/app/projects/_content';
-import type { ThemeName } from './types';
+import type { ProjectThemeLookup, ThemeName } from './types';
 
-const PROJECT_DETAIL_ROUTE_PATTERN = '^/projects/(?:timeline|cards)/([^/]+)$';
-const PROJECT_DETAIL_ROUTE_REGEX = new RegExp(PROJECT_DETAIL_ROUTE_PATTERN);
-
-const PROJECT_THEME_BY_SLUG = Object.fromEntries(projects.map(({ slug, theme }) => [slug, theme ?? null])) as Record<string, ThemeName | null>;
+const THEMED_PROJECT_ROUTE_MODES = new Set(['timeline', 'cards']);
 
 const normalizePathname = (pathname: string) => {
 	const normalized = (pathname || '/').split(/[?#]/, 1)[0] || '/';
@@ -19,12 +15,20 @@ const decodePathSegment = (segment: string) => {
 	}
 };
 
-export const getProjectThemeBySlug = (slug: string): ThemeName | null => PROJECT_THEME_BY_SLUG[decodePathSegment(slug)] ?? null;
+const getThemedProjectSlug = (pathname: string) => {
+	const segments = normalizePathname(pathname).split('/');
 
-export const resolvePathTheme = (pathname: string): ThemeName | null => {
-	const match = PROJECT_DETAIL_ROUTE_REGEX.exec(normalizePathname(pathname));
-	if (!match) return null;
-	return getProjectThemeBySlug(match[1]);
+	if (segments.length !== 4) return null;
+
+	const [, section, mode, slug] = segments;
+	if (section !== 'projects' || !THEMED_PROJECT_ROUTE_MODES.has(mode) || !slug) return null;
+
+	return decodePathSegment(slug);
+};
+
+export const resolvePathTheme = (pathname: string, projectThemes: ProjectThemeLookup): ThemeName | null => {
+	const slug = getThemedProjectSlug(pathname);
+	return slug ? projectThemes[slug] ?? null : null;
 };
 
 export const commitRootTheme = (theme: ThemeName | null, root: HTMLElement = document.documentElement) => {
@@ -40,25 +44,4 @@ export const commitRootTheme = (theme: ThemeName | null, root: HTMLElement = doc
 
 	root.setAttribute('data-theme', theme);
 	return true;
-};
-
-export const getThemeBootstrapScript = () => {
-	const projectThemeMap = JSON.stringify(PROJECT_THEME_BY_SLUG).replace(/</g, '\\u003c');
-	const routePattern = JSON.stringify(PROJECT_DETAIL_ROUTE_PATTERN);
-
-	return [
-		'(function(){',
-		`var projectThemes=${projectThemeMap};`,
-		`var routePattern=new RegExp(${routePattern});`,
-		"var pathname=window.location.pathname||'/';",
-		"if(pathname.length>1&&pathname.endsWith('/'))pathname=pathname.slice(0,-1);",
-		'var match=routePattern.exec(pathname);',
-		'var slug=match?match[1]:null;',
-		'if(slug){try{slug=decodeURIComponent(slug);}catch(_error){}}',
-		'var theme=slug?projectThemes[slug]??null:null;',
-		'var root=document.documentElement;',
-		"if(theme){if(root.getAttribute('data-theme')!==theme)root.setAttribute('data-theme',theme);}",
-		"else if(root.hasAttribute('data-theme')){root.removeAttribute('data-theme');}",
-		'})();',
-	].join('');
 };
