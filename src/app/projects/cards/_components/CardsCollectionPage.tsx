@@ -26,7 +26,11 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 					<VT.Onto name={`c-project-${project.id}`} classes='c-project' key={project.id}>
 						<ProjectCard
 							project={project}
-							onClick={() => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+							onClick={
+								project.brief
+									? () => project.link && window.open(project.link, '_blank')
+									: () => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })
+							}
 						/>
 					</VT.Onto>
 				))}

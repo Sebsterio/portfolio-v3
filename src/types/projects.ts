@@ -36,4 +36,6 @@ export type Project = {
 	link?: string;
 	roleDetail?: string;
 	freelance?: boolean;
+	personal?: boolean;
+	brief?: boolean;
 };
