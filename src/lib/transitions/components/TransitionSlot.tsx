@@ -1,18 +1,18 @@
 import React, { JSX } from 'react';
 import { cn } from '@/lib/utils';
 
-type TransitionVarName = '--vt-name' | '--vt-group' | '--vt-class';
+type TransitionVarName = '--vt-name' | '--vt-class';
 type TransitionStyle = React.CSSProperties & Partial<Record<TransitionVarName, string>>;
 
 type CloneableChild = React.ReactElement<{ style?: TransitionStyle; className?: string }>;
 type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C>['ref'];
 
 type TransitionBaseProps = {
+	slot?: string;
 	name?: string;
 	group?: 'normal' | 'contain' | 'nearest' | string;
-	vtClass?: string;
-	className?: string;
 	classes?: string;
+	className?: string;
 	style?: React.CSSProperties;
 };
 
@@ -34,10 +34,11 @@ type AllProps = { as?: unknown; bind?: boolean; wrap?: boolean } & (TransitionDe
 
 // ── Export & Compound ────────────────────────────────────────────────────────────────────
 
+export { TransitionCompound as ViewTransition };
 export { TransitionCompound as VT };
 
 const TransitionCompound = Object.assign(TransitionResolver, {
-	Area: TransitionElement,
+	Area: TransitionWrapper,
 	Onto: TransitionDecorator,
 	As: TransitionPolymorphic,
 	Div: createTransitionIntrinsic('div'),
@@ -56,7 +57,7 @@ function TransitionResolver<C extends React.ElementType = 'div'>(props: Transiti
 
 	if (as) return <TransitionPolymorphic {...(props as TransitionPolymorphicProps<C>)} />;
 	if (bind) return <TransitionDecorator {...(rest as TransitionDecoratorProps)} />;
-	if (wrap) return <TransitionElement {...(rest as TransitionElementProps)} />;
+	if (wrap) return <TransitionWrapper {...(rest as TransitionElementProps)} />;
 
 	return null;
 }
@@ -69,12 +70,12 @@ function TransitionResolver<C extends React.ElementType = 'div'>(props: Transiti
  * Target:    containers without backdrop-filter - on self or descendants
  */
 function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: TransitionPolymorphicProps<C>) {
-	const { as, name, group, vtClass, style, className, classes, ...rest } = props;
+	const { as, name, group, classes, style, className, slot, ...rest } = props;
 	const Tag = as as React.ElementType;
 	return (
 		<Tag
-			className={getTransitionClassName(className, classes)}
-			style={getTransitionStyle({ name, group, vtClass, style })}
+			className={getTransitionClassName(className, slot)}
+			style={getTransitionStyle({ name, group, classes, style })}
 			{...rest} //
 		/>
 	);
@@ -94,12 +95,12 @@ function TransitionPolymorphic<C extends React.ElementType = 'div'>(props: Trans
  * — `display: contents` — no box, no compositor promotion; children's `backdrop-filter` applies behind the parent.
  * — `display: block` — fixes Chromium issue making VT elements have a zero-size snapshot; creates a compositing boundary, blocking children's `backdrop-filter`.
  */
-function TransitionElement(props: TransitionElementProps) {
-	const { name, group, vtClass, style, className, classes, ...rest } = props;
+function TransitionWrapper(props: TransitionElementProps) {
+	const { name, group, classes, style, className, slot, ...rest } = props;
 	return (
 		<div
-			className={getTransitionClassName('contents in-data-transitioning:block', className, classes)}
-			style={getTransitionStyle({ name, group, vtClass, style })}
+			className={getTransitionClassName('contents in-data-transitioning:block', className, slot)}
+			style={getTransitionStyle({ name, group, classes, style })}
 			{...rest}
 		/>
 	);
@@ -115,24 +116,24 @@ function TransitionElement(props: TransitionElementProps) {
  * — `cloneElement` breaks `React.memo` bailouts on the child unconditionally.
  * — Child must accept both `style` and `className` props.
  */
-function TransitionDecorator({ children, name, group, vtClass, className, classes, style }: TransitionDecoratorProps) {
+function TransitionDecorator({ children, name, group, classes, className, slot, style }: TransitionDecoratorProps) {
 	return React.cloneElement(children, {
-		className: getTransitionClassName(children.props.className, className, classes),
-		style: getTransitionStyle({ name, group, vtClass, style: { ...children.props.style, ...style } }),
+		className: getTransitionClassName(children.props.className, className, slot),
+		style: getTransitionStyle({ name, group, classes, style: { ...children.props.style, ...style } }),
 	});
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────────────
 
 function getTransitionClassName(...classNames: (string | undefined)[]): string {
-	return cn('vt-BASE', ...classNames);
+	return cn('vt-slot', ...classNames);
 }
 
-function getTransitionStyle({ name, group, vtClass, style }: TransitionBaseProps): TransitionStyle {
+function getTransitionStyle({ name, group, classes, style }: TransitionBaseProps): TransitionStyle {
 	return {
 		...style,
 		...(name && { '--vt-name': name }),
-		...(vtClass && { '--vt-class': vtClass }),
+		...(classes && { '--vt-class': classes }),
 		...(group && { viewTransitionGroup: group }),
 	};
 }
