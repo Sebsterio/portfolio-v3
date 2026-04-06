@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage } from './ProjectImage';
 
 interface MagazineSectionEProps {
 	sectionId: string;
@@ -33,7 +33,7 @@ export function MagazineSectionE({
 			</h2>
 
 			{/* Number */}
-			<div className='gradient-number-highlight relative z-20 mb-4 bg-clip-text font-urbanist text-3xl font-black text-transparent md:text-4xl'>
+			<div className='relative z-20 mb-4 gradient-number-highlight bg-clip-text font-urbanist text-3xl font-black text-transparent md:text-4xl'>
 				{number}
 			</div>
 
@@ -52,7 +52,7 @@ export function MagazineSectionE({
 					<ProjectImage
 						src={imageAside}
 						gradient='bg-gradient-ao-small'
-						className='shadow-image-md magazine-image order-3 ml-auto h-[150px] w-3/4 hover:-translate-y-2 md:h-[200px] lg:order-0 lg:h-[220px]'
+						className='magazine-image order-3 ml-auto h-[150px] w-3/4 shadow-image-md hover:-translate-y-2 md:h-[200px] lg:order-0 lg:h-[220px]'
 						glintOnHover
 					/>
 				</div>
@@ -65,11 +65,11 @@ export function MagazineSectionE({
 						{title}
 					</h3>
 
-					<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
+					<p className='mb-8 text-base text-muted md:text-lg'>{subtitle}</p>
 
 					<div className='space-y-6'>
 						{description.map((paragraph, index) => (
-							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+							<p key={index} className='text-sm leading-relaxed text-secondary md:text-base'>
 								{paragraph}
 							</p>
 						))}

@@ -1,5 +1,5 @@
 import { PageTransition } from '@/lib/transitions/components/PageTransition';
-import { CardsCollectionPage } from './_components/CardsCollectionPage';
+import { CardsCollectionPage } from '@/components/CardsCollectionPage';
 import { getPersonalProjects, getProjects } from '../_lib';
 
 export default async function CardsProjectsPage() {

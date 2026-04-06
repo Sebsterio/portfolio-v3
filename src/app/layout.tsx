@@ -6,9 +6,9 @@ import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
 import { ThemeBootstrapScript } from '@/lib/theme/components/ThemeBootstrapScript';
 import { ThemeRouteController } from '@/lib/theme/components/ThemeRouteController';
+import { AppBackground } from '@/components/AppBackground';
+import { AppHeader } from '@/components/AppHeader/AppHeader';
 
-import { AppHeader } from './_components/AppHeader';
-import { AppBackground } from './_components/AppBackground';
 import { dmSans, urbanist } from './fonts';
 
 import '@/styles/globals.css';

@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage } from './ProjectImage';
 import { ParsedText } from '@/lib/parser/ParsedText';
 import { ProjectTags } from '@/components/ProjectTags';
 import { cn } from '@/lib/utils';
@@ -77,11 +77,11 @@ export function MagazineSectionA({
 				<h3 className='mb-2 font-urbanist text-4xl font-extrabold tracking-tight text-white transition-all duration-300 group-hover:text-label md:text-5xl lg:text-[3.5rem]'>
 					{title}
 				</h3>
-				<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
+				<p className='mb-8 text-base text-muted md:text-lg'>{subtitle}</p>
 
 				<div className='space-y-6'>
 					{description.map((paragraph, index) => (
-						<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+						<p key={index} className='text-sm leading-relaxed text-secondary md:text-base'>
 							<ParsedText bold='text-label font-semibold'>{paragraph}</ParsedText>
 						</p>
 					))}

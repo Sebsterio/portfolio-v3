@@ -11,7 +11,7 @@ import { ProjectTags } from '@/components/ProjectTags';
 import { ProjectImage } from '@/components/ProjectImage';
 import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
-import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { PROJECT_PAGE_TITLE_ID } from '../app/projects/_config';
 import { ExternalLinkButton } from '@/components/Button';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 
