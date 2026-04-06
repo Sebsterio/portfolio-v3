@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage } from './ProjectImage';
 
 interface MagazineSectionBProps {
 	sectionId: string;
@@ -33,11 +33,11 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 						{title}
 					</h3>
 
-					<p className='text-muted mb-8 text-base md:text-lg'>{subtitle}</p>
+					<p className='mb-8 text-base text-muted md:text-lg'>{subtitle}</p>
 
 					<div className='space-y-6'>
 						{description.map((paragraph, index) => (
-							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+							<p key={index} className='text-sm leading-relaxed text-secondary md:text-base'>
 								{paragraph}
 							</p>
 						))}
@@ -55,13 +55,13 @@ export function MagazineSectionB({ sectionId, number, megaTitle, preTitle, title
 
 					<ProjectImage
 						gradient='bg-gradient-meco-2'
-						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
+						className='magazine-image h-[150px] shadow-image-md hover:-translate-y-2 hover:-rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 
 					<ProjectImage
 						gradient='bg-gradient-meco-3'
-						className='shadow-image-md magazine-image h-[150px] hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
+						className='magazine-image h-[150px] shadow-image-md hover:-translate-y-2 hover:rotate-2 md:h-[180px] lg:h-[200px]'
 						glintOnHover
 					/>
 				</div>

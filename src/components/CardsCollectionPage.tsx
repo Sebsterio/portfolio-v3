@@ -4,7 +4,7 @@ import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { cn } from '@/lib/utils';
 import { ProjectTags } from '@/components/ProjectTags';
-import { PROJECT_PAGE_TITLE_ID } from '../../_config';
+import { PROJECT_PAGE_TITLE_ID } from '../app/projects/_config';
 import { ProjectImage } from '@/components/ProjectImage';
 import { Panel } from '@/components/ui/Panel';
 import { ArrowIndicator } from '@/components/ArrowIndicator';

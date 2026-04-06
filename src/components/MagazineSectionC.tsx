@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from '../../../../components/ProjectImage';
+import { ProjectImage } from './ProjectImage';
 
 interface MagazineSectionCProps {
 	sectionId: string;
@@ -26,11 +26,11 @@ export function MagazineSectionC({ sectionId, number, title, subTitle, descripti
 						{title}
 					</h3>
 
-					<p className='text-muted mb-8 text-base md:text-lg'>{subTitle}</p>
+					<p className='mb-8 text-base text-muted md:text-lg'>{subTitle}</p>
 
 					<div className='space-y-6'>
 						{description.map((paragraph, index) => (
-							<p key={index} className='text-secondary text-sm leading-relaxed md:text-base'>
+							<p key={index} className='text-sm leading-relaxed text-secondary md:text-base'>
 								{paragraph}
 							</p>
 						))}
