@@ -1,5 +1,5 @@
 import type { ProjectThemeLookup } from '@/lib/theme/types';
-import { projects } from './_content';
+import { projects } from '@/content/projects';
 
 const workProjects = projects.filter((p) => !p.personal);
 const personalProjects = projects.filter((p) => p.personal);

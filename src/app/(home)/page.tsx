@@ -1,11 +1,10 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } from '@/components';
-
-import { copy, buttons, showcaseItems } from './_content';
-import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { VT } from '@/lib/transitions/components/ViewTransition';
+import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
+import { copy, buttons, showcaseItems } from '@/content/home';
+import { StatusBadge, Title, TextBlock, ShowcaseCard, LinkButton as Button } from '@/components';
 
 type HomePageProps = Record<string, never>;
 

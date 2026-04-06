@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import { TextBlock, Title } from '@/components/typography';
 import { DisplayModeSwitcher } from '@/components/DisplayModeSwitcher';
-import { PROJECT_PAGE_TITLE_ID } from './_config';
-import { header } from './_content';
+import { header } from '@/content/projects';
 import { VT } from '@/lib/transitions/components/ViewTransition';
+
+import { PROJECT_PAGE_TITLE_ID } from './_config';
 
 type ProjectsLayoutProps = {
 	children: React.ReactNode;

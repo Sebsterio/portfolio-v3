@@ -1,9 +1,9 @@
 'use client';
 
+import { VT } from '@/lib/transitions/components/ViewTransition';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { Title, TextBlock, LabeledValueRow, InfoCard } from '@/components';
-import { copy } from './_content';
-import { VT } from '@/lib/transitions/components/ViewTransition';
+import { copy } from '@/content/coming-soon';
 
 export function UnderConstructionPage() {
 	useTransitionReady();
