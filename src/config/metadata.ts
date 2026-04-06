@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { SITE_URL, IMAGE_URL } from '@/lib/constants';
+import { SITE_URL, IMAGE_URL } from '@/config/constants';
 
 // TODO
 // import { SITE_URL, IMAGE_URL, THUMBNAIL_URL, GITHUB_URL, LINKEDIN_URL, CODEPEN_URL, EMAIL_URL, LICENCE_URL } from '@/lib/constants';
