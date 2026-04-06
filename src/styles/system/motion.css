@@ -1,1 +1,9 @@
-/* currently empty */
+@keyframes pop-up {
+	0%   { transform: scale(1) rotate(0deg); }
+	50%  { transform: scale(1.2) rotate(2deg); }
+	100% { transform: scale(1.15) rotate(0deg); }
+}
+
+@utility animate-pop-up {
+	animation: pop-up 0.4s forwards ease-in-out;
+}

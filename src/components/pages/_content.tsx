@@ -5,7 +5,7 @@ export const copy = {
 		"I'm crafting something meaningful here — when it's ready, it will reflect the same care, precision, and visual language as the rest of the portfolio.",
 		'Please check back soon.',
 	],
-	cardTitle: 'Status',
+	cardTitle: 'Page Status',
 	cardRows: [
 		{ label: 'State', value: 'Under construction' },
 		{ label: 'ETA', value: 'Coming soon' },

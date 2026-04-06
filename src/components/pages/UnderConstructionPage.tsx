@@ -1,20 +1,22 @@
 'use client';
 
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
+import { VT } from '@/lib/transitions/components/ViewTransition';
 import { Title, TextBlock, LabeledValueRow, InfoCard } from '@/components';
 import { copy } from './_content';
-import { VT } from '@/lib/transitions/components/ViewTransition';
 
-export function UnderConstructionPage() {
+export const UnderConstructionPage = ({ children }: React.PropsWithChildren) => {
 	useTransitionReady();
 
 	return (
-		<div className='grid grid-cols-1 gap-12 lg:grid-cols-[1fr_300px]'>
+		<div className='grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_300px]'>
 			<VT.Div slot='vt-left' className='stack-2xl'>
 				<Title variant='page'>{copy.title}</Title>
 				<TextBlock className='max-w-2xl' highlightFirstParagraph>
 					{copy.text}
 				</TextBlock>
+
+				{children}
 			</VT.Div>
 
 			<VT.Area slot='max-lg:vt-right lg:vt-main'>
@@ -28,4 +30,4 @@ export function UnderConstructionPage() {
 			</VT.Area>
 		</div>
 	);
-}
+};
