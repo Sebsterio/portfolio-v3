@@ -6,9 +6,10 @@ import { cn } from '@/lib/utils';
 export const Tooltip = ({ children }: { children: string }) => {
 	return (
 		<div
-			className={cn('pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 rounded-lg', [
+			className={cn('pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 rounded-lg', [
 				'bg-slate-800 px-3 py-1 text-sm whitespace-nowrap text-slate-200',
-				'opacity-0 transition-opacity delay-1000 duration-300 group-hover/tooltip:opacity-100',
+				'transition-opacity duration-300 group-hover/tooltip:delay-400',
+				'opacity-0 group-hover/tooltip:opacity-100',
 			])}
 		>
 			{children}

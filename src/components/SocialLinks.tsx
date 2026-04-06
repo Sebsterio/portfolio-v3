@@ -5,11 +5,11 @@ import { IconLink } from './IconLink';
 export const SocialLinks = () => {
 	return (
 		<>
-			<IconLink icon={Github} url={GITHUB_URL} label='GitHub' bgColor='bg-gray-800/25 border-gray-800' iconColor='text-white' />
-			<IconLink icon={Linkedin} url={LINKEDIN_URL} label='LinkedIn' bgColor='bg-blue-600/25 border-blue-600' iconColor='text-white' />
-			<IconLink icon={ExternalLink} url={V2_URL} label='Portfolio v2' bgColor='bg-amber-500/25 border-amber-500' iconColor='text-white' />
-			<IconLink icon={Codepen} url={CODEPEN_URL} label='CodePen' bgColor='bg-green-600/25 border-green-600' iconColor='text-white' />
-			<IconLink icon={Mail} url={EMAIL_URL} label='Email' bgColor='bg-gray-700/25 border-gray-700' iconColor='text-gray-700' />
+			<IconLink icon={Github} url={GITHUB_URL} label='GitHub' className='border-gray-200/50 bg-gray-800/50 text-white' />
+			<IconLink icon={Linkedin} url={LINKEDIN_URL} label='LinkedIn' className='border-blue-600 bg-blue-600/25 text-white' />
+			<IconLink icon={ExternalLink} url={V2_URL} label='Portfolio v2' className='border-amber-500 bg-amber-500/25 text-white' />
+			<IconLink icon={Codepen} url={CODEPEN_URL} label='CodePen' className='border-green-600 bg-green-600/25 text-white' />
+			<IconLink disabled icon={Mail} url={EMAIL_URL} label='Email' className='border-gray-700 bg-gray-700/25 text-gray-700' />
 		</>
 	);
 };
