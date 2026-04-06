@@ -1,6 +1,7 @@
 import type { ForwardRefExoticComponent, RefAttributes } from 'react';
 import type { LucideProps } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Tooltip } from './Tooltip';
 
 type IconLinkProps = {
 	url: string;
@@ -13,13 +14,14 @@ type IconLinkProps = {
 export const IconLink = ({ url, label, bgColor, iconColor, icon: Icon }: IconLinkProps) => {
 	return (
 		<a
+			rel='noopener noreferrer'
 			href={url}
 			target={url.startsWith('mailto:') ? '_self' : '_blank'}
-			rel='noopener noreferrer'
-			className={cn('relative rounded-xl border border-solid p-4', 'hover:animate-pop-up', bgColor)}
+			className={cn('group/tooltip relative', 'rounded-xl border border-solid p-4', 'hover:animate-pop-up', bgColor)}
 			aria-label={label}
 		>
 			<Icon className={cn('size-6', iconColor)} />
+			<Tooltip>{label}</Tooltip>
 		</a>
 	);
 };
