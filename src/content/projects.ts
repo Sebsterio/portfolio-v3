@@ -170,7 +170,7 @@ export const projects: Project[] = [
 			main: '/assets/projects/ebit/comp-md.png',
 			promo: [
 				'/assets/projects/ebit/comp.png',
-				'/assets/projects/ebit/comp.png',
+				'/assets/projects/ebit/tokensite-series-table.webp',
 				'', //
 			],
 			screens: [
@@ -262,7 +262,11 @@ export const projects: Project[] = [
 			thumbnail: '/assets/projects/anim/animalysis.jpg',
 			main: '/assets/projects/anim/animalysis.jpg',
 			promo: ['/assets/projects/anim/animalysis.jpg', '', ''],
-			screens: ['/assets/projects/anim/animalysis.jpg', '', ''],
+			screens: [
+				'/assets/projects/anim/mobile-comp.jpg',
+				'/assets/projects/anim/desktop-vet.jpg',
+				'/assets/projects/anim/desktop-admin.jpg',
+			],
 		},
 	},
 	{
@@ -315,7 +319,7 @@ export const projects: Project[] = [
 		slug: 'portfolio-v2',
 		theme: null,
 		title: 'Previous Portfolio',
-		company: 'Personal',
+		company: '',
 		period: '',
 		year: '2020',
 		location: '',
@@ -331,10 +335,10 @@ export const projects: Project[] = [
 		link: 'https://v2.sebster.dev/',
 		images: {
 			logo: '',
-			thumbnail: '',
-			main: '',
-			promo: ['', '', ''],
-			screens: ['', '', ''],
+			thumbnail: '/assets/projects/v2/portfolio.webp',
+			main: '/assets/projects/v2/portfolio.webp',
+			promo: ['/assets/projects/v2/portfolio.webp', '', ''],
+			screens: ['/assets/projects/v2/portfolio.webp', '', ''],
 		},
 	},
 ];
