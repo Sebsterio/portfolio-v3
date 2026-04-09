@@ -6,25 +6,32 @@ This document describes current technical structure only.
 
 Source of truth is the code on `dev`.
 
-## App route structure
+## App directory structure
 
 Routes are implemented under `src/app`.
 
 ```text
-/
-|-- layout.tsx
-|-- (home)/page.tsx
-|-- about/page.tsx
-|-- contact/page.tsx
-`-- projects/
-    |-- layout.tsx
-    |-- page.tsx                  -> redirects to /projects/timeline
-    |-- timeline/page.tsx
-    |-- timeline/[slug]/page.tsx
-    |-- cards/page.tsx
-    |-- cards/[slug]/page.tsx
-    |-- magazine/page.tsx
-    `-- magazine/[slug]/page.tsx  -> redirects to /projects/magazine#project-{id}
+src/
+|-- app/
+|   |-- layout.tsx
+|   |-- (home)/page.tsx
+|   |-- about/page.tsx
+|   |-- contact/page.tsx
+|   `-- projects/
+|       |-- layout.tsx
+|       |-- page.tsx                  -> redirects to /projects/timeline
+|       |-- timeline/page.tsx
+|       |-- timeline/[slug]/page.tsx
+|       |-- cards/page.tsx
+|       |-- cards/[slug]/page.tsx
+|       |-- magazine/page.tsx
+|       `-- magazine/[slug]/page.tsx  -> redirects to /projects/magazine#project-{id}
+|-- components/
+|-- config/
+|-- content/
+|-- lib/
+|-- styles/
+`-- types/
 ```
 
 ## Boundaries
@@ -35,7 +42,7 @@ Routes are implemented under `src/app`.
 
 ## Data flow
 
-- Project data is defined in `src/app/projects/_content.ts`.
+- Project data is defined in `src/content/projects.ts`.
 - Data access is through helpers in `src/app/projects/_lib.ts`.
 - Project-owned route theme lookup is derived in `src/app/projects/_lib.ts` through `getProjectThemeBySlug(slug)` and `getProjectThemeLookup()`.
 - Timeline and cards detail pages generate static params from project slugs.

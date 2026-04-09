@@ -7,14 +7,26 @@ Deterministic implementation conventions for current codebase behavior.
 ## Naming and placement
 
 - Next.js route files use reserved lowercase names (`page.tsx`, `layout.tsx`, `default.tsx`, etc.).
-- Route-local components live under route `_components/` folders.
-- Shared components live in `src/components`.
+- `src/app` is reserved for routing and SSG concerns.
+- All non-routing files live under `src/`.
+- Shared and page-specific components both live in `src/components`.
+- Text content in defined in `src/content`.
+- Constants and config files live in `src/config`.
 - Shared utilities and infrastructure live in `src/lib`.
+- Files related to specific features are colocated in `src/lib/(feature-name)/`
 - Shared types live in `src/types`.
+
+### Temporary exception
+
+The following files still remain in `src/app/projects/` and will be moved to match the rest of the structure:
+
+- `_config.ts`
+- `_lib.ts`
+- `_lib.test.ts`
 
 ## Data conventions
 
-- Projects data source is `src/app/projects/_content.ts`.
+- Projects data source is `src/content/projects.ts`.
 - Use helpers from `src/app/projects/_lib.ts` for project-derived reads.
 - Project theme lookup data belongs in `src/app/projects/_lib.ts`, not in root runtime modules or transition modules.
 - For slug pages, use `generateStaticParams()` from project slugs.
@@ -58,7 +70,7 @@ Never use `shadow-` for a zero-offset radial effect. See `effects.css` for the f
 
 Three layers. One-way dependency: components → `@theme` → `:root`.
 
-```
+```text
 :root   --theme-*       oklch values, per-theme overridable
 @theme  --color-*       var() aliases → :root, generates Tailwind utilities
 CSS/TSX                 reference @theme tokens only
@@ -76,35 +88,34 @@ Theme transitions are owned by `src/styles/theme-transition.css` at the root pal
 
 Defined as `@utility` in `typography.css` so modifier variants work (`hover:`, `group-hover:`, `dark:`).
 
-| Utility | Role | Raw equivalent (do not use) |
-|---|---|---|
-| `text-primary` | Default body text | `text-neutral-1` |
-| `text-secondary` | Supporting text 80% | `text-neutral-1/80` |
-| `text-tertiary` | 70% | `text-neutral-1/70` |
-| `text-muted` | Low emphasis 60% | `text-neutral-1/60` |
-| `text-subtle` | Very low 50% | `text-neutral-1/50` |
-| `text-strong` | White, normal weight | `text-white` |
-| `text-bold` | White, bold | `text-white font-bold` |
-| `text-accent` | Brand / interactive | `text-accent-1` |
-| `text-label` | Content annotation — dates, periods, locations, subheadings, arrow glyphs | `text-accent-2` |
+| Utility          | Role                                                                      | Raw equivalent (do not use) |
+| ---------------- | ------------------------------------------------------------------------- | --------------------------- |
+| `text-primary`   | Default body text                                                         | `text-neutral-1`            |
+| `text-secondary` | Supporting text 80%                                                       | `text-neutral-1/80`         |
+| `text-tertiary`  | 70%                                                                       | `text-neutral-1/70`         |
+| `text-muted`     | Low emphasis 60%                                                          | `text-neutral-1/60`         |
+| `text-subtle`    | Very low 50%                                                              | `text-neutral-1/50`         |
+| `text-strong`    | White, normal weight                                                      | `text-white`                |
+| `text-bold`      | White, bold                                                               | `text-white font-bold`      |
+| `text-accent`    | Brand / interactive                                                       | `text-accent-1`             |
+| `text-label`     | Content annotation — dates, periods, locations, subheadings, arrow glyphs | `text-accent-2`             |
 
-`bg-accent` and `border-accent` are Tailwind-generated from `--color-accent` and should be used
-for interactive chrome (active states, selection borders, status indicators).
+`bg-accent` and `border-accent` are Tailwind-generated from `--color-accent` and should be used for interactive chrome (active states, selection borders, status indicators).
 
 ---
 
 ### When to use raw palette tokens
 
-- Background / atmosphere decorative components — no semantic role, palette use is intentional
-- `border-accent-2` in editorial layout borders — specific design decision
-- Any case where the color *is* the design decision, not a role substitution
-
+- Background / atmosphere decorative components — no semantic role, palette use is intentional.
+- `border-accent-2` in editorial layout borders — specific design decision.
+- Any case where the color _is_ the design decision, not a role substitution.
 
 ## React and component conventions
 
 - Default to server components for route files unless client hooks or browser APIs are required.
 - Client components must declare `'use client'`.
-- Keep components focused and colocate route-specific concerns.
+- Keep components focused.
+- Route specificity does not imply placement under `src/app`; page-specific components still belong in `src/components`.
 
 ## Validation conventions
 
