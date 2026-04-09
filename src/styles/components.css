@@ -71,6 +71,11 @@
   .size-tag-md { @apply px-3 py-1.5 rounded-lg; }
   .size-tag-sm { @apply px-2 py-1 rounded-sm;  }
 
+
+  /* ---- Card transition dummies ---- */
+
+	.card-dummy { @apply invisible absolute top-1/4 bottom-1/4 aspect-square hidden lg:block	}
+
 }
 
 
