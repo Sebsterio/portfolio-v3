@@ -1,13 +1,16 @@
 'use client';
 
-import { KeyboardEvent, PropsWithChildren, useState } from 'react';
+import { KeyboardEvent, ReactNode, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-type FlipCardProps = PropsWithChildren<{
+type FlipCardProps = {
+	front: ReactNode;
+	back: ReactNode;
+	render?: (face: ReactNode) => ReactNode;
 	className?: string;
-}>;
+};
 
-export function FlipCard({ children, className }: FlipCardProps) {
+export function FlipCard({ className, front, back, render: renderFace = (f) => f }: FlipCardProps) {
 	const [flipped, setFlipped] = useState(false);
 
 	const onFlip = () => setFlipped((value) => !value);
@@ -32,13 +35,14 @@ export function FlipCard({ children, className }: FlipCardProps) {
 				className={cn(
 					'grid transition-transform duration-600 transform-3d',
 					'*:col-start-1 *:row-start-1 *:transition-opacity *:duration-300 *:backface-hidden',
-					'[&>*:nth-child(2)]:rotate-y-180',
+					'[&>[data-flip-face="back"]]:rotate-y-180',
 					flipped
-						? 'rotate-y-180 [&>*:first-child]:pointer-events-none [&>*:first-child]:opacity-0 [&>*:nth-child(2)]:opacity-100'
-						: '[&>*:first-child]:opacity-100 [&>*:nth-child(2)]:pointer-events-none [&>*:nth-child(2)]:opacity-0',
+						? '[transform:rotateY(180deg)] [&>[data-flip-face="back"]]:opacity-100 [&>[data-flip-face="front"]]:pointer-events-none [&>[data-flip-face="front"]]:opacity-0'
+						: '[&>[data-flip-face="back"]]:pointer-events-none [&>[data-flip-face="back"]]:opacity-0 [&>[data-flip-face="front"]]:opacity-100',
 				)}
 			>
-				{children}
+				<div data-flip-face='front'>{renderFace(front)}</div>
+				<div data-flip-face='back'>{renderFace(back)}</div>
 			</div>
 		</div>
 	);
