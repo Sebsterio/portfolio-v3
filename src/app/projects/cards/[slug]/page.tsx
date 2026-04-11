@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { PageTransition } from '@/lib/transitions/components/PageTransition';
 import { CardsProjectPage } from '@/components/CardsProjectPage';
-import { getProject, getProjects } from '../../_lib';
+import { getProject, getProjects, getProjectNeighbors } from '../../_lib';
 
 export async function generateStaticParams() {
 	const projects = await getProjects();
@@ -18,9 +18,12 @@ export default async function CardsProjectDetailsPage({ params }: Props) {
 
 	if (!project) notFound();
 
+	const { currentIndex, prev, next } = getProjectNeighbors(project, allProjects);
+	const navItems = allProjects.map(({ id, slug }) => ({ id, slug }));
+
 	return (
 		<PageTransition>
-			<CardsProjectPage project={project} allProjects={allProjects} />
+			<CardsProjectPage project={project} prev={prev} next={next} currentIndex={currentIndex} navItems={navItems} />
 		</PageTransition>
 	);
 }

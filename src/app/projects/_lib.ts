@@ -1,4 +1,5 @@
 import type { ProjectThemeLookup } from '@/lib/theme/types';
+import type { Project } from '@/types';
 import { projects } from '@/content/projects';
 
 const workProjects = projects.filter((p) => !p.personal);
@@ -42,6 +43,17 @@ export function getProjectPeriod(slug: string): string | undefined {
 
 export function getProjectId(slug: string) {
 	return projects.find((p) => p.slug === slug)?.id;
+}
+
+// --- Navigation ---
+
+export type ProjectNavItem = Pick<Project, 'id' | 'slug'>;
+
+export function getProjectNeighbors(project: Project, allProjects: Project[]) {
+	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
+	const prev = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
+	const next = allProjects[(currentIndex + 1) % allProjects.length];
+	return { currentIndex, prev, next };
 }
 
 // --- Format ---

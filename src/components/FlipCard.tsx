@@ -24,7 +24,7 @@ export function FlipCard({ children, className }: FlipCardProps) {
 			tabIndex={0}
 			aria-pressed={flipped}
 			aria-label={flipped ? 'Show project summary' : 'Show project case study'}
-			className={cn('w-full cursor-pointer', className)}
+			className={cn('w-full cursor-pointer overflow-x-clip perspective-[2000px]', className)}
 			onClick={onFlip}
 			onKeyDown={onKeyDown}
 		>

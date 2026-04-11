@@ -1,7 +1,5 @@
 'use client';
-import { CSSProperties, PropsWithChildren } from 'react';
 import { Project } from '@/types';
-import { cn } from '@/lib/utils';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { Panel } from '@/components/ui/Panel';
@@ -13,100 +11,82 @@ import { ImpactList } from '@/components/ImpactList';
 import { ExternalLinkButton } from '@/components/Button';
 import { ProjectsNav } from '@/components/ProjectsNav';
 import { PrevButton, NextButton } from '@/components/NavigationButton';
-import { PROJECT_PAGE_TITLE_ID } from '../app/projects/_config';
+import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
 import { FlipCard } from './FlipCard';
 
 // ----------------------------------------------------------------------------
 
-type ProjectCardProps = PropsWithChildren<{
-	className?: string;
-	style?: CSSProperties;
-}>;
+const CARD_CLASSES = 'glass-surface-2 glass-radius-2 padding-panel glass-elevation-1';
 
-function ProjectCard({ className, children, ...props }: ProjectCardProps) {
-	return (
-		<Panel className={cn('glass-surface-2 glass-radius-2 padding-panel glass-elevation-1', className)} {...props}>
-			{children}
-		</Panel>
-	);
-}
-
-function ProjectCardSection({ title, children }: PropsWithChildren<{ title: string }>) {
-	return (
-		<section className='stack-xs'>
-			<h3 className='heading-3 text-label'>{title}</h3>
-			{children}
-		</section>
-	);
-}
+// ----------------------------------------------------------------------------
 
 function ProjectCardSummary({ project }: { project: Project }) {
 	return (
-		<div className='stack-md pb-2 md:stack-lg'>
-			<div className='stack-xs'>
-				<InlineList.Div className='ui-label cluster-md tracking-normal text-label normal-case'>
-					{[project.period, project.location]}
-				</InlineList.Div>
+		<Panel className={CARD_CLASSES}>
+			<div className='stack-md pb-2 md:stack-lg'>
+				<div className='stack-xs'>
+					<InlineList.Div className='ui-label cluster-md tracking-normal text-label normal-case'>
+						{[project.period, project.location]}
+					</InlineList.Div>
+					<h2 className='display-2 leading-tight text-primary'>{project.title}</h2>
+					<p className='body-lg text-secondary'>
+						<span>{project.company}</span>
+						<span className='text-muted'>{` - ${project.label}`}</span>
+					</p>
+				</div>
 
-				<h2 className='display-2 leading-tight text-primary'>{project.title}</h2>
+				<ProjectImage src={project.images.main} alt={`Screenshot of ${project.title}`} className='h-64 rounded-2xl md:h-80' />
 
-				<p className='body-lg text-secondary'>
-					<span>{project.company}</span>
-					<span className='text-muted'>{` - ${project.label}`}</span>
-				</p>
+				<p className='body-sm md:body-md text-tertiary'>{project.summary}</p>
+
+				<ProjectTags size='lg' tags={project.tags} />
+
+				<p className='ui-label animate-pulse tracking-normal text-accent normal-case select-none'>Flip card →</p>
 			</div>
-
-			<ProjectImage src={project.images.main} alt={`Screenshot of ${project.title}`} className='h-64 rounded-2xl md:h-80' />
-
-			<p className='body-sm md:body-md text-tertiary'>{project.summary}</p>
-
-			<ProjectTags size='lg' tags={project.tags} />
-
-			<p className='ui-label animate-pulse tracking-normal text-accent normal-case select-none'>Flip card →</p>
-		</div>
+		</Panel>
 	);
 }
 
 function ProjectCardCaseStudy({ project }: { project: Project }) {
 	return (
-		<div className='stack-md pb-2 md:stack-lg'>
-			<h2 className='heading-2 text-accent'>Case Study</h2>
+		<Panel className={CARD_CLASSES}>
+			<div className='stack-md pb-2 md:stack-lg'>
+				<h2 className='heading-2 text-accent'>Case Study</h2>
 
-			<ProjectCardSection title='The Challenge'>
-				<p className='body-xs md:body-sm text-secondary'>{project.challenge}</p>
-			</ProjectCardSection>
+				<section className='stack-xs'>
+					<h3 className='heading-3 text-label'>The Challenge</h3>
+					<p className='body-xs md:body-sm text-secondary'>{project.challenge}</p>
+				</section>
 
-			<ProjectCardSection title='The Solution'>
-				<p className='body-xs md:body-sm text-secondary'>{project.solution}</p>
-			</ProjectCardSection>
+				<section className='stack-xs'>
+					<h3 className='heading-3 text-label'>The Solution</h3>
+					<p className='body-xs md:body-sm text-secondary'>{project.solution}</p>
+				</section>
 
-			<ProjectCardSection title='Impact'>
-				<ImpactList items={project.impact} />
-			</ProjectCardSection>
+				<section className='stack-xs'>
+					<h3 className='heading-3 text-label'>Impact</h3>
+					<ImpactList items={project.impact} />
+				</section>
 
-			{project.link && <ExternalLinkButton size='sm' href={project.link} label='Visit Project →' />}
-		</div>
+				{project.link && <ExternalLinkButton size='sm' href={project.link} label='Visit Project →' />}
+			</div>
+		</Panel>
 	);
 }
 
 // ----------------------------------------------------------------------------
 
-type CardsProjectPageLayoutProps = PropsWithChildren<{
-	allProjects: Project[];
+type CardsProjectPageProps = {
+	project: Project;
+	prev: Project;
+	next: Project;
 	currentIndex: number;
-	onNavigatePrev: () => void;
-	onNavigateNext: () => void;
-	onNavigateProject: (slug: string) => void;
-}>;
+	navItems: Array<Pick<Project, 'id' | 'slug'>>;
+};
 
-function CardsProjectPageLayout({
-	allProjects,
-	currentIndex,
-	onNavigatePrev,
-	onNavigateNext,
-	onNavigateProject,
-	children,
-}: CardsProjectPageLayoutProps) {
+export const CardsProjectPage = ({ project, prev, next, currentIndex, navItems }: CardsProjectPageProps) => {
+	const { navigate } = useTransitionRouter();
+
 	return (
 		<div className='flex w-full flex-col gap-8'>
 			<div className='container-md w-full'>
@@ -116,67 +96,33 @@ function CardsProjectPageLayout({
 			</div>
 
 			<div className='content-container grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8 lg:gap-y-10'>
-				<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>{children}</div>
+				<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
+					<VT.Div name={`c-project-${prev.id}`} classes='c-active' className='card-dummy -left-1/4' />
+					<VT.Div name={`c-project-${next.id}`} classes='c-active' className='card-dummy -right-1/4' />
+					<VT.Area name={`c-project-${project.id}`} classes='c-active'>
+						<FlipCard className='relative z-50 mx-auto w-full max-w-4xl'>
+							<ProjectCardSummary project={project} />
+							<ProjectCardCaseStudy project={project} />
+						</FlipCard>
+					</VT.Area>
+				</div>
 
 				<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
-					<PrevButton onClick={onNavigatePrev} />
+					<PrevButton onClick={() => navigate(`/projects/cards/${prev.slug}`, { scroll: false })} />
 				</div>
 
 				<div className='col-start-2 row-start-2 justify-self-center'>
-					<ProjectsNav projects={allProjects} currentIndex={currentIndex} onNavigate={onNavigateProject} />
+					<ProjectsNav
+						projects={navItems}
+						currentIndex={currentIndex}
+						onNavigate={(slug) => navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
+					/>
 				</div>
 
 				<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
-					<NextButton onClick={onNavigateNext} />
+					<NextButton onClick={() => navigate(`/projects/cards/${next.slug}`, { scroll: false })} />
 				</div>
 			</div>
 		</div>
-	);
-}
-
-type CardsProjectPageProps = {
-	project: Project;
-	allProjects: Project[];
-};
-
-// TODO: move to src/app/projects/_lib.ts
-function getProjectNeighbors(project: Project, allProjects: Project[]) {
-	const currentIndex = allProjects.findIndex((item) => item.id === project.id);
-	const prevProject = allProjects[(currentIndex - 1 + allProjects.length) % allProjects.length];
-	const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
-
-	return { currentIndex, prev: prevProject, next: nextProject };
-}
-
-export const CardsProjectPage = ({ project, allProjects }: CardsProjectPageProps) => {
-	const { navigate } = useTransitionRouter();
-
-	const { currentIndex, prev, next } = getProjectNeighbors(project, allProjects);
-
-	return (
-		<CardsProjectPageLayout
-			allProjects={allProjects}
-			currentIndex={currentIndex}
-			onNavigatePrev={() => navigate(`/projects/cards/${prev.slug}`, { scroll: false })}
-			onNavigateNext={() => navigate(`/projects/cards/${next.slug}`, { scroll: false })}
-			onNavigateProject={(slug) => navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
-		>
-			<div className='relative z-50 mx-auto w-full max-w-4xl overflow-x-clip perspective-[2000px]'>
-				<VT.Div name={`c-project-${prev.id}`} classes='c-active' className='card-dummy -left-1/4' />
-				<VT.Div name={`c-project-${next.id}`} classes='c-active' className='card-dummy -right-1/4' />
-
-				<VT.Area name={`c-project-${project.id}`} classes='c-active'>
-					<FlipCard>
-						<ProjectCard>
-							<ProjectCardSummary project={project} />
-						</ProjectCard>
-
-						<ProjectCard>
-							<ProjectCardCaseStudy project={project} />
-						</ProjectCard>
-					</FlipCard>
-				</VT.Area>
-			</div>
-		</CardsProjectPageLayout>
 	);
 };

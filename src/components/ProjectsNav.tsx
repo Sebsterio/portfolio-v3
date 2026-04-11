@@ -1,8 +1,10 @@
 import { cn } from '@/lib/utils';
 import type { Project } from '@/types';
 
+export type ProjectNavItem = Pick<Project, 'id' | 'slug'>;
+
 type ProjectsNavProps = {
-	projects: Project[];
+	projects: ProjectNavItem[];
 	currentIndex: number;
 	onNavigate: (slug: string) => void;
 	className?: string;
