@@ -1,21 +1,20 @@
 'use client';
 
-import { Project } from '@/types';
-import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
+import { Project, ProjectNavItem } from '@/types';
+import { cn } from '@/lib/utils';
 import { VT } from '@/lib/transitions/components/ViewTransition';
+import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { Panel } from '@/components/ui/Panel';
+import { FlipCard } from '@/components/FlipCard';
 import { BackLink } from '@/components/BackLink';
-import { ProjectTags } from '@/components/ProjectTags';
-import { ProjectImage } from '@/components/ProjectImage';
 import { InlineList } from '@/components/InlineList';
 import { ImpactList } from '@/components/ImpactList';
+import { ProjectTags } from '@/components/ProjectTags';
+import { ProjectImage } from '@/components/ProjectImage';
 import { ExternalLinkButton } from '@/components/Button';
-import { ProjectsNav } from '@/components/ProjectsNav';
-import { PrevButton, NextButton } from '@/components/NavigationButton';
-import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
-import { FlipCard } from './FlipCard';
-import { cn } from '@/lib/utils';
-import { ProjectNavItem } from '@/types';
+import { ProjectsPagination } from '@/components/ProjectsPagination';
+import { PrevLinkButton, NextLinkButton } from '@/components/DirectionButton/DirectionLinkButton';
+import { PROJECT_PAGE_TITLE_ID, getCardsProjectHref } from '@/app/projects/_config';
 
 // ----------------------------------------------------------------------------
 
@@ -85,8 +84,6 @@ type CardsProjectPageProps = {
 };
 
 export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProjectPageProps) => {
-	const { navigate } = useTransitionRouter();
-
 	return (
 		<div className='flex w-full flex-col gap-8'>
 			<div className='container-md w-full'>
@@ -108,19 +105,25 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 				</div>
 
 				<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
-					<PrevButton onClick={() => navigate(`/projects/cards/${prev.slug}`, { scroll: false })} />
+					<PrevLinkButton href={getCardsProjectHref(prev.slug)} scroll={false} />
 				</div>
 
 				<div className='col-start-2 row-start-2 justify-self-center'>
-					<ProjectsNav
-						projects={navItems}
-						currentId={project.id}
-						onNavigate={(slug) => navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
-					/>
+					<ProjectsPagination projects={navItems}>
+						{({ id, slug }) => (
+							<ProjectsPagination.Link
+								key={id}
+								href={getCardsProjectHref(slug)}
+								current={id === project.id}
+								scrollTo={PROJECT_PAGE_TITLE_ID}
+								aria-label={`Go to project ${slug}`}
+							/>
+						)}
+					</ProjectsPagination>
 				</div>
 
 				<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
-					<NextButton onClick={() => navigate(`/projects/cards/${next.slug}`, { scroll: false })} />
+					<NextLinkButton href={getCardsProjectHref(next.slug)} scroll={false} />
 				</div>
 			</div>
 		</div>

@@ -10,7 +10,7 @@ import { useIsCurrentPage } from './TransitionProvider';
 
 type ClickEvent = MouseEvent<HTMLAnchorElement>;
 
-type TransitionLinkProps = Omit<ComponentProps<typeof NextLink>, 'onClick' | 'scroll'> &
+export type TransitionLinkProps = Omit<ComponentProps<typeof NextLink>, 'onClick' | 'scroll'> &
 	NavigationConfig & { onClick?: (e: ClickEvent) => void };
 
 const shouldInterceptClick = (e: ClickEvent, url: string) => {
