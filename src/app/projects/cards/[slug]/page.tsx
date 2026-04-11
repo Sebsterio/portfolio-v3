@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { PageTransition } from '@/lib/transitions/components/PageTransition';
-import { CardsProjectPage } from '@/components/CardsProjectPage';
+import { CardsProjectPage } from '@/components/views/CardsProjectPage';
 import { getAllProjects, getProject, getProjectNavItems } from '../../_lib';
 
 export const dynamic = 'force-static';

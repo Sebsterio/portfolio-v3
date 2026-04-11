@@ -5,7 +5,7 @@ import { VT } from '@/lib/transitions/components/ViewTransition';
 import { useTransitionReady } from '@/lib/transitions/components/TransitionProvider';
 import { copy, highlights, quickFacts, techCategories } from '@/content/about';
 import { Title, TextBlock, ShowcaseCard, InfoCard, Section, LabeledValueRow, TechCategoryGroup } from '@/components';
-import { ProjectTags } from '@/components/ProjectTags';
+import { ProjectTags } from '@/components/composites/ProjectTags';
 
 type AboutPageProps = Record<string, never>;
 

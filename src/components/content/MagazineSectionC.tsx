@@ -1,6 +1,6 @@
 'use client';
 
-import { ProjectImage } from './ProjectImage';
+import { ProjectImage } from '../primitives/ProjectImage';
 
 interface MagazineSectionCProps {
 	sectionId: string;

@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { Project } from '@/types';
-import { TimelineDot } from '@/components/TimelineDot';
+import { TimelineDot } from '@/components/primitives/TimelineDot';
 
 export const ProjectSidebarItem = ({ project, isActive, onClick }: { project: Project; isActive: boolean; onClick: () => void }) => (
 	<button

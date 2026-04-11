@@ -1,7 +1,7 @@
 import { ForwardRefExoticComponent, RefAttributes } from 'react';
 import { ChevronLeft, ChevronRight, LucideProps } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { navigationButtonClassName } from './styles';
+import { navigationButtonClassName } from './DirectionButton.styles';
 
 type DirectionButtonProps = {
 	icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'> & RefAttributes<SVGSVGElement>>;

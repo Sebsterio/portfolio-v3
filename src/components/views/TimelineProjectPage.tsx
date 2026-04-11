@@ -2,17 +2,17 @@
 
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
-import { BackLink } from '@/components/BackLink';
-import { Panel } from '@/components/ui/Panel';
-import { ProjectTags } from '@/components/ProjectTags';
-import { TimelineLine } from '@/components/TimelineLine';
-import { TimelineDot } from '@/components/TimelineDot';
-import { TimelineProjectPanel } from './TimelineProjectPanel';
-import { ProjectSidebarItem } from './TimelineProjectSidebarItem';
-import { ExternalLinkButton } from '@/components';
-import { ImpactList } from '@/components/ImpactList';
-import { CaseStudySection } from '@/components/CaseStudySection';
 import { VT } from '@/lib/transitions/components/ViewTransition';
+import { Panel } from '@/components/primitives/Panel';
+import { BackLink } from '@/components/primitives/BackLink';
+import { TimelineDot } from '@/components/primitives/TimelineDot';
+import { TimelineLine } from '@/components/primitives/TimelineLine';
+import { ButtonLinkExternal } from '@/components/primitives/ButtonLinkExternal';
+import { TimelineProjectPanel } from '@/components/composites/TimelineProjectPanel';
+import { ProjectSidebarItem } from '@/components/composites/TimelineProjectSidebarItem';
+import { CaseStudySection } from '@/components/composites/CaseStudySection';
+import { ProjectTags } from '@/components/composites/ProjectTags';
+import { ImpactList } from '@/components/composites/ImpactList';
 
 type TimelineProjectPageProps = {
 	project: Project;
@@ -109,9 +109,9 @@ const ExpandedMobileCard = ({ project: p }: { project: Project }) => (
 					<ProjectTags tags={p.tags} size='sm' />
 
 					{p.link && (
-						<ExternalLinkButton href={p.link} size='sm'>
+						<ButtonLinkExternal href={p.link} size='sm'>
 							Visit Project →
-						</ExternalLinkButton>
+						</ButtonLinkExternal>
 					)}
 				</div>
 			</Panel>

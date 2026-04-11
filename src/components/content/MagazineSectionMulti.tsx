@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { ProjectImage } from '@/components/ProjectImage';
+import { ProjectImage } from '@/components/primitives/ProjectImage';
 
 interface MagazineSectionMultiProps {
 	number: string;

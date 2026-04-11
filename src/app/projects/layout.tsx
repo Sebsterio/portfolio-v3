@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
-import { TextBlock, Title } from '@/components/typography';
-import { DisplayModeSwitcher } from '@/components/DisplayModeSwitcher';
-import { header } from '@/content/projects';
 import { VT } from '@/lib/transitions/components/ViewTransition';
+import { header } from '@/content/projects';
+import { TextBlock, Title } from '@/components/typography';
+import { DisplayModeSwitcher } from '@/components/app/DisplayModeSwitcher';
 
 import { PROJECT_PAGE_TITLE_ID } from './_config';
 

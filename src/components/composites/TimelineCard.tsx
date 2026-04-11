@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Panel } from '@/components/ui/Panel';
+import { Panel } from '@/components/primitives/Panel';
 
 type TimelineCardProps = {
 	children: React.ReactNode;

@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
 import { ThemeBootstrapScript } from '@/lib/theme/components/ThemeBootstrapScript';
 import { ThemeRouteController } from '@/lib/theme/components/ThemeRouteController';
-import { AppBackground } from '@/components/AppBackground';
-import { AppHeader } from '@/components/AppHeader/AppHeader';
+import { AppBackground } from '@/components/app/AppBackground';
+import { AppHeader } from '@/components/app/AppHeader';
 import { navItems } from '@/config/nav-items';
 
 import { getProjectThemeLookup } from '@/app/projects/_lib';

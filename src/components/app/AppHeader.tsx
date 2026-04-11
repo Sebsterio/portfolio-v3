@@ -6,7 +6,7 @@ import { useGetIsCurrentPage } from '@/lib/transitions/components/TransitionProv
 import { TransitionLink as Link } from '@/lib/transitions/components/TransitionLink';
 import { HamburgerButton } from './HamburgerButton';
 import { MobileMenuOverlay } from './MobileMenuOverlay';
-import { Glass } from '@/components/ui/Glass';
+import { Glass } from '@/components/primitives/Glass';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 
 type NavItem = {

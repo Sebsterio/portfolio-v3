@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { getButtonClasses, ButtonVariant, ButtonSize } from './styles';
+import { getButtonClasses, ButtonVariant, ButtonSize } from './Button.styles';
 
-type ExternalLinkButtonProps = {
+type ButtonLinkExternalProps = {
 	variant?: ButtonVariant;
 	size?: ButtonSize;
 	label?: string;
@@ -9,7 +9,7 @@ type ExternalLinkButtonProps = {
 	// className?: string;
 } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'target' | 'rel'>;
 
-export const ExternalLinkButton = forwardRef<HTMLAnchorElement, ExternalLinkButtonProps>(
+export const ButtonLinkExternal = forwardRef<HTMLAnchorElement, ButtonLinkExternalProps>(
 	({ variant = 'primary', size = 'sm', className, label, children, ...props }, ref) => (
 		<a
 			ref={ref}
@@ -24,6 +24,6 @@ export const ExternalLinkButton = forwardRef<HTMLAnchorElement, ExternalLinkButt
 	),
 );
 
-ExternalLinkButton.displayName = 'ExternalLinkButton';
+ButtonLinkExternal.displayName = 'ButtonLinkExternal';
 
-export default ExternalLinkButton;
+export default ButtonLinkExternal;

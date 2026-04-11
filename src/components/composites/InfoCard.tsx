@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Card, type CardProps } from '@/components/ui/Card';
+import { Card, type CardProps } from '@/components/primitives/Card';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

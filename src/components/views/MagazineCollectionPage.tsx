@@ -1,12 +1,12 @@
 import { Project } from '@/types';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { getProjectAnchorId } from '@/app/projects/_lib';
-import { MagazineSectionA } from './MagazineSectionA';
-import { MagazineSectionB } from './MagazineSectionB';
-import { MagazineSectionC } from './MagazineSectionC';
-import { MagazineSectionD } from './MagazineSectionD';
-import { MagazineSectionE } from './MagazineSectionE';
-import { MagazineSectionMulti } from './MagazineSectionMulti';
+import { MagazineSectionA } from '@/components/content/MagazineSectionA';
+import { MagazineSectionB } from '@/components/content/MagazineSectionB';
+import { MagazineSectionC } from '@/components/content/MagazineSectionC';
+import { MagazineSectionD } from '@/components/content/MagazineSectionD';
+import { MagazineSectionE } from '@/components/content/MagazineSectionE';
+import { MagazineSectionMulti } from '@/components/content/MagazineSectionMulti';
 
 const MagazineCollectionPageDecorations = () => (
 	<>

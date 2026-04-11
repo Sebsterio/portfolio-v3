@@ -1,15 +1,15 @@
 import { cn } from '@/lib/utils';
 import { Project } from '@/types';
-import { ProjectTags } from '@/components/ProjectTags';
-import { ProjectImage } from '@/components/ProjectImage';
-import { Panel } from '@/components/ui/Panel';
-import { InlineList } from '@/components/InlineList';
-import { ImpactList } from '@/components/ImpactList';
-import { CaseStudySection } from '@/components/CaseStudySection';
-import { ExternalLinkButton } from '@/components/Button';
+import { ProjectTags } from '@/components/composites/ProjectTags';
+import { ProjectImage } from '@/components/primitives/ProjectImage';
+import { Panel } from '@/components/primitives/Panel';
+import { InlineList } from '@/components/composites/InlineList';
+import { ImpactList } from '@/components/composites/ImpactList';
+import { CaseStudySection } from '@/components/composites/CaseStudySection';
+import { ButtonLinkExternal } from '@/components/primitives';
 
 export const TimelineProjectPanel = ({ project, className }: { project: Project; className?: string }) => (
-	<Panel className={cn('glass-surface-1 glass-elevation-1 glass-radius-2 padding-panel', className)}>
+	<Panel className={cn('glass-surface-1 glass-radius-2 padding-panel glass-elevation-1', className)}>
 		<div className='relative stack-lg'>
 			<div className='space-y-3 md:space-y-4'>
 				<InlineList.Div className='cluster-md text-sm text-label'>{[project.period, project.location]}</InlineList.Div>
@@ -19,7 +19,7 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 				</p>
 			</div>
 
-			<p className='text-secondary text-xl leading-relaxed'>{project.intro}</p>
+			<p className='text-xl leading-relaxed text-secondary'>{project.intro}</p>
 
 			<div className='grid grid-cols-3 gap-4'>
 				{[0, 1, 2].map((i) => (
@@ -28,7 +28,7 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 						src={project.images.screens[i]}
 						alt={`Screenshot of ${project.title}`}
 						className={cn('glass-surface-2 aspect-video rounded-xl gradient-primary-soft shadow-none', [
-							'transition-opacity duration-300 opacity-75 hover:opacity-100',
+							'opacity-75 transition-opacity duration-300 hover:opacity-100',
 						])}
 					/>
 				))}
@@ -46,9 +46,9 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 			<ProjectTags size='lg' tags={project.tags} />
 
 			{project.link && (
-				<ExternalLinkButton href={project.link} size='sm'>
+				<ButtonLinkExternal href={project.link} size='sm'>
 					Visit Project →
-				</ExternalLinkButton>
+				</ButtonLinkExternal>
 			)}
 		</div>
 	</Panel>

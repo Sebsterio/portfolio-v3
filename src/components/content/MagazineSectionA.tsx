@@ -1,8 +1,8 @@
 'use client';
 
-import { ProjectImage } from './ProjectImage';
+import { ProjectImage } from '../primitives/ProjectImage';
 import { ParsedText } from '@/lib/parser/ParsedText';
-import { ProjectTags } from '@/components/ProjectTags';
+import { ProjectTags } from '@/components/composites/ProjectTags';
 import { cn } from '@/lib/utils';
 
 interface MagazineSectionAProps {

@@ -3,11 +3,11 @@
 import type { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { cn } from '@/lib/utils';
-import { ProjectTags } from '@/components/ProjectTags';
-import { PROJECT_PAGE_TITLE_ID } from '../app/projects/_config';
-import { ProjectImage } from '@/components/ProjectImage';
-import { Panel } from '@/components/ui/Panel';
-import { ArrowIndicator } from '@/components/ArrowIndicator';
+import { ProjectTags } from '@/components/composites/ProjectTags';
+import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
+import { ProjectImage } from '@/components/primitives/ProjectImage';
+import { Panel } from '@/components/primitives/Panel';
+import { ArrowIndicator } from '@/components/primitives/ArrowIndicator';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 
 // ----------------------------------------------------------------------------

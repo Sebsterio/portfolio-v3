@@ -1,7 +1,7 @@
 import { Project } from '@/types';
-import { InlineList } from '@/components/InlineList';
-import { ProjectTags } from '@/components/ProjectTags';
-import { ProjectImage } from '@/components/ProjectImage';
+import { InlineList } from '@/components/composites/InlineList';
+import { ProjectTags } from '@/components/composites/ProjectTags';
+import { ProjectImage } from '@/components/primitives/ProjectImage';
 
 export function ProjectSummaryContent({ project }: { project: Project }) {
 	return (

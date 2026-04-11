@@ -1,6 +1,6 @@
 import { Project } from '@/types';
-import { ImpactList } from '@/components/ImpactList';
-import { ExternalLinkButton } from '@/components/Button';
+import { ImpactList } from '@/components/composites/ImpactList';
+import { ButtonLinkExternal } from '@/components/primitives';
 
 export function ProjectCaseStudyContent({ project }: { project: Project }) {
 	return (
@@ -22,7 +22,7 @@ export function ProjectCaseStudyContent({ project }: { project: Project }) {
 				<ImpactList items={project.impact} />
 			</section>
 
-			{project.link && <ExternalLinkButton size='sm' href={project.link} label='Visit Project →' />}
+			{project.link && <ButtonLinkExternal size='sm' href={project.link} label='Visit Project →' />}
 		</div>
 	);
 }

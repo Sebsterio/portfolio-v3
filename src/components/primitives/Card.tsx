@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { type CardVariant, CARD_VARIANT_MAP } from '@/components/ui/cardVariants';
+import { type CardVariant, CARD_VARIANT_MAP } from '@/components/primitives/cardVariants';
 import { Glass } from './Glass';
 
 // ─── Types ────────────────────────────────────────────────────────────────────

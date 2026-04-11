@@ -2,14 +2,14 @@
 
 import type { Project, ProjectNavItem } from '@/types';
 import { VT } from '@/lib/transitions/components/ViewTransition';
-import { Panel } from '@/components/ui/Panel';
-import { FlipCard } from '@/components/FlipCard';
-import { BackLink } from '@/components/BackLink';
-import { ProjectsPagination } from '@/components/ProjectsPagination';
+import { Panel } from '@/components/primitives/Panel';
+import { FlipCard } from '@/components/motion/FlipCard';
+import { BackLink } from '@/components/primitives/BackLink';
+import { ProjectsPagination } from '@/components/primitives/ProjectsPagination';
 import { ProjectSummaryContent } from '@/components/content/ProjectSummaryContent';
 import { ProjectCaseStudyContent } from '@/components/content/ProjectCaseStudyContent';
-import { PrevLinkButton, NextLinkButton } from '@/components/DirectionButton/DirectionLinkButton';
-import { CardsProjectPageLayout as Layout } from '@/components/CardsProjectPageLayout';
+import { PrevLinkButton, NextLinkButton } from '@/components/primitives/DirectionButtonLink';
+import { CardsProjectPageLayout as Layout } from '@/components/layout/CardsProjectPageLayout';
 import { PROJECT_PAGE_TITLE_ID, getCardsProjectHref } from '@/app/projects/_config';
 
 type CardsProjectPageProps = {

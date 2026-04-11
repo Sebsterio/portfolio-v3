@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/primitives/Card';
 
 interface ShowcaseCardProps {
 	icon: React.ReactNode;
@@ -18,7 +18,7 @@ export const ShowcaseCard: React.FC<ShowcaseCardProps> = ({ icon, title, descrip
 			glint
 			edgeGlow
 			className={cn(
-				'glass-radius-2 glass-surface-2 glass-elevation-1',
+				'glass-surface-2 glass-radius-2 glass-elevation-1',
 				'padding-card-lg',
 				// Override lifted timing: fuller spring + slower duration for dwell behaviour.
 				// GlassCard lifted uses duration-300 + overshoot 1.2 (scan targets).

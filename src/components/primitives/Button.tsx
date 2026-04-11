@@ -1,6 +1,6 @@
 import { forwardRef, ButtonHTMLAttributes } from 'react';
 
-import { getButtonClasses, ButtonVariant, ButtonSize } from './styles';
+import { getButtonClasses, ButtonVariant, ButtonSize } from './Button.styles';
 
 export type ButtonProps = {
 	variant?: ButtonVariant;

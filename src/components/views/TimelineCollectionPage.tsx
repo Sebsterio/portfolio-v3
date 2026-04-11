@@ -1,13 +1,13 @@
 'use client';
 
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
-import { TimelineCard } from './TimelineCard';
-import { ProjectTags } from '@/components/ProjectTags';
-import { TimelineLine } from '@/components/TimelineLine';
-import { TimelineDot } from '@/components/TimelineDot';
+import { TimelineCard } from '../composites/TimelineCard';
+import { ProjectTags } from '@/components/composites/ProjectTags';
+import { TimelineLine } from '@/components/primitives/TimelineLine';
+import { TimelineDot } from '@/components/primitives/TimelineDot';
 import type { Project } from '@/types';
-import { InlineList } from '@/components/InlineList';
-import { ArrowIndicator } from '@/components/ArrowIndicator';
+import { InlineList } from '@/components/composites/InlineList';
+import { ArrowIndicator } from '@/components/primitives/ArrowIndicator';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { cn } from '@/lib/utils';
 
