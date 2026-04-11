@@ -1,4 +1,5 @@
 'use client';
+
 import { Project } from '@/types';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
@@ -13,16 +14,14 @@ import { ProjectsNav } from '@/components/ProjectsNav';
 import { PrevButton, NextButton } from '@/components/NavigationButton';
 import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
 import { FlipCard } from './FlipCard';
+import { cn } from '@/lib/utils';
+import { ProjectNavItem } from '@/types';
 
 // ----------------------------------------------------------------------------
 
-const CARD_CLASSES = 'glass-surface-2 glass-radius-2 padding-panel glass-elevation-1';
-
-// ----------------------------------------------------------------------------
-
-function ProjectCardSummary({ project }: { project: Project }) {
+function ProjectCardSummary({ project, className }: { project: Project; className?: string }) {
 	return (
-		<Panel className={CARD_CLASSES}>
+		<Panel className={className}>
 			<div className='stack-md pb-2 md:stack-lg'>
 				<div className='stack-xs'>
 					<InlineList.Div className='ui-label cluster-md tracking-normal text-label normal-case'>
@@ -47,9 +46,9 @@ function ProjectCardSummary({ project }: { project: Project }) {
 	);
 }
 
-function ProjectCardCaseStudy({ project }: { project: Project }) {
+function ProjectCardCaseStudy({ project, className }: { project: Project; className?: string }) {
 	return (
-		<Panel className={CARD_CLASSES}>
+		<Panel className={className}>
 			<div className='stack-md pb-2 md:stack-lg'>
 				<h2 className='heading-2 text-accent'>Case Study</h2>
 
@@ -76,15 +75,16 @@ function ProjectCardCaseStudy({ project }: { project: Project }) {
 
 // ----------------------------------------------------------------------------
 
+const CARD_CLASSES = cn('glass-surface-2 glass-radius-2 padding-panel glass-elevation-1');
+
 type CardsProjectPageProps = {
 	project: Project;
-	prev: Project;
-	next: Project;
-	currentIndex: number;
-	navItems: Array<Pick<Project, 'id' | 'slug'>>;
+	navItems: ProjectNavItem[];
+	prev: ProjectNavItem['prev'];
+	next: ProjectNavItem['next'];
 };
 
-export const CardsProjectPage = ({ project, prev, next, currentIndex, navItems }: CardsProjectPageProps) => {
+export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProjectPageProps) => {
 	const { navigate } = useTransitionRouter();
 
 	return (
@@ -101,8 +101,8 @@ export const CardsProjectPage = ({ project, prev, next, currentIndex, navItems }
 					<VT.Div name={`c-project-${next.id}`} classes='c-active' className='card-dummy -right-1/4' />
 					<VT.Area name={`c-project-${project.id}`} classes='c-active'>
 						<FlipCard className='relative z-50 mx-auto w-full max-w-4xl'>
-							<ProjectCardSummary project={project} />
-							<ProjectCardCaseStudy project={project} />
+							<ProjectCardSummary project={project} className={CARD_CLASSES} />
+							<ProjectCardCaseStudy project={project} className={CARD_CLASSES} />
 						</FlipCard>
 					</VT.Area>
 				</div>
@@ -114,7 +114,7 @@ export const CardsProjectPage = ({ project, prev, next, currentIndex, navItems }
 				<div className='col-start-2 row-start-2 justify-self-center'>
 					<ProjectsNav
 						projects={navItems}
-						currentIndex={currentIndex}
+						currentId={project.id}
 						onNavigate={(slug) => navigate(`/projects/cards/${slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })}
 					/>
 				</div>

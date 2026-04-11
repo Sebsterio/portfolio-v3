@@ -5,16 +5,16 @@ export type ProjectNavItem = Pick<Project, 'id' | 'slug'>;
 
 type ProjectsNavProps = {
 	projects: ProjectNavItem[];
-	currentIndex: number;
+	currentId: string;
 	onNavigate: (slug: string) => void;
 	className?: string;
 };
 
-export function ProjectsNav({ projects, currentIndex, onNavigate, className, ...props }: ProjectsNavProps) {
+export function ProjectsNav({ projects, currentId, onNavigate, className, ...props }: ProjectsNavProps) {
 	return (
 		<div className={cn('flex items-center gap-2 select-none', className)} {...props}>
-			{projects.map((item, index) => {
-				const isCurent = index === currentIndex;
+			{projects.map((item) => {
+				const isCurent = item.id === currentId;
 				return (
 					<button
 						key={item.id}
