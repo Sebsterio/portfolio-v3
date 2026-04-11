@@ -3,7 +3,6 @@
 import { Project, ProjectNavItem } from '@/types';
 import { cn } from '@/lib/utils';
 import { VT } from '@/lib/transitions/components/ViewTransition';
-import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { Panel } from '@/components/ui/Panel';
 import { FlipCard } from '@/components/FlipCard';
 import { BackLink } from '@/components/BackLink';
@@ -74,14 +73,23 @@ function ProjectCardCaseStudy({ project, className }: { project: Project; classN
 
 // ----------------------------------------------------------------------------
 
-const CARD_CLASSES = cn('glass-surface-2 glass-radius-2 padding-panel glass-elevation-1');
-
 type CardsProjectPageProps = {
 	project: Project;
 	navItems: ProjectNavItem[];
 	prev: ProjectNavItem['prev'];
 	next: ProjectNavItem['next'];
 };
+
+const CARD_PAGE_LAYOUT_CLASSES = {
+	container: cn('grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8 lg:gap-y-10'),
+	cardSlot: cn('col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'),
+	prevSlot: cn('col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'),
+	nextSlot: cn('col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'),
+	paginationSlot: cn('col-start-2 row-start-2 justify-self-center'),
+};
+const CARD_CLASSES = cn('glass-surface-2 glass-radius-2 padding-panel glass-elevation-1');
+
+const C = { ...CARD_PAGE_LAYOUT_CLASSES, card: CARD_CLASSES };
 
 export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProjectPageProps) => {
 	return (
@@ -92,23 +100,26 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 				</BackLink>
 			</div>
 
-			<div className='content-container grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 gap-y-6 md:gap-x-6 lg:gap-x-8 lg:gap-y-10'>
-				<div className='col-span-3 row-start-1 lg:col-span-1 lg:col-start-2'>
+			<div className={cn('content-container', C.container)}>
+				<div className={C.cardSlot}>
 					<VT.Div name={`c-project-${prev.id}`} classes='c-active' className='card-dummy -left-1/4' />
 					<VT.Div name={`c-project-${next.id}`} classes='c-active' className='card-dummy -right-1/4' />
 					<VT.Area name={`c-project-${project.id}`} classes='c-active'>
 						<FlipCard className='relative z-50 mx-auto w-full max-w-4xl'>
-							<ProjectCardSummary project={project} className={CARD_CLASSES} />
-							<ProjectCardCaseStudy project={project} className={CARD_CLASSES} />
+							<ProjectCardSummary project={project} className={C.card} />
+							<ProjectCardCaseStudy project={project} className={C.card} />
 						</FlipCard>
 					</VT.Area>
 				</div>
 
-				<div className='col-start-1 row-start-2 justify-self-start lg:row-start-1 lg:self-center'>
+				<div className={C.prevSlot}>
 					<PrevLinkButton href={getCardsProjectHref(prev.slug)} scroll={false} />
 				</div>
+				<div className={C.nextSlot}>
+					<NextLinkButton href={getCardsProjectHref(next.slug)} scroll={false} />
+				</div>
 
-				<div className='col-start-2 row-start-2 justify-self-center'>
+				<div className={C.paginationSlot}>
 					<ProjectsPagination projects={navItems}>
 						{({ id, slug }) => (
 							<ProjectsPagination.Link
@@ -120,10 +131,6 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 							/>
 						)}
 					</ProjectsPagination>
-				</div>
-
-				<div className='col-start-3 row-start-2 justify-self-end lg:row-start-1 lg:self-center'>
-					<NextLinkButton href={getCardsProjectHref(next.slug)} scroll={false} />
 				</div>
 			</div>
 		</div>
