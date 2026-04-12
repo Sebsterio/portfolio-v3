@@ -1,4 +1,4 @@
-import { UnderConstructionPage } from '@/components/pages/UnderConstructionPage';
+import { UnderConstructionPage } from '@/components/views/UnderConstructionPage';
 
 export default function ProjectsPage() {
 	return <UnderConstructionPage />;

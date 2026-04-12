@@ -16,7 +16,7 @@ type TransitionBaseProps = {
 	style?: React.CSSProperties;
 };
 
-type TransitionElementProps = TransitionBaseProps & React.PropsWithChildren;
+type TransitionElementProps = React.PropsWithChildren<TransitionBaseProps>;
 type TransitionDecoratorProps = TransitionBaseProps & { children: CloneableChild };
 type TransitionPolymorphicProps<C extends React.ElementType> = TransitionBaseProps & { as: C; ref?: PolymorphicRef<C> } & Omit<
 		React.ComponentPropsWithoutRef<C>,

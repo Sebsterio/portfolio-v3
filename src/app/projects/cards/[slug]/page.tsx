@@ -1,11 +1,12 @@
 import { notFound } from 'next/navigation';
-import { CardsProjectPage } from '../_components/CardsProjectPage';
-import { getProject, getProjects } from '../../_lib';
 import { PageTransition } from '@/lib/transitions/components/PageTransition';
+import { CardsProjectPage } from '@/components/views/CardsProjectPage';
+import { getAllProjects, getProject, getProjectNavItems } from '../../_lib';
 
-export async function generateStaticParams() {
-	const projects = await getProjects();
-	return projects.map((p) => ({ slug: p.slug }));
+export const dynamic = 'force-static';
+
+export function generateStaticParams() {
+	return getAllProjects().map((project) => ({ slug: project.slug }));
 }
 
 type Props = {
@@ -14,13 +15,14 @@ type Props = {
 
 export default async function CardsProjectDetailsPage({ params }: Props) {
 	const { slug } = await params;
-	const [project, allProjects] = await Promise.all([getProject(slug), getProjects()]);
 
-	if (!project) notFound();
+	const project = getProject(slug) ?? notFound();
+	const navItems = getProjectNavItems(getAllProjects());
+	const current = navItems.find((item) => item.id === project.id) ?? notFound();
 
 	return (
 		<PageTransition>
-			<CardsProjectPage project={project} allProjects={allProjects} />
+			<CardsProjectPage project={project} navItems={navItems} prev={current.prev} next={current.next} />
 		</PageTransition>
 	);
 }

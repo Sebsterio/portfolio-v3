@@ -1,19 +1,20 @@
 import type React from 'react';
 
-import { getProjectThemeLookup } from '@/app/projects/_lib';
 import { cn } from '@/lib/utils';
-import { navItems } from '@/lib/nav-items';
 import { TransitionProvider } from '@/lib/transitions/components/TransitionProvider';
 import { ThemeBootstrapScript } from '@/lib/theme/components/ThemeBootstrapScript';
 import { ThemeRouteController } from '@/lib/theme/components/ThemeRouteController';
+import { AppBackground } from '@/components/app/AppBackground';
+import { AppHeader } from '@/components/app/AppHeader';
+import { navItems } from '@/config/nav-items';
 
-import { AppHeader } from './_components/AppHeader';
-import { AppBackground } from './_components/AppBackground';
+import { getProjectThemeLookup } from '@/app/projects/_lib';
+
 import { dmSans, urbanist } from './fonts';
 
 import '@/styles/globals.css';
 
-export { metadata, viewport } from './_config/metadata';
+export { metadata, viewport } from '../config/metadata';
 
 type RootLayoutProps = {
 	children: React.ReactNode;

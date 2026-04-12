@@ -42,3 +42,7 @@ export type Project = {
 	personal?: boolean;
 	brief?: boolean;
 };
+
+export type ProjectNavTarget = Pick<Project, 'id' | 'slug'>;
+
+export type ProjectNavItem = ProjectNavTarget & { prev: ProjectNavTarget; next: ProjectNavTarget };
