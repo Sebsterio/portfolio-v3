@@ -38,10 +38,9 @@ export const TimelineProjectPanel = ({ project, className }: { project: Project;
 
 			<CaseStudySection label='The Solution' content={project.solution} />
 
-			<div className='space-y-4'>
-				<h3 className='heading-2 text-primary'>Impact & Results</h3>
+			<CaseStudySection label='Impact & Results'>
 				<ImpactList items={project.impact} />
-			</div>
+			</CaseStudySection>
 
 			<ProjectTags size='lg' tags={project.tags} />
 

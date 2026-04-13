@@ -10,3 +10,6 @@ export const IMAGE_URL = '';
 export const THUMBNAIL_URL = '';
 export const SITE_VERIFICATION = '';
 export const LICENCE_URL = '';
+
+/** The ID of the anchor element for page navigation */
+export const PAGE_ANCHOR_ID = 'page-anchor-id';

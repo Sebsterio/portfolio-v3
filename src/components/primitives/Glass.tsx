@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 export type GlassProps = {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
 	texture?: boolean;
@@ -15,9 +15,10 @@ export type GlassProps = {
 	 */
 	glint?: boolean;
 	onClick?: () => void;
+	onHover?: () => void;
 };
 
-export function Glass({ children, className, style, texture, glint, accents, reflection, edgeGlow, onClick }: GlassProps) {
+export function Glass({ children, className, texture, glint, accents, reflection, edgeGlow, onClick, onHover, ...props }: GlassProps) {
 	return (
 		<div
 			className={cn(
@@ -28,14 +29,15 @@ export function Glass({ children, className, style, texture, glint, accents, ref
 				onClick && 'cursor-pointer',
 				className,
 			)}
-			style={style}
 			onClick={onClick}
+			onMouseEnter={onHover}
+			{...props}
 		>
 			{texture && <div className='overlay-full glass-noise' aria-hidden />}
 
 			{children}
 
-			{glint && <div className='glass-glint overlay-full group-hover:glass-glint-active' aria-hidden />}
+			{glint && <div className='overlay-full glass-glint group-hover:glass-glint-active' aria-hidden />}
 		</div>
 	);
 }

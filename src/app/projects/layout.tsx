@@ -4,8 +4,6 @@ import { header } from '@/content/projects';
 import { TextBlock, Title } from '@/components/typography';
 import { DisplayModeSwitcher } from '@/components/app/DisplayModeSwitcher';
 
-import { PROJECT_PAGE_TITLE_ID } from './_config';
-
 type ProjectsLayoutProps = {
 	children: React.ReactNode;
 };
@@ -14,7 +12,7 @@ export default function ProjectsLayout({ children }: ProjectsLayoutProps) {
 	return (
 		<div className='w-full stack-xl'>
 			<VT.Div name='p-header' className='flex flex-col items-center gap-8'>
-				<div className='stack-sm text-center' id={PROJECT_PAGE_TITLE_ID}>
+				<div className='stack-sm text-center'>
 					<Title variant='projects'>{header.title}</Title>
 					<TextBlock>{header.subtitle}</TextBlock>
 				</div>

@@ -1,16 +1,16 @@
 'use client';
 
 import type { Project, ProjectNavItem } from '@/types';
+import { PAGE_ANCHOR_ID } from '@/config/constants';
+import { getCardsProjectHref } from '@/lib/navigation';
 import { VT } from '@/lib/transitions/components/ViewTransition';
-import { Panel } from '@/components/primitives/Panel';
 import { FlipCard } from '@/components/motion/FlipCard';
 import { BackLink } from '@/components/primitives/BackLink';
 import { ProjectsPagination } from '@/components/primitives/ProjectsPagination';
-import { ProjectSummaryContent } from '@/components/content/ProjectSummaryContent';
-import { ProjectCaseStudyContent } from '@/components/content/ProjectCaseStudyContent';
+import { ProjectSummary } from '@/components/composites/ProjectSummary';
+import { ProjectCaseStudy } from '@/components/composites/ProjectCaseStudy';
 import { PrevLinkButton, NextLinkButton } from '@/components/primitives/DirectionButtonLink';
 import { CardsProjectPageLayout as Layout } from '@/components/layout/CardsProjectPageLayout';
-import { PROJECT_PAGE_TITLE_ID, getCardsProjectHref } from '@/app/projects/_config';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -26,6 +26,7 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 				<BackLink href='/projects/cards' scroll={false}>
 					All Projects
 				</BackLink>
+				<div id={PAGE_ANCHOR_ID} />
 			</div>
 
 			<Layout className='content-container'>
@@ -35,9 +36,8 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 					<VT.Area name={`c-project-${project.id}`} classes='c-active'>
 						<FlipCard
 							className='relative z-50 mx-auto w-full max-w-4xl'
-							front={<ProjectSummaryContent project={project} />}
-							back={<ProjectCaseStudyContent project={project} />}
-							render={(face) => <Panel className='glass-surface-2 glass-radius-2 padding-panel glass-elevation-1'>{face}</Panel>}
+							front={<ProjectSummary project={project} />}
+							back={<ProjectCaseStudy project={project} />}
 						/>
 					</VT.Area>
 				</Layout.Card>
@@ -57,7 +57,7 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 								key={id}
 								href={getCardsProjectHref(slug)}
 								current={id === project.id}
-								scrollTo={PROJECT_PAGE_TITLE_ID}
+								scrollTo={PAGE_ANCHOR_ID}
 								aria-label={`Go to project ${slug}`}
 							/>
 						)}

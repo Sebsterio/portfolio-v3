@@ -1,42 +1,44 @@
+import { PropsWithChildren } from 'react';
 import { cn } from '@/lib/utils';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type CaseStudySectionProps = {
+type CaseStudySectionProps = PropsWithChildren<{
 	label: string;
-	content: string;
-	/**
-	 * 'md' — panel context: heading-2, body-md. (TimelineProjectPanel)
-	 * 'sm' — compact/mobile context: heading-3 bold, body-sm. (ExpandedMobileCard)
-	 */
-	size?: 'sm' | 'md';
+	content?: string;
+	size?: 'sm' | 'md' | 'lg';
 	className?: string;
-};
+}>;
 
-// ─── Component ────────────────────────────────────────────────────────────────
+const CLASSES = {
+	sm: {
+		container: 'space-y-2',
+		label: 'heading-3 font-bold',
+		content: 'text-sm ',
+	},
+	md: {
+		container: 'space-y-3',
+		label: 'heading-2',
+		content: '',
+	},
+	lg: {
+		container: 'space-y-4',
+		label: 'heading-2',
+		content: '',
+	},
+};
 
 /**
  * CaseStudySection — labelled content block (heading + body paragraph).
- *
- * Shared pattern across panel and mobile detail views for The Challenge,
- * The Solution, etc. The size prop covers two layout contexts:
- *   'md' — TimelineProjectPanel (heading-2, full body text)
- *   'sm' — ExpandedMobileCard (heading-3 bold, small body text)
  */
-export function CaseStudySection({ label, content, size = 'md', className }: CaseStudySectionProps) {
-	if (size === 'sm') {
-		return (
-			<div className={cn('space-y-2', className)}>
-				<h3 className='heading-3 font-bold text-primary'>{label}</h3>
-				<p className='text-sm leading-relaxed text-secondary'>{content}</p>
-			</div>
-		);
-	}
+export function CaseStudySection({ label, content, size = 'md', className, children }: CaseStudySectionProps) {
+	const c = CLASSES[size];
 
 	return (
-		<div className={cn('space-y-3', className)}>
-			<h3 className='heading-2 text-primary'>{label}</h3>
-			<p className='leading-relaxed text-secondary'>{content}</p>
+		<div className={cn(c.container, className)}>
+			<h3 className={cn(c.label, 'text-primary')}>{label}</h3>
+			{content && <p className={cn(c.content, 'leading-relaxed text-secondary')}> {content}</p>}
+			{children}
 		</div>
 	);
 }
