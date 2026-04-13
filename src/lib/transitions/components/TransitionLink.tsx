@@ -21,7 +21,7 @@ const shouldInterceptClick = (e: ClickEvent, url: string) => {
 	);
 };
 
-export const TransitionLink = ({ href, className, instant, scrollTo, delay, onClick, ...props }: TransitionLinkProps) => {
+export const TransitionLink = ({ href, className, instant, scroll, scrollTo, delay, onClick, ...props }: TransitionLinkProps) => {
 	const { navigate } = useTransitionRouter();
 	const isCurrent = useIsCurrentPage(href);
 	const url = getNormalizeHref(href);
@@ -30,7 +30,7 @@ export const TransitionLink = ({ href, className, instant, scrollTo, delay, onCl
 		onClick?.(e);
 		if (!shouldInterceptClick(e, url)) return;
 		e.preventDefault();
-		navigate(url, { instant, scrollTo, delay });
+		navigate(url, { instant, scroll, scrollTo, delay });
 	};
 
 	return (
