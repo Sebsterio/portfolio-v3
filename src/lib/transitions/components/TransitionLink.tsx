@@ -37,7 +37,7 @@ export const TransitionLink = ({ href, className, instant, scroll, scrollTo, del
 		<NextLink
 			href={href}
 			onClick={handleClick}
-			className={cn(className, isCurrent && 'pointer-events-none')}
+			className={cn(isCurrent && 'pointer-events-none', className)}
 			aria-current={isCurrent ? 'page' : undefined}
 			aria-disabled={isCurrent}
 			scroll={false} // Handled it in navigate()
