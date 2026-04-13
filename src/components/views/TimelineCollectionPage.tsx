@@ -18,7 +18,6 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 	return (
 		<div className='w-full stack-lg'>
 			{/* Desktop ─────────────────────────────────────── */}
-
 			<div className='relative ml-8 hidden lg:mr-8 lg:block xl:mr-32'>
 				<VT.Area name='t-list'>
 					<TimelineLine className='left-8 xl:left-32' />
@@ -35,7 +34,6 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 			</div>
 
 			{/* Mobile ─────────────────────────────────────────────── */}
-
 			<div className='relative lg:hidden'>
 				<TimelineLine className='left-1.75' />
 				<div className='stack-md'>

@@ -1,7 +1,6 @@
 'use client';
 
 import type { Project } from '@/types';
-import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { BackLink } from '@/components/primitives/BackLink';
 import { TimelineLine } from '@/components/primitives/TimelineLine';
@@ -15,10 +14,9 @@ type TimelineProjectPageProps = {
 	allProjects: Project[];
 };
 
-export const TimelineProjectPage = ({ project, allProjects: projects }: TimelineProjectPageProps) => {
-	const { navigate } = useTransitionRouter();
-	const go = (p: Project) => navigate(`/projects/timeline/${p.slug}`, { scroll: false });
+const getTimelineProjectHref = (slug: string) => `/projects/timeline/${slug}`;
 
+export const TimelineProjectPage = ({ project, allProjects: projects }: TimelineProjectPageProps) => {
 	return (
 		<>
 			<BackLink href='/projects/timeline' scroll={false} className='mb-8'>
@@ -26,20 +24,23 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</BackLink>
 
 			{/* Desktop ─────────────────────────────────────────── */}
-
 			<div className='hidden w-full gap-8 lg:grid lg:grid-cols-[320px_1fr]'>
 				<aside className='relative self-start'>
 					<VT.Area name='t-list'>
 						<TimelineLine className='left-4' />
-
 						<div className='space-y-3'>
 							{projects.map((p) => (
-								<TimelineProjectLink key={p.id} active={project.id === p.id} onClick={() => go(p)} project={p} />
+								<TimelineProjectLink
+									key={p.id}
+									active={project.id === p.id}
+									href={getTimelineProjectHref(p.slug)}
+									scroll={false}
+									project={p}
+								/>
 							))}
 						</div>
 					</VT.Area>
 				</aside>
-
 				<main>
 					<VT.Area slot='vt-right'>
 						<TimelineProjectPanel project={project} />
@@ -48,10 +49,8 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 			</div>
 
 			{/* Mobile ──────────────────────────────────────────── */}
-
 			<div className='relative lg:hidden'>
 				<TimelineLine className='left-1.75' />
-
 				<div className='space-y-3'>
 					{projects.map((p) => (
 						<div key={p.id}>
@@ -66,7 +65,13 @@ export const TimelineProjectPage = ({ project, allProjects: projects }: Timeline
 							) : (
 								// Collapsed
 								<VT.Onto name={`t-project-${p.id}`} classes='t-project'>
-									<TimelineProjectLink className='-ml-2.5' project={p} onClick={() => go(p)} />
+									<TimelineProjectLink
+										className='-ml-2.5'
+										active={false}
+										href={getTimelineProjectHref(p.slug)}
+										scroll={false}
+										project={p}
+									/>
 								</VT.Onto>
 							)}
 						</div>

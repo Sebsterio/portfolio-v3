@@ -1,19 +1,19 @@
 import { cn } from '@/lib/utils';
 import { Project } from '@/types';
 import { TimelineDot } from '@/components/primitives/TimelineDot';
+import { TransitionLink, TransitionLinkProps } from '@/lib/transitions/components/TransitionLink';
 
-type TimelineProjectLinkProps = {
+type TimelineProjectLinkProps = TransitionLinkProps & {
 	project: Project;
 	active?: boolean;
-	onClick: () => void;
 	className?: string;
 };
 
 export const TimelineProjectLink = ({ project, active, className, ...props }: TimelineProjectLinkProps) => (
-	<button
+	<TransitionLink
 		{...props}
 		className={cn(
-			'relative w-full rounded-xl border p-4 pl-10',
+			'relative block w-full rounded-xl border p-4 pl-10',
 			'transition-[background-color,border-color,opacity] duration-300',
 			active
 				? ['border-accent/30 bg-accent/10', 'transitioning:border-transparent transitioning:bg-accent/5']
@@ -30,5 +30,5 @@ export const TimelineProjectLink = ({ project, active, className, ...props }: Ti
 			</div>
 			<div className='text-xs text-subtle'>{project.company}</div>
 		</div>
-	</button>
+	</TransitionLink>
 );
