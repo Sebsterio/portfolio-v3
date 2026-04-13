@@ -1,6 +1,7 @@
 'use client';
 
 import type { Project, ProjectNavItem } from '@/types';
+import { getCardsProjectHref } from '@/lib/navigation';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { FlipCard } from '@/components/motion/FlipCard';
 import { BackLink } from '@/components/primitives/BackLink';
@@ -9,7 +10,7 @@ import { ProjectSummary } from '@/components/composites/ProjectSummary';
 import { ProjectCaseStudy } from '@/components/composites/ProjectCaseStudy';
 import { PrevLinkButton, NextLinkButton } from '@/components/primitives/DirectionButtonLink';
 import { CardsProjectPageLayout as Layout } from '@/components/layout/CardsProjectPageLayout';
-import { PROJECT_PAGE_TITLE_ID, getCardsProjectHref } from '@/app/projects/_config';
+import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
 
 type CardsProjectPageProps = {
 	project: Project;

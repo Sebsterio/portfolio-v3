@@ -1,6 +1,7 @@
 'use client';
 
 import type { Project } from '@/types';
+import { getTimelineProjectHref } from '@/lib/navigation';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { BackLink } from '@/components/primitives/BackLink';
 import { TimelineLine } from '@/components/primitives/TimelineLine';
@@ -13,8 +14,6 @@ type TimelineProjectPageProps = {
 	project: Project;
 	allProjects: Project[];
 };
-
-const getTimelineProjectHref = (slug: string) => `/projects/timeline/${slug}`;
 
 export const TimelineProjectPage = ({ project, allProjects: projects }: TimelineProjectPageProps) => {
 	return (
