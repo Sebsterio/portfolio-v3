@@ -1,10 +1,10 @@
 'use client';
 
 import type { Project } from '@/types';
+import { PAGE_ANCHOR_ID } from '@/config/constants';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { ProjectCard } from '@/components/composites/ProjectCard';
-import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
 
 // ----------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 							onClick={
 								project.brief
 									? () => project.link && window.open(project.link, '_blank')
-									: () => navigate(`/projects/cards/${project.slug}`, { scrollTo: PROJECT_PAGE_TITLE_ID })
+									: () => navigate(`/projects/cards/${project.slug}`, { scrollTo: PAGE_ANCHOR_ID })
 							}
 						/>
 					</VT.Onto>

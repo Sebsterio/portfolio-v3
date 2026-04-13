@@ -1,6 +1,7 @@
 'use client';
 
 import type { Project, ProjectNavItem } from '@/types';
+import { PAGE_ANCHOR_ID } from '@/config/constants';
 import { getCardsProjectHref } from '@/lib/navigation';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { FlipCard } from '@/components/motion/FlipCard';
@@ -10,7 +11,6 @@ import { ProjectSummary } from '@/components/composites/ProjectSummary';
 import { ProjectCaseStudy } from '@/components/composites/ProjectCaseStudy';
 import { PrevLinkButton, NextLinkButton } from '@/components/primitives/DirectionButtonLink';
 import { CardsProjectPageLayout as Layout } from '@/components/layout/CardsProjectPageLayout';
-import { PROJECT_PAGE_TITLE_ID } from '@/app/projects/_config';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -26,6 +26,7 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 				<BackLink href='/projects/cards' scroll={false}>
 					All Projects
 				</BackLink>
+				<div id={PAGE_ANCHOR_ID} />
 			</div>
 
 			<Layout className='content-container'>
@@ -56,7 +57,7 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 								key={id}
 								href={getCardsProjectHref(slug)}
 								current={id === project.id}
-								scrollTo={PROJECT_PAGE_TITLE_ID}
+								scrollTo={PAGE_ANCHOR_ID}
 								aria-label={`Go to project ${slug}`}
 							/>
 						)}
