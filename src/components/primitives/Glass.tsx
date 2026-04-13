@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 
 export type GlassProps = {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	className?: string;
 	style?: React.CSSProperties;
 	texture?: boolean;
@@ -35,7 +35,7 @@ export function Glass({ children, className, style, texture, glint, accents, ref
 
 			{children}
 
-			{glint && <div className='glass-glint overlay-full group-hover:glass-glint-active' aria-hidden />}
+			{glint && <div className='overlay-full glass-glint group-hover:glass-glint-active' aria-hidden />}
 		</div>
 	);
 }

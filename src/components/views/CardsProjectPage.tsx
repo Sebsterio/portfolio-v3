@@ -11,6 +11,7 @@ import { ProjectCaseStudyContent } from '@/components/content/ProjectCaseStudyCo
 import { PrevLinkButton, NextLinkButton } from '@/components/primitives/DirectionButtonLink';
 import { CardsProjectPageLayout as Layout } from '@/components/layout/CardsProjectPageLayout';
 import { PROJECT_PAGE_TITLE_ID, getCardsProjectHref } from '@/app/projects/_config';
+import { PropsWithChildren } from 'react';
 
 type CardsProjectPageProps = {
 	project: Project;
@@ -18,6 +19,10 @@ type CardsProjectPageProps = {
 	prev: ProjectNavItem['prev'];
 	next: ProjectNavItem['next'];
 };
+
+const CardsProjectPanel = (props: PropsWithChildren) => (
+	<Panel className='glass-surface-2 glass-radius-2 padding-panel glass-elevation-1' {...props} />
+);
 
 export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProjectPageProps) => {
 	return (
@@ -35,9 +40,8 @@ export const CardsProjectPage = ({ project, navItems, prev, next }: CardsProject
 					<VT.Area name={`c-project-${project.id}`} classes='c-active'>
 						<FlipCard
 							className='relative z-50 mx-auto w-full max-w-4xl'
-							front={<ProjectSummaryContent project={project} />}
-							back={<ProjectCaseStudyContent project={project} />}
-							render={(face) => <Panel className='glass-surface-2 glass-radius-2 padding-panel glass-elevation-1'>{face}</Panel>}
+							front={<CardsProjectPanel> <ProjectSummaryContent project={project} /> </CardsProjectPanel>} // prettier-ignore
+							back={<CardsProjectPanel> <ProjectCaseStudyContent project={project} /> </CardsProjectPanel>} // prettier-ignore
 						/>
 					</VT.Area>
 				</Layout.Card>
