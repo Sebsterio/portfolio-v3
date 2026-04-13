@@ -12,16 +12,16 @@ type ProjectCardProps = {
 	onClick: () => void;
 };
 
-export const ProjectCard = ({ project, style, className, onClick }: ProjectCardProps) => {
+export const ProjectCard = ({ project, className, ...props }: ProjectCardProps) => {
 	return (
 		<Panel
+			{...props}
 			edgeGlow
 			className={cn(
 				'group glass-surface-2 h-105 glass-radius-3 padding-card glass-elevation-1',
 				'transition-all hover:scale-105 hover:glass-elevation-2',
 				className,
 			)}
-			{...{ style, onClick }}
 		>
 			<div className='relative flex h-full flex-col justify-between gap-6 text-left'>
 				<>

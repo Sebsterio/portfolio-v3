@@ -2,6 +2,7 @@
 
 import type { Project } from '@/types';
 import { PAGE_ANCHOR_ID } from '@/config/constants';
+import { getCardsProjectHref } from '@/lib/navigation';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { ProjectCard } from '@/components/composites/ProjectCard';
@@ -13,7 +14,7 @@ type CardsCollectionPageProps = {
 };
 
 export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
-	const { navigate } = useTransitionRouter();
+	const { navigate, prefetch } = useTransitionRouter();
 
 	return (
 		<div className='w-full stack-lg'>
@@ -25,8 +26,9 @@ export const CardsCollectionPage = ({ projects }: CardsCollectionPageProps) => {
 							onClick={
 								project.brief
 									? () => project.link && window.open(project.link, '_blank')
-									: () => navigate(`/projects/cards/${project.slug}`, { scrollTo: PAGE_ANCHOR_ID })
+									: () => navigate(getCardsProjectHref(project.slug), { scrollTo: PAGE_ANCHOR_ID })
 							}
+							{...(!project.brief && { onHover: () => prefetch(getCardsProjectHref(project.slug)) })}
 						/>
 					</VT.Onto>
 				))}

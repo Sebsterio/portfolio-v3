@@ -1,6 +1,7 @@
 'use client';
 
 import type { Project } from '@/types';
+import { getTimelineProjectHref } from '@/lib/navigation';
 import { useTransitionRouter } from '@/lib/transitions/hooks/useTransitionRouter';
 import { VT } from '@/lib/transitions/components/ViewTransition';
 import { TimelineLine } from '@/components/primitives/TimelineLine';
@@ -12,8 +13,7 @@ type TimelineCollectionPageProps = {
 };
 
 export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps) => {
-	const { navigate } = useTransitionRouter();
-	const go = (project: Project) => navigate(`/projects/timeline/${project.slug}`, { scroll: false });
+	const { navigate, prefetch } = useTransitionRouter();
 
 	return (
 		<div className='w-full stack-lg'>
@@ -26,7 +26,13 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 							<div key={project.id} className='relative flex gap-8'>
 								<TimelineDate.Wide period={project.period} className='hidden xl:block' />
 								<TimelineDate.Narrow period={project.period} className='xl:hidden' />
-								<TimelineCard className='w-full' limit={4} onClick={() => go(project)} project={project} />
+								<TimelineCard
+									className='w-full'
+									limit={4}
+									onClick={() => navigate(getTimelineProjectHref(project.slug), { scroll: false })}
+									onHover={() => prefetch(getTimelineProjectHref(project.slug))}
+									project={project}
+								/>
 							</div>
 						))}
 					</div>
@@ -41,7 +47,13 @@ export const TimelineCollectionPage = ({ projects }: TimelineCollectionPageProps
 						<div key={project.id} className='relative'>
 							<TimelineDate.Mobile period={project.period} className='mb-3' />
 							<VT.Onto name={`t-project-${project.id}`} classes='t-project'>
-								<TimelineCard className='mr-2 p-6' limit={4} onClick={() => go(project)} project={project} />
+								<TimelineCard
+									className='mr-2 p-6'
+									limit={4}
+									onClick={() => navigate(getTimelineProjectHref(project.slug), { scroll: false })}
+									onHover={() => prefetch(getTimelineProjectHref(project.slug))}
+									project={project}
+								/>
 							</VT.Onto>
 						</div>
 					))}

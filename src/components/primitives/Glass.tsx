@@ -15,9 +15,10 @@ export type GlassProps = {
 	 */
 	glint?: boolean;
 	onClick?: () => void;
+	onHover?: () => void;
 };
 
-export function Glass({ children, className, style, texture, glint, accents, reflection, edgeGlow, onClick }: GlassProps) {
+export function Glass({ children, className, texture, glint, accents, reflection, edgeGlow, onClick, ...props }: GlassProps) {
 	return (
 		<div
 			className={cn(
@@ -28,8 +29,8 @@ export function Glass({ children, className, style, texture, glint, accents, ref
 				onClick && 'cursor-pointer',
 				className,
 			)}
-			style={style}
 			onClick={onClick}
+			{...props}
 		>
 			{texture && <div className='overlay-full glass-noise' aria-hidden />}
 

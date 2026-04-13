@@ -11,6 +11,7 @@ type TimelineCardProps = {
 	style?: React.CSSProperties;
 	className?: string;
 	onClick?: () => void;
+	onHover?: () => void;
 };
 
 export function TimelineCard({ project, className, limit, ...props }: TimelineCardProps) {
